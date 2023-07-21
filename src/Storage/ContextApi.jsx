@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+const userContext= useContext()
 const ContextApi = () => {
     return (
         <div>

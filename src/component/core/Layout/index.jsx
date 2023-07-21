@@ -10,10 +10,10 @@ const index = ({ children }) => {
             <Navbar />
             <div class="grid grid-cols-12">
 
-                <div class="col">
+                <div class="col fixed top-[10%]">
                     <Sidebar />
                 </div>
-                <div class="col-span-11 ...">
+                <div class="col-span-11 ms-[10%] mt-[5%] ...">
                 <SubNavbar/>
                 <div className='grid grid-cols-12 ps-8 pt-5'>
                 <div className="col-span-7">
