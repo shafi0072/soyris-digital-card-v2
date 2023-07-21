@@ -10,7 +10,7 @@ const SubNavbar = () => {
       <ul style={{ display: 'flex' }}>
         {
           sub_Navbar_data?.map((items, index) => <li className='mx-2 my-2 ' onClick={() => { setActive(index); router.push(items?.url) }}>
-            <div className={`${active === index && "bg-[#0277B5]  rounded text-white"} px-4 py-2 cursor-pointer`}>
+            <div className={`${ router.pathname === items?.url    && "bg-[#0277B5]  rounded text-white"} px-4 py-2 cursor-pointer`}>
               <p>{items?.title}</p>
             </div>
           </li>)
