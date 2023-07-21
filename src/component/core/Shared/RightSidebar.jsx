@@ -9,7 +9,7 @@ const RightSidebar = () => {
                     <img className='h-full w-full object-cover rounded' src="https://images.pexels.com/photos/5378700/pexels-photo-5378700.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                     <div className=''>
                     <div className='absolute top-[72%] z-10'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="324" height="91.28" viewBox="0 0 381 88.28">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="328" height="91.28" viewBox="0 0 381 88.28">
   <path id="wave" d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z" transform="translate(0 0)" fill="#0e66a0"/>
 </svg>
 

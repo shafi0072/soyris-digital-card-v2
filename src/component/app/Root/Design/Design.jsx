@@ -35,7 +35,9 @@ const Design = () => {
                     </button>
                 </div>
             </div>
-            <div></div>
+            <div className='mt-5'>
+            <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
+            </div>
         </div>
     );
 };
