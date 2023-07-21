@@ -19,7 +19,7 @@ const index = ({ children }) => {
                 <div className="col-span-7">
                 {children}
                 </div>
-                <div className="col-span-4 pl-5">
+                <div className="col-span-4 pl-5 fixed right-[10%]">
                     <RightSidebar/>
                 </div>
                 </div>
