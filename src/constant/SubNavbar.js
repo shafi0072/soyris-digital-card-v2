@@ -1,7 +1,7 @@
 export const sub_Navbar_data = [
   {
     title: 'Profile Informations',
-    url:'/profileInfo'
+    url:'/'
   },
   {
     title: 'Design',

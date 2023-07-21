@@ -5,7 +5,7 @@ const Sidebar = () => {
   const [expand, setExpand] = useState(-1)
 
   return (
-    <div className='bg-[#0077B5] w-[100%] h-[100vh] pl-2'>
+    <div className='bg-[#0077B5] w-[100%] min-h-screen pl-2'>
       <ul>
         {
           nav_data?.map((items, index) => <li className='mb-2' onClick={() => setExpand(index)}>
