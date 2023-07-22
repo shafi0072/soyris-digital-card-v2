@@ -12,6 +12,7 @@ const ContextApi = ({ children }) => {
         setColor,
         profileImage,
         logoImage,
+        setInfo,
         setLogoImage,
         setProfileImage,
         design,
