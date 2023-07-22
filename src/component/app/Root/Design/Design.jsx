@@ -3,12 +3,15 @@ import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import { userContext } from '@/src/Storage/ContextApi';
 import CloseIcon from '@mui/icons-material/Close';
+import ProfileImage from './ProfileImage';
+import LogoImage from './LogoImage';
 
 
 
 const Design = () => {
     const [border, setBorder] = useState('clasic');
     const { color, setColor } = useContext(userContext)
+
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
@@ -69,50 +72,17 @@ const Design = () => {
             <div className='mt-5 border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Profile Photo</h2>
 
-                <div className='mt-8 flex items-center justify-between w-3/4'>
-                    <div className='relative w-[60px] '>
-                        <img className='w-[50px] h-[50px] rounded-full object-cover' src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg&ga=GA1.2.1090181602.1690007009&semt=sph" alt="" />
-                        <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
-                            <CloseIcon className='text-white text-[12px]' />
-                        </span>
-                    </div>
-                    <div className=" w-[266px]">
-                        <label htmlFor='profileImage' className='flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
-                            <AddIcon sx={{ color: '#0077B5' }} />
-                            <p className="text-md">Add Photo or a Video</p>
-
-                        </label>
-                        <input type="file" id='profileImage' style={{ display: 'none' }} />
-                    </div>
-                </div>
+                <ProfileImage />
             </div>
             <div className='mt-5 '>
                 <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
-
-                <div className='mt-8 flex items-center justify-between w-3/4'>
-                    <div className='relative w-[100px] '>
-                        <img className='w-[100px]   object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu07UUrIjOE1KbU1bQvORHsmxFTsUAKbBARA&usqp=CAU" alt="" />
-                        <span className='absolute -right-3 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
-                            <CloseIcon className='text-white text-[12px]' />
-                        </span>
-                    </div>
-                    <div className=" w-[266px]">
-                        <label htmlFor='logoImages' className='flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
-                            <AddIcon sx={{ color: '#0077B5' }} />
-                            <p className="text-md">Replace Logo</p>
-
-                        </label>
-                        <input type="file" id='logoImages' style={{ display: 'none' }} />
-                    </div>
-                </div>
-
-
+               <LogoImage/>
             </div>
             <div className='my-10'>
                 <button className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500'>Cancel</button>
                 <button className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
-                
-                
+
+
             </div>
         </div>
 

@@ -10,7 +10,7 @@ const index = ({ children }) => {
             <Navbar />
             <div class="grid grid-cols-12">
 
-                <div class="col fixed top-[10%]">
+                <div class="col fixed top-[6.9%]">
                     <Sidebar />
                 </div>
                 <div class="col-span-11 ms-[10%] mt-[5%] ...">
