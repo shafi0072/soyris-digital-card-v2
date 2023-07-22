@@ -5,13 +5,14 @@ import { userContext } from '@/src/Storage/ContextApi';
 import CloseIcon from '@mui/icons-material/Close';
 import ProfileImage from './ProfileImage';
 import LogoImage from './LogoImage';
+import { BlockPicker, ChromePicker } from 'react-color';
 
 
 
 const Design = () => {
     const [border, setBorder] = useState('clasic');
     const { color, setColor } = useContext(userContext)
-
+    const [customColor, setCustomColor] = useState(false)
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
@@ -49,6 +50,9 @@ const Design = () => {
                 <h2 className='text-xl font-bold text-black pb-2 '>Color</h2>
 
                 <div className='flex'>
+                    <div onClick={() => setCustomColor(!customColor)} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2">
+                        <img src="/1fb07539-85c6-49e4-80b3-83e7d03064f8.png" alt="" />
+                    </div>
                     <div onClick={() => setColor('#cccc00')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
                         {color === '#cccc00' && <CheckIcon />}
                     </div>
@@ -68,6 +72,15 @@ const Design = () => {
                         {color === '#1D15F7' && <CheckIcon />}
                     </div>
                 </div>
+                {
+                    customColor && <div>
+                        <div>
+                            <div>
+                            </div>
+                        </div>
+                        <ChromePicker color={color} onChange={(e) => setColor(e.hex)}/>
+                    </div>
+                }
             </div>
             <div className='mt-5 border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Profile Photo</h2>
@@ -76,7 +89,7 @@ const Design = () => {
             </div>
             <div className='mt-5 '>
                 <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
-               <LogoImage/>
+                <LogoImage />
             </div>
             <div className='my-10'>
                 <button className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500'>Cancel</button>
