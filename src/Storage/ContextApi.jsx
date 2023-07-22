@@ -12,7 +12,8 @@ const ContextApi = ({ children }) => {
         profileImage,
         logoImage,
         setLogoImage,
-        setProfileImage
+        setProfileImage,
+        setInfo
     }
     return (
         <userContext.Provider value={value}>

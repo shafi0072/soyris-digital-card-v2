@@ -1,6 +1,10 @@
+import { userContext } from '@/src/Storage/ContextApi';
 import React from 'react';
+import { useContext } from 'react';
 
 const ProfileInformation = () => {
+    const {info,setInfo} = useContext(userContext);
+    
     return (
         <div className=''>
 
