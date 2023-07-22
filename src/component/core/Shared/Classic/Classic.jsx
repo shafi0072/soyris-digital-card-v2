@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Classic = ({color, profileImage}) => {
+const Classic = ({color, profileImage,logoImage}) => {
   return (
     <div className=' w-[90%] h-[300px]  relative rounded' style={{background:color}}>
                     <img className='h-full w-full object-cover rounded' src={profileImage ? profileImage : ""} alt="" />
@@ -20,6 +20,7 @@ const Classic = ({color, profileImage}) => {
                                 <path id="wave-right" d="M300.742,6.114c-30.018-.329-66.667,9.2-121,41.617C136.118,73.767,99.61,86.065,65.025,86.281H65v1.575H350V14.529C334.376,10.055,318.753,6.312,300.742,6.114Z" transform="translate(-65 -6.106)" fill="white" />
                             </svg>
                         </div>
+                   {logoImage&&  <img className='absolute bottom-3 right-0 z-50 w-[100px]' src={logoImage} alt="" />}
                     </div>
                 </div>
   );
