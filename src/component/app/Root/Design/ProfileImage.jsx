@@ -56,7 +56,8 @@ const ProfileImage = () => {
       <div className='flex items-center justify-between'>
         <div className='relative w-[60px] '>
           <img className='w-[50px] h-[50px] rounded-full object-cover' src={profileImage ? profileImage : ''} alt="" />
-          <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
+          <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full' onClick={() => {setCroppedImage(null);
+    setProfileImage(null); setSelectedImage(null)}}>
             <CloseIcon className='text-white text-[12px]' />
           </span>
         </div>
@@ -82,7 +83,8 @@ const ProfileImage = () => {
           />
 
           <div className='mt-2'>
-            <button className='px-4 py-2 bg-gray-400 mr-2 rounded'>cancel</button>
+            <button onClick={() => {setCroppedImage(null);
+    setProfileImage(null); setSelectedImage(null)}} className='px-4 py-2 bg-gray-400 mr-2 rounded'>cancel</button>
             <button onClick={handleCrop} className='bg-[#EE490C] px-5 py-2 rounded text-white'>Add Media</button>
           </div>
 

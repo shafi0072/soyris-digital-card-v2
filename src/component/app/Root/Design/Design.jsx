@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ProfileImage from './ProfileImage';
 import LogoImage from './LogoImage';
 import { BlockPicker, ChromePicker } from 'react-color';
-
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 const Design = () => {
@@ -73,12 +73,54 @@ const Design = () => {
                     </div>
                 </div>
                 {
-                    customColor && <div>
+                    customColor && <div className='flex justify-between items-center'>
                         <div>
-                            <div>
+                            <div className='flex justify-between items-center'>
+                                <div className=''>
+                                    <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
+                                </div>
+                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:color}}></div>
+                                    <div className='px-3'>
+                                        <span className='text-center'>{color}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex justify-between items-center mt-4'>
+                                <div className=''>
+                                    <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
+                                </div>
+                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:'#fff'}}></div>
+                                    <div className='px-3'>
+                                        <span className='text-center'>{"#fffffffff"}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex justify-between items-center mt-4'>
+                                <div className=''>
+                                    <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
+                                </div>
+                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:color}}></div>
+                                    <div className='px-3'>
+                                        <span className='text-center'>{color}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex justify-between items-center mt-4'>
+                                <div className=''>
+                                    <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
+                                </div>
+                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:'#fff'}}></div>
+                                    <div className='px-3'>
+                                        <span className='text-center'>{'#fffffffff'}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <ChromePicker color={color} onChange={(e) => setColor(e.hex)}/>
+                        <ChromePicker color={color} onChange={(e) => setColor(e.hex)} />
                     </div>
                 }
             </div>
