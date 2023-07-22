@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RightSidebar = () => {
-    return (
+    return ( 
         <div>
 
             <div className='relative w-[363px]'>

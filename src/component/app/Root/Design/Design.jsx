@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import CheckIcon from '@mui/icons-material/Check';
+import { userContext } from '@/src/Storage/ContextApi';
+import CloseIcon from '@mui/icons-material/Close';
+
+
 
 const Design = () => {
-    const [border,setBorder]= useState('clasic');
+    const [border, setBorder] = useState('clasic');
+    const { color, setColor } = useContext(userContext)
     return (
         <div>
-            <div>
+            <div className='border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
                 <div className='flex gap-3'>
-                    <button className={`${border=== 'clasic'&& 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={()=>setBorder('clasic')}>
+                    <button className={`${border === 'clasic' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setBorder('clasic')}>
                         <span className='absolute top-2 left-2 bottom-5'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="73.066" height="60.937" viewBox="0 0 73.066 60.937">
                                 <g id="Group_3" data-name="Group 3" transform="translate(-610 -437)">
@@ -23,7 +30,7 @@ const Design = () => {
                         </span>
                         <span className='absolute bottom-2 left-0 right-0 text-center text-[#2C2C2C]'>Classic</span>
                     </button>
-                    <button className={`${border==='flat'&& 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={()=>setBorder('flat')}>
+                    <button className={`${border === 'flat' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setBorder('flat')}>
                         <span className='absolute top-2 left-2 bottom-5'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="73.031" height="35.449" viewBox="0 0 73.031 35.449">
                                 <path id="Rectangle_24" data-name="Rectangle 24" d="M13,0H60.031a13,13,0,0,1,13,13V35.449a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V13A13,13,0,0,1,13,0Z" fill="#0f66a0" />
@@ -35,10 +42,81 @@ const Design = () => {
                     </button>
                 </div>
             </div>
-            <div className='mt-5'>
-            <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
+            <div className='mt-8 border-b border-[#CBD5E0] pb-8'>
+                <h2 className='text-xl font-bold text-black pb-2 '>Color</h2>
+
+                <div className='flex'>
+                    <div onClick={() => setColor('#cccc00')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
+                        {color === '#cccc00' && <CheckIcon />}
+                    </div>
+                    <div onClick={() => setColor('#0077B5')} className="rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
+                        {color === '#0077B5' && <CheckIcon />}
+                    </div>
+                    <div onClick={() => setColor('#1A7C16')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
+                        {color === '#1A7C16' && <CheckIcon />}
+                    </div>
+                    <div onClick={() => setColor('#EB531B')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#EB531B] ml-2">
+                        {color === '#EB531B' && <CheckIcon />}
+                    </div>
+                    <div onClick={() => setColor('#E31BEB')} className="rounded-full text-white text-center pt-[2px]  w-[30px] h-[30px] bg-[#E31BEB] ml-2">
+                        {color === '#E31BEB' && <CheckIcon />}
+                    </div>
+                    <div onClick={() => setColor('#1D15F7')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1D15F7] ml-2">
+                        {color === '#1D15F7' && <CheckIcon />}
+                    </div>
+                </div>
+            </div>
+            <div className='mt-5 border-b border-[#CBD5E0] pb-8'>
+                <h2 className='text-xl font-bold text-black pb-2 '>Profile Photo</h2>
+
+                <div className='mt-8 flex items-center justify-between w-3/4'>
+                    <div className='relative w-[60px] '>
+                        <img className='w-[50px] h-[50px] rounded-full object-cover' src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg&ga=GA1.2.1090181602.1690007009&semt=sph" alt="" />
+                        <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
+                            <CloseIcon className='text-white text-[12px]' />
+                        </span>
+                    </div>
+                    <div className=" w-[266px]">
+                        <label htmlFor='profileImage' className='flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
+                            <AddIcon sx={{ color: '#0077B5' }} />
+                            <p className="text-md">Add Photo or a Video</p>
+
+                        </label>
+                        <input type="file" id='profileImage' style={{ display: 'none' }} />
+                    </div>
+                </div>
+            </div>
+            <div className='mt-5 '>
+                <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
+
+                <div className='mt-8 flex items-center justify-between w-3/4'>
+                    <div className='relative w-[100px] '>
+                        <img className='w-[100px]   object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu07UUrIjOE1KbU1bQvORHsmxFTsUAKbBARA&usqp=CAU" alt="" />
+                        <span className='absolute -right-3 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
+                            <CloseIcon className='text-white text-[12px]' />
+                        </span>
+                    </div>
+                    <div className=" w-[266px]">
+                        <label htmlFor='logoImages' className='flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
+                            <AddIcon sx={{ color: '#0077B5' }} />
+                            <p className="text-md">Replace Logo</p>
+
+                        </label>
+                        <input type="file" id='logoImages' style={{ display: 'none' }} />
+                    </div>
+                </div>
+
+
+            </div>
+            <div className='my-10'>
+                <button className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500'>Cancel</button>
+                <button className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
+                
+                
             </div>
         </div>
+
+
     );
 };
 
