@@ -3,6 +3,7 @@ export const userContext = createContext()
 const ContextApi = ({ children }) => {
     const [color, setColor] = useState('#0077B5')
     const [profileImage, setProfileImage] = useState(null)
+    const [design, setDesign] = useState('classic')
     const [logoImage, setLogoImage] = useState(null)
     const value = {
         color,
@@ -10,7 +11,9 @@ const ContextApi = ({ children }) => {
         profileImage,
         logoImage,
         setLogoImage,
-        setProfileImage
+        setProfileImage,
+        design,
+        setDesign
     }
     return (
         <userContext.Provider value={value}>

@@ -11,14 +11,15 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const Design = () => {
     const [border, setBorder] = useState('clasic');
-    const { color, setColor } = useContext(userContext)
+    const { color, setColor, design,
+        setDesign } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
                 <div className='flex gap-3'>
-                    <button className={`${border === 'clasic' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setBorder('clasic')}>
+                    <button className={`${design === 'classic' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setDesign('classic')}>
                         <span className='absolute top-2 left-2 bottom-5'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="73.066" height="60.937" viewBox="0 0 73.066 60.937">
                                 <g id="Group_3" data-name="Group 3" transform="translate(-610 -437)">
@@ -34,7 +35,7 @@ const Design = () => {
                         </span>
                         <span className='absolute bottom-2 left-0 right-0 text-center text-[#2C2C2C]'>Classic</span>
                     </button>
-                    <button className={`${border === 'flat' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setBorder('flat')}>
+                    <button className={`${design === 'flat' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setDesign('flat')}>
                         <span className='absolute top-2 left-2 bottom-5'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="73.031" height="35.449" viewBox="0 0 73.031 35.449">
                                 <path id="Rectangle_24" data-name="Rectangle 24" d="M13,0H60.031a13,13,0,0,1,13,13V35.449a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V13A13,13,0,0,1,13,0Z" fill="#0f66a0" />
