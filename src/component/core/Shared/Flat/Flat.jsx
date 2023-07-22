@@ -10,9 +10,7 @@ const Flat = ({ color, profileImage, logoImage }) => {
     <div className='w-[90%] mt-5'>
 {logoImage && <img className=' w-3/4 object-cover rounded' src={logoImage ? logoImage : ""} alt="" />}
     </div>
-    <div className='w-[90%] mt-5'>
-      
-    </div>
+    
     </div>
   );
 };
