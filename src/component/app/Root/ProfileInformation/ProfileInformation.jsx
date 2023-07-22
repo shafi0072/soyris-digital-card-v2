@@ -22,7 +22,6 @@ const ProfileInformation = () => {
                         <div className=''>
                             <label htmlFor="first_name" className='block mb-2'>First Name</label>
                             <input onChange={handleFieldsOnChange} type="text" className='w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='first_name' id='first_name' />
-
                         </div>
                         <div className=''>
                             <label htmlFor="last_name" className='block mb-2'>Last Name</label>
@@ -39,7 +38,6 @@ const ProfileInformation = () => {
                         <div className=''>
                             <label htmlFor="suffix" className='block mb-2'>Suffix</label>
                             <input onChange={handleFieldsOnChange} type="text" className='w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='suffix' id='suffix' />
-
                         </div>
                     </div>
                     <div className='grid grid-cols-2 mb-5'>
@@ -88,7 +86,7 @@ const ProfileInformation = () => {
                     </div>
                     <div className='fixed bottom-20 left-[12%] z-50'>
                         <input type="submit" value="Cancel" className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500' />
-                        <input  type="submit" value="Save" className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]' />
+                        <input  type="submit" value="Save" className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'/>
                     </div>
                 </form>
             </div>
