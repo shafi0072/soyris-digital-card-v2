@@ -56,7 +56,7 @@ const LogoImage = () => {
       <div className='mt-8 flex items-center justify-between w-3/4'>
         <div className='relative w-[100px] '>
           <img className='w-[100px]   object-cover' src={logoImage && logoImage} alt="" />
-          <span className='absolute -right-3 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
+          <span onClick={()=>setLogoImage(null)} className='absolute -right-3 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
             <CloseIcon className='text-white text-[12px]' />
           </span>
         </div>

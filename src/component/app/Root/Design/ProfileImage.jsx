@@ -56,7 +56,7 @@ const ProfileImage = () => {
       <div className='flex items-center justify-between'>
         <div className='relative w-[60px] '>
           <img className='w-[50px] h-[50px] rounded-full object-cover' src={profileImage ? profileImage : ''} alt="" />
-          <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
+          <span onClick={()=>setProfileImage(null)} className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
             <CloseIcon className='text-white text-[12px]' />
           </span>
         </div>

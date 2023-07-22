@@ -4,8 +4,10 @@ const ContextApi = ({ children }) => {
     const [color, setColor] = useState('#0077B5')
     const [profileImage, setProfileImage] = useState(null)
     const [logoImage, setLogoImage] = useState(null)
+    const [infos, setInfo] = useState({})
     const value = {
         color,
+        infos,
         setColor,
         profileImage,
         logoImage,
