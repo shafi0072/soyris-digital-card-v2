@@ -9,6 +9,7 @@ import {
 import auth from '@/src/config/firebase';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { baseUrl } from '../config/Server';
 const index = () => {
   const provider = new GoogleAuthProvider();
   const router = useRouter()
@@ -25,15 +26,21 @@ const index = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log({ user: result.user })
-        localStorage.setItem('accessToken', result.user.accessToken)
-        router?.push('/')
-      })
-      .catch((err) => console.log(err));
-  };
-  const signInWithFacebook = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log({ user: result.user })
+
+        fetch(`${baseUrl}/add-user/auth`, {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userName: result?.user?.displayName,
+            email: result?.user?.email
+          })
+        })
+          .then(res => res.json())
+          .then(data => console.log({ data }))
+          .catch(err => console.log(err))
+        localStorage.setItem('email', result?.user?.email)
         localStorage.setItem('accessToken', result.user.accessToken)
         router?.push('/')
       })
@@ -53,12 +60,25 @@ const index = () => {
     setSignIpData(newSignUpData)
   }
 
-  // 
   const handleSignUp = (e) => {
     e.preventDefault()
     createUserWithEmailAndPassword(auth, signUpData?.email, signUpData?.password)
       .then((userCredential) => {
         localStorage.setItem('accessToken', userCredential.user.accessToken)
+        localStorage.setItem('email', signUpData?.email)
+        fetch(`${baseUrl}/add-user/auth`, {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            userName: signUpData?.fullName,
+            email: signUpData?.email
+          })
+        })
+          .then(res => res.json())
+          .then(data => console.log({ data }))
+          .catch(err => console.log(err))
         toast.success('Sign Up successfully', {
           position: "top-right",
           autoClose: 5000,
@@ -93,6 +113,8 @@ const index = () => {
       .then((userCredential) => {
         console.log({ userCredential })
         localStorage.setItem('accessToken', userCredential.user.accessToken)
+        localStorage.setItem('email', signIpData?.email)
+        
         toast.success('Sign Ip successfully', {
           position: "top-right",
           autoClose: 5000,
@@ -169,7 +191,7 @@ const index = () => {
             <div className="space-y-4">
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm">First Name</label>
-                <input type="text" name="fullName" id="fullName" placeholder="John Doe" className="w-full px-3 py-2 border rounded-md " />
+                <input onChange={handleSignUpOnChange} type="text" name="fullName" id="fullName" placeholder="John Doe" className="w-full px-3 py-2 border rounded-md " />
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm">Last Name</label>
@@ -212,7 +234,7 @@ const index = () => {
                   </svg>
                   Sign in with Google
                 </button>
-                
+
               </div>
             </div>
             <p className="text-sm text-center dark:text-gray-400">Already have an account?
