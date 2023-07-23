@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import { useState } from 'react';
-import Content from './Content';
+import Content from './InputFildGroup/Content';
 
 const Fields = () => {
     const [feilds,setFeilds]= useState([]);

@@ -8,7 +8,7 @@ const Sidebar = () => {
     <div className='bg-[#0077B5] w-[100%] min-h-screen pl-2 '>
       <ul>
         {
-          nav_data?.map((items, index) => <li className='mb-2' onClick={() => setExpand(index)}>
+          nav_data?.map((items, index) => <li className='mb-8' onClick={() => setExpand(index)}>
             <h1 className="text-md text-white">{items.name} {items?.drowpDown?.length > 0 && <ExpandMoreRoundedIcon />}</h1>
             {expand === index && <ul className='pl-2'>
               {

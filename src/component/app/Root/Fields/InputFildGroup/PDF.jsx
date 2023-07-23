@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Image = () => {
+const PDF = () => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -14,7 +14,7 @@ const Image = () => {
                             <KeyboardArrowDownIcon />
                         </span>
                     </div>
-                    <h4>Image</h4>
+                    <h4>PDF</h4>
                 </div>
             </div>
             <div className='mb-3'>
@@ -30,7 +30,7 @@ const Image = () => {
                             </svg>
                         </span>
 
-                        <p className="text-md">Add Media</p>
+                        <p className="text-md">Add PDF</p>
 
                     </label>
                     <input type="file" id='profileImage' style={{ display: 'none' }} />
@@ -44,4 +44,4 @@ const Image = () => {
     );
 };
 
-export default Image;
+export default PDF;

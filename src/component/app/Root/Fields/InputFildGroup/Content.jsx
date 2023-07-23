@@ -1,32 +1,37 @@
 import React from 'react';
 
-import Phone from './InputFildGroup/Phone';
-import Website from './InputFildGroup/Website';
-import Email from './InputFildGroup/Email';
-import Address from './InputFildGroup/Address';
-import Link from './InputFildGroup/Link';
-import Header from './InputFildGroup/Header';
-import WhatsApp from './InputFildGroup/WhatsApp';
-import Viber from './InputFildGroup/Viber';
-import Facebook from './InputFildGroup/Facebook';
-import Instagram from './InputFildGroup/Instagram';
-import LinkedIn from './InputFildGroup/LinkedIn';
-import Twitter from './InputFildGroup/Twitter';
-import Pinterest from './InputFildGroup/Pinterest';
-import TikTok from './InputFildGroup/TikTok';
-import Skype from './InputFildGroup/Skype';
-import Snapchat from './InputFildGroup/Snapchat';
-import Signal from './InputFildGroup/Signal';
-import Telegram from './InputFildGroup/Telegram';
-import Discord from './InputFildGroup/Discord';
-import Slack from './InputFildGroup/Slack';
-import Image from './InputFildGroup/Image';
-import Gallery from './InputFildGroup/Gallery';
-import YouTube from './InputFildGroup/YouTube';
-import Vimeo from './InputFildGroup/Vimeo';
-import Wistia from './InputFildGroup/Wistia';
+import Phone from './Phone';
+import Website from './Website';
+import Email from './Email';
+import Address from './Address';
+import Link from './Link';
+import Header from './Header';
+import WhatsApp from './WhatsApp';
+import Viber from './Viber';
+import Facebook from './Facebook';
+import Instagram from './Instagram';
+import LinkedIn from './LinkedIn';
+import Twitter from './Twitter';
+import Pinterest from './Pinterest';
+import TikTok from './TikTok';
+import Skype from './Skype';
+import Snapchat from './Snapchat';
+import Signal from './Signal';
+import Telegram from './Telegram';
+import Discord from './Discord';
+import Slack from './Slack';
+import Image from './Image';
+import Gallery from './Gallery';
+import YouTube from './YouTube';
+import Vimeo from './Vimeo';
+import Wistia from './Wistia';
+import PDF from './PDF';
+import Notes from './Notes';
+import Date from './Date';
+import QR from './QR';
+import Divider from './Divider';
 const Content = ({ feilds }) => {
-    // console.log(feilds);
+    console.log(feilds);
     return (
         <div className='border-dotted border-2 bg-gray-300  border-sky-500 p-5 rounded-lg'>
             {
@@ -107,14 +112,24 @@ const Content = ({ feilds }) => {
                     {items === 'Wistia' && <div className='mb-2'>
                     <Wistia />
                     </div>}
+                    {items === 'PDF' && <div className='mb-2'>
+                    <PDF />
+                    </div>}
+                    {items === 'Notes' && <div className='mb-2'>
+                    <Notes />
+                    </div>}
+                    {items === 'Date' && <div className='mb-2'>
+                    <Date />
+                    </div>}
+                    {items === 'URL' && <div className='mb-2'>
+                    <QR />
+                    </div>}
+                    {items === 'Divider' && <div className='mb-2'>
+                    <Divider />
+                    </div>}
                 </>)
             }
 
-
-
-
-
-            
         </div>
     );
 };

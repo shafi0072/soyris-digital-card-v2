@@ -11,7 +11,7 @@ const RightSidebar = () => {
             <div className='relative w-[363px] '>
                 {design === 'classic' && <Classic color={color} profileImage={profileImage} setProfileImage={setProfileImage} logoImage={logoImage}/>}
                 {design === 'flat' && <Flat color={color} profileImage={profileImage} setProfileImage={setProfileImage} logoImage={logoImage}/>}
-                {infos&& <ProfileInfo infos={infos} color={color} />}
+                {infos&& <ProfileInfo design={design} infos={infos} color={color} />}
             </div>
         </div>
     );

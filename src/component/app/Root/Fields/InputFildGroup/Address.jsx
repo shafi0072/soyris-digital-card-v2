@@ -19,7 +19,6 @@ const Address = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    {/* <input type="text" placeholder='Enter your address' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' /> */}
                     <textarea placeholder='Enter your address' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1'>
 
                     </textarea>
