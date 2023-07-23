@@ -4,7 +4,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({feilds,setFeilds}) => {
   const { color } = useContext(userContext)
   const [exapnd, setExpand] = useState({
     id: 0,
@@ -12,9 +12,9 @@ const Sidebar = () => {
   })
 
   const handleFieldSelect = (e) => {
-    let newFields = [...fields]
+    let newFields = [...feilds]
     newFields.push(e)
-    setFields(newFields)
+    setFeilds(newFields)
   }
   
   return (

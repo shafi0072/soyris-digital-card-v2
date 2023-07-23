@@ -15,11 +15,11 @@ const index = ({ children }) => {
                 </div>
                 <div class="col-span-11 ms-[10%] mt-[5%] ...">
                 <SubNavbar/>
-                <div className='grid grid-cols-12 ps-8 pt-5'>
-                <div className="col-span-7">
+                <div className='grid grid-cols-12 ps-8 pt-5 gap-8'>
+                <div className="col-span-8">
                 {children}
                 </div>
-                <div className="col-span-4 pl-5 fixed right-[10%]">
+                <div className=" pl-5 fixed right-0">
                     <RightSidebar/>
                 </div>
                 </div>
