@@ -7,13 +7,46 @@ import ProfileImage from './ProfileImage';
 import LogoImage from './LogoImage';
 import { BlockPicker, ChromePicker } from 'react-color';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { baseUrl } from '@/src/config/Server';
+import { toast } from 'react-toastify';
 
 
 const Design = () => {
     const [border, setBorder] = useState('clasic');
-    const { color, setColor, design,
+    const { profileImage, logoImage, userData, color, setColor, design,
         setDesign } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
+    console.log(userData?._id)
+    const handleDesignSubmit = (e) => {
+        fetch(`${baseUrl}/add-user/profile/display/${userData?._id}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                display: {
+                    design: design,
+                    color: color,
+                    ProfileImage: `${profileImage}`,
+                    Logo: `${logoImage}`
+                }
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Sign Up successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+            .catch(err => console.log({ err }))
+    }
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
@@ -81,7 +114,7 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:color}}></div>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: color }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{color}</span>
                                     </div>
@@ -92,7 +125,7 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:'#fff'}}></div>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: '#fff' }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{"#fffffffff"}</span>
                                     </div>
@@ -103,7 +136,7 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:color}}></div>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: color }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{color}</span>
                                     </div>
@@ -114,7 +147,7 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{background:'#fff'}}></div>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: '#fff' }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{'#fffffffff'}</span>
                                     </div>
@@ -136,7 +169,7 @@ const Design = () => {
             </div>
             <div className='my-10'>
                 <button className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500'>Cancel</button>
-                <button className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
+                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
 
 
             </div>

@@ -10,6 +10,7 @@ const ProfileImage = () => {
   const { profileImage, setProfileImage } = useContext(userContext)
   const cropperRef = useRef(null);
 
+  console.log({croppedImage})
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
