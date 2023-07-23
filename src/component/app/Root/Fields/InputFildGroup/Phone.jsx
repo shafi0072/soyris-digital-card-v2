@@ -4,7 +4,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 const Phone = () => {
     return (
-        <div>
+        <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-2 mb'>
                     <div className='flex flex-col'>

@@ -6,8 +6,8 @@ const index = () => {
       <div class=" h-[100vh] p-10">
         <div className='flex justify-center'>
           <div
-            class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 ">
-            <div class="w-[100%]">
+            class="g-6 flex h-[100vh] flex-wrap items-center justify-center text-neutral-800 ">
+            <div class="w-[100%] h-[100vh]">
               <div
                 class="block rounded-lg bg-white shadow-lg ">
                 <div class="g-0 lg:flex lg:flex-wrap">

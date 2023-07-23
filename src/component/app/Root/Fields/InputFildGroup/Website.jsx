@@ -3,7 +3,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 const Website = () => {
     return (
-        <div>
+        <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
                 <div className='flex items-center gap-2 mb-3'>
                     <div className='flex flex-col'>
