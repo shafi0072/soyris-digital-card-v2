@@ -1,116 +1,229 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from 'firebase/auth';
 
+import auth from '@/src/config/firebase';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 const index = () => {
+  const provider = new GoogleAuthProvider();
+  const router = useRouter()
+  const [signUp, setSignUp] = useState(false)
+  const [signUpData, setSignUpData] = useState({
+    email: '',
+    password: ''
+  })
+  const [signIpData, setSignIpData] = useState({
+    email: '',
+    password: ''
+  })
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log({ user: result.user })
+        localStorage.setItem('accessToken', result.user.accessToken)
+        router?.push('/')
+      })
+      .catch((err) => console.log(err));
+  };
+  const signInWithFacebook = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log({ user: result.user })
+        localStorage.setItem('accessToken', result.user.accessToken)
+        router?.push('/')
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleSignUpOnChange = (e) => {
+    const newSignUpData = { ...signUpData }
+    newSignUpData[e.target.name] = e.target.value
+    setSignUpData(newSignUpData)
+  }
+
+
+  const handleSignInOnChange = (e) => {
+    const newSignUpData = { ...signIpData }
+    newSignUpData[e.target.name] = e.target.value
+    setSignIpData(newSignUpData)
+  }
+
+  // 
+  const handleSignUp = (e) => {
+    e.preventDefault()
+    createUserWithEmailAndPassword(auth, signUpData?.email, signUpData?.password)
+      .then((userCredential) => {
+        localStorage.setItem('accessToken', userCredential.user.accessToken)
+        toast.success('Sign Up successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        router?.push('/')
+      })
+      .catch(err => {
+        if (err.customData._tokenResponse.error.message === 'EMAIL_EXISTS') {
+          toast.error('This Email Already in use', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      })
+  }
+
+  const handleSignIn = (e) => {
+    e.preventDefault()
+    signInWithEmailAndPassword(auth, signIpData?.email, signIpData?.password)
+      .then((userCredential) => {
+        console.log({ userCredential })
+        localStorage.setItem('accessToken', userCredential.user.accessToken)
+        toast.success('Sign Ip successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
+        router?.push('/')
+      })
+
+  }
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    if (accessToken) {
+      router.push('/')
+    }
+  }, [])
+
   return (
-    <section class=" h-full">
-      <div class=" h-[100vh] p-10">
-        <div className='flex justify-center'>
-          <div
-            class="g-6 flex h-[100vh] flex-wrap items-center justify-center text-neutral-800 ">
-            <div class="w-[100%] h-[100vh]">
-              <div
-                class="block rounded-lg bg-white shadow-lg ">
-                <div class="g-0 lg:flex lg:flex-wrap">
+    <div className='background'>
+      <div className='flex justify-center '>
+        {!signUp && <div className='container w-[30%] content-center  border shadow-lg bg-white rounded mt-[2%] p-5'>
+          <div className=" content-center ">
+            <h2 className="mb-3 text-xl font-bold text-center">Login to your account</h2>
 
-                  <div class="px-4 md:px-0 lg:w-6/12">
-                    <div class="md:mx-6 md:p-12">
+          </div>
+          <div className="my-6 space-y-4 flex justify-center">
+            <button onClick={signInWithGoogle} type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <svg className="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+                <path fillRule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clipRule="evenodd" />
+              </svg>
+              Sign in with Google
+            </button>
 
-                      <div class="flex justify-center">
-                        <div className=' rounded-full' style={{
-                              background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)"
-                            }}>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="44.5" height="44.5" viewBox="0 0 44.5 44.5">
-                            <path id="logo-protools-svgrepo-com" d="M58.25,80.5A22.25,22.25,0,1,1,80.5,58.25,22.25,22.25,0,0,1,58.25,80.5Zm-.121-33.672c6.553,0,8.806,4.388,10.641,7.543,2.611,4.489,2.885,7.535,8.68,9.884a19.106,19.106,0,0,0,.632-6.125,19.952,19.952,0,1,0-39.9,0c0,2.808-.388,3.287.616,6.125,5.068-1.666,7.439-7.06,8.385-9.467,1.336-3.4,4.4-7.959,10.951-7.959Zm.121,5.953c-4.142,0-7.539,7.744-8.448,9.6s-4.011,6.154-8.3,7.232a19.957,19.957,0,0,0,33.157.134c-3.587-2.607-5.476-3.7-8.109-7.365-2.175-3.024-4.161-9.6-8.3-9.6Z" transform="translate(-36 -36)" fill="#fff" fill-rule="evenodd" />
-                          </svg>
-
-                        </div>
-
-                      </div>
-
-                      <form>
-                        <p class="mb-4">Please login to your account</p>
-
-                        <div class="relative mb-4" data-te-input-wrapper-init>
-                          <input
-                            type="text"
-                            class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                            id="exampleFormControlInput1"
-                            placeholder="Username" />
-                          <label
-                            for="exampleFormControlInput1"
-                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-                          >Username
-                          </label>
-                        </div>
-
-
-                        <div class="relative mb-4" data-te-input-wrapper-init>
-                          <input
-                            type="password"
-                            class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                            id="exampleFormControlInput11"
-                            placeholder="Password" />
-                          <label
-                            for="exampleFormControlInput11"
-                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
-                          >Password
-                          </label>
-                        </div>
-
-                        <div class="mb-12 pb-1 pt-1 text-center">
-                          <button
-                            class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                            type="button"
-                            data-te-ripple-init
-                            data-te-ripple-color="light"
-                            style={{
-                              background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)"
-                            }}>
-                            Log in
-                          </button>
-
-
-                          <a href="#!">Forgot password?</a>
-                        </div>
-
-                        <div class="flex items-center justify-between pb-6">
-                          <p class="mb-0 mr-2">Don't have an account?</p>
-                          <button
-                            type="button"
-                            class="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 "
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Register
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-
-                  <div
-                    class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
-                    style={{ background: "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)" }}>
-                    <div class="px-4 py-6 text-white md:mx-6 md:p-12">
-                      <h4 class="mb-6 text-xl font-semibold">
-                        We are more than just a company
-                      </h4>
-                      <p class="text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat.
-                      </p>
-                    </div>
-                  </div>
+          </div>
+          <div className="flex items-center w-full my-4">
+            <hr className="w-full dark:text-gray-400" />
+            <p className="px-3 dark:text-gray-400">OR</p>
+            <hr className="w-full dark:text-gray-400" />
+          </div>
+          <form onSubmit={handleSignIn} className="space-y-8 mb-5">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm">Email address</label>
+                <input onChange={handleSignInOnChange} type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md " />
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <label htmlFor="password" className="text-sm">Password</label>
+                  <a rel="noopener noreferrer" href="#" className="text-xs hover:underline text-blue-00">Forgot password?</a>
                 </div>
+                <input type="password" onChange={handleSignInOnChange} name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md" />
               </div>
             </div>
+            <p className="text-sm text-center dark:text-gray-400">Dont have account?
+              <button onClick={() => setSignUp(true)} rel="noopener noreferrer" className="focus:underline underline font-bold text-[#4285F4]">Sign up </button>
+              here
+            </p>
+            <div className='flex justify-center'>
+              <button type="submit" className="w-48 px-8 py-3 font-semibold rounded-md bg-[#4285F4] hover:bg-[#1da1f2]/90 text-white ">Sign in</button>
+            </div>
+          </form>
+        </div>}
+        {signUp && <div className='container w-[30%] content-center rounded bg-white mt-[2%] border shadow-lg  p-5  '>
+          <div className=" content-center ">
+            <h2 className="mb-3 text-2xl font-bold text-center">Create an account to get started!</h2>
+
           </div>
-        </div>
+
+          <form onSubmit={handleSignUp} noValidate="" className="space-y-8 mb-5">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm">First Name</label>
+                <input type="text" name="fullName" id="fullName" placeholder="John Doe" className="w-full px-3 py-2 border rounded-md " />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm">Last Name</label>
+                <input type="text" name="fullName" id="fullName" placeholder="John Doe" className="w-full px-3 py-2 border rounded-md " />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm">Email address</label>
+                <input onChange={handleSignUpOnChange} type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md " />
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <label htmlFor="password" className="text-sm">Password</label>
+
+                </div>
+                <input type="password" onChange={handleSignUpOnChange} name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md" />
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <label htmlFor="password" className="text-sm">Verify Password</label>
+
+                </div>
+                <input type="password" onChange={handleSignUpOnChange} name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md" />
+              </div>
+              <div class="flex items-center mb-4">
+                <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree to the <span className='text-blue-600'>Terms of Service</span> and <span className='text-blue-600'>Acceptable Use Policy</span> </label>
+              </div>
+              <div className='flex justify-center'>
+                <button type="submit" className="w-48 px-8 py-3 font-semibold rounded-md bg-[#4285F4] hover:bg-[#1da1f2]/90 text-white ">Create account</button>
+              </div>
+              <div className="flex items-center w-full my-4">
+                <hr className="w-full dark:text-gray-400" />
+                <p className="px-3 dark:text-gray-400">OR</p>
+                <hr className="w-full dark:text-gray-400" />
+              </div>
+              <div className='flex justify-center'>
+                <button onClick={signInWithGoogle} type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                  <svg className="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+                    <path fillRule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clipRule="evenodd" />
+                  </svg>
+                  Sign in with Google
+                </button>
+                
+              </div>
+            </div>
+            <p className="text-sm text-center dark:text-gray-400">Already have an account?
+              <button onClick={() => setSignUp(false)} rel="noopener noreferrer" className="focus:underline underline font-bold text-[#4285F4]">Log in </button>
+              here
+            </p>
+
+          </form>
+        </div>}
       </div>
-    </section>
+    </div>
   );
 };
 
