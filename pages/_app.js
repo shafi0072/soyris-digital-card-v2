@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   return <ContextApi>
-    {router?.pathname !== '/auth' ? (<Layout>
+    {router?.pathname !== '/auth'&& router?.pathname !== '/profile'  ? (<Layout>
       <Component {...pageProps} />
     </Layout>) : (<Component {...pageProps} />)}
     <ToastContainer
