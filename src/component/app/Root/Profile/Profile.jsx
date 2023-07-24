@@ -2,20 +2,20 @@ import { userContext } from '@/src/Storage/ContextApi';
 import { profileData, socialInfo } from '@/src/constant/ProfileInfo';
 import React, { useContext } from 'react';
 
-const Profile = () => {
+const Profile = ({userData}) => {
     const { color } = useContext(userContext);
     return (
         <div className='max-w-[500px] w-full mx-auto px-3'>
             {/* <h2>this is profile page</h2>  */}
-            <div className='h-[400px] ' style={{ background: color }}>
-                <img className='h-[95%] w-full object-cover' src="https://easycards.gr/wp-content/uploads/2023/07/spyros.jpg" alt="" />
+            <div className='h-[400px] ' style={{ background: userData?.display?.color }}>
+                <img className='h-[95%] w-full object-cover' src={userData?.display?.ProfileImage} alt="" />
             </div>
             <div className='mt-5'>
-                <img className='md:w-3/4 mx-auto' src="https://easycards.gr/wp-content/uploads/2023/07/nolimits-logo.svg" alt="" />
+                <img className='md:w-3/4 mx-auto' src={userData?.display?.Logo} alt="" />
             </div>
 
-            <div className='mt-10 border-4 border-dotted p-3' style={{ borderColor: color }}>
-                <h2 className='text-xl font-extrabold'>Spyros Poulis</h2>
+            <div className='mt-10 border-4 border-dotted p-3' style={{ borderColor: userData?.display?.color }}>
+                <h2 className='text-xl font-extrabold'>{userData?.profileInfo?.first_name + ' ' + userData?.profileInfo?.last_name}</h2>
                 <h3 className='font-bold my-2'>Director</h3>
                 <h3 className='font-bold mb-2' style={{ color: color }}>EMEA</h3>
                 <h4 className='font-medium italic text-[#585858]'>No Limits Digital</h4>

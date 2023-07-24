@@ -2,12 +2,13 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { baseUrl } from '../config/Server';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
+    const [userData, setUserData] = useState({})
     const [color, setColor] = useState('#0077B5')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('classic')
     const [logoImage, setLogoImage] = useState(null)
     const [infos, setInfo] = useState({})
-    const [userData, setUserData] = useState({})
+    
     const value = {
         color,
         infos,
@@ -25,7 +26,7 @@ const ContextApi = ({ children }) => {
         const email = localStorage.getItem('email')
         fetch(`${baseUrl}/add-user/user/${email}`)
             .then(res => res.json())
-            .then(data => setUserData(data))
+            .then(data => {setUserData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
             .catch(err => console.log(err))
     }, [])
     return (

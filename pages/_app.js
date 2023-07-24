@@ -13,13 +13,13 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) {
+    if (!accessToken && router.pathname !== '/profile') {
       router.push('/auth')
     }
   }, [])
 
   return <ContextApi>
-    {router?.pathname !== '/auth'&& router?.pathname !== '/profile'  ? (<Layout>
+    {router?.pathname !== '/auth'&& router?.pathname !== '/profile/[user]'  ? (<Layout>
       <Component {...pageProps} />
     </Layout>) : (<Component {...pageProps} />)}
     <ToastContainer
