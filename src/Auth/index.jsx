@@ -33,7 +33,7 @@ const index = () => {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            userName: result?.user?.displayName,
+            full_name: result?.user?.displayName,
             email: result?.user?.email
           })
         })
@@ -72,7 +72,7 @@ const index = () => {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            userName: signUpData?.fullName,
+            full_name: signUpData?.fullName,
             email: signUpData?.email
           })
         })
