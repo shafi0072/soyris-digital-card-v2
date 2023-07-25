@@ -23,7 +23,6 @@ const Profile = ({userData}) => {
             <div className='mt-2'>
                 <p className='italic text-[#69727d]'>Highly motivated and entrepreneurial – minded manager with an exceptional proven record of leading integrated digital marketing campaigns from concept to execution across different vertical markets.</p>
             </div>
-
             <div className='my-5'>
                 {profileData.map((item, index) => <div key={index} className='flex items-center gap-5 mb-3'>
                     <span className='w-[40px] h-[40px]  rounded-full flex items-center justify-center text-white' style={{ background: color }}>{item?.iocn}</span>
