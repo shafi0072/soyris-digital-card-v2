@@ -3,7 +3,7 @@ import { profileData, socialInfo } from '@/src/constant/ProfileInfo';
 import React, { useContext } from 'react';
 
 const Profile = ({userData}) => {
-    console.log(userData);
+    // console.log(userData);/profile/shafi29.dev.bd@gmail.com
     const { color } = useContext(userContext);
     return (
         <div className='max-w-[500px] w-full mx-auto px-3'>
@@ -25,7 +25,7 @@ const Profile = ({userData}) => {
                     <div className=''>
                         <div className='absolute  top-[72%]  z-10'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="381" height="88.28" viewBox="0 0 381 88.28">
-  <path id="wave" d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z" transform="translate(0 0)" fill="#0e66a0"/>
+  <path id="wave" d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z" transform="translate(0 0)" fill={userData?.display?.color}/>
 </svg>
                         </div>
                         <div className='absolute bottom-0 left-0'>
@@ -45,10 +45,12 @@ const Profile = ({userData}) => {
             }
 
             <div className='mt-10 border-4 border-dotted p-3' style={{ borderColor: userData?.display?.color }}>
-                <h2 className='text-xl font-extrabold'>{userData?.profileInfo?.first_name + ' ' + userData?.profileInfo?.last_name}</h2>
-                <h3 className='font-bold my-2'>Director</h3>
-                <h3 className='font-bold mb-2' style={{ color: color }}>EMEA</h3>
-                <h4 className='font-medium italic text-[#585858]'>No Limits Digital</h4>
+                <h2 className='text-xl font-extrabold'>
+                    {userData?.profileInfo?.prefix && userData?.profileInfo?.prefix + '.'} {userData?.profileInfo?.first_name + ' ' + userData?.profileInfo?.last_name}</h2>
+                <h3 className='font-bold my-2'>{userData?.profileInfo?.department}</h3>
+                <h3 className='font-bold mb-2' style={{ color: color }}>{userData?.profileInfo?.company
+}</h3>
+                <h4 className='font-medium italic text-[#585858]'>{userData?.profileInfo?.job_title}</h4>
             </div>
             <div className='mt-2'>
                 <p className='italic text-[#69727d]'>Highly motivated and entrepreneurial – minded manager with an exceptional proven record of leading integrated digital marketing campaigns from concept to execution across different vertical markets.</p>
