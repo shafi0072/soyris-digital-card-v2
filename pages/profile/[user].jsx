@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 import { baseUrl } from '@/src/config/Server';
 import { useState } from 'react';
 import Profile from '@/src/component/app/Root/Profile/Profile';
+import MobileLoading from '@/src/component/core/Loading/MobileLoading';
 const userInfo= () => {
   const router = useRouter()
   const {user} = router.query
 
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState(null)
 
   useEffect(() => {
     fetch(`${baseUrl}/add-user/user/${user}`)
@@ -19,7 +20,8 @@ const userInfo= () => {
   console.log({userData})
   return (
     <div>
-      <Profile userData={userData}/> 
+      {!userData && <MobileLoading/>}
+      {userData && <Profile userData={userData}/> }
     </div>
   );
 };

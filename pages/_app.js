@@ -10,10 +10,9 @@ import { ToastContainer } from 'react-toastify';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
-
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken && router.pathname !== '/profile') {
+    if (!accessToken && router.pathname !== '/profile/[user]') {
       router.push('/auth')
     }
   }, [])
