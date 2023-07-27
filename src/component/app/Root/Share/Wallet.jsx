@@ -47,6 +47,7 @@ const Wallet = () => {
     setValue(newValue);
   };
   return (
+   <>
     <div className="w-full shadow-lg ">
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -67,6 +68,7 @@ const Wallet = () => {
         </CustomTabPanel>
       </Box>
     </div>
+   </>
   );
 };
 

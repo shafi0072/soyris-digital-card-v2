@@ -3,6 +3,7 @@ import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 const ShareCard = () => {
   return (
+    <>
     <div className="p-8 shadow-lg flex flex-col justify-center items-center w-full">
       <h1 className="text-center text-2xl font-semibold mb-6">Share Card</h1>
       <div>
@@ -115,6 +116,7 @@ const ShareCard = () => {
         <FileDownloadOutlinedIcon /> DOWNLOAD QR CODE
       </button>
     </div>
+    </>
   );
 };
 

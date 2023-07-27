@@ -3,6 +3,7 @@ import WalletOutlinedIcon from '@mui/icons-material/WalletOutlined';
 
 const GoogleWallet = () => {
     return (
+      <>
         <div className="flex flex-col items-center justify-center ">
         <div className='mt-4 '>
         <svg className='w-52 h-52'
@@ -113,6 +114,7 @@ const GoogleWallet = () => {
             </div>
         </button>
       </div>
+      </>
     );
 };
 
