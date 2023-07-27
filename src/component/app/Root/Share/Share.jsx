@@ -7,7 +7,7 @@ const Share = () => {
     <>
       <div className="flex gap-16 mt-12">
         <ShareCard />
-        {/* <Wallet /> */}
+        <Wallet />
       </div>
     </>
   );

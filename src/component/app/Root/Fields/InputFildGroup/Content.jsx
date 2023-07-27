@@ -37,7 +37,7 @@ const Content = ({ feilds }) => {
             {
                 feilds?.map((items, index) => <>
                     {items === 'Phone' && <div className='mb-2'>
-                        <Phone />
+                        <Phone index={index}/>
                     </div>}
                     {items === 'Website' && <div className='mb-2'>
                         <Website />

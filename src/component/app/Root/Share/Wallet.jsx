@@ -4,9 +4,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import AppleWallet from "./AppleWallet";
-import GoogleWallet from "./GoogleWallet";
 
+import GoogleWallet from "./GoogleWallet";
+import dynamic from 'next/dynamic'
+const AppleWallet = dynamic(() => import('./AppleWallet'), { ssr: false })
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
