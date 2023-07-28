@@ -6,6 +6,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { LineChart } from "@mui/x-charts/LineChart";
 
+// select 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+// tab 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,15 +48,22 @@ function a11yProps(index) {
 
 const LineCharts = () => {
   const [value, setValue] = React.useState(0);
-  const first = 'january'
+  const [time, setTime] = React.useState('');
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  // 
+  const handleTime = (event) => {
+    setTime(event.target.value);
+  };
   return (
     <div className="rounded shadow-lg bg-white my-8 p-4">
-      <Box sx={{ width: "45%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ width: "100%" }}>
+       <div className="flex items-center justify-between">
+         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -60,6 +74,25 @@ const LineCharts = () => {
             <Tab label="Unique Users" {...a11yProps(2)} />
           </Tabs>
         </Box>
+        <div className="mr-8">
+        <Box sx={{ minWidth: 200 }}>
+      <FormControl fullWidth size="small">
+        <InputLabel id="demo-simple-select-label">Time</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={time}
+          label="Age"
+          onChange={handleTime}
+        >
+          <MenuItem value={10}>Weakly</MenuItem>
+          <MenuItem value={20}>Monthly</MenuItem>
+          <MenuItem value={30}>Yearly</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+        </div>
+       </div>
         <CustomTabPanel value={value} index={0}>
           <LineChart
            xAxis={[{ data: [0, 1, 2, 3, 4, 5] }]}

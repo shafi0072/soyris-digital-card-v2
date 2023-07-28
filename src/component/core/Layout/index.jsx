@@ -3,8 +3,12 @@ import Navbar from '../Shared/Navbar';
 import Sidebar from '../Shared/Sidebar';
 import SubNavbar from '../Shared/SubNavbar';
 import RightSidebar from '../Shared/RightSidebar';
+import { useRouter } from 'next/router';
+import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
 
 const index = ({ children }) => {
+
+    const router = useRouter();
     return (
         <div>
             <Navbar />
@@ -20,7 +24,9 @@ const index = ({ children }) => {
                 {children}
                 </div>
                 <div className=" pl-5 fixed right-0">
-                    <RightSidebar/>
+                    {
+                        router.pathname === '/qrcodes'?<QrCodeCard/>:<RightSidebar/>
+                    }
                 </div>
                 </div>
                 </div>
