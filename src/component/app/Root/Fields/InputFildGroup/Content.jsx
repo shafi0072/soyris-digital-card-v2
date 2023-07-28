@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Phone from './Phone';
 import Website from './Website';
@@ -31,13 +31,27 @@ import Date from './Date';
 import QR from './QR';
 import Divider from './Divider';
 const Content = ({ feilds }) => {
-    console.log(feilds);
+
+    const [phoneData, setPhoneData] = useState([...Array(feilds.filter((item) => item === 'Phone').length)].map(() => ''));
+
+    console.log({ phoneData })
+    const handlePhoneInputChange = (index, field, value) => {
+        setPhoneData(prevPhoneData => {
+            const newData = [...prevPhoneData];
+            newData[index] = {
+                ...newData[index],
+                [field]: value,
+            };
+            return newData;
+        });
+    };
+
     return (
-        <div className='border-dotted border-2 bg-gray-300  border-sky-500 p-5 rounded-lg'>
+        <div className='border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg'>
             {
                 feilds?.map((items, index) => <>
                     {items === 'Phone' && <div className='mb-2'>
-                        <Phone index={index}/>
+                        <Phone index={index} handlePhoneInputChange={handlePhoneInputChange} phoneData={phoneData} />
                     </div>}
                     {items === 'Website' && <div className='mb-2'>
                         <Website />
@@ -52,80 +66,80 @@ const Content = ({ feilds }) => {
                         <Link />
                     </div>}
                     {items === 'Header' && <div className='mb-2'>
-                    <Header />
+                        <Header />
                     </div>}
                     {items === 'WhatsApp' && <div className='mb-2'>
-                    <WhatsApp />
+                        <WhatsApp />
                     </div>}
                     {items === 'Viber' && <div className='mb-2'>
-                    <Viber />
+                        <Viber />
                     </div>}
                     {items === 'Skype' && <div className='mb-2'>
-                    <Skype />
+                        <Skype />
                     </div>}
                     {items === 'Snapchat' && <div className='mb-2'>
-                    <Snapchat />
+                        <Snapchat />
                     </div>}
                     {items === 'Signal' && <div className='mb-2'>
-                    <Signal />
+                        <Signal />
                     </div>}
                     {items === 'Telegram' && <div className='mb-2'>
-                    <Telegram />
+                        <Telegram />
                     </div>}
                     {items === 'Discord' && <div className='mb-2'>
-                    <Discord />
+                        <Discord />
                     </div>}
                     {items === 'Slack' && <div className='mb-2'>
-                    <Slack />
+                        <Slack />
                     </div>}
                     {items === 'Facebook' && <div className='mb-2'>
-                    <Facebook />
+                        <Facebook />
                     </div>}
                     {items === 'Instagram' && <div className='mb-2'>
-                    <Instagram />
+                        <Instagram />
                     </div>}
                     {items === 'Twitter' && <div className='mb-2'>
-                    <Twitter />
+                        <Twitter />
                     </div>}
                     {items === 'LinkedIn' && <div className='mb-2'>
-                    <LinkedIn />
+                        <LinkedIn />
                     </div>}
                     {items === 'Pinterest' && <div className='mb-2'>
-                    <Pinterest />
+                        <Pinterest />
                     </div>}
 
                     {items === 'Tiktok' && <div className='mb-2'>
-                    <TikTok />
+                        <TikTok />
                     </div>}
                     {items === 'Image' && <div className='mb-2'>
-                    <Image />
+                        <Image />
                     </div>}
                     {items === 'Gallery' && <div className='mb-2'>
-                    <Gallery />
+                        <Gallery />
                     </div>}
                     {items === 'Youtube' && <div className='mb-2'>
-                    <YouTube />
+                        <YouTube />
                     </div>}
                     {items === 'Vimeo' && <div className='mb-2'>
-                    <Vimeo />
+                        <Vimeo />
                     </div>}
                     {items === 'Wistia' && <div className='mb-2'>
-                    <Wistia />
+                        <Wistia />
                     </div>}
                     {items === 'PDF' && <div className='mb-2'>
-                    <PDF />
+                        <PDF />
                     </div>}
                     {items === 'Notes' && <div className='mb-2'>
-                    <Notes />
+                        <Notes />
                     </div>}
                     {items === 'Date' && <div className='mb-2'>
-                    <Date />
+                        <Date />
                     </div>}
                     {items === 'URL' && <div className='mb-2'>
-                    <QR />
+                        <QR />
                     </div>}
                     {items === 'Divider' && <div className='mb-2'>
-                    <Divider />
+                        <Divider />
                     </div>}
                 </>)
             }
