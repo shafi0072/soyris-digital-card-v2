@@ -3,7 +3,7 @@ import React from 'react';
 const Classic = ({color, profileImage,logoImage}) => {
   return (
     <div className=' w-[90%] h-[300px]  relative rounded' style={{background:color}}>
-                    <img className='h-full w-full object-cover rounded' src={profileImage ? profileImage : ""} alt="" />
+                    {profileImage && <img className='h-full w-full object-cover rounded' src={profileImage ? profileImage : ""} alt="" />}
                     <div className=''>
                         <div className='absolute top-[72%] z-10'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="328" height="91.28" viewBox="0 0 381 88.28">

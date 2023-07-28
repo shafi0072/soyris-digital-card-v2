@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Viber = () => {
+const Viber = ({index,handleViberInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -19,7 +19,16 @@ const Viber = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    <input type="text" placeholder='074384783411' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+                    <input
+                    name={`viberNumber${index + 1}`}
+                    onChange={(e) =>
+                        handleViberInputChange(
+                        index,
+                        `viberNumber${index + 1}`,
+                        e.target.value
+                      )
+                    }
+                    type="text" placeholder='074384783411' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
 
                     <label htmlFor="" className='absolute top-2 left-3'>
                         <svg id="viber-svgrepo-com" xmlns="http://www.w3.org/2000/svg" width="13.196" height="13.604" viewBox="0 0 13.196 13.604">
@@ -34,7 +43,16 @@ const Viber = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    <input type="text" placeholder='074384783411' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+                    <input
+                    name={`secondaryNumber${index + 1}`}
+                    onChange={(e) =>
+                        handleViberInputChange(
+                        index,
+                        `secondaryNumber${index + 1}`,
+                        e.target.value
+                      )
+                    }
+                    type="text" placeholder='074384783411' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
                     <label htmlFor="" className='absolute top-3 left-3'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="14.221" height="13.431" viewBox="0 0 14.221 13.431">
                             <path id="text-tool-svgrepo-com" d="M3,4.79A.79.79,0,0,1,3.79,4H16.431a.79.79,0,0,1,.79.79V6.37a.79.79,0,1,1-1.58,0V5.58H10.9V15.851h1.58a.79.79,0,0,1,0,1.58H7.74a.79.79,0,0,1,0-1.58H9.32V5.58H4.58v.79A.79.79,0,0,1,3,6.37Z" transform="translate(-3 -4)" fill="#989898" fill-rule="evenodd" />

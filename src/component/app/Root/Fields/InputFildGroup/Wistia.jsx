@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Wistia = () => {
+const Wistia = ({index,handleWistiaInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -19,7 +19,16 @@ const Wistia = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    <input type="text" placeholder='Wistia' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+                    <input 
+                      name={`WistiaUserName${index + 1}`}
+                      onChange={(e) =>
+                          handleWistiaInputChange(
+                          index,
+                          `WistiaUserName${index + 1}`,
+                          e.target.value
+                        )
+                      }
+                    type="text" placeholder='Wistia' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
 
                     <label htmlFor="" className='absolute top-3 left-3'>
 

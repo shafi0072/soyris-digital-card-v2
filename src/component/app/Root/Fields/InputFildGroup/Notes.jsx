@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Notes = () => {
+const Notes = ({index,handleNoteInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -20,7 +20,16 @@ const Notes = () => {
             <div className='mb-3'>
                 <div className='w-full'>
 
-                <textarea placeholder='Enter your Notes' rows='4' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1'></textarea>
+                <textarea 
+                  name={`note${index + 1}`}
+                  onChange={(e) =>
+                     handleNoteInputChange(
+                      index,
+                      `note${index + 1}`,
+                      e.target.value
+                    )
+                  }
+                placeholder='Enter your Notes' rows='4' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1'></textarea>
 
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Pinterest = () => {
+const Pinterest = ({index,handlePinterestInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -19,7 +19,16 @@ const Pinterest = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    <input type="text" placeholder='pinterest.com/michael21' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+                    <input 
+                     name={`pinterestUserName${index + 1}`}
+                     onChange={(e) =>
+                        handlePinterestInputChange(
+                         index,
+                         `pinterestUserName${index + 1}`,
+                         e.target.value
+                       )
+                     }
+                    type="text" placeholder='pinterest.com/michael21' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
 
                     <label htmlFor="" className='absolute top-2 left-3'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="11.664" height="14.76" viewBox="0 0 11.664 14.76">

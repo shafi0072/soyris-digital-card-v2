@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Facebook = () => {
+const Facebook = ({index,handleFacebookInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -19,7 +19,16 @@ const Facebook = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    <input type="text" placeholder='facebook.com/michael21' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+                    <input 
+                       name={`facebookUserName${index + 1}`}
+                       onChange={(e) =>
+                           handleFacebookInputChange(
+                           index,
+                           `facebookUserName${index + 1}`,
+                           e.target.value
+                         )
+                       }
+                    type="text" placeholder='facebook.com/michael21' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
 
                     <label htmlFor="" className='absolute top-2 left-3'>
                         <svg id="Dribbble-Light-Preview" xmlns="http://www.w3.org/2000/svg" width="6.729" height="13.459" viewBox="0 0 6.729 13.459">

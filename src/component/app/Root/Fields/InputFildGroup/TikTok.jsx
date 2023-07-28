@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const TikTok = () => {
+const TikTok = ({index,handleTiktokInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -19,7 +19,16 @@ const TikTok = () => {
             </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
-                    <input type="text" placeholder='tiktok.com/@michael21' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+                    <input 
+                     name={`tiktokUserName${index + 1}`}
+                     onChange={(e) =>
+                         handleTiktokInputChange(
+                         index,
+                         `tiktokUserName${index + 1}`,
+                         e.target.value
+                       )
+                     }
+                    type="text" placeholder='tiktok.com/@michael21' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
 
                     <label htmlFor="" className='absolute top-2 left-3'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="13.003" height="14.526" viewBox="0 0 13.003 14.526">

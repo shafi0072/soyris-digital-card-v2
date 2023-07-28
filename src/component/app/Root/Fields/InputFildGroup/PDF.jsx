@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const PDF = () => {
+const PDF = ({index,handlePdfInputChange}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -33,7 +33,16 @@ const PDF = () => {
                         <p className="text-md">Add PDF</p>
 
                     </label>
-                    <input type="file" id='profileImage' style={{ display: 'none' }} />
+                    <input 
+                      name={`PdfFile${index + 1}`}
+                      onChange={(e) =>
+                         handlePdfInputChange(
+                          index,
+                          `PdfFile${index + 1}`,
+                          e.target.value
+                        )
+                      }
+                    type="file" id='profileImage' style={{ display: 'none' }} />
 
                 </div>
             </div>
