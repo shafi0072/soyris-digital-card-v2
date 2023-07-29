@@ -14,7 +14,7 @@ const RightSidebar = () => {
                 {design === 'flat' && <Flat color={color} profileImage={profileImage} setProfileImage={setProfileImage} logoImage={logoImage}/>}
                 {infos&& <ProfileInfo infos={infos} color={color} userData={userData}/>}
                 <div className='my-3'>
-                    <FieldData/>
+                    <FieldData userData={userData}/>
                 </div>
             </div>
         </div>
