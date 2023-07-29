@@ -5,6 +5,7 @@ import { userContext } from "@/src/Storage/ContextApi";
 
 const FieldData = ({ userData }) => {
   const { color } = useContext(userContext);
+  console.log(userData)
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -158,49 +159,49 @@ const FieldData = ({ userData }) => {
         extra=""
         label={items?.label}
       />)}
-      <Data1
-        color={color}
-        icon={websiteIcon}
-        title="testweb.com/"
-        extra=""
-        label=""
-      />
-      <Data1
-        color={color}
-        icon={emailIcon}
-        title="info@helloweb.com"
-        extra=""
-        label=""
-      />
-      <Data1
+    {
+      userData?.fields?.email?.map((items,index)=>  <Data1
+      color={color}
+      icon={emailIcon}
+      title={items.address}
+      extra=""
+      label={items.label}
+    />)
+    }
+      {
+        userData?.fields?.address?.map((items,index)=><Data1
         color={color}
         icon={locationIcon}
-        title="Office 201, 44 Corman Av.
-        N12 3AA,  Athens, Greece"
+        title={items.location}
         extra=""
-        label=""
-      />
-      <Data1
+        label={items.label}
+      />)
+      }
+      {
+        userData?.fields?.link?.map((items,index)=><Data1
         color={color}
         icon={linkIcon}
-        title="Gallery.com"
-        extra=""
-        label="My Personal Gallery"
-      />
-      <Data1
-        color={color}
-        icon={whatsapppIcon}
-        title="01574744"
-        extra=""
-        label=""
-      />
-      <Data1
-        color={color}
-        icon={viberIcon}
-        title="01574744"
-        extra=""
-        label=""
-      />
+        title={items.url}
+        label={items.label}
+      />)
+      }
+     {
+      userData?.fields?.whatsApp?.map((items,index)=> <Data1
+      color={color}
+      icon={whatsapppIcon}
+      title={items.number}
+      label={items.label}
+    />)
+     }
+    {
+      userData?.fields?.viber?.map((items,index)=>  <Data1
+      color={color}
+      icon={viberIcon}
+      title={items.number}
+      extra=""
+      label={items.label}
+    />)
+    }
     </div>
   );
 };
