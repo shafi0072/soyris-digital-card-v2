@@ -77,7 +77,7 @@ const Phone = ({ index, handlePhoneInputChange }) => {
             handlePhoneInputChange(
               index,
               `internationalNumber`,
-              e.target.value
+              useInternationalNumber
             )
           }
           onClick={()=>setUseInternationalNumber(!useInternationalNumber)}
@@ -136,7 +136,7 @@ const Phone = ({ index, handlePhoneInputChange }) => {
               handlePhoneInputChange(
                 index,
                 `hideLabel${index + 1}`,
-                e.target.value
+                hideLabel
               )
             }
             onClick={() => setHideLabel(!hideLabel)}
