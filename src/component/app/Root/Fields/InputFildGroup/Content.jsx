@@ -501,6 +501,16 @@ const Content = ({ feilds }) => {
         });
     };
 
+
+    const phoneArray = Array.isArray(userData?.fields?.Phone) ? userData.fields.Phone : [];
+    const filteredPhoneData = Array.isArray(phoneData) ? phoneData.filter((item) => item !== undefined) : [];
+
+    const websiteArray = Array.isArray(userData?.fields?.website) ? userData.fields.website : [];
+    const filteredWebsiteData = Array.isArray(websiteData) ? websiteData.filter((item) => item !== undefined) : [];
+
+    const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
+    const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
+
     const handleFieldsOnSubmit = (e) => {
         e.preventDefault()
         fetch(`${baseUrl}/add-user/profile/fields/${userData?._id}`, {
@@ -510,8 +520,8 @@ const Content = ({ feilds }) => {
             },
             body: JSON.stringify({
                 fields: {
-                    Phone: [...userData?.fields?.Phone, ...phoneData?.filter((items, index) => items !== undefined)],
-                    website: [...userData?.fields?.website, ...websiteData?.filter((items, index) => items !== undefined)]
+                    Phone: updatedPhoneArray,
+                    website: updatedWebsiteArray
                 }
             })
         })
