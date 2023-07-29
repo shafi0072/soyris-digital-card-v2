@@ -1,9 +1,9 @@
 import React from 'react';
 
-const AppleCard = () => {
+const AppleCard = ({appleCardBackgroundColor,appleCardTextColor}) => {
     return (
         <div className='bg-[#F7FAFC]  p-12 rounded shadow-md'>
-           <div className='bg-gray-700 w-[350px] text-white rounded'>
+           <div style={{backgroundColor:appleCardBackgroundColor,color:appleCardTextColor}} className=' w-[350px]  rounded'>
             <div className='px-2 py-4'>
                 <h3 className='text-xl font-semibold'>Company name</h3>
                 <div className='mt-6 flex justify-between'>

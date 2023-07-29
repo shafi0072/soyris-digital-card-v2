@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import AppleWalletPass from "./AppleWalletPass";
+import dynamic from "next/dynamic";
+const AppleWalletPass = dynamic(() => import("./AppleWalletPass"), {
+  ssr: false,
+});
+// import AppleWalletPass from "./AppleWalletPass";
 import GoogleWalletPass from "./GoogleWalletPass";
 import AppleCard from "./AppleCard";
 import GoogleCard from "./GoogleCard";
@@ -46,6 +50,15 @@ const WalletPasses = () => {
   const [value, setValue] = React.useState(0);
   // console.log(value)
 
+  // background color
+  const [googleCardBackgroundColor, setGoogleCardBackgroundColor] =
+    useState("#000000");
+  const [appleCardBackgroundColor, setAppleCardBackgroundColor] =
+    useState("#000000");
+
+  // text color
+  const [appleCardTextColor, setAppleCardTextColor] = useState("#ffffff");
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -56,26 +69,51 @@ const WalletPasses = () => {
         <p className="my-4">Modify your Apple wallet pass design.</p>
       </div>
       <div>
-      <Box sx={{ width: '50%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab className="w-1/2" label="Apple Wallet Pass" {...a11yProps(0)} />
-          <Tab className="w-1/2" label="Google Wallet Pass" {...a11yProps(1)} />
-        </Tabs>
-      </Box>
-      <CustomTabPanel value={value} index={0}>
-      {/* <AppleWalletPass/> */}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <GoogleWalletPass/>
-      </CustomTabPanel>
-    </Box>
+        <Box sx={{ width: "50%" }}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab
+                className="w-1/2"
+                label="Apple Wallet Pass"
+                {...a11yProps(0)}
+              />
+              <Tab
+                className="w-1/2"
+                label="Google Wallet Pass"
+                {...a11yProps(1)}
+              />
+            </Tabs>
+          </Box>
+          <CustomTabPanel value={value} index={0}>
+            <AppleWalletPass
+              appleCardBackgroundColor={appleCardBackgroundColor}
+              setAppleCardBackgroundColor={setAppleCardBackgroundColor}
+              setAppleCardTextColor={setAppleCardTextColor}
+              appleCardTextColor={appleCardTextColor}
+            />
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}>
+            <GoogleWalletPass
+              googleCardBackgroundColor={googleCardBackgroundColor}
+              setGoogleCardBackgroundColor={setGoogleCardBackgroundColor}
+            />
+          </CustomTabPanel>
+        </Box>
       </div>
       {/* fixed card */}
       <div className="fixed right-0 top-48">
-        {
-          value === 0 ?<AppleCard/>:<GoogleCard/>
-        }
+        {value === 0 ? (
+          <AppleCard
+            appleCardBackgroundColor={appleCardBackgroundColor}
+            appleCardTextColor={appleCardTextColor}
+          />
+        ) : (
+          <GoogleCard googleCardBackgroundColor={googleCardBackgroundColor} />
+        )}
       </div>
     </>
   );

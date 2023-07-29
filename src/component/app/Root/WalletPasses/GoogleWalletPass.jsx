@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ChromePicker } from 'react-color';
 
-const GoogleWalletPass = () => {
-    const [backgroundColor, setBackgroundColor] = useState("#000000");
+const GoogleWalletPass = ({setGoogleCardBackgroundColor,googleCardBackgroundColor}) => {
+    
     const [customBackgroundColor, setCustomBackgroundColor] = useState(false);
     return (
         <div>
@@ -17,17 +17,17 @@ const GoogleWalletPass = () => {
           >
             <div
               className="w-[30px] h-[30px] rounded-l-lg"
-              style={{ background: backgroundColor }}
+              style={{ background: googleCardBackgroundColor }}
             ></div>
             <div className="px-3">
-              <span className="text-center">{backgroundColor}</span>
+              <span className="text-center">{googleCardBackgroundColor}</span>
             </div>
           </div>
           <div>
             {customBackgroundColor && (
               <ChromePicker
-                color={backgroundColor}
-                onChange={(e) => setBackgroundColor(e.hex)}
+                color={googleCardBackgroundColor}
+                onChange={(e) => setGoogleCardBackgroundColor(e.hex)}
               />
             )}
           </div>

@@ -2,10 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { ChromePicker } from "react-color";
 
-const AppleWalletPass = () => {
-  const [backgroundColor, setBackgroundColor] = useState("#000000");
+const AppleWalletPass = ({setAppleCardBackgroundColor,appleCardBackgroundColor,setAppleCardTextColor,appleCardTextColor}) => {
+
   const [customBackgroundColor, setCustomBackgroundColor] = useState(false);
-  const [textColor,setTextColor] = useState("#ffffff");
   const [customTextColor,setCustomTextColor] = useState(false)
   return (
     <div>
@@ -20,17 +19,17 @@ const AppleWalletPass = () => {
           >
             <div
               className="w-[30px] h-[30px] rounded-l-lg"
-              style={{ background: backgroundColor }}
+              style={{ background: appleCardBackgroundColor }}
             ></div>
             <div className="px-3">
-              <span className="text-center">{backgroundColor}</span>
+              <span className="text-center">{appleCardBackgroundColor}</span>
             </div>
           </div>
           <div>
             {customBackgroundColor && (
               <ChromePicker
-                color={backgroundColor}
-                onChange={(e) => setBackgroundColor(e.hex)}
+                color={appleCardBackgroundColor}
+                onChange={(e) => setAppleCardBackgroundColor(e.hex)}
               />
             )}
           </div>
@@ -46,17 +45,17 @@ const AppleWalletPass = () => {
           >
             <div
               className="w-[30px] h-[30px] rounded-l-lg"
-              style={{ background: textColor }}
+              style={{ background: appleCardTextColor }}
             ></div>
             <div className="px-3">
-              <span className="text-center">{textColor}</span>
+              <span className="text-center">{appleCardTextColor}</span>
             </div>
           </div>
           <div>
             {customTextColor && (
               <ChromePicker
-                color={textColor}
-                onChange={(e) => setTextColor(e.hex)}
+                color={appleCardTextColor}
+                onChange={(e) => setAppleCardTextColor(e.hex)}
               />
             )}
           </div>
