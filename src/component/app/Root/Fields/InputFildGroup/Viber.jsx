@@ -20,11 +20,11 @@ const Viber = ({index,handleViberInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`viberNumber${index + 1}`}
+                    name={`number`}
                     onChange={(e) =>
                         handleViberInputChange(
                         index,
-                        `viberNumber${index + 1}`,
+                        `number`,
                         e.target.value
                       )
                     }
@@ -44,11 +44,11 @@ const Viber = ({index,handleViberInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`secondaryNumber${index + 1}`}
+                    name={`label`}
                     onChange={(e) =>
                         handleViberInputChange(
                         index,
-                        `secondaryNumber${index + 1}`,
+                        `label`,
                         e.target.value
                       )
                     }

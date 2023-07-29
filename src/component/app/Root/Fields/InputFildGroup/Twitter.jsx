@@ -20,11 +20,11 @@ const Twitter = ({index,handleTwitterInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`twitterUserName${index + 1}`}
+                     name={`url`}
                      onChange={(e) =>
                          handleTwitterInputChange(
                          index,
-                         `twitterUserName${index + 1}`,
+                         `url`,
                          e.target.value
                        )
                      }

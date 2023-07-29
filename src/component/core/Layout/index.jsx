@@ -5,6 +5,7 @@ import SubNavbar from '../Shared/SubNavbar';
 import RightSidebar from '../Shared/RightSidebar';
 import { useRouter } from 'next/router';
 import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
+import Qrcodes from '../../app/Root/QrCodes/Qrcodes';
 
 const index = ({ children }) => {
 
@@ -25,8 +26,12 @@ const index = ({ children }) => {
                 </div>
                 <div className=" pl-5 fixed right-0">
                     {
-                        router.pathname === '/qrcodes'?<QrCodeCard/>:<RightSidebar/>
+                        (router.pathname === '/' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar/>
                     }
+                    {
+                        router.pathname === '/qrcodes' && <QrCodeCard/>
+                    }
+                   
                 </div>
                 </div>
                 </div>

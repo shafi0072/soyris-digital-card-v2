@@ -20,11 +20,11 @@ const Facebook = ({index,handleFacebookInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                       name={`facebookUserName${index + 1}`}
+                       name={`url`}
                        onChange={(e) =>
                            handleFacebookInputChange(
                            index,
-                           `facebookUserName${index + 1}`,
+                           `url`,
                            e.target.value
                          )
                        }

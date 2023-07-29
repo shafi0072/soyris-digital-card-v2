@@ -20,11 +20,11 @@ const Link = ({index,handleLinkInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                     name={`costumeURL${index + 1}`}
+                     name={`url`}
                      onChange={(e) =>
                         handleLinkInputChange(
                          index,
-                         `costumeURL${index + 1}`,
+                         `url`,
                          e.target.value
                        )
                      }
@@ -47,11 +47,11 @@ const Link = ({index,handleLinkInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`displayURL${index + 1}`}
+                    name={`name`}
                     onChange={(e) =>
                        handleLinkInputChange(
                         index,
-                        `displayURL${index + 1}`,
+                        `name`,
                         e.target.value
                       )
                     }
@@ -66,11 +66,11 @@ const Link = ({index,handleLinkInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`label${index + 1}`}
+                    name={`label`}
                     onChange={(e) =>
                        handleLinkInputChange(
                         index,
-                        `label${index + 1}`,
+                        `label`,
                         e.target.value
                       )
                     }

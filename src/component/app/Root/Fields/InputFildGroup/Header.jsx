@@ -21,11 +21,11 @@ const Header = ({index,handleHeaderInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`displayText${index + 1}`}
+                     name={"label"}
                      onChange={(e) =>
                          handleHeaderInputChange(
                          index,
-                         `displayText${index + 1}`,
+                         "label",
                          e.target.value
                        )
                      }

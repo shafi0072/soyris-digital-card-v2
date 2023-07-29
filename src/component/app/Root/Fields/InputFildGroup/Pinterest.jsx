@@ -20,11 +20,11 @@ const Pinterest = ({index,handlePinterestInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`pinterestUserName${index + 1}`}
+                     name={`url`}
                      onChange={(e) =>
                         handlePinterestInputChange(
                          index,
-                         `pinterestUserName${index + 1}`,
+                         `url`,
                          e.target.value
                        )
                      }

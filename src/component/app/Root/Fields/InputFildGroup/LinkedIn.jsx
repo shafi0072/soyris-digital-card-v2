@@ -20,11 +20,11 @@ const LinkedIn = ({index,handleLinkedinInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                      name={`linkedinUserName${index + 1}`}
+                      name={`url`}
                       onChange={(e) =>
                          handleLinkedinInputChange(
                           index,
-                          `linkedinUserName${index + 1}`,
+                          `url`,
                           e.target.value
                         )
                       }

@@ -20,11 +20,11 @@ const Instagram = ({index,handleInstagramInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                    name={`instagramUserName${index + 1}`}
+                    name={`url`}
                     onChange={(e) =>
                        handleInstagramInputChange(
                         index,
-                        `instagramUserName${index + 1}`,
+                        `url`,
                         e.target.value
                       )
                     }

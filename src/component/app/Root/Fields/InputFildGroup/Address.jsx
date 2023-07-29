@@ -20,11 +20,11 @@ const Address = ({index,handleAddressInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <textarea
-                     name={`address${index + 1}`}
+                     name={`location`}
                      onChange={(e) =>
                         handleAddressInputChange(
                          index,
-                         `address${index + 1}`,
+                         `location`,
                          e.target.value
                        )
                      }
@@ -46,11 +46,11 @@ const Address = ({index,handleAddressInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                     name={`label${index + 1}`}
+                     name={`label`}
                      onChange={(e) =>
                         handleAddressInputChange(
                          index,
-                         `label${index + 1}`,
+                         `label`,
                          e.target.value
                        )
                      }

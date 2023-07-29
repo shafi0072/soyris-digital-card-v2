@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import AppleWalletPass from "./AppleWalletPass";
 import GoogleWalletPass from "./GoogleWalletPass";
+import AppleCard from "./AppleCard";
+import GoogleCard from "./GoogleCard";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,6 +44,7 @@ function a11yProps(index) {
 
 const WalletPasses = () => {
   const [value, setValue] = React.useState(0);
+  // console.log(value)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,12 +64,18 @@ const WalletPasses = () => {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-      <AppleWalletPass/>
+      {/* <AppleWalletPass/> */}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <GoogleWalletPass/>
       </CustomTabPanel>
     </Box>
+      </div>
+      {/* fixed card */}
+      <div className="fixed right-0 top-48">
+        {
+          value === 0 ?<AppleCard/>:<GoogleCard/>
+        }
       </div>
     </>
   );

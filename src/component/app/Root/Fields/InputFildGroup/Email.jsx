@@ -20,11 +20,11 @@ const Email = ({index,handleEmailInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`email${index + 1}`}
+                    name={`address`}
                     onChange={(e) =>
                         handleEmailInputChange(
                         index,
-                        `email${index + 1}`,
+                        `address`,
                         e.target.value
                       )
                     }
@@ -40,11 +40,11 @@ const Email = ({index,handleEmailInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`label${index + 1}`}
+                    name={`label`}
                     onChange={(e) =>
                         handleEmailInputChange(
                         index,
-                        `label${index + 1}`,
+                        `label`,
                         e.target.value
                       )
                     }

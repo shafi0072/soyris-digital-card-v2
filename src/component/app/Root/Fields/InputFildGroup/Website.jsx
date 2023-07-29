@@ -20,11 +20,11 @@ const Website = ({index,handleWebsiteInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                     name={`website${index + 1}`}
+                     name={`address`}
                      onChange={(e) =>
                         handleWebsiteInputChange(
                          index,
-                         `website${index + 1}`,
+                         `address`,
                          e.target.value
                        )
                      }
@@ -40,11 +40,11 @@ const Website = ({index,handleWebsiteInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`displayURL${index + 1}`}
+                     name={`label`}
                      onChange={(e) =>
                         handleWebsiteInputChange(
                          index,
-                         `displayURL${index + 1}`,
+                         `label`,
                          e.target.value
                        )
                      }

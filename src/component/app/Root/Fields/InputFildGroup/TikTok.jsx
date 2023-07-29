@@ -20,11 +20,11 @@ const TikTok = ({index,handleTiktokInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`tiktokUserName${index + 1}`}
+                     name={`url`}
                      onChange={(e) =>
                          handleTiktokInputChange(
                          index,
-                         `tiktokUserName${index + 1}`,
+                         `url`,
                          e.target.value
                        )
                      }

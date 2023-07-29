@@ -29,11 +29,11 @@ const Phone = ({ index, handlePhoneInputChange }) => {
         <div className="w-[70%] relative ">
           <input
             type="text"
-            name={`phoneNumber${index + 1} `}
+            name={`Number `}
             onChange={(e) =>
               handlePhoneInputChange(
                 index,
-                `phoneNumber${index + 1}`,
+                `Number`,
                 e.target.value
               )
             }
@@ -58,9 +58,9 @@ const Phone = ({ index, handlePhoneInputChange }) => {
         <div className="relative w-[25%]">
           <input
             type="text"
-            name={`code${index + 1}`}
+            name={"Code"}
             onChange={(e) =>
-              handlePhoneInputChange(index, `code${index + 1}`, e.target.value)
+              handlePhoneInputChange(index, "Code", e.target.value)
             }
             className="border w-full border-[#C1C1C1] rounded-xl py-1 pl-4"
           />
@@ -72,11 +72,11 @@ const Phone = ({ index, handlePhoneInputChange }) => {
 
       <div class="flex items-center mt-4">
         <input
-          name={`useInternationalNumber${index + 1}`}
+          name={`internationalNumber`}
           onChange={(e) =>
             handlePhoneInputChange(
               index,
-              `useInternationalNumber${index + 1}`,
+              `internationalNumber`,
               e.target.value
             )
           }
@@ -95,15 +95,15 @@ const Phone = ({ index, handlePhoneInputChange }) => {
       </div>
       <div className="mt-4 relative">
         <select
-          name={`choiceLabel${index + 1}`}
+          name={`choiceLabel`}
           onChange={(e) =>
             handlePhoneInputChange(
               index,
-              `choiceLabel${index + 1}`,
+              `choiceLabel`,
               e.target.value
             )
           }
-          id={`choiceLabel${index}`}
+          id={`choiceLabel`}
           class="w-full py-2 pl-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg "
         >
           <option selected>Choice label</option>

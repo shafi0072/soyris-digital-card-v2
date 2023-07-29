@@ -20,11 +20,11 @@ const WhatsApp = ({index,handleWhatsAppInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`whatsAppNumber${index + 1}`}
+                    name={`number`}
                     onChange={(e) =>
                         handleWhatsAppInputChange(
                         index,
-                        `whatsAppNumber${index + 1}`,
+                        `number`,
                         e.target.value
                       )
                     }
@@ -43,11 +43,11 @@ const WhatsApp = ({index,handleWhatsAppInputChange}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
-                    name={`user_name${index + 1}`}
+                    name={`label`}
                     onChange={(e) =>
                        handleWhatsAppInputChange(
                         index,
-                        `user_name${index + 1}`,
+                        `label`,
                         e.target.value
                       )
                     }
