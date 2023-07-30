@@ -22,6 +22,7 @@ const ContextApi = ({ children }) => {
         setDesign,
         userData
     }
+    
     useEffect(() => {
         const email = localStorage.getItem('email')
         fetch(`${baseUrl}/add-user/user/${email}`)
