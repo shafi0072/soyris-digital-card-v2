@@ -615,8 +615,8 @@ const Content = ({ feilds }) => {
     ? twitterData.filter((item) => item !== undefined)
     : [];
   // linkedin
-  const linkedinArray = Array.isArray(userData?.fields?.linkedin)
-    ? userData.fields.linkedin
+  const linkedinArray = Array.isArray(userData?.fields?.linkedIn)
+    ? userData.fields.linkedIn
     : [];
   const filteredLinkedinData = Array.isArray(linkedinData)
     ? linkedinData.filter((item) => item !== undefined)
@@ -629,8 +629,8 @@ const Content = ({ feilds }) => {
     ? pinterestData.filter((item) => item !== undefined)
     : [];
   // tiktok
-  const tiktokArray = Array.isArray(userData?.fields?.tiktok)
-    ? userData.fields.tiktok
+  const tiktokArray = Array.isArray(userData?.fields?.tikTok)
+    ? userData.fields.tikTok
     : [];
   const filteredTiktokData = Array.isArray(tiktokData)
     ? tiktokData.filter((item) => item !== undefined)
@@ -720,9 +720,9 @@ const Content = ({ feilds }) => {
           facebook: updatedFacebookArray,
           instagram: updatedInstagramArray,
           twitter: updatedTwitterArray,
-          linkedin: updatedLinkedinArray,
+          linkedIn: updatedLinkedinArray,
           pinterest: updatedPinterestArray,
-          tiktok: updatedTiktokArray,
+          tikTok: updatedTiktokArray,
           note: updatedNoteArray,
           date: updatedDateArray,
           qr: updatedQrArray,

@@ -29,7 +29,7 @@ const ContextApi = ({ children }) => {
             .then(res => res.json())
             .then(data => {setUserData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
             .catch(err => console.log(err))
-    }, [userData])
+    }, [])
     return (
         <userContext.Provider value={value}>
             {children}
