@@ -16,7 +16,7 @@ const Personalised = ({setUrl,handleUrl}) => {
         }
       };
       
-      // handle change 
+      // handle change ---------------
       const permanentUrl = "https://easycard.pro/profile/"; // The permanent URL
       const [inputValue, setInputValue] = useState('');
     
