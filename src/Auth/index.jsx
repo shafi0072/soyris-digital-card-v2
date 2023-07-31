@@ -42,7 +42,7 @@ const index = () => {
           .catch(err => console.log(err))
         localStorage.setItem('email', result?.user?.email)
         localStorage.setItem('accessToken', result.user.accessToken)
-        router?.push('/')
+        window.location.assign('/')
       })
       .catch((err) => console.log(err));
   };
@@ -89,7 +89,7 @@ const index = () => {
           progress: undefined,
           theme: "light",
         });
-        router?.push('/')
+        window.location.assign('/')
       })
       .catch(err => {
         if (err.customData._tokenResponse.error.message === 'EMAIL_EXISTS') {
@@ -125,14 +125,14 @@ const index = () => {
           progress: undefined,
           theme: "light",
         })
-        router?.push('/')
+        window.location.assign('/')
       })
 
   }
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
     if (accessToken) {
-      router.push('/')
+      window.location.assign('/')
     }
   }, [])
 
