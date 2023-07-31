@@ -24,7 +24,7 @@ const index = ({ children }) => {
                 <div className="col-span-8">
                 {children}
                 </div>
-                <div className=" pl-5 fixed right-0">
+                <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0":"right-[10%]"}`}>
                     {
                         (router.pathname === '/' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar/>
                     }
