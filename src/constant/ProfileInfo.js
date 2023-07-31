@@ -6,6 +6,8 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+
+
 export const profileData = [
   {
     name: "phone",
@@ -34,10 +36,12 @@ export const profileData = [
 ];
 
 export const socialInfo = [
+ 
+
   {
     name: "facebook",
     iocn: <FacebookOutlinedIcon />,
-    link: "hyhyhyhrgtg",
+    link: '#',
   },
   {
     name: "instagram",
