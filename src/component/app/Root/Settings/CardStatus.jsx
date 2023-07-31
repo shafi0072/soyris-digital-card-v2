@@ -1,27 +1,39 @@
+import { userContext } from '@/src/Storage/ContextApi';
+import { baseUrl } from '@/src/config/Server';
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import Swal from 'sweetalert2';
 
 const CardStatus = () => {
     const [cardStatus,setCardStatus] = useState(false);
+    const {userData} = useContext(userContext);
 
     // handle card status
     const handleCardStatus = ()=>{
-        fetch(`${baseUrl}/add-user/`, {
+        var raw = JSON.stringify({
+            setting: {
+              cardName: userData.setting.cardName,
+              cardStatus: cardStatus,
+              url: userData.setting.url,
+            },
+          });
+        fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({ cardStatus: cardStatus }),
+            body: raw,
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data.modifiedCount > 0) {
-                Swal.fire({
-                  position: "top-center",
-                  icon: "success",
-                  title: "Successfully Updated",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-              }
+                console.log(data)
+            //   if (data.modifiedCount > 0) {
+            //     Swal.fire({
+            //       position: "top-center",
+            //       icon: "success",
+            //       title: "Successfully Updated",
+            //       showConfirmButton: false,
+            //       timer: 1500,
+            //     });
+            //   }
             });
     }
 

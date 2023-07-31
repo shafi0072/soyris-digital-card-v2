@@ -7,11 +7,14 @@ import DeleteCard from "./DeleteCard";
 import { baseUrl } from "@/src/config/Server";
 import { data } from "autoprefixer";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { userContext } from "@/src/Storage/ContextApi";
 
 const Settings = () => {
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
-  console.log(cardName, url);
+  const { userData } = useContext(userContext);
+  // console.log(cardName, url);
 
   const handleCardNameOnChange = (event) => {
     const cardName = event.target.value;
@@ -20,14 +23,22 @@ const Settings = () => {
 
   // handle cardName
   const handleCardName = () => {
-    fetch(`${baseUrl}/add-user/profile/setting/`, {
+    var raw = JSON.stringify({
+      setting: {
+        cardName: cardName,
+        cardStatus: userData.setting.cardStatus,
+        url: userData.setting.url,
+      },
+    });
+    fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ cardName: cardName }),
+      body: raw,
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount > 0) {
+        console.log(data);
+        if (data.message === "Profile information updated successfully") {
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -41,14 +52,22 @@ const Settings = () => {
 
   // handle url
   const handleUrl = () => {
-    fetch(`${baseUrl}/add-user`, {
+    var raw = JSON.stringify({
+      setting: {
+        cardName: userData.setting.cardName,
+        cardStatus: userData.setting.cardStatus,
+        url: url,
+      },
+    });
+    fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ url: url }),
+      body: raw,
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.modifiedCount > 0) {
+        console.log(data);
+        if (data.message === "Profile information updated successfully") {
           Swal.fire({
             position: "top-center",
             icon: "success",

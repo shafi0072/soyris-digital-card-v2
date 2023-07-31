@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 
 const Personalised = ({setUrl,handleUrl}) => {
     const inputRef = useRef(null);
+    
+    // function for copy text --------------
     const [isCopied, setIsCopied] = useState(false);
      const handleCopyClick = () => {
         if (inputRef.current) {
@@ -13,7 +15,8 @@ const Personalised = ({setUrl,handleUrl}) => {
           }, 1000);
         }
       };
-
+      
+      // handle change ---------------
       const permanentUrl = "https://easycard.pro/profile/"; // The permanent URL
       const [inputValue, setInputValue] = useState('');
     
