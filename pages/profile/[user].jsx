@@ -12,7 +12,7 @@ const userInfo= () => {
   const [userData, setUserData] = useState(null)
 
   useEffect(() => {
-    fetch(`${baseUrl}/add-user/user/${user}`)
+    fetch(`${baseUrl}/add-user/${user}`)
     .then(res => res.json())
     .then(data => setUserData(data))
     .catch(err => console.log(err))
