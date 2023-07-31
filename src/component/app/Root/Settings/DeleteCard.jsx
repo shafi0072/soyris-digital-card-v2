@@ -1,8 +1,11 @@
+import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
 import React from "react";
+import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const DeleteCard = () => {
+  const { userData } = useContext(userContext);
   // handle delete card
   const handleDeleteCard = () => {
     Swal.fire({
@@ -15,15 +18,20 @@ const DeleteCard = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${baseUrl}/add-user`, {
+        fetch(`${baseUrl}/add-user/deleteProfile/${userData._id}`, {
           method: "DELETE",
+          headers:{"content-type":"application/json"}
         })
           .then((res) => res.json())
           .then((data) => {
-            if (data.deletedCount) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            }
-          });
+            console.log(data);
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem("email")
+            // if (data.deletedCount) {
+            //   Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            // }
+          })
+          .catch(err=>console.log(err))
       }
     });
   };
