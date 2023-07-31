@@ -3,9 +3,12 @@ import { baseUrl } from "@/src/config/Server";
 import React from "react";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 
 const DeleteCard = () => {
   const { userData } = useContext(userContext);
+  console.log(userData._id);
+  const router = useRouter();
   // handle delete card
   const handleDeleteCard = () => {
     Swal.fire({
@@ -18,20 +21,25 @@ const DeleteCard = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${baseUrl}/add-user/deleteProfile/${userData._id}`, {
+        fetch(`${baseUrl}/add-user/deleteProfile/${userData?._id}`, {
           method: "DELETE",
-          headers:{"content-type":"application/json"}
+          headers: { "content-type": "application/json" },
+          body: "",
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            localStorage.removeItem('accessToken')
-            localStorage.removeItem("email")
-            // if (data.deletedCount) {
-            //   Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            // }
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("email");
+            if (data.message === "user Deleted") {
+              Swal.fire("Deleted!", "User Deleted Successfully.", "success")
+              .then(data=>window.location.assign('/'))
+
+            }
           })
-          .catch(err=>console.log(err))
+          .catch((err) => {
+            console.log(err);
+          });
       }
     });
   };
