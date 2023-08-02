@@ -26,14 +26,13 @@ const index = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log({ user: result.user });
-
         fetch(`${baseUrl}/add-user/auth`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            full_name: result?.user?.displayName,
+            full_name: result?.user?.displayName.replace(/\s+/g, '').toLowerCase(),
             email: result?.user?.email,
           }),
         })
@@ -68,32 +67,35 @@ const index = () => {
       signUpData?.password
     )
       .then((userCredential) => {
-        localStorage.setItem("accessToken", userCredential.user.accessToken);
-        localStorage.setItem("email", signUpData?.email);
+
         fetch(`${baseUrl}/add-user/auth`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            full_name: signUpData?.fullName,
+            full_name: signUpData?.fullName.replace(/\s+/g, '').toLowerCase(),
             email: signUpData?.email,
           }),
         })
           .then((res) => res.json())
-          .then((data) => console.log({ data }))
+          .then((data) => {
+            localStorage.setItem("accessToken", userCredential.user.accessToken);
+            localStorage.setItem("email", signUpData?.email);
+            toast.success("Sign Up successfully", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            window.location.assign("/");
+          })
           .catch((err) => console.log(err));
-        toast.success("Sign Up successfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        window.location.assign("/");
+
       })
       .catch((err) => {
         if (err.customData._tokenResponse.error.message === "EMAIL_EXISTS") {

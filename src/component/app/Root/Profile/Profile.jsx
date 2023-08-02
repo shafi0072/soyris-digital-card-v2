@@ -2,6 +2,7 @@ import { userContext } from "@/src/Storage/ContextApi";
 import FieldData from "@/src/component/core/Shared/FieldData/FieldData";
 import { profileData, socialInfo } from "@/src/constant/ProfileInfo";
 import React, { useContext } from "react";
+import DottedQRCode from "../QrCodes/QrMain";
 
 const Profile = ({ userData }) => {
   // console.log(userData);/profile/shafi29.dev.bd@gmail.com
@@ -315,10 +316,12 @@ const Profile = ({ userData }) => {
       </div>
       <div className="my-10">
         <h2 className="w-full mb-5 font-bold text-xl">GET MY CARD</h2>
-        <img
-          className="md:w-[250px] w-[60%] md:h-[250px] h-[100px]"
-          src="https://easycards.gr/wp-content/uploads/2023/07/spyros-poulis.svg"
-          alt=""
+        <DottedQRCode
+          value={`${window?.location?.href}`}
+          size={300}
+          level="M"
+          includeMargin
+          pattern="Square" // Change this prop to "Dots", "Rounded", or "Diamond"
         />
       </div>
       <div className="fixed bottom-5 left-[50%] -translate-x-2/4">
