@@ -7,7 +7,7 @@ const SubNavbar = () => {
   const router = useRouter()
   return (
     <div className='w-[100%] bg-white border-b  shadow-md'>
-      <ul style={{ display: 'flex' }}>
+    {router.pathname === '/my-cards'? <p className='px-4 py-4 text-2xl'>Select one of our templates to get started.</p>:  <ul style={{ display: 'flex' }}>
         {
           sub_Navbar_data?.map((items, index) => <li className='mx-2 my-2 ' onClick={() => { setActive(index); router.push(items?.url) }}>
             <div className={`${ router.pathname === items?.url    && "bg-[#0277B5]  rounded text-white"} px-4 py-2 cursor-pointer`}>
@@ -15,7 +15,7 @@ const SubNavbar = () => {
             </div>
           </li>)
         }
-      </ul>
+      </ul>}
     </div>
   );
 };

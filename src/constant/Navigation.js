@@ -5,7 +5,7 @@ export const nav_data = [
     drowpDown:[
       {
         title:"My Cards",
-        link:"/user"
+        link:"/my-cards",
       }
     ]
   },
