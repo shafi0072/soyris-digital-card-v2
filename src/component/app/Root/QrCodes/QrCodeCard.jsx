@@ -1,6 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import QrCode from 'qrcode.react';
 import DottedQRCode from "./QrMain";
 
 const QrCodeCard = () => {
