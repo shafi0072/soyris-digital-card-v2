@@ -8,7 +8,6 @@ import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
 import Qrcodes from '../../app/Root/QrCodes/Qrcodes';
 
 const index = ({ children }) => {
-
     const router = useRouter();
     return (
         <div>
