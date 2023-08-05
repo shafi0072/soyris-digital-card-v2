@@ -9,7 +9,7 @@ const ContextApi = ({ children }) => {
     const [design, setDesign] = useState('classic')
     const [logoImage, setLogoImage] = useState(null)
     const [infos, setInfo] = useState({})
-    
+    console.log({infos})
     const value = {
         color,
         infos,
@@ -28,12 +28,12 @@ const ContextApi = ({ children }) => {
         const email = localStorage.getItem('email')
         fetch(`${baseUrl}/add-user/user/${email}`)
             .then(res => res.json())
-            .then(data => {setUserData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
+            .then(data => {setUserData(data)})
             .catch(err => console.log(err))
     }, [])
     useEffect(() => {
         const userCardId = localStorage.getItem('cardId')
-        fetch(`${baseUrl}/cards/cardss/${userCardId}`)
+        fetch(`${baseUrl}/cards/singleCard/${userCardId}`)
             .then(res => res.json())
             .then(data => {setUserCardData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
             .catch(err => console.log(err))
