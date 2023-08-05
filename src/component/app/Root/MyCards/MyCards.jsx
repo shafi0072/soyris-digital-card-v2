@@ -4,10 +4,11 @@ import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 const MyCards = () => {
     const [userCard, setUserCard] = useState([])
     const { userData } = useContext(userContext)
-
+    const router = useRouter()
 
     useEffect(() => {
         fetch(`${baseUrl}/cards/cards/${userData?.email}`)
@@ -21,7 +22,7 @@ const MyCards = () => {
             <div className='flex flex-wrap '>
             {
                 userCard?.map((items, index) => 
-                <div className='w-[300px] ml-4 mb-5 border rounded-2 p-2'>
+                <div className='w-[300px] ml-4 border rounded-2 p-2' onClick={() => {localStorage.setItem('cardId', items?._id); router?.push('/profileInfo')}}>
                     <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
                         <img src="/man.jpg" className='w-full h-[95%] ' alt="" />
                     </div>

@@ -16,9 +16,10 @@ const Design = () => {
     const { profileImage, logoImage, userData, color, setColor, design,
         setDesign } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-    console.log(userData?._id)
+    
     const handleDesignSubmit = (e) => {
-        fetch(`${baseUrl}/add-user/profile/display/${userData?._id}`, {
+        const userCardId = localStorage.getItem('cardId')
+        fetch(`${baseUrl}/cards/profile/display/${userCardId}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"

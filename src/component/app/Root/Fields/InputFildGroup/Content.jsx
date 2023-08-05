@@ -696,8 +696,9 @@ const Content = ({ feilds }) => {
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
 
   const handleFieldsOnSubmit = (e) => {
+    const userCardId = localStorage.getItem('cardId')
     e.preventDefault();
-    fetch(`${baseUrl}/add-user/profile/fields/${userData?._id}`, {
+    fetch(`${baseUrl}/cards/profile/fields/${userCardId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
