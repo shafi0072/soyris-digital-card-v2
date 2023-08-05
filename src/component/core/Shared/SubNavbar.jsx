@@ -21,7 +21,7 @@ const SubNavbar = () => {
       })
     })
       .then(res => res.json())
-      .then(data => { localStorage.setItem('cardId', data?._id); router.push('/profileInfo') })
+      .then(data => { localStorage.setItem('cardId', data?._id); window.location.assign('/profileInfo')})
       .catch(err => console.log(err))
   }
 
