@@ -18,10 +18,10 @@ const MyCards = () => {
 
     return (
         <>
-            <div className='flex'>
+            <div className='flex flex-wrap '>
             {
                 userCard?.map((items, index) => 
-                <div className='w-[300px] ml-4 border rounded-2 p-2'>
+                <div className='w-[300px] ml-4 mb-5 border rounded-2 p-2'>
                     <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
                         <img src="/man.jpg" className='w-full h-[95%] ' alt="" />
                     </div>
