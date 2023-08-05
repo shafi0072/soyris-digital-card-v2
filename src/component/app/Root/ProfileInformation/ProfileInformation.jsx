@@ -13,8 +13,9 @@ const ProfileInformation = () => {
         setInfo(newData)
     }
     const handleOnSubmit = (e) => {
+        const userCardId = localStorage.getItem('cardId')
         e.preventDefault()
-        fetch(`${baseUrl}/add-user/profile/${userData?._id}`, {
+        fetch(`${baseUrl}/cards/profile/${userCardId}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"

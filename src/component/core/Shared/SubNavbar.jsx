@@ -20,9 +20,9 @@ const SubNavbar = () => {
         cardUserId: userData?._id
       })
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+      .then(res => res.json())
+      .then(data => { localStorage.setItem('cardId', data?._id); router.push('/profileInfo') })
+      .catch(err => console.log(err))
   }
 
   return (

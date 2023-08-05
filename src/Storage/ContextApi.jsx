@@ -3,6 +3,7 @@ import { baseUrl } from '../config/Server';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
     const [userData, setUserData] = useState({})
+    const [userCardData, setUserCardData] = useState({})
     const [color, setColor] = useState('#0077B5')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('classic')
@@ -28,6 +29,13 @@ const ContextApi = ({ children }) => {
         fetch(`${baseUrl}/add-user/user/${email}`)
             .then(res => res.json())
             .then(data => {setUserData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
+            .catch(err => console.log(err))
+    }, [])
+    useEffect(() => {
+        const userCardId = localStorage.getItem('cardId')
+        fetch(`${baseUrl}/cards/cardss/${userCardId}`)
+            .then(res => res.json())
+            .then(data => {setUserCardData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
             .catch(err => console.log(err))
     }, [])
     return (
