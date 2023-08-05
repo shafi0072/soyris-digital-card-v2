@@ -9,3 +9,16 @@ const CardViewPieChart = () => {
 };
 
 export default CardViewPieChart;
+
+const data = [
+  {
+    userName:"shafi",
+    email:"shafi@gmail.com",
+    settings:{
+      generalSetting:{
+
+      },
+      evolution
+    }
+  }
+]

@@ -1,1 +1,1 @@
-export const baseUrl = 'https://spyros-back-end.vercel.app'
+export const baseUrl = 'https://business-card-backend-2.vercel.app'
