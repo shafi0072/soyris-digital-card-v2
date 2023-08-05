@@ -14,7 +14,7 @@ const MyCards = () => {
             .then(res => res.json())
             .then(data => setUserCard(data))
             .catch(err => console.log(err))
-    }, [userData])
+    }, [userData, userCard])
 
     return (
         <>
