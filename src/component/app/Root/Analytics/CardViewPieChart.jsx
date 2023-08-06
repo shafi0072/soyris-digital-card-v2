@@ -18,7 +18,7 @@ const data = [
       generalSetting:{
 
       },
-      evolution
+      
     }
   }
 ]

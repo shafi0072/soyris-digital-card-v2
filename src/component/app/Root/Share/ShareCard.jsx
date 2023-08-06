@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 import QRCode from "qrcode";
 import { useState } from "react";
 const ShareCard = () => {
-  const { userData } = useContext(userContext);
+  const { userData, settings } = useContext(userContext);
   const [isCopied, setIsCopied] = useState(false);
 
   // handle qr copy
@@ -45,7 +45,7 @@ const ShareCard = () => {
         <div>
           <DottedQRCode
             // value={`https://${typeof window !== undefined && window.location.hostname}/${userData.userName}`}
-            value={userData.userName}
+            value={`https://easycard.vercel.app/${settings?.url}`}
             size={300}
             level="M"
             includeMargin
