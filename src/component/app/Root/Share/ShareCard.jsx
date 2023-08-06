@@ -45,7 +45,7 @@ const ShareCard = () => {
         <div>
           <DottedQRCode
             // value={`https://${typeof window !== undefined && window.location.hostname}/${userData.userName}`}
-            value={`https://easycard.vercel.app/${settings?.url}`}
+            value={`https://easycard-gr.vercel.app/${settings?.url}`}
             size={300}
             level="M"
             includeMargin
