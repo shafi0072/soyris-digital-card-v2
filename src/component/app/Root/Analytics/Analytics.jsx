@@ -56,8 +56,10 @@ const Analytics = () => {
         </div>
         <Cards />
         <LineCharts />
-        <div className="my-8 flex gap-6">
-          <CardViewPieChart />
+        <div className="my-16 flex gap-6">
+         <div className="w-1/2">
+         <CardViewPieChart />
+         </div>
           <p>Map</p>
         </div>
         <CardViewsTable />
