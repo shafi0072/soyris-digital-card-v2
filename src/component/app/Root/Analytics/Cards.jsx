@@ -6,7 +6,7 @@ const Cards = () => {
   const uniqueUsers = "decrease";
 
   return (
-    <div className="flex justify-between gap-4 my-8">
+    <div className="flex justify-between gap-4 mt-12 mb-8">
       <div className="flex gap-6 justify-between items-center bg-white shadow-lg rounded py-3 px-5 ">
         <div>
           <h3 className="text-xl  mb-3">Card Views</h3>

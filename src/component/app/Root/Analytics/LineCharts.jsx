@@ -173,22 +173,12 @@ const LineCharts = () => {
             <Tab label="Unique Users" {...a11yProps(2)} />
           </Tabs>
         </Box>
-        <Box  sx={{ minWidth: 120 }}>
-            <FormControl size="small" fullWidth>
-              <InputLabel id="demo-simple-select-label">Time</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={time}
-                label="Age"
-                onChange={handleTime}
-              >
-                <MenuItem value={10}>Weakly</MenuItem>
-                <MenuItem value={20}>Monthly</MenuItem>
-                <MenuItem value={30}>Yearly</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+        <div class="flex flex-row justify-between shadow-lg rounded-lg  p-2 text-sm bg-white w-[150px] mx-0 my-[10px] lg:my-0">
+        <select name="" id="" class="w-full">
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
         </div>
         <CustomTabPanel value={value} index={0}>
           <LineChart
