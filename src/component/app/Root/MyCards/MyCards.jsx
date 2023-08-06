@@ -19,7 +19,7 @@ const MyCards = () => {
 
     return (
         <>
-            <div className='flex'>
+            <div className='flex flex-wrap '>
             {
                 userCard?.map((items, index) => 
                 <div className='w-[300px] ml-4 border rounded-2 p-2' onClick={() => {localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo')}}>
