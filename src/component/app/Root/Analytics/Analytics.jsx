@@ -15,9 +15,10 @@ import {
   Select,
 } from "@mui/material";
 import Cards from "./Cards";
-import LineCharts from "./LineCharts";
-import CardViewPieChart from "./CardViewPieChart";
+const LineCharts = dynamic(() => import('./LineCharts'), { ssr: false })
+const CardViewPieChart = dynamic(() => import('./CardViewPieChart'), { ssr: false })
 import CardViewsTable from "./CardViewsTable";
+import dynamic from "next/dynamic";
 
 const Analytics = () => {
   return (
