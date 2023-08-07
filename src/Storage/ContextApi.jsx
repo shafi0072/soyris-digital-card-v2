@@ -9,8 +9,10 @@ const ContextApi = ({ children }) => {
     const [design, setDesign] = useState('classic')
     const [logoImage, setLogoImage] = useState(null)
     const [infos, setInfo] = useState({})
+    const [newFeilds, setNewFeilds] = useState({})
     console.log({infos})
     const value = {
+        newFeilds,
         color,
         infos,
         setColor,
@@ -21,7 +23,8 @@ const ContextApi = ({ children }) => {
         setProfileImage,
         design,
         setDesign,
-        userData
+        userData,
+        setNewFeilds
     }
     
     useEffect(() => {
