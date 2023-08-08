@@ -1,7 +1,11 @@
+import ViewDayIcon from '@mui/icons-material/ViewDay';
+import StyleIcon from '@mui/icons-material/Style';
+import HelpIcon from '@mui/icons-material/Help';
 export const nav_data = [
   {
     name:'Cards',
     link:"#",
+    icon: <ViewDayIcon  sx={{color:'#fff'}}/>,
     drowpDown:[
       {
         title:"My Cards",
@@ -12,6 +16,7 @@ export const nav_data = [
   {
     name:'Templates',
     link:"#",
+    icon: <StyleIcon  sx={{color:'#fff'}}/>,
     drowpDown:[
       {
         title:"QR Codes",
@@ -25,6 +30,7 @@ export const nav_data = [
   },
    {
     name:'Helps',
+    icon: <HelpIcon  sx={{color:'#fff'}}/>,
     link:"/help",
     drowpDown:[]
   }
