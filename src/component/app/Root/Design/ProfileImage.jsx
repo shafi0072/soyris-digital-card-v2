@@ -3,7 +3,7 @@ import Cropper from 'react-cropper';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
 import { userContext } from '@/src/Storage/ContextApi';
-import Compress from 'canvas-compress';
+
 
 const ProfileImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);

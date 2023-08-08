@@ -48,6 +48,7 @@ const Design = () => {
             })
             .catch(err => console.log({ err }))
     }
+    
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
