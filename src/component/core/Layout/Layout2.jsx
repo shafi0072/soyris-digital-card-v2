@@ -26,7 +26,6 @@ import { useRouter } from 'next/router';
 import RightSidebar from '../Shared/RightSidebar';
 import SubNavbar from '../Shared/SubNavbar';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
 
 
 
@@ -214,13 +213,13 @@ style={{color: 'white'}}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 
-        <div class="col-span-11   ...">
+        <div class="col-span-11  mt-[5%] ...">
           <SubNavbar />
-          <div className='grid grid-cols-12 ps-8 pt-[10%] gap-8 ' >
+          <div className='grid grid-cols-12 ps-8 pt-5 gap-8'>
             <div className="col-span-8">
               {children}
             </div>
-            <div className={` pl-8 fixed ${router.pathname === '/' ? "right-0" : "right-[5%]"}`}>
+            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[10%]"}`}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }
