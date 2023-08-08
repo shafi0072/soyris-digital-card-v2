@@ -11,7 +11,7 @@ const Fields = () => {
         <Sidebar feilds={feilds} setFeilds={setFeilds} />
       </div>
       <div class="col-span-2 ...">
-        <Content feilds={feilds} />
+        <Content feilds={feilds} setFeilds={setFeilds}/>
       </div>
       
     </div>

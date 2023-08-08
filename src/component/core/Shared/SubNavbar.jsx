@@ -18,7 +18,12 @@ const SubNavbar = () => {
       body: JSON.stringify({
         email: userData?.email,
         cardUserId: userData?._id,
+<<<<<<< HEAD
       }),
+=======
+        design:"classic"
+      })
+>>>>>>> 323f2e02438204c332097fa7160d071536f8b42b
     })
       .then((res) => res.json())
       .then((data) => {

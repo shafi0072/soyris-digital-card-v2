@@ -8,6 +8,7 @@ const ContextApi = ({ children }) => {
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('classic')
     const [logoImage, setLogoImage] = useState(null)
+    const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState({})
     console.log({infos})
@@ -24,8 +25,10 @@ const ContextApi = ({ children }) => {
         design,
         setDesign,
         userData,
+        settings,
         setNewFeilds
     }
+    
     
     useEffect(() => {
         const email = localStorage.getItem('email')
@@ -38,7 +41,7 @@ const ContextApi = ({ children }) => {
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/singleCard/${userCardId}`)
             .then(res => res.json())
-            .then(data => {setUserCardData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design)})
+            .then(data => {setUserCardData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting)})
             .catch(err => console.log(err))
     }, [])
     return (

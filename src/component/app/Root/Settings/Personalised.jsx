@@ -1,8 +1,11 @@
-import React, { useRef, useState } from 'react';
+import { userContext } from '@/src/Storage/ContextApi';
+import React, { useContext, useRef, useState } from 'react';
 
 const Personalised = ({setUrl,handleUrl}) => {
     const inputRef = useRef(null);
-    
+
+    const {settings} = useContext(userContext)
+    console.log(settings?.url)
     // function for copy text --------------
     const [isCopied, setIsCopied] = useState(false);
      const handleCopyClick = () => {
@@ -18,10 +21,12 @@ const Personalised = ({setUrl,handleUrl}) => {
       
       // handle change ---------------
       const permanentUrl = "https://easycard.pro/profile/"; // The permanent URL
-      const [inputValue, setInputValue] = useState('');
+      const [inputValue, setInputValue] = useState(settings.url);
     
+      console.log({inputValue})
       const handleInputChange = (e) => {
-        setUrl(e.target.value)
+        const parts = e.target.value.split("/")
+        setUrl(parts[parts.length - 1])
         const inputValue = (e.target.value).slice(29);
         setInputValue(inputValue)
 

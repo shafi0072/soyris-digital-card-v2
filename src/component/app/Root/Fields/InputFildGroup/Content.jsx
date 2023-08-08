@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import Phone from "./Phone";
 import Website from "./Website";
@@ -32,7 +32,21 @@ import QR from "./QR";
 import Divider from "./Divider";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
-const Content = ({ feilds }) => {
+import { Container, Draggable } from 'react-smooth-dnd';
+
+const Content = ({ feilds, setFeilds }) => {
+
+
+  const onDrop = (dropResult) => {
+    if (!dropResult.removedIndex && !dropResult.addedIndex) return;
+
+    const newFields = [...feilds];
+    const [removed] = newFields.splice(dropResult.removedIndex, 1);
+    newFields.splice(dropResult.addedIndex, 0, removed);
+
+    setFeilds(newFields);
+  };
+
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
@@ -666,38 +680,40 @@ const Content = ({ feilds }) => {
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
 
-useEffect(()=>{
-  setNewFeilds(
-   { fields: {
-      Phone: updatedPhoneArray,
-      website: updatedWebsiteArray,
-      email: updatedEmailArray,
-      address: updatedAddressArray,
-      link: updatedLinkArray,
-      whatsApp: updatedWhatsAppArray,
-      viber: updatedViberArray,
-      skype: updatedSkypeArray,
-      snapchat: updatedSnapchatArray,
-      signal: updatedSignalArray,
-      telegram: updatedTelegramArray,
-      discord: updatedDiscordArray,
-      slack: updatedSlackArray,
-      facebook: updatedFacebookArray,
-      instagram: updatedInstagramArray,
-      twitter: updatedTwitterArray,
-      linkedIn: updatedLinkedinArray,
-      pinterest: updatedPinterestArray,
-      tikTok: updatedTiktokArray,
-      note: updatedNoteArray,
-      date: updatedDateArray,
-      qr: updatedQrArray,
-      Header: updatedHeaderArray,
-      divider: updatedDividerArray,
-    },}
-  )
-},[phoneData,emailData,dividerData,instagramData,pinterestData,twitterData,qrData,websiteData,whatsAppData,addressData,linkData,skypeData,viberData,telegramData,signalData,discordData,slackData,facebookData,tiktokData,youtubeData,vimeoData,pdfData,wistiaData,noteData,dateData,headerData])
+  useEffect(() => {
+    setNewFeilds(
+      {
+        fields: {
+          Phone: updatedPhoneArray,
+          website: updatedWebsiteArray,
+          email: updatedEmailArray,
+          address: updatedAddressArray,
+          link: updatedLinkArray,
+          whatsApp: updatedWhatsAppArray,
+          viber: updatedViberArray,
+          skype: updatedSkypeArray,
+          snapchat: updatedSnapchatArray,
+          signal: updatedSignalArray,
+          telegram: updatedTelegramArray,
+          discord: updatedDiscordArray,
+          slack: updatedSlackArray,
+          facebook: updatedFacebookArray,
+          instagram: updatedInstagramArray,
+          twitter: updatedTwitterArray,
+          linkedIn: updatedLinkedinArray,
+          pinterest: updatedPinterestArray,
+          tikTok: updatedTiktokArray,
+          note: updatedNoteArray,
+          date: updatedDateArray,
+          qr: updatedQrArray,
+          Header: updatedHeaderArray,
+          divider: updatedDividerArray,
+        },
+      }
+    )
+  }, [phoneData, emailData, dividerData, instagramData, pinterestData, twitterData, qrData, websiteData, whatsAppData, addressData, linkData, skypeData, viberData, telegramData, signalData, discordData, slackData, facebookData, tiktokData, youtubeData, vimeoData, pdfData, wistiaData, noteData, dateData, headerData])
 
-console.log(newFeilds);
+  console.log(newFeilds);
   const handleFieldsOnSubmit = (e) => {
     const userCardId = localStorage.getItem('cardId')
     e.preventDefault();
@@ -740,273 +756,277 @@ console.log(newFeilds);
   return (
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
-        {feilds?.map((items, index) => (
-          <>
-            {items === "Phone" && (
-              <div className="mb-2">
-                <Phone
-                  index={index}
-                  handlePhoneInputChange={handlePhoneInputChange}
-                  phoneData={phoneData}
-                />
-              </div>
-            )}
-            {items === "Website" && (
-              <div className="mb-2">
-                <Website
-                  index={index}
-                  handleWebsiteInputChange={handleWebsiteInputChange}
-                  websiteData={websiteData}
-                />
-              </div>
-            )}
-            {items === "Address" && (
-              <div className="mb-2">
-                <Address
-                  index={index}
-                  handleAddressInputChange={handleAddressInputChange}
-                  addressData={addressData}
-                />
-              </div>
-            )}
-            {items === "Email" && (
-              <div className="mb-2">
-                <Email
-                  index={index}
-                  handleEmailInputChange={handleEmailInputChange}
-                  emailData={emailData}
-                />
-              </div>
-            )}
-            {items === "Link" && (
-              <div className="mb-2">
-                <Link
-                  index={index}
-                  handleLinkInputChange={handleLinkInputChange}
-                  linkData={linkData}
-                />
-              </div>
-            )}
-            {items === "Header" && (
-              <div className="mb-2">
-                <Header
-                  index={index}
-                  handleHeaderInputChange={handleHeaderInputChange}
-                  headerData={headerData}
-                />
-              </div>
-            )}
-            {items === "WhatsApp" && (
-              <div className="mb-2">
-                <WhatsApp
-                  index={index}
-                  handleWhatsAppInputChange={handleWhatsAppInputChange}
-                  whatsAppData={whatsAppData}
-                />
-              </div>
-            )}
-            {items === "Viber" && (
-              <div className="mb-2">
-                <Viber
-                  index={index}
-                  handleViberInputChange={handleViberInputChange}
-                  viberData={viberData}
-                />
-              </div>
-            )}
-            {items === "Skype" && (
-              <div className="mb-2">
-                <Skype
-                  index={index}
-                  handleSkypeInputChange={handleSkypeInputChange}
-                  skypeData={skypeData}
-                />
-              </div>
-            )}
-            {items === "Snapchat" && (
-              <div className="mb-2">
-                <Snapchat
-                  index={index}
-                  handleSnapChatInputChange={handleSnapChatInputChange}
-                  snapChatData={snapChatData}
-                />
-              </div>
-            )}
-            {items === "Signal" && (
-              <div className="mb-2">
-                <Signal
-                  index={index}
-                  handleSignalInputChange={handleSignalInputChange}
-                  signalData={signalData}
-                />
-              </div>
-            )}
-            {items === "Telegram" && (
-              <div className="mb-2">
-                <Telegram
-                  index={index}
-                  handleTelegramInputChange={handleTelegramInputChange}
-                  telegramData={telegramData}
-                />
-              </div>
-            )}
-            {items === "Discord" && (
-              <div className="mb-2">
-                <Discord
-                  index={index}
-                  handleDiscordInputChange={handleDiscordInputChange}
-                  discordData={discordData}
-                />
-              </div>
-            )}
-            {items === "Slack" && (
-              <div className="mb-2">
-                <Slack
-                  index={index}
-                  handleSlackInputChange={handleSlackInputChange}
-                  slackData={slackData}
-                />
-              </div>
-            )}
-            {items === "Facebook" && (
-              <div className="mb-2">
-                <Facebook
-                  index={index}
-                  handleFacebookInputChange={handleFacebookInputChange}
-                  facebookData={facebookData}
-                />
-              </div>
-            )}
-            {items === "Instagram" && (
-              <div className="mb-2">
-                <Instagram
-                  index={index}
-                  handleInstagramInputChange={handleInstagramInputChange}
-                  instagramData={instagramData}
-                />
-              </div>
-            )}
-            {items === "Twitter" && (
-              <div className="mb-2">
-                <Twitter
-                  index={index}
-                  handleTwitterInputChange={handleTwitterInputChange}
-                  twitterData={twitterData}
-                />
-              </div>
-            )}
-            {items === "LinkedIn" && (
-              <div className="mb-2">
-                <LinkedIn
-                  index={index}
-                  handleLinkedinInputChange={handleLinkedinInputChange}
-                  linkedinData={linkedinData}
-                />
-              </div>
-            )}
-            {items === "Pinterest" && (
-              <div className="mb-2">
-                <Pinterest
-                  index={index}
-                  handlePinterestInputChange={handlePinterestInputChange}
-                  pinterestData={pinterestData}
-                />
-              </div>
-            )}
 
-            {items === "Tiktok" && (
-              <div className="mb-2">
-                <TikTok
-                  index={index}
-                  handleTiktokInputChange={handleTiktokInputChange}
-                  tiktokData={tiktokData}
-                />
-              </div>
-            )}
-            {items === "Image" && (
-              <div className="mb-2">
-                <Image />
-              </div>
-            )}
-            {items === "Gallery" && (
-              <div className="mb-2">
-                <Gallery />
-              </div>
-            )}
-            {items === "Youtube" && (
-              <div className="mb-2">
-                <YouTube
-                  index={index}
-                  handleYoutubeInputChange={handleYoutubeInputChange}
-                  youtubeData={youtubeData}
-                />
-              </div>
-            )}
-            {items === "Vimeo" && (
-              <div className="mb-2">
-                <Vimeo
-                  index={index}
-                  handleVimeoInputChange={handleVimeoInputChange}
-                  vimeoData={vimeoData}
-                />
-              </div>
-            )}
-            {items === "Wistia" && (
-              <div className="mb-2">
-                <Wistia
-                  index={index}
-                  handleWistiaInputChange={handleWistiaInputChange}
-                  wistiaData={wistiaData}
-                />
-              </div>
-            )}
-            {items === "PDF" && (
-              <div className="mb-2">
-                <PDF
-                  index={index}
-                  handlePdfInputChange={handlePdfInputChange}
-                  pdfData={pdfData}
-                />
-              </div>
-            )}
-            {items === "Notes" && (
-              <div className="mb-2">
-                <Notes
-                  index={index}
-                  handleNoteInputChange={handleNoteInputChange}
-                  noteData={noteData}
-                />
-              </div>
-            )}
-            {items === "Date" && (
-              <div className="mb-2">
-                <Date
-                  index={index}
-                  handleDateInputChange={handleDateInputChange}
-                  dateData={dateData}
-                />
-              </div>
-            )}
-            {items === "URL" && (
-              <div className="mb-2">
-                <QR
-                  index={index}
-                  handleQRInputChange={handleQRInputChange}
-                  qrData={qrData}
-                />
-              </div>
-            )}
-            {items === "Divider" && (
-              <div className="mb-2">
-                <Divider
-                  index={index}
-                  handleDriverInputChange={handleDriverInputChange}
-                  driverData={driverData}
-                />
-              </div>
-            )}
-          </>
-        ))}
+        <Container onDrop={onDrop}>
+          {feilds.map((items, index) => (
+            <Draggable key={items}>
+              {items === "Phone" && (
+                <div className="mb-2">
+                  <Phone
+                    index={index}
+                    handlePhoneInputChange={handlePhoneInputChange}
+                    phoneData={phoneData}
+                  />
+                </div>
+              )}
+              {items === "Website" && (
+                <div className="mb-2">
+                  <Website
+                    index={index}
+                    handleWebsiteInputChange={handleWebsiteInputChange}
+                    websiteData={websiteData}
+                  />
+                </div>
+              )}
+              {items === "Address" && (
+                <div className="mb-2">
+                  <Address
+                    index={index}
+                    handleAddressInputChange={handleAddressInputChange}
+                    addressData={addressData}
+                  />
+                </div>
+              )}
+              {items === "Email" && (
+                <div className="mb-2">
+                  <Email
+                    index={index}
+                    handleEmailInputChange={handleEmailInputChange}
+                    emailData={emailData}
+                  />
+                </div>
+              )}
+              {items === "Link" && (
+                <div className="mb-2">
+                  <Link
+                    index={index}
+                    handleLinkInputChange={handleLinkInputChange}
+                    linkData={linkData}
+                  />
+                </div>
+              )}
+              {items === "Header" && (
+                <div className="mb-2">
+                  <Header
+                    index={index}
+                    handleHeaderInputChange={handleHeaderInputChange}
+                    headerData={headerData}
+                  />
+                </div>
+              )}
+              {items === "WhatsApp" && (
+                <div className="mb-2">
+                  <WhatsApp
+                    index={index}
+                    handleWhatsAppInputChange={handleWhatsAppInputChange}
+                    whatsAppData={whatsAppData}
+                  />
+                </div>
+              )}
+              {items === "Viber" && (
+                <div className="mb-2">
+                  <Viber
+                    index={index}
+                    handleViberInputChange={handleViberInputChange}
+                    viberData={viberData}
+                  />
+                </div>
+              )}
+              {items === "Skype" && (
+                <div className="mb-2">
+                  <Skype
+                    index={index}
+                    handleSkypeInputChange={handleSkypeInputChange}
+                    skypeData={skypeData}
+                  />
+                </div>
+              )}
+              {items === "Snapchat" && (
+                <div className="mb-2">
+                  <Snapchat
+                    index={index}
+                    handleSnapChatInputChange={handleSnapChatInputChange}
+                    snapChatData={snapChatData}
+                  />
+                </div>
+              )}
+              {items === "Signal" && (
+                <div className="mb-2">
+                  <Signal
+                    index={index}
+                    handleSignalInputChange={handleSignalInputChange}
+                    signalData={signalData}
+                  />
+                </div>
+              )}
+              {items === "Telegram" && (
+                <div className="mb-2">
+                  <Telegram
+                    index={index}
+                    handleTelegramInputChange={handleTelegramInputChange}
+                    telegramData={telegramData}
+                  />
+                </div>
+              )}
+              {items === "Discord" && (
+                <div className="mb-2">
+                  <Discord
+                    index={index}
+                    handleDiscordInputChange={handleDiscordInputChange}
+                    discordData={discordData}
+                  />
+                </div>
+              )}
+              {items === "Slack" && (
+                <div className="mb-2">
+                  <Slack
+                    index={index}
+                    handleSlackInputChange={handleSlackInputChange}
+                    slackData={slackData}
+                  />
+                </div>
+              )}
+              {items === "Facebook" && (
+                <div className="mb-2">
+                  <Facebook
+                    index={index}
+                    handleFacebookInputChange={handleFacebookInputChange}
+                    facebookData={facebookData}
+                  />
+                </div>
+              )}
+              {items === "Instagram" && (
+                <div className="mb-2">
+                  <Instagram
+                    index={index}
+                    handleInstagramInputChange={handleInstagramInputChange}
+                    instagramData={instagramData}
+                  />
+                </div>
+              )}
+              {items === "Twitter" && (
+                <div className="mb-2">
+                  <Twitter
+                    index={index}
+                    handleTwitterInputChange={handleTwitterInputChange}
+                    twitterData={twitterData}
+                  />
+                </div>
+              )}
+              {items === "LinkedIn" && (
+                <div className="mb-2">
+                  <LinkedIn
+                    index={index}
+                    handleLinkedinInputChange={handleLinkedinInputChange}
+                    linkedinData={linkedinData}
+                  />
+                </div>
+              )}
+              {items === "Pinterest" && (
+                <div className="mb-2">
+                  <Pinterest
+                    index={index}
+                    handlePinterestInputChange={handlePinterestInputChange}
+                    pinterestData={pinterestData}
+                  />
+                </div>
+              )}
+
+              {items === "Tiktok" && (
+                <div className="mb-2">
+                  <TikTok
+                    index={index}
+                    handleTiktokInputChange={handleTiktokInputChange}
+                    tiktokData={tiktokData}
+                  />
+                </div>
+              )}
+              {items === "Image" && (
+                <div className="mb-2">
+                  <Image />
+                </div>
+              )}
+              {items === "Gallery" && (
+                <div className="mb-2">
+                  <Gallery />
+                </div>
+              )}
+              {items === "Youtube" && (
+                <div className="mb-2">
+                  <YouTube
+                    index={index}
+                    handleYoutubeInputChange={handleYoutubeInputChange}
+                    youtubeData={youtubeData}
+                  />
+                </div>
+              )}
+              {items === "Vimeo" && (
+                <div className="mb-2">
+                  <Vimeo
+                    index={index}
+                    handleVimeoInputChange={handleVimeoInputChange}
+                    vimeoData={vimeoData}
+                  />
+                </div>
+              )}
+              {items === "Wistia" && (
+                <div className="mb-2">
+                  <Wistia
+                    index={index}
+                    handleWistiaInputChange={handleWistiaInputChange}
+                    wistiaData={wistiaData}
+                  />
+                </div>
+              )}
+              {items === "PDF" && (
+                <div className="mb-2">
+                  <PDF
+                    index={index}
+                    handlePdfInputChange={handlePdfInputChange}
+                    pdfData={pdfData}
+                  />
+                </div>
+              )}
+              {items === "Notes" && (
+                <div className="mb-2">
+                  <Notes
+                    index={index}
+                    handleNoteInputChange={handleNoteInputChange}
+                    noteData={noteData}
+                  />
+                </div>
+              )}
+              {items === "Date" && (
+                <div className="mb-2">
+                  <Date
+                    index={index}
+                    handleDateInputChange={handleDateInputChange}
+                    dateData={dateData}
+                  />
+                </div>
+              )}
+              {items === "URL" && (
+                <div className="mb-2">
+                  <QR
+                    index={index}
+                    handleQRInputChange={handleQRInputChange}
+                    qrData={qrData}
+                  />
+                </div>
+              )}
+              {items === "Divider" && (
+                <div className="mb-2">
+                  <Divider
+                    index={index}
+                    handleDriverInputChange={handleDriverInputChange}
+                    driverData={driverData}
+                  />
+                </div>
+              )}
+            </Draggable>
+          ))}
+        </Container>
+
       </div>
       <div className="fixed bottom-20 left-[35%]  z-50">
         <input

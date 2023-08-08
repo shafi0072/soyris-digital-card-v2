@@ -26,6 +26,7 @@ import { useRouter } from 'next/router';
 import RightSidebar from '../Shared/RightSidebar';
 import SubNavbar from '../Shared/SubNavbar';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
 
 
 

@@ -5,20 +5,29 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Spinner from '@/src/component/core/Spinner';
 const MyCards = () => {
     const [userCard, setUserCard] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const { userData } = useContext(userContext)
     const router = useRouter()
 
     useEffect(() => {
+        setIsLoading(true)
         fetch(`${baseUrl}/cards/cards/${userData?.email}`)
             .then(res => res.json())
-            .then(data => setUserCard(data))
-            .catch(err => console.log(err))
-    }, [userData, userCard])
+            .then(data => {setUserCard(data); setIsLoading(false)})
+            .catch(err => { setIsLoading(false)})
+    }, [userData])
 
     return (
         <>
+       {isLoading && userCard?.length === 0 && <div className='flex flex-wrap'>
+        <Spinner/>
+        <Spinner/>
+        
+        </div>}
+        {!isLoading && userCard?.length === 0 && <p className='text-xl font-bold text-center'> Please Create a Card</p>}
             <div className='flex flex-wrap '>
             {
                 userCard?.map((items, index) => 

@@ -6,7 +6,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro/SingleInputDateRangeField";
 
-
 // select
 import {
   FormControl,
@@ -16,10 +15,8 @@ import {
   Select,
 } from "@mui/material";
 import Cards from "./Cards";
-import LineChart from "./LineCharts";
 import LineCharts from "./LineCharts";
 import CardViewPieChart from "./CardViewPieChart";
-import Table from "./CardViewsTable";
 import CardViewsTable from "./CardViewsTable";
 
 const Analytics = () => {
@@ -29,13 +26,11 @@ const Analytics = () => {
         <div className="flex gap-4 items-center justify-end">
           <div className="w-80 ">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-             
-                <DateRangePicker slots={{ field: SingleInputDateRangeField }} />
-             
+              <DateRangePicker slots={{ field: SingleInputDateRangeField }} />
             </LocalizationProvider>
           </div>
           <div>
-            <FormControl className="w-40 mt-2">
+            <FormControl  className="w-40 mt-2">
               <InputLabel id="demo-simple-select-label">Time</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -56,8 +51,10 @@ const Analytics = () => {
         </div>
         <Cards />
         <LineCharts />
-        <div className="my-8 flex gap-6">
-          <CardViewPieChart />
+        <div className="my-16 flex gap-6">
+          <div className="w-1/2">
+            <CardViewPieChart />
+          </div>
           <p>Map</p>
         </div>
         <CardViewsTable />
