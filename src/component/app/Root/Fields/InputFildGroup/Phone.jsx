@@ -69,10 +69,11 @@ const Phone = ({ index, handlePhoneInputChange }) => {
             enableAreaCodes={true}
             name={`Number `}
             onChange={(e) =>
+            
               handlePhoneInputChange(
                 index,
                 `Number`,
-                e?.target?.value
+                e
               )
             }
             inputProps={{
