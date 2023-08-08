@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-const Phone = ({ index, handlePhoneInputChange }) => {
+const Phone = ({ index, handlePhoneInputChange, items }) => {
 
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
@@ -34,6 +34,7 @@ const Phone = ({ index, handlePhoneInputChange }) => {
        
           <input
             type="text"
+            defaultValue={items?.Number}
             name={`Number `}
             onChange={(e) =>
               handlePhoneInputChange(

@@ -756,6 +756,20 @@ const Content = ({ feilds, setFeilds }) => {
   return (
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
+        <Container onDrop={onDrop}>
+          {
+            userCardData?.fields?.Phone?.map((items, index) =>   <Draggable key={items}>
+            <div className="mb-2">
+              <Phone
+              items={items}
+                index={index}
+                handlePhoneInputChange={handlePhoneInputChange}
+                phoneData={phoneData}
+              />
+            </div>
+            </Draggable>)
+          }
+        </Container>
 
         <Container onDrop={onDrop}>
           {feilds.map((items, index) => (
