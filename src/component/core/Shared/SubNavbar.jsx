@@ -1,8 +1,8 @@
-import { sub_Navbar_data } from '@/src/constant/SubNavbar';
-import React, { useContext, useState } from 'react';
-import { useRouter } from 'next/router';
-import { baseUrl } from '@/src/config/Server';
 import { userContext } from '@/src/Storage/ContextApi';
+import { baseUrl } from '@/src/config/Server';
+import { sub_Navbar_data } from '@/src/constant/SubNavbar';
+import { useRouter } from 'next/router';
+import { useContext, useState } from 'react';
 
 const SubNavbar = () => {
   const [active, setActive] = useState(0)
@@ -29,8 +29,8 @@ const SubNavbar = () => {
     <>
 
 
-      <div className='w-[100%] bg-white border-b  shadow-md'>
-        {router.pathname === '/my-cards' ? <div className='py-3 ps-3' >
+      <div className='fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5  shadow-md'>
+        {router.pathname === '/my-cards' ? <div className=' ps-3' >
           <button className='bg-[#0077B5] px-4 py-2 flex items-center gap-3 text-white rounded' onClick={handleCreateCards}>
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17.047" viewBox="0 0 17 17.047">
@@ -38,7 +38,7 @@ const SubNavbar = () => {
                   <line id="Line_1" data-name="Line 1" x2="17" transform="translate(0 8.5)" fill="none" stroke="#fff" stroke-width="2.5" />
                   <line id="Line_2" data-name="Line 2" x2="0.321" y2="17" transform="translate(8.213)" fill="none" stroke="#fff" stroke-width="2.5" />
                 </g>
-              </svg>
+                      </svg>
             </span>
             Create a card
           </button>
