@@ -28,8 +28,23 @@ const LogoImage = () => {
       fillColor: '#fff',
     });
 
-    setCroppedImage(croppedCanvas.toDataURL());
-    setLogoImage(croppedCanvas.toDataURL())
+    croppedCanvas.toBlob(
+      (blob) => {
+        if (blob) {
+          // Convert blob to base64
+          const reader = new FileReader();
+          reader.onload = () => {
+            const base64String = reader.result;
+            setCroppedImage(base64String);
+            setLogoImage(base64String)
+          };
+          reader.readAsDataURL(blob);
+        }
+      },
+      'image/jpeg', // Use 'image/webp' for WebP format
+      0.8 // Adjust the compression quality as needed
+    );
+   
   };
 
   const handleAspectRatioChange = (e) => {

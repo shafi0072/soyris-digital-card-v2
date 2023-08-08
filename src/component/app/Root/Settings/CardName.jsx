@@ -1,6 +1,9 @@
+import { userContext } from "@/src/Storage/ContextApi";
 import React from "react";
+import { useContext } from "react";
 
 const CardName = ({handleCardNameOnChange,handleCardName}) => {
+  const {settings} = useContext(userContext)
   return (
     <div>
       <h2 className="text-lg font-semibold">Card Name</h2>
@@ -14,6 +17,7 @@ const CardName = ({handleCardNameOnChange,handleCardName}) => {
             type="text"
             className="px-2 py-1 shadow-lg rounded w-[174px] text-[17px] font-medium"
             placeholder="Work"
+            defaultValue={settings?.cardName}
             name="work"
             id=""
           />

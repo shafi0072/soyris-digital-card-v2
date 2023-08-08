@@ -4,28 +4,38 @@ import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Spinner from '@/src/component/core/Spinner';
 const MyCards = () => {
     const [userCard, setUserCard] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const { userData } = useContext(userContext)
-
+    const router = useRouter()
 
     useEffect(() => {
+        setIsLoading(true)
         fetch(`${baseUrl}/cards/cards/${userData?.email}`)
             .then(res => res.json())
-            .then(data => setUserCard(data))
-            .catch(err => console.log(err))
-    }, [userData, userCard])
+            .then(data => {setUserCard(data); setIsLoading(false)})
+            .catch(err => { setIsLoading(false)})
+    }, [userData])
 
     return (
         <>
-            <div className='flex'>
+       {isLoading && userCard?.length === 0 && <div className='flex flex-wrap'>
+        <Spinner/>
+        <Spinner/>
+        
+        </div>}
+        {!isLoading && userCard?.length === 0 && <p className='text-xl font-bold text-center'> Please Create a Card</p>}
+            <div className='flex flex-wrap '>
             {
                 userCard?.map((items, index) => 
-                <div className='w-[300px] ml-4 border rounded-2 p-2'>
+                <div className='w-[300px] ml-4 border rounded-2 p-2' onClick={() => {localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo')}}>
                     <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
-                        <img src="/man.jpg" className='w-full h-[95%] ' alt="" />
+                        <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] ' alt="" />
                     </div>
-                    <h2 className='text-center text-2xl py-5 border-b-2 border-dashed border-red-300'>Spyros Poulis - Work</h2>
+                    <h2 className='text-center text-2xl py-5 border-b-2 border-dashed border-red-300'>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>
                     <div className='flex justify-center'>
                         <ul className='mt-5 flex gap-4'>
                             <li>

@@ -3,10 +3,14 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
+import { useEffect } from "react";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 const Phone = ({ index, handlePhoneInputChange }) => {
+
   const [hideLabel, setHideLabel] = useState(true);
-  const [useInternationalNumber,setUseInternationalNumber] = useState(true);
-  // console.log(hideLabel)
+  const [useInternationalNumber, setUseInternationalNumber] = useState(true);
+
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -26,7 +30,8 @@ const Phone = ({ index, handlePhoneInputChange }) => {
         </span>
       </div>
       <div className="flex gap-2 justify-between">
-        <div className="w-[70%] relative ">
+      {useInternationalNumber  &&<div className="w-[70%] relative ">
+       
           <input
             type="text"
             name={`Number `}
@@ -40,7 +45,8 @@ const Phone = ({ index, handlePhoneInputChange }) => {
             className="border w-full border-[#C1C1C1] rounded-xl ps-4 pr-1 py-1 "
           />
           <label htmlFor="" className="absolute top-1/4 left-2">
-            <svg
+            
+             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="12.013"
               height="13.431"
@@ -54,7 +60,27 @@ const Phone = ({ index, handlePhoneInputChange }) => {
               />
             </svg>
           </label>
-        </div>
+        
+        </div>}
+        {!useInternationalNumber && <div className="w-[70%]">
+          <PhoneInput
+           
+            country={'us'}
+            enableAreaCodes={true}
+            name={`Number `}
+            onChange={(e) =>
+            
+              handlePhoneInputChange(
+                index,
+                `Number`,
+                e
+              )
+            }
+            inputProps={{
+              required: true,
+            }}
+          />
+          </div>}
         <div className="relative w-[25%]">
           <input
             type="text"
@@ -80,7 +106,7 @@ const Phone = ({ index, handlePhoneInputChange }) => {
               useInternationalNumber
             )
           }
-          onClick={()=>setUseInternationalNumber(!useInternationalNumber)}
+          onClick={() => setUseInternationalNumber(!useInternationalNumber)}
           id="default-checkbox"
           type="checkbox"
           value={useInternationalNumber}

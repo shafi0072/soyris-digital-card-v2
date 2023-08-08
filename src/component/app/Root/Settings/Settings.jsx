@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
 
 const Settings = () => {
+  const {settings} = useContext(userContext)
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
   const { userData } = useContext(userContext);
@@ -51,15 +52,17 @@ const Settings = () => {
   };
 
   // handle url
+
   const handleUrl = () => {
     var raw = JSON.stringify({
       setting: {
-        cardName: userData.setting.cardName,
-        cardStatus: userData.setting.cardStatus,
+        cardName: settings.cardName,
+        cardStatus: settings.cardStatus,
         url: url,
       },
     });
-    fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
+    const cardId = localStorage.getItem('cardId')
+    fetch(`${baseUrl}/cards/profile/setting/${cardId}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: raw,

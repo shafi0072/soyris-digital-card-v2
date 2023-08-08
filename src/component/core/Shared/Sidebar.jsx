@@ -20,7 +20,7 @@ const hnadleLogout= ()=>{
             <h1 className="text-md text-white">{items.name} {items?.drowpDown?.length > 0 && <ExpandMoreRoundedIcon />}</h1>
             {expand === index && <ul className='pl-2'>
               {
-                items?.drowpDown?.map((item, index) => <li className='cursor-pointer text-sm text-white my-3'
+                items?.drowpDown?.map((item, index) => <li key={index} className='cursor-pointer text-sm text-white my-3'
                   onClick={() => router.push(item?.link)} >{item?.title}</li>)
               }
             </ul>}
