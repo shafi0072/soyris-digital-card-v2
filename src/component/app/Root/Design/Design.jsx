@@ -16,7 +16,7 @@ const Design = () => {
     const { profileImage, logoImage, userData, color, setColor, design,
         setDesign } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-    console.log(userData?._id)
+    
     const handleDesignSubmit = (e) => {
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/profile/display/${userCardId}`, {

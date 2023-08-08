@@ -8,6 +8,7 @@ import FieldData from "./FieldData/FieldData";
 const RightSidebar = () => {
   const {
     userData,
+    newFeilds,
     profileImage,
     setProfileImage,
     color,
@@ -39,7 +40,7 @@ const RightSidebar = () => {
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
         <div className="my-3">
-          <FieldData userData={userData} />
+          <FieldData userData={userData}  newFeilds={newFeilds} />
         </div>
 
         <div className="mt-5 border-t flex gap-2 pt-3">

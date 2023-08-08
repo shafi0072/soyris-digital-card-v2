@@ -3,9 +3,9 @@ import Data1 from "./Data1";
 import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
 
-const FieldData = ({ userData }) => {
+const FieldData = ({ userData,newFeilds }) => {
   const { color } = useContext(userContext);
-  console.log(userData)
+  console.log(newFeilds)
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -152,6 +152,13 @@ const FieldData = ({ userData }) => {
         extra={items?.Code}
         label="office"
       />)}
+      {newFeilds?.fields?.Phone?.map((items, index) => <Data1
+        color={color}
+        icon={phoneIcon}
+        title={items?.Number}
+        extra={items?.Code}
+        label="office"
+      />)}
       {userData?.fields?.website?.map((items, index) => <Data1
         color={color}
         icon={websiteIcon}
@@ -159,6 +166,14 @@ const FieldData = ({ userData }) => {
         extra=""
         label={items?.label}
       />)}
+      {newFeilds?.fields?.website?.map((items, index) => <Data1
+        color={color}
+        icon={websiteIcon}
+        title={items?.address}
+        extra=""
+        label={items?.label}
+      />)}
+
     {
       userData?.fields?.email?.map((items,index)=>  <Data1
       color={color}
@@ -168,6 +183,16 @@ const FieldData = ({ userData }) => {
       label={items.label}
     />)
     }
+    {
+      newFeilds?.fields?.email?.map((items,index)=>  <Data1
+      color={color}
+      icon={emailIcon}
+      title={items.address}
+      extra=""
+      label={items.label}
+    />)
+    }
+
       {
         userData?.fields?.address?.map((items,index)=><Data1
         color={color}
@@ -185,6 +210,15 @@ const FieldData = ({ userData }) => {
         label={items.label}
       />)
       }
+      {
+        newFeilds?.fields?.link?.map((items,index)=><Data1
+        color={color}
+        icon={linkIcon}
+        title={items.url}
+        label={items.label}
+      />)
+      }
+
      {
       userData?.fields?.whatsApp?.map((items,index)=> <Data1
       color={color}
@@ -193,8 +227,26 @@ const FieldData = ({ userData }) => {
       label={items.label}
     />)
      }
+     {
+      newFeilds?.fields?.whatsApp?.map((items,index)=> <Data1
+      color={color}
+      icon={whatsapppIcon}
+      title={items.number}
+      label={items.label}
+    />)
+     }
+
     {
       userData?.fields?.viber?.map((items,index)=>  <Data1
+      color={color}
+      icon={viberIcon}
+      title={items.number}
+      extra=""
+      label={items.label}
+    />)
+    }
+    {
+      newFeilds?.fields?.viber?.map((items,index)=>  <Data1
       color={color}
       icon={viberIcon}
       title={items.number}

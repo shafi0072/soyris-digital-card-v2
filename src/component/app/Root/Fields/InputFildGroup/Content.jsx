@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 
 import Phone from "./Phone";
 import Website from "./Website";
@@ -161,36 +161,7 @@ const Content = ({ feilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  // console.log({ phoneData });
-  //   console.log("website", websiteData);
-  //   console.log("address", addressData);
-  //   console.log("email", emailData);
-  //   console.log("link", linkData);
-  //   console.log("whatsApp", whatsAppData);
-  //   console.log("Viber", viberData);
-  //   console.log("Skype", skypeData);
-  //   console.log("SnapChat", snapChatData);
-  //   console.log("signal", signalData);
-  //   console.log("telegram", telegramData);
-  //   console.log("discord", discordData);
-  //   console.log("slack", slackData);
-  //   console.log("facebook", facebookData);
-  //   console.log("instagram", instagramData);
-  //   console.log("twitter", twitterData);
-  //   console.log("linkedin", linkedinData);
-  //   console.log("pinterest", pinterestData);
-  //   console.log("tiktok", tiktokData);
-  //   console.log("youtube", youtubeData);
-  //   console.log("vimeo", vimeoData);
-  //   console.log("wistia", wistiaData);
-  //   console.log("pdf", pdfData);
-  //   console.log("note", noteData);
-  //   console.log("date", dateData);
-  //   console.log("qr", qrData);
-  //   console.log("Header", headerData);
-  //   console.log("driver", divider);
-
-  const { userData } = useContext(userContext);
+  const { userData, newFeilds, setNewFeilds } = useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -695,6 +666,38 @@ const Content = ({ feilds }) => {
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
 
+useEffect(()=>{
+  setNewFeilds(
+   { fields: {
+      Phone: updatedPhoneArray,
+      website: updatedWebsiteArray,
+      email: updatedEmailArray,
+      address: updatedAddressArray,
+      link: updatedLinkArray,
+      whatsApp: updatedWhatsAppArray,
+      viber: updatedViberArray,
+      skype: updatedSkypeArray,
+      snapchat: updatedSnapchatArray,
+      signal: updatedSignalArray,
+      telegram: updatedTelegramArray,
+      discord: updatedDiscordArray,
+      slack: updatedSlackArray,
+      facebook: updatedFacebookArray,
+      instagram: updatedInstagramArray,
+      twitter: updatedTwitterArray,
+      linkedIn: updatedLinkedinArray,
+      pinterest: updatedPinterestArray,
+      tikTok: updatedTiktokArray,
+      note: updatedNoteArray,
+      date: updatedDateArray,
+      qr: updatedQrArray,
+      Header: updatedHeaderArray,
+      divider: updatedDividerArray,
+    },}
+  )
+},[phoneData,emailData,dividerData,instagramData,pinterestData,twitterData,qrData,websiteData,whatsAppData,addressData,linkData,skypeData,viberData,telegramData,signalData,discordData,slackData,facebookData,tiktokData,youtubeData,vimeoData,pdfData,wistiaData,noteData,dateData,headerData])
+
+console.log(newFeilds);
   const handleFieldsOnSubmit = (e) => {
     const userCardId = localStorage.getItem('cardId')
     e.preventDefault();
