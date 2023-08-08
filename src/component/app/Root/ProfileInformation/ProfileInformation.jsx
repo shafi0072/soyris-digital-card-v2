@@ -111,7 +111,7 @@ const ProfileInformation = () => {
 
                         <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
                     </div>
-                    <div className='fixed bottom-20 left-[12%] z-50'>
+                    <div className='fixed bottom-20 left-[20%] z-50'>
                         <input type="submit" value="Cancel" className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500' />
                         <input type="submit" value="Save" className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]' />
                     </div>

@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import Layout from '@/src/component/core/Layout'
+import Layout from '@/src/component/core/Layout/Layout2'
 import ContextApi from '@/src/Storage/ContextApi'
 import { useRouter } from 'next/router';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 export default function App({ Component, pageProps }) {
+  
   const router = useRouter()
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
