@@ -70,9 +70,10 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
   );
   // gallery ---------
-  const [gallery, setGallery] = useState(
-    [...Array(feilds.filter((item) => item === "gallery").length)].map(() => "")
+  const [galary, setGalary] = useState(
+    [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
   );
+  console.log("galary",galary)
 
   // console.log({image})
   // what's app
@@ -1367,7 +1368,7 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "Gallery" && (
                 <div className="mb-2">
-                  <Gallery setGallery={setGallery} gallery={gallery} />
+                  <Gallery setGalary={setGalary} galary={galary} />
                 </div>
               )}
               {items === "Youtube" && (

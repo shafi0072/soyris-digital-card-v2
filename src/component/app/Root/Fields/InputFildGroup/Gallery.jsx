@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-const Gallery = ({ gallery, setGallery }) => {
-    const [base64Gallery, setBase64Gallery] = useState("");
-  const handleFileChange = async (e) => {
+import { compressAndConvertToBase64 } from "@/src/config/base64";
+const Gallery = ({ galary, setGalary }) => {
+    const [base64Galary, setBase64Galary] = useState("");
+  const handleGalleryChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       try {
@@ -13,10 +14,10 @@ const Gallery = ({ gallery, setGallery }) => {
           600,
           0.8
         );
-        setGallery((prev) => {
-          const newGallery = [...prev, compressedBase64];
+        setGalary((prev) => {
+          const newGalary = [...prev, compressedBase64];
 
-          return newGallery;
+          return newGalary;
         });
         setBase64Gallery(compressedBase64);
       } catch (error) {
@@ -83,9 +84,8 @@ const Gallery = ({ gallery, setGallery }) => {
           </label>
           <input
             type="file"
-            id="profileImage"
             style={{ display: "none" }}
-            onChange={handleFileChange}
+            onChange={handleGalleryChange}
           />
         </div>
       </div>
