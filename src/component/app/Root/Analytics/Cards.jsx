@@ -8,7 +8,10 @@ const Cards = () => {
   const uniqueUsers = "decrease";
   const {userCardData} = useContext(userContext)
   const totalViews = userCardData?.anylatics?.reduce((total, data) => total + data.view, 0);
-  console.log(totalViews)
+  const uniqueIpAddresses = new Set(
+    userCardData?.anylatics?.filter(item => item.ipAddress.trim() !== '').map(item => item.ipAddress)
+  );
+  console.log(uniqueIpCounts)
   return (
     <div className="flex justify-between gap-4 mt-12 mb-8">
       <div className="flex gap-6 justify-between items-center bg-white shadow-lg rounded py-3 px-5 ">

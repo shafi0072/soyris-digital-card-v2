@@ -687,8 +687,8 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedQrArray = [...qrArray, ...filteredQrData];
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
-  const updatedYouTubeArray = [...youTubeArray,...filteredYouTubeData];
-  console.log({updatedYouTubeArray});
+  const updatedYouTubeArray = [...filteredYouTubeData];
+  console.log("Youtube",updatedYouTubeArray[0]?.YoutubeUserName1);
 
   useEffect(() => {
     setNewFeilds({
@@ -717,7 +717,7 @@ const Content = ({ feilds, setFeilds }) => {
         qr: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
-        youTube:updatedYouTubeArray
+        youTube:updatedYouTubeArray[0]?.YoutubeUserName1
       },
     });
   }, [
@@ -771,7 +771,7 @@ const Content = ({ feilds, setFeilds }) => {
           signal: updatedSignalArray,
           telegram: updatedTelegramArray,
           discord: updatedDiscordArray,
-          youTube:updatedYouTubeArray,
+          youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
           slack: updatedSlackArray,
           facebook: updatedFacebookArray,
           instagram: updatedInstagramArray,
