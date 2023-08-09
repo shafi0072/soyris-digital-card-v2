@@ -1,16 +1,20 @@
+import { userContext } from "@/src/Storage/ContextApi";
 import React from "react";
+import { useContext } from "react";
 
 const Cards = () => {
   const cardViews = "increase";
   const contactSaved = "increase";
   const uniqueUsers = "decrease";
-
+  const {userCardData} = useContext(userContext)
+  const totalViews = userCardData?.anylatics?.reduce((total, data) => total + data.view, 0);
+  console.log(totalViews)
   return (
     <div className="flex justify-between gap-4 mt-12 mb-8">
       <div className="flex gap-6 justify-between items-center bg-white shadow-lg rounded py-3 px-5 ">
         <div>
           <h3 className="text-xl  mb-3">Card Views</h3>
-          <p className="mb-2">351</p>
+          <p className="mb-2">{totalViews}</p>
           <p> <span className={cardViews === 'increase'?"text-[#0A7C57]":"text-[#DB112D]"}>+3.48 %</span> Since last period</p>
         </div>
         <div className="bg-[#097C56] rounded-full h-12 w-12 flex items-center justify-center">
