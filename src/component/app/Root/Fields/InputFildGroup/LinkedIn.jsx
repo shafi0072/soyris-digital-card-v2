@@ -21,6 +21,7 @@ const LinkedIn = ({index,handleLinkedinInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                       name={`url`}
+                      defaultValue={items?.url}
                       onChange={(e) =>
                          handleLinkedinInputChange(
                           index,

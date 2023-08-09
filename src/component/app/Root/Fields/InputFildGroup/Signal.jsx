@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Signal = ({index,handleSignalInputChange}) => {
+const Signal = ({index,handleSignalInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Signal = ({index,handleSignalInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`signalUserName${index + 1}`}
+                     defaultValue={`${items?.signalUserName + index+1}`}
                      onChange={(e) =>
                          handleSignalInputChange(
                          index,
@@ -45,6 +46,7 @@ const Signal = ({index,handleSignalInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`signalNumber${index + 1}`}
+                     defaultValue={`${items?.signalNumber + index+1}`}
                      onChange={(e) =>
                          handleSignalInputChange(
                          index,

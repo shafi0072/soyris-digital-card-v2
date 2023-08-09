@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Slack = ({index,handleSlackInputChange}) => {
+const Slack = ({index,handleSlackInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Slack = ({index,handleSlackInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`slackUserName${index + 1}`}
+                     defaultValue={`${items?.slackUserName + index + 1}`}
                      onChange={(e) =>
                          handleSlackInputChange(
                          index,
@@ -43,6 +44,7 @@ const Slack = ({index,handleSlackInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`slackNumber${index + 1}`}
+                     defaultValue={`${items?.slackNumber + index + 1}`}
                      onChange={(e) =>
                          handleSlackInputChange(
                          index,

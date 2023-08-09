@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Link = ({index,handleLinkInputChange}) => {
+const Link = ({index,handleLinkInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Link = ({index,handleLinkInputChange}) => {
                 <div className='w-full relative '>
                     <input
                      name={`url`}
+                     defaultValue={items?.url}
                      onChange={(e) =>
                         handleLinkInputChange(
                          index,
@@ -48,6 +49,7 @@ const Link = ({index,handleLinkInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`name`}
+                    defaultValue={items?.name}
                     onChange={(e) =>
                        handleLinkInputChange(
                         index,

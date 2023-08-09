@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Snapchat = ({index,handleSnapChatInputChange}) => {
+const Snapchat = ({index,handleSnapChatInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Snapchat = ({index,handleSnapChatInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`snapChatUserName${index + 1}`}
+                    defaultValue={`${items?.snapChatUserName + index+1}`}
                     onChange={(e) =>
                         handleSnapChatInputChange(
                         index,
@@ -42,6 +43,7 @@ const Snapchat = ({index,handleSnapChatInputChange}) => {
                 <div className='w-full relative '>
                     <input
                      name={`snapChatNumber${index + 1}`}
+                     defaultValue={`${items?.snapChatNumber + index+1}`}
                      onChange={(e) =>
                          handleSnapChatInputChange(
                          index,

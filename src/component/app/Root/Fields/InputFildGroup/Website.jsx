@@ -1,7 +1,8 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Website = ({index,handleWebsiteInputChange}) => {
+const Website = ({index,handleWebsiteInputChange,items}) => {
+    
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +22,7 @@ const Website = ({index,handleWebsiteInputChange}) => {
                 <div className='w-full relative '>
                     <input
                      name={`address`}
+                     defaultValue={items?.address}
                      onChange={(e) =>
                         handleWebsiteInputChange(
                          index,
@@ -41,6 +43,7 @@ const Website = ({index,handleWebsiteInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`label`}
+                     defaultValue={items?.label}
                      onChange={(e) =>
                         handleWebsiteInputChange(
                          index,

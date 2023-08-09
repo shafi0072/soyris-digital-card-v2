@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Viber = ({index,handleViberInputChange}) => {
+const Viber = ({index,handleViberInputChange, items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Viber = ({index,handleViberInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`number`}
+                    defaultValue={items?.number}
                     onChange={(e) =>
                         handleViberInputChange(
                         index,
@@ -45,6 +46,7 @@ const Viber = ({index,handleViberInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`label`}
+                    defaultValue={items?.label}
                     onChange={(e) =>
                         handleViberInputChange(
                         index,

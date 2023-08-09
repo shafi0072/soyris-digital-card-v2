@@ -10,7 +10,6 @@ const Phone = ({ index, handlePhoneInputChange, items }) => {
 
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
-
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -68,6 +67,7 @@ const Phone = ({ index, handlePhoneInputChange, items }) => {
            
             country={'us'}
             enableAreaCodes={true}
+            defaultValue={items?.Number}
             name={`Number `}
             onChange={(e) =>
             
@@ -86,6 +86,7 @@ const Phone = ({ index, handlePhoneInputChange, items }) => {
           <input
             type="text"
             name={"Code"}
+            defaultValue={items?.Code}
             onChange={(e) =>
               handlePhoneInputChange(index, "Code", e.target.value)
             }

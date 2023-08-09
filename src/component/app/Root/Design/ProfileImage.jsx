@@ -56,7 +56,7 @@ const ProfileImage = () => {
   };
   
   // ...
-  
+  // console.log({profileImage});
 
   const handleAspectRatioChange = (e) => {
     setCropAspectRatio(parseFloat(e.target.value));

@@ -1,7 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Image = () => {
+const Image = ({items}) => {
+    const [base64Image, setBase64Image] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setSelectedImage(URL.createObjectURL(file));
+        croppedCanvas.toBlob(
+            (blob) => {
+              if (blob) {
+                // Convert blob to base64
+                const reader = new FileReader();
+                reader.onload = () => {
+                  const base64String = reader.result;
+                //   setCroppedImage(base64String);
+                setBase64Image(base64String);
+                };
+                reader.readAsDataURL(blob);
+              }
+            },
+            'image/jpeg', // Use 'image/webp' for WebP format
+            0.8 // Adjust the compression quality as needed
+          );
+      };
+    // const handleImageUpload = (event) => {
+    //     const file = event.target.files[0];
+    //     croppedCanvas.toBlob(
+    //         (blob) => {
+    //           if (blob) {
+    //             // Convert blob to base64
+    //             const reader = new FileReader();
+    //             reader.onload = () => {
+    //               const base64String = reader.result;
+    //             //   setCroppedImage(base64String);
+    //             setBase64Image(base64String);
+    //             };
+    //             reader.readAsDataURL(blob);
+    //           }
+    //         },
+    //         'image/jpeg', // Use 'image/webp' for WebP format
+    //         0.8 // Adjust the compression quality as needed
+    //       );
+    //     // if (file) {
+    //     //   const reader = new FileReader();
+    
+    //     //   reader.onload = (e) => {
+    //     //     const base64String = e.target.result;
+    //     //     setBase64Image(base64String);
+    //     //   };
+    
+    //     //   reader.readAsDataURL(file);
+    //     // }
+    // };
+    console.log({base64Image});
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -33,7 +85,7 @@ const Image = () => {
                         <p className="text-md">Add Media</p>
 
                     </label>
-                    <input type="file" id='profileImage' style={{ display: 'none' }} />
+                    <input type="file" id='profileImage' onChange={handleFileChange} style={{ display: 'none' }} />
 
                 </div>
             </div>

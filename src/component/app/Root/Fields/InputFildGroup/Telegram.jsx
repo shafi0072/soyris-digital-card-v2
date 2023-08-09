@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Telegram = ({index,handleTelegramInputChange}) => {
+const Telegram = ({index,handleTelegramInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Telegram = ({index,handleTelegramInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`telegramUserName${index + 1}`}
+                     defaultValue={`${items?.telegramUserName + index+1}`}
                      onChange={(e) =>
                          handleTelegramInputChange(
                          index,
@@ -42,6 +43,7 @@ const Telegram = ({index,handleTelegramInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                       name={`telegramNumber${index + 1}`}
+                      defaultValue={`${items?.telegramNumber + index+1}`}
                       onChange={(e) =>
                           handleTelegramInputChange(
                           index,

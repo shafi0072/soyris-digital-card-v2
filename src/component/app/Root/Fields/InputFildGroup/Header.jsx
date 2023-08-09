@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Header = ({index,handleHeaderInputChange}) => {
+const Header = ({index,handleHeaderInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -22,6 +22,7 @@ const Header = ({index,handleHeaderInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={"label"}
+                     defaultValue={items?.label}
                      onChange={(e) =>
                          handleHeaderInputChange(
                          index,

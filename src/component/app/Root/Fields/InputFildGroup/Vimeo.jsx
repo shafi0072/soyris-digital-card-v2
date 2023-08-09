@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Vimeo = ({index,handleVimeoInputChange}) => {
+const Vimeo = ({index,handleVimeoInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Vimeo = ({index,handleVimeoInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                     name={`vimeoUserName${index + 1}`}
+                    defaultValue={`${items?.vimeoUserName + index + 1}`}
                     onChange={(e) =>
                         handleVimeoInputChange(
                         index,

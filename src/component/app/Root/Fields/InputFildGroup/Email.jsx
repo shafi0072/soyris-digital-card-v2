@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Email = ({index,handleEmailInputChange}) => {
+const Email = ({index,handleEmailInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Email = ({index,handleEmailInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`address`}
+                    defaultValue={items?.address}
                     onChange={(e) =>
                         handleEmailInputChange(
                         index,
@@ -41,6 +42,7 @@ const Email = ({index,handleEmailInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`label`}
+                    defaultValue={items?.label}
                     onChange={(e) =>
                         handleEmailInputChange(
                         index,

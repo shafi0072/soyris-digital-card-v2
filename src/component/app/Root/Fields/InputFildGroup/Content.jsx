@@ -32,11 +32,9 @@ import QR from "./QR";
 import Divider from "./Divider";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
-import { Container, Draggable } from 'react-smooth-dnd';
+import { Container, Draggable } from "react-smooth-dnd";
 
 const Content = ({ feilds, setFeilds }) => {
-
-
   const onDrop = (dropResult) => {
     if (!dropResult.removedIndex && !dropResult.addedIndex) return;
 
@@ -154,7 +152,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [pdfData, setPdfData] = useState(
     [...Array(feilds.filter((item) => item === "Pdf").length)].map(() => "")
   );
-  // note
+  // notes
   const [noteData, setNoteData] = useState(
     [...Array(feilds.filter((item) => item === "Note").length)].map(() => "")
   );
@@ -621,21 +619,23 @@ const Content = ({ feilds, setFeilds }) => {
     ? tiktokData.filter((item) => item !== undefined)
     : [];
   // note
-  const noteArray = Array.isArray(userCardData?.fields?.note)
-    ? userCardData.fields.note
+  const noteArray = Array.isArray(userCardData?.fields?.notes)
+    ? userCardData.fields.notes
     : [];
   const filteredNoteData = Array.isArray(noteData)
     ? noteData.filter((item) => item !== undefined)
     : [];
   // data
-  const dateArray = Array.isArray(userCardData?.fields?.date)
-    ? userCardData.fields.date
+  const dateArray = Array.isArray(userCardData?.fields?.Date)
+    ? userCardData.fields.Date
     : [];
   const filteredDateData = Array.isArray(dateData)
     ? dateData.filter((item) => item !== undefined)
     : [];
   // qr
-  const qrArray = Array.isArray(userCardData?.fields?.qr) ? userCardData.fields.qr : [];
+  const qrArray = Array.isArray(userCardData?.fields?.qr)
+    ? userCardData.fields.qr
+    : [];
   const filteredQrData = Array.isArray(qrData)
     ? qrData.filter((item) => item !== undefined)
     : [];
@@ -681,41 +681,66 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
 
   useEffect(() => {
-    setNewFeilds(
-      {
-        fields: {
-          Phone: updatedPhoneArray,
-          website: updatedWebsiteArray,
-          email: updatedEmailArray,
-          address: updatedAddressArray,
-          link: updatedLinkArray,
-          whatsApp: updatedWhatsAppArray,
-          viber: updatedViberArray,
-          skype: updatedSkypeArray,
-          snapchat: updatedSnapchatArray,
-          signal: updatedSignalArray,
-          telegram: updatedTelegramArray,
-          discord: updatedDiscordArray,
-          slack: updatedSlackArray,
-          facebook: updatedFacebookArray,
-          instagram: updatedInstagramArray,
-          twitter: updatedTwitterArray,
-          linkedIn: updatedLinkedinArray,
-          pinterest: updatedPinterestArray,
-          tikTok: updatedTiktokArray,
-          note: updatedNoteArray,
-          date: updatedDateArray,
-          qr: updatedQrArray,
-          Header: updatedHeaderArray,
-          divider: updatedDividerArray,
-        },
-      }
-    )
-  }, [phoneData, emailData, dividerData, instagramData, pinterestData, twitterData, qrData, websiteData, whatsAppData, addressData, linkData, skypeData, viberData, telegramData, signalData, discordData, slackData, facebookData, tiktokData, youtubeData, vimeoData, pdfData, wistiaData, noteData, dateData, headerData])
+    setNewFeilds({
+      fields: {
+        Phone: updatedPhoneArray,
+        website: updatedWebsiteArray,
+        email: updatedEmailArray,
+        address: updatedAddressArray,
+        link: updatedLinkArray,
+        whatsApp: updatedWhatsAppArray,
+        viber: updatedViberArray,
+        skype: updatedSkypeArray,
+        snapchat: updatedSnapchatArray,
+        signal: updatedSignalArray,
+        telegram: updatedTelegramArray,
+        discord: updatedDiscordArray,
+        slack: updatedSlackArray,
+        facebook: updatedFacebookArray,
+        instagram: updatedInstagramArray,
+        twitter: updatedTwitterArray,
+        linkedIn: updatedLinkedinArray,
+        pinterest: updatedPinterestArray,
+        tikTok: updatedTiktokArray,
+        notes: updatedNoteArray,
+        Date: updatedDateArray,
+        qr: updatedQrArray,
+        Header: updatedHeaderArray,
+        divider: updatedDividerArray,
+      },
+    });
+  }, [
+    phoneData,
+    emailData,
+    dividerData,
+    instagramData,
+    pinterestData,
+    twitterData,
+    qrData,
+    websiteData,
+    whatsAppData,
+    addressData,
+    linkData,
+    skypeData,
+    viberData,
+    telegramData,
+    signalData,
+    discordData,
+    slackData,
+    facebookData,
+    tiktokData,
+    youtubeData,
+    vimeoData,
+    pdfData,
+    wistiaData,
+    noteData,
+    dateData,
+    headerData,
+  ]);
 
   console.log(newFeilds);
   const handleFieldsOnSubmit = (e) => {
-    const userCardId = localStorage.getItem('cardId')
+    const userCardId = localStorage.getItem("cardId");
     e.preventDefault();
     fetch(`${baseUrl}/cards/profile/fields/${userCardId}`, {
       method: "PUT",
@@ -743,8 +768,8 @@ const Content = ({ feilds, setFeilds }) => {
           linkedIn: updatedLinkedinArray,
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
-          note: updatedNoteArray,
-          date: updatedDateArray,
+          notes: updatedNoteArray,
+          Date: updatedDateArray,
           qr: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
@@ -757,18 +782,313 @@ const Content = ({ feilds, setFeilds }) => {
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
         <Container onDrop={onDrop}>
-          {
-            userCardData?.fields?.Phone?.map((items, index) =>   <Draggable key={items}>
-            <div className="mb-2">
-              <Phone
-              items={items}
-                index={index}
-                handlePhoneInputChange={handlePhoneInputChange}
-                phoneData={phoneData}
-              />
-            </div>
-            </Draggable>)
-          }
+          {userCardData?.fields?.Phone?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Phone
+                  items={items}
+                  index={index}
+                  handlePhoneInputChange={handlePhoneInputChange}
+                  phoneData={phoneData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.website?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Website
+                  items={items}
+                  index={index}
+                  handleWebsiteInputChange={handleWebsiteInputChange}
+                  websiteData={websiteData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.address?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Address
+                  items={items}
+                  index={index}
+                  handleAddressInputChange={handleAddressInputChange}
+                  addressData={addressData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.email?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Email
+                  items={items}
+                  index={index}
+                  handleEmailInputChange={handleEmailInputChange}
+                  emailData={emailData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.link?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Link
+                  items={items}
+                  index={index}
+                  handleLinkInputChange={handleLinkInputChange}
+                  linkData={linkData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.header?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Header
+                  items={items}
+                  index={index}
+                  handleHeaderInputChange={handleHeaderInputChange}
+                  headerData={headerData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.whatsApp?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <WhatsApp
+                  items={items}
+                  index={index}
+                  handleWhatsAppInputChange={handleWhatsAppInputChange}
+                  whatsAppData={whatsAppData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.viber?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Viber
+                  items={items}
+                  index={index}
+                  handleViberInputChange={handleViberInputChange}
+                  viberData={viberData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.skype?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Skype
+                  items={items}
+                  index={index}
+                  handleSkypeInputChange={handleSkypeInputChange}
+                  skypeData={skypeData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.snapchat?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Snapchat
+                  items={items}
+                  index={index}
+                  handleSnapChatInputChange={handleSnapChatInputChange}
+                  snapChatData={snapChatData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.signal?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Signal
+                  items={items}
+                  index={index}
+                  handleSignalInputChange={handleSignalInputChange}
+                  signalData={signalData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.telegram?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Telegram
+                  items={items}
+                  index={index}
+                  handleTelegramInputChange={handleTelegramInputChange}
+                  telegramData={telegramData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.discord?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Discord
+                  items={items}
+                  index={index}
+                  handleDiscordInputChange={handleDiscordInputChange}
+                  discordData={discordData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.slack?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Slack
+                  items={items}
+                  index={index}
+                  handleSlackInputChange={handleSlackInputChange}
+                  slackData={slackData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.facebook?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Facebook
+                  items={items}
+                  index={index}
+                  handleFacebookInputChange={handleFacebookInputChange}
+                  facebookData={facebookData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.instagram?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Instagram
+                  items={items}
+                  index={index}
+                  handleInstagramInputChange={handleInstagramInputChange}
+                  instagramData={instagramData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.twitter?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Twitter
+                  items={items}
+                  index={index}
+                  handleTwitterInputChange={handleTwitterInputChange}
+                  twitterData={twitterData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.linkedIn?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <LinkedIn
+                  items={items}
+                  index={index}
+                  handleLinkedinInputChange={handleLinkedinInputChange}
+                  linkedinData={linkedinData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.pinterest?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Pinterest
+                  items={items}
+                  index={index}
+                  handlePinterestInputChange={handlePinterestInputChange}
+                  pinterestData={pinterestData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.tikTok?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <TikTok
+                  items={items}
+                  index={index}
+                  handleTiktokInputChange={handleTiktokInputChange}
+                  tiktokData={tiktokData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.tikTok?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <YouTube
+                  items={items}
+                  index={index}
+                  handleYoutubeInputChange={handleYoutubeInputChange}
+                  youtubeData={youtubeData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.tikTok?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Vimeo
+                  items={items}
+                  index={index}
+                  handleVimeoInputChange={handleVimeoInputChange}
+                  vimeoData={vimeoData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.tikTok?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Wistia
+                  items={items}
+                  index={index}
+                  handleWistiaInputChange={handleWistiaInputChange}
+                  wistiaData={wistiaData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.tikTok?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <PDF
+                  items={items}
+                  index={index}
+                  handlePdfInputChange={handlePdfInputChange}
+                  pdfData={pdfData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.notes?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Notes
+                  items={items}
+                  index={index}
+                  handleNoteInputChange={handleNoteInputChange}
+                  noteData={noteData}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.image?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+              <Image items={items}/>
+              </div>
+            </Draggable>
+          ))}
         </Container>
 
         <Container onDrop={onDrop}>
@@ -1040,7 +1360,6 @@ const Content = ({ feilds, setFeilds }) => {
             </Draggable>
           ))}
         </Container>
-
       </div>
       <div className="fixed bottom-20 left-[35%]  z-50">
         <input

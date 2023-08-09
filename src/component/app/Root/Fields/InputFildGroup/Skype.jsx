@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Skype = ({index,handleSkypeInputChange}) => {
+const Skype = ({index,handleSkypeInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Skype = ({index,handleSkypeInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`skypeUserName${index + 1}`}
+                    defaultValue={`${items?.skypeUserName+ index+1}`}
                     onChange={(e) =>
                         handleSkypeInputChange(
                         index,
@@ -41,6 +42,7 @@ const Skype = ({index,handleSkypeInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`skypeNumber${index + 1}`}
+                    defaultValue={`${items?.skypeNumber+index+1}`}
                     onChange={(e) =>
                         handleSkypeInputChange(
                         index,

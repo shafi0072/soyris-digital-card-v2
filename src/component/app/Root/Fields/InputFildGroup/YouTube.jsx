@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const YouTube = ({index,handleYoutubeInputChange}) => {
+const YouTube = ({index,handleYoutubeInputChange,items}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             
@@ -22,6 +22,7 @@ const YouTube = ({index,handleYoutubeInputChange}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`YoutubeUserName${index + 1}`}
+                     defaultValue={`${items?.YoutubeUserName + index + 1}`}
                      onChange={(e) =>
                          handleYoutubeInputChange(
                          index,
