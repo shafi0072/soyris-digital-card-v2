@@ -11,6 +11,7 @@ const RightSidebar = () => {
     newFeilds,
     profileImage,
     setProfileImage,
+    userCardData,
     color,
     design,
     logoImage,
@@ -40,7 +41,7 @@ const RightSidebar = () => {
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
         <div className="my-3">
-          <FieldData userData={userData}  newFeilds={newFeilds} />
+          <FieldData userData={userCardData}  newFeilds={newFeilds} />
         </div>
 
         <div className="mt-5 border-t flex gap-2 pt-3">

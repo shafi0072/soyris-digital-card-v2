@@ -175,7 +175,7 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const { userData, newFeilds, setNewFeilds } = useContext(userContext);
+  const { userCardData, newFeilds, setNewFeilds } = useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -486,169 +486,169 @@ const Content = ({ feilds, setFeilds }) => {
     });
   };
 
-  // console.log(userData)
+  // console.log(userCardData)
 
-  const phoneArray = Array.isArray(userData?.fields?.Phone)
-    ? userData.fields.Phone
+  const phoneArray = Array.isArray(userCardData?.fields?.Phone)
+    ? userCardData.fields.Phone
     : [];
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
 
-  const websiteArray = Array.isArray(userData?.fields?.website)
-    ? userData.fields.website
+  const websiteArray = Array.isArray(userCardData?.fields?.website)
+    ? userCardData.fields.website
     : [];
   const filteredWebsiteData = Array.isArray(websiteData)
     ? websiteData.filter((item) => item !== undefined)
     : [];
   // email
-  const emailArray = Array.isArray(userData?.fields?.email)
-    ? userData.fields.email
+  const emailArray = Array.isArray(userCardData?.fields?.email)
+    ? userCardData.fields.email
     : [];
   const filteredEmailData = Array.isArray(emailData)
     ? emailData.filter((item) => item !== undefined)
     : [];
   // address
-  const addressArray = Array.isArray(userData?.fields?.address)
-    ? userData.fields.address
+  const addressArray = Array.isArray(userCardData?.fields?.address)
+    ? userCardData.fields.address
     : [];
   const filteredAddressData = Array.isArray(addressData)
     ? addressData.filter((item) => item !== undefined)
     : [];
   // link
-  const linkArray = Array.isArray(userData?.fields?.link)
-    ? userData.fields.link
+  const linkArray = Array.isArray(userCardData?.fields?.link)
+    ? userCardData.fields.link
     : [];
   const filteredLinkData = Array.isArray(linkData)
     ? linkData.filter((item) => item !== undefined)
     : [];
   // whatsapp
-  const whatsAppArray = Array.isArray(userData?.fields?.whatsApp)
-    ? userData.fields.whatsApp
+  const whatsAppArray = Array.isArray(userCardData?.fields?.whatsApp)
+    ? userCardData.fields.whatsApp
     : [];
   const filteredWhatsAppData = Array.isArray(whatsAppData)
     ? whatsAppData.filter((item) => item !== undefined)
     : [];
   // viber
-  const viberArray = Array.isArray(userData?.fields?.viber)
-    ? userData.fields.viber
+  const viberArray = Array.isArray(userCardData?.fields?.viber)
+    ? userCardData.fields.viber
     : [];
   const filteredViberData = Array.isArray(viberData)
     ? viberData.filter((item) => item !== undefined)
     : [];
   // skype
-  const skypeArray = Array.isArray(userData?.fields?.skype)
-    ? userData.fields.skype
+  const skypeArray = Array.isArray(userCardData?.fields?.skype)
+    ? userCardData.fields.skype
     : [];
   const filteredSkypeData = Array.isArray(skypeData)
     ? skypeData.filter((item) => item !== undefined)
     : [];
   // snapchat
-  const snapchatArray = Array.isArray(userData?.fields?.snapchat)
-    ? userData.fields.snapchat
+  const snapchatArray = Array.isArray(userCardData?.fields?.snapchat)
+    ? userCardData.fields.snapchat
     : [];
   const filteredSnapchatData = Array.isArray(snapChatData)
     ? snapChatData.filter((item) => item !== undefined)
     : [];
   // signal
-  const signalArray = Array.isArray(userData?.fields?.signal)
-    ? userData.fields.signal
+  const signalArray = Array.isArray(userCardData?.fields?.signal)
+    ? userCardData.fields.signal
     : [];
   const filteredSignalData = Array.isArray(signalData)
     ? signalData.filter((item) => item !== undefined)
     : [];
   // telegram
-  const telegramArray = Array.isArray(userData?.fields?.telegram)
-    ? userData.fields.telegram
+  const telegramArray = Array.isArray(userCardData?.fields?.telegram)
+    ? userCardData.fields.telegram
     : [];
   const filteredTelegramData = Array.isArray(telegramData)
     ? telegramData.filter((item) => item !== undefined)
     : [];
   // discord
-  const discordArray = Array.isArray(userData?.fields?.discord)
-    ? userData.fields.discord
+  const discordArray = Array.isArray(userCardData?.fields?.discord)
+    ? userCardData.fields.discord
     : [];
   const filteredDiscordData = Array.isArray(discordData)
     ? discordData.filter((item) => item !== undefined)
     : [];
   // slack
-  const slackArray = Array.isArray(userData?.fields?.slack)
-    ? userData.fields.slack
+  const slackArray = Array.isArray(userCardData?.fields?.slack)
+    ? userCardData.fields.slack
     : [];
   const filteredSlackData = Array.isArray(slackData)
     ? slackData.filter((item) => item !== undefined)
     : [];
   // facebook
-  const facebookArray = Array.isArray(userData?.fields?.facebook)
-    ? userData.fields.facebook
+  const facebookArray = Array.isArray(userCardData?.fields?.facebook)
+    ? userCardData.fields.facebook
     : [];
   const filteredFacebookData = Array.isArray(facebookData)
     ? facebookData.filter((item) => item !== undefined)
     : [];
   // instagram
-  const instagramArray = Array.isArray(userData?.fields?.instagram)
-    ? userData.fields.instagram
+  const instagramArray = Array.isArray(userCardData?.fields?.instagram)
+    ? userCardData.fields.instagram
     : [];
   const filteredInstagramData = Array.isArray(instagramData)
     ? instagramData.filter((item) => item !== undefined)
     : [];
   // twitter
-  const twitterArray = Array.isArray(userData?.fields?.twitter)
-    ? userData.fields.twitter
+  const twitterArray = Array.isArray(userCardData?.fields?.twitter)
+    ? userCardData.fields.twitter
     : [];
   const filteredTwitterData = Array.isArray(twitterData)
     ? twitterData.filter((item) => item !== undefined)
     : [];
   // linkedin
-  const linkedinArray = Array.isArray(userData?.fields?.linkedIn)
-    ? userData.fields.linkedIn
+  const linkedinArray = Array.isArray(userCardData?.fields?.linkedIn)
+    ? userCardData.fields.linkedIn
     : [];
   const filteredLinkedinData = Array.isArray(linkedinData)
     ? linkedinData.filter((item) => item !== undefined)
     : [];
   // pinterest
-  const pinterestArray = Array.isArray(userData?.fields?.pinterest)
-    ? userData.fields.pinterest
+  const pinterestArray = Array.isArray(userCardData?.fields?.pinterest)
+    ? userCardData.fields.pinterest
     : [];
   const filteredPinterestData = Array.isArray(pinterestData)
     ? pinterestData.filter((item) => item !== undefined)
     : [];
   // tiktok
-  const tiktokArray = Array.isArray(userData?.fields?.tikTok)
-    ? userData.fields.tikTok
+  const tiktokArray = Array.isArray(userCardData?.fields?.tikTok)
+    ? userCardData.fields.tikTok
     : [];
   const filteredTiktokData = Array.isArray(tiktokData)
     ? tiktokData.filter((item) => item !== undefined)
     : [];
   // note
-  const noteArray = Array.isArray(userData?.fields?.note)
-    ? userData.fields.note
+  const noteArray = Array.isArray(userCardData?.fields?.note)
+    ? userCardData.fields.note
     : [];
   const filteredNoteData = Array.isArray(noteData)
     ? noteData.filter((item) => item !== undefined)
     : [];
   // data
-  const dateArray = Array.isArray(userData?.fields?.date)
-    ? userData.fields.date
+  const dateArray = Array.isArray(userCardData?.fields?.date)
+    ? userCardData.fields.date
     : [];
   const filteredDateData = Array.isArray(dateData)
     ? dateData.filter((item) => item !== undefined)
     : [];
   // qr
-  const qrArray = Array.isArray(userData?.fields?.qr) ? userData.fields.qr : [];
+  const qrArray = Array.isArray(userCardData?.fields?.qr) ? userCardData.fields.qr : [];
   const filteredQrData = Array.isArray(qrData)
     ? qrData.filter((item) => item !== undefined)
     : [];
   // header
-  const HeaderArray = Array.isArray(userData?.fields?.Header)
-    ? userData.fields.Header
+  const HeaderArray = Array.isArray(userCardData?.fields?.Header)
+    ? userCardData.fields.Header
     : [];
   const filteredHeaderData = Array.isArray(headerData)
     ? headerData.filter((item) => item !== undefined)
     : [];
   // divider
-  const dividerArray = Array.isArray(userData?.fields?.divider)
-    ? userData.fields.divider
+  const dividerArray = Array.isArray(userCardData?.fields?.divider)
+    ? userCardData.fields.divider
     : [];
   const filteredDividerData = Array.isArray(dividerData)
     ? dividerData.filter((item) => item !== undefined)
@@ -756,6 +756,20 @@ const Content = ({ feilds, setFeilds }) => {
   return (
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
+        <Container onDrop={onDrop}>
+          {
+            userCardData?.fields?.Phone?.map((items, index) =>   <Draggable key={items}>
+            <div className="mb-2">
+              <Phone
+              items={items}
+                index={index}
+                handlePhoneInputChange={handlePhoneInputChange}
+                phoneData={phoneData}
+              />
+            </div>
+            </Draggable>)
+          }
+        </Container>
 
         <Container onDrop={onDrop}>
           {feilds.map((items, index) => (

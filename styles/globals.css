@@ -11,5 +11,5 @@
   height: 100vh;
 }
 .MuiPaper-root {
-  background-color: black;
+  background: black !important;
 }
