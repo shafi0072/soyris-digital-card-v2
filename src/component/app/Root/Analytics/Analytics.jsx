@@ -15,29 +15,41 @@ import {
   Select,
 } from "@mui/material";
 import Cards from "./Cards";
-import LineCharts from "./LineCharts";
-import CardViewPieChart from "./CardViewPieChart";
+const LineCharts = dynamic(() => import("./LineCharts"), { ssr: false });
+const CardViewPieChart = dynamic(() => import("./CardViewPieChart"), {
+  ssr: false,
+});
 import CardViewsTable from "./CardViewsTable";
+import dynamic from "next/dynamic";
 
 const Analytics = () => {
+  const [time, setTime] = React.useState("");
+  
+
+  const handleChange = (event) => {
+    setTime(event.target.value);
+  };
   return (
     <>
       <div>
         <div className="flex gap-4 items-center justify-end">
           <div className="w-80 ">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DateRangePicker slots={{ field: SingleInputDateRangeField }} />
+              <DateRangePicker
+                className="bg-white text-black"
+                slots={{ field: SingleInputDateRangeField }}
+              />
             </LocalizationProvider>
           </div>
           <div>
-            <FormControl  className="w-40 mt-2">
+            <FormControl className="w-40 mt-2">
               <InputLabel id="demo-simple-select-label">Time</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                //   value={age}
+                value={time}
                 label="Age"
-                //   onChange={handleChange}
+                onChange={handleChange}
               >
                 <MenuItem value={7}>Last 7 Days</MenuItem>
                 <MenuItem value={6}>Last 6 Days</MenuItem>
@@ -49,6 +61,8 @@ const Analytics = () => {
             </FormControl>
           </div>
         </div>
+
+        {/* Cards ------------------ */}
         <Cards />
         <LineCharts />
         <div className="my-16 flex gap-6">

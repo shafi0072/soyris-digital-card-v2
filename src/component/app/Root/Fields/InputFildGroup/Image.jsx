@@ -3,7 +3,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { baseUrl } from "@/src/config/Server";
-const Image = ({ items, from }) => {
+import { compressAndConvertToBase64 } from "@/src/config/base64";
+const Image = ({ items, from, image, setImage }) => {
   const [base64Image, setBase64Image] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const handleRemoveFields = () => {
@@ -24,26 +25,23 @@ const Image = ({ items, from }) => {
       })
       .catch((error) => console.log("error", error));
   };
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    setSelectedImage(URL.createObjectURL(file));
-    croppedCanvas.toBlob(
-      (blob) => {
-        if (blob) {
-          // Convert blob to base64
-          const reader = new FileReader();
-          reader.onload = () => {
-            const base64String = reader.result;
-            //   setCroppedImage(base64String);
-            setBase64Image(base64String);
-          };
-          reader.readAsDataURL(blob);
-        }
-      },
-      "image/jpeg", // Use 'image/webp' for WebP format
-      0.8 // Adjust the compression quality as needed
-    );
+    if (file) {
+      try {
+        const compressedBase64 = await compressAndConvertToBase64(file, 800, 600, 0.8);
+        setImage((prev) => {
+          const newImage = [...prev, compressedBase64]
+          
+          return newImage
+        })
+        setBase64Image(compressedBase64);
+      } catch (error) {
+        console.error('Error compressing image:', error);
+      }
+    }
   };
+
   // const handleImageUpload = (event) => {
   //     const file = event.target.files[0];
   //     croppedCanvas.toBlob(
@@ -73,7 +71,7 @@ const Image = ({ items, from }) => {
   //     //   reader.readAsDataURL(file);
   //     // }
   // };
-  console.log({ base64Image });
+  
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -94,6 +92,12 @@ const Image = ({ items, from }) => {
       </div>
       <div className="mb-3">
         <div className="w-full">
+         <div className="flex gap-2 flex-wrap my-4">
+         {
+            image.map((img,index)=><img className="w-[144px] h-[55px]  object-cover" src={img}/>
+          )
+          }
+         </div>
           <label
             htmlFor="profileImage"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"

@@ -65,6 +65,17 @@ const Content = ({ feilds, setFeilds }) => {
   const [linkData, setLinkData] = useState(
     [...Array(feilds.filter((item) => item === "Link").length)].map(() => "")
   );
+  // image -----------
+  const [image, setImage] = useState(
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
+  );
+  // gallery ---------
+  const [galary, setGalary] = useState(
+    [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
+  );
+  console.log("galary",galary)
+
+  // console.log({image})
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
     [...Array(feilds.filter((item) => item === "WhatsApp").length)].map(
@@ -185,6 +196,16 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
+  // const handleImageInputChange = (index, field, value) => {
+  //   setImage((prevImageData) => {
+  //     const newData = [...prevImageData];
+  //     newData[index] = {
+  //       ...newData[index],
+  //       [field]: value,
+  //     };
+  //     return newData;
+  //   });
+  // };
   // website
   const handleWebsiteInputChange = (index, field, value) => {
     setWebsiteData((prevWebsiteData) => {
@@ -688,6 +709,8 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
   const updatedYouTubeArray = [...filteredYouTubeData];
+  const updatedImageArray = [...image];
+  console.log(updatedImageArray)
   console.log("Youtube",updatedYouTubeArray[0]?.YoutubeUserName1);
 
   useEffect(() => {
@@ -717,7 +740,8 @@ const Content = ({ feilds, setFeilds }) => {
         qr: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
-        youTube:updatedYouTubeArray[0]?.YoutubeUserName1
+        youTube:updatedYouTubeArray[0]?.YoutubeUserName1,
+        image:updatedImageArray
       },
     });
   }, [
@@ -784,6 +808,7 @@ const Content = ({ feilds, setFeilds }) => {
           qr: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
+          image:updatedImageArray
         },
       }),
     });
@@ -1120,7 +1145,7 @@ const Content = ({ feilds, setFeilds }) => {
           {userCardData?.fields?.image?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
-                <Image items={items} from={true} />
+                <Image setImage={setImage} image={image} items={items} from={true} />
               </div>
             </Draggable>
           ))}
@@ -1338,12 +1363,12 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "Image" && (
                 <div className="mb-2">
-                  <Image />
+                  <Image setImage={setImage} image={image}/>
                 </div>
               )}
               {items === "Gallery" && (
                 <div className="mb-2">
-                  <Gallery />
+                  <Gallery setGalary={setGalary} galary={galary} />
                 </div>
               )}
               {items === "Youtube" && (

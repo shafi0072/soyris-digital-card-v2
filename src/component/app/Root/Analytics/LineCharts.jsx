@@ -159,6 +159,7 @@ const LineCharts = () => {
   }
 
   return (
+    <>
     <div className="mt-16 shadow-lg p-8">
       <Box sx={{ width: "100%" }}>
         <div className="flex justify-between items-center">
@@ -180,7 +181,8 @@ const LineCharts = () => {
         </select>
       </div>
         </div>
-        <CustomTabPanel value={value} index={0}>
+       <div>
+       <CustomTabPanel value={value} index={0}>
           <LineChart
             width={900}
             height={500}
@@ -255,8 +257,10 @@ const LineCharts = () => {
             />
           </LineChart>
         </CustomTabPanel>
+       </div>
       </Box>
     </div>
+    </>
   );
 };
 
