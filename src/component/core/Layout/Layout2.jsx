@@ -146,7 +146,7 @@ const Layout2 = ({ children }) => {
         <List>
           {nav_data.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }} onClick={() => setExpand(index)}>
-              <ListItemButton
+              <ListItemButton 
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -168,7 +168,7 @@ const Layout2 = ({ children }) => {
               </ListItemButton>
               {expand === index && <List>
 
-                {item?.drowpDown?.map((subItem) => <ListItem>
+                {item?.drowpDown?.map((subItem) => <ListItem onClick={() => router.push(subItem?.link)}>
                   <ListItemButton
                     sx={{
                       minHeight: 48,
