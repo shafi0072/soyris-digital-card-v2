@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 
 const Sidebar = ({feilds,setFeilds}) => {
-  const { color } = useContext(userContext)
+  const { color } = useContext(userContext);
   const [exapnd, setExpand] = useState({
     id: 0,
     status: false

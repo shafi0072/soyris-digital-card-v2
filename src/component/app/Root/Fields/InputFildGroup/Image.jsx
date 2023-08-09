@@ -92,6 +92,12 @@ const Image = ({ items, from, image, setImage }) => {
       </div>
       <div className="mb-3">
         <div className="w-full">
+         <div className="flex gap-2 flex-wrap my-4">
+         {
+            image.map((img,index)=><img className="w-[144px] h-[55px]  object-cover" src={img}/>
+          )
+          }
+         </div>
           <label
             htmlFor="profileImage"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
