@@ -65,6 +65,11 @@ const Content = ({ feilds, setFeilds }) => {
   const [linkData, setLinkData] = useState(
     [...Array(feilds.filter((item) => item === "Link").length)].map(() => "")
   );
+  const [image, setImage] = useState(
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
+  );
+
+  console.log({image})
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
     [...Array(feilds.filter((item) => item === "WhatsApp").length)].map(
@@ -185,6 +190,16 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
+  // const handleImageInputChange = (index, field, value) => {
+  //   setImage((prevImageData) => {
+  //     const newData = [...prevImageData];
+  //     newData[index] = {
+  //       ...newData[index],
+  //       [field]: value,
+  //     };
+  //     return newData;
+  //   });
+  // };
   // website
   const handleWebsiteInputChange = (index, field, value) => {
     setWebsiteData((prevWebsiteData) => {
@@ -1120,7 +1135,7 @@ const Content = ({ feilds, setFeilds }) => {
           {userCardData?.fields?.image?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
-                <Image items={items} from={true} />
+                <Image setImage={setImage} image={image} items={items} from={true} />
               </div>
             </Draggable>
           ))}
@@ -1338,7 +1353,7 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "Image" && (
                 <div className="mb-2">
-                  <Image />
+                  <Image setImage={setImage} image={image}/>
                 </div>
               )}
               {items === "Gallery" && (
