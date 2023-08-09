@@ -396,6 +396,7 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
+  
   // vimeo
   const handleVimeoInputChange = (index, field, value) => {
     setVimeoData((prevVimeoData) => {
@@ -653,6 +654,13 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredDividerData = Array.isArray(dividerData)
     ? dividerData.filter((item) => item !== undefined)
     : [];
+  // youTube
+  const youTubeArray = Array.isArray(userCardData?.fields?.youTube)
+    ? userCardData.fields.youTube
+    : [];
+  const filteredYouTubeData = Array.isArray(youtubeData)
+    ? youtubeData.filter((item) => item !== undefined)
+    : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
@@ -679,6 +687,8 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedQrArray = [...qrArray, ...filteredQrData];
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
+  const updatedYouTubeArray = [...youTubeArray,...filteredYouTubeData];
+  console.log({updatedYouTubeArray});
 
   useEffect(() => {
     setNewFeilds({
@@ -707,6 +717,7 @@ const Content = ({ feilds, setFeilds }) => {
         qr: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
+        youTube:updatedYouTubeArray
       },
     });
   }, [
@@ -738,7 +749,6 @@ const Content = ({ feilds, setFeilds }) => {
     headerData,
   ]);
 
-  console.log(newFeilds);
   const handleFieldsOnSubmit = (e) => {
     const userCardId = localStorage.getItem("cardId");
     e.preventDefault();
@@ -761,6 +771,7 @@ const Content = ({ feilds, setFeilds }) => {
           signal: updatedSignalArray,
           telegram: updatedTelegramArray,
           discord: updatedDiscordArray,
+          youTube:updatedYouTubeArray,
           slack: updatedSlackArray,
           facebook: updatedFacebookArray,
           instagram: updatedInstagramArray,
@@ -803,6 +814,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleWebsiteInputChange={handleWebsiteInputChange}
                   websiteData={websiteData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -815,6 +827,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleAddressInputChange={handleAddressInputChange}
                   addressData={addressData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -827,6 +840,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleEmailInputChange={handleEmailInputChange}
                   emailData={emailData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -839,6 +853,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleLinkInputChange={handleLinkInputChange}
                   linkData={linkData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -851,6 +866,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleHeaderInputChange={handleHeaderInputChange}
                   headerData={headerData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -863,6 +879,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleWhatsAppInputChange={handleWhatsAppInputChange}
                   whatsAppData={whatsAppData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -875,6 +892,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleViberInputChange={handleViberInputChange}
                   viberData={viberData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -887,6 +905,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleSkypeInputChange={handleSkypeInputChange}
                   skypeData={skypeData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -899,6 +918,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleSnapChatInputChange={handleSnapChatInputChange}
                   snapChatData={snapChatData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -923,6 +943,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleTelegramInputChange={handleTelegramInputChange}
                   telegramData={telegramData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -935,6 +956,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleDiscordInputChange={handleDiscordInputChange}
                   discordData={discordData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -947,6 +969,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleSlackInputChange={handleSlackInputChange}
                   slackData={slackData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -959,6 +982,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleFacebookInputChange={handleFacebookInputChange}
                   facebookData={facebookData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -971,6 +995,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleInstagramInputChange={handleInstagramInputChange}
                   instagramData={instagramData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -983,6 +1008,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleTwitterInputChange={handleTwitterInputChange}
                   twitterData={twitterData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -995,6 +1021,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleLinkedinInputChange={handleLinkedinInputChange}
                   linkedinData={linkedinData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -1007,6 +1034,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handlePinterestInputChange={handlePinterestInputChange}
                   pinterestData={pinterestData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -1019,11 +1047,12 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleTiktokInputChange={handleTiktokInputChange}
                   tiktokData={tiktokData}
+                  from={true}
                 />
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.tikTok?.map((items, index) => (
+          {userCardData?.fields?.youTube?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
                 <YouTube
@@ -1031,11 +1060,12 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleYoutubeInputChange={handleYoutubeInputChange}
                   youtubeData={youtubeData}
+                  from={true}
                 />
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.tikTok?.map((items, index) => (
+          {userCardData?.fields?.vimeo?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
                 <Vimeo
@@ -1043,11 +1073,12 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleVimeoInputChange={handleVimeoInputChange}
                   vimeoData={vimeoData}
+                  from={true}
                 />
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.tikTok?.map((items, index) => (
+          {userCardData?.fields?.wistia?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
                 <Wistia
@@ -1055,11 +1086,12 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleWistiaInputChange={handleWistiaInputChange}
                   wistiaData={wistiaData}
+                  from={true}
                 />
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.tikTok?.map((items, index) => (
+          {userCardData?.fields?.pdf?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
                 <PDF
@@ -1067,6 +1099,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handlePdfInputChange={handlePdfInputChange}
                   pdfData={pdfData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -1079,6 +1112,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleNoteInputChange={handleNoteInputChange}
                   noteData={noteData}
+                  from={true}
                 />
               </div>
             </Draggable>
@@ -1086,7 +1120,33 @@ const Content = ({ feilds, setFeilds }) => {
           {userCardData?.fields?.image?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
-              <Image items={items}/>
+                <Image items={items} from={true} />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.qr?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <QR
+                  index={index}
+                  handleQRInputChange={handleQRInputChange}
+                  qrData={qrData}
+                  items={items}
+                  from={true}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.divider?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Divider
+                  index={index}
+                  handleDriverInputChange={handleDriverInputChange}
+                  driverData={driverData}
+                  items={items}
+                  from={true}
+                />
               </div>
             </Draggable>
           ))}
