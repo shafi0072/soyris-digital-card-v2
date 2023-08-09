@@ -790,6 +790,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handlePhoneInputChange={handlePhoneInputChange}
                   phoneData={phoneData}
+                  from={true}
                 />
               </div>
             </Draggable>
