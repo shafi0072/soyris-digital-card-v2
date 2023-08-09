@@ -19,7 +19,7 @@ const RightSidebar = () => {
     infos,
   } = useContext(userContext);
   console.log({ newFeilds });
-  console.log({ userCardData });
+  console.log("image", userCardData?.fields?.image);
   return (
     <div className="scroll-hide max-h-[70vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
@@ -240,10 +240,13 @@ const RightSidebar = () => {
             </svg>
           </a>
         </div>
+        <div className="my-5">
+          <img className=" w-[250px] h-[250px] object-cover " src={userCardData?.fields?.image} alt="" />
+        </div>
         <div className="mt-5">
-          {userCardData?.fields?.youTube &&
-          <YouTube userCardData={userCardData} newFeilds={newFeilds}/>
-}
+          {userCardData?.fields?.youTube && (
+            <YouTube userCardData={userCardData} newFeilds={newFeilds} />
+          )}
         </div>
       </div>
     </div>
