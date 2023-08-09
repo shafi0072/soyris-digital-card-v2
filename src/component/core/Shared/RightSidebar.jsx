@@ -4,6 +4,7 @@ import Classic from "./Classic/Classic";
 import Flat from "./Flat/Flat";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FieldData from "./FieldData/FieldData";
+import YouTube from "./YouTube/YouTube";
 
 const RightSidebar = () => {
   const {
@@ -17,8 +18,8 @@ const RightSidebar = () => {
     logoImage,
     infos,
   } = useContext(userContext);
-  console.log({newFeilds});
-  console.log({userCardData});
+  console.log({ newFeilds });
+  console.log({ userCardData });
   return (
     <div className="scroll-hide max-h-[70vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
@@ -42,12 +43,16 @@ const RightSidebar = () => {
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
         <div className="my-3">
-          <FieldData userData={userCardData}  newFeilds={newFeilds} />
+          <FieldData userData={userCardData} newFeilds={newFeilds} />
         </div>
 
         <div className="mt-5 border-t flex gap-2 pt-3">
           <a
-            href={userCardData?.fields?.facebook[0] ? userCardData?.fields?.facebook[0]?.url: '#'}
+            href={
+              userCardData?.fields?.facebook[0]
+                ? userCardData?.fields?.facebook[0]?.url
+                : "#"
+            }
             className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
             style={{ background: color }}
           >
@@ -71,7 +76,11 @@ const RightSidebar = () => {
             </svg>
           </a>
           <a
-           href={userCardData?.fields?.instagram[0] ? userCardData?.fields?.instagram[0]?.url: '#'}
+            href={
+              userCardData?.fields?.instagram[0]
+                ? userCardData?.fields?.instagram[0]?.url
+                : "#"
+            }
             className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
             style={{ background: color }}
           >
@@ -131,7 +140,11 @@ const RightSidebar = () => {
             </svg>
           </a>
           <a
-           href={userCardData?.fields?.twitter[0] ? userCardData?.fields?.twitter[0]?.url: '#'}
+            href={
+              userCardData?.fields?.twitter[0]
+                ? userCardData?.fields?.twitter[0]?.url
+                : "#"
+            }
             className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
             style={{ background: color }}
           >
@@ -152,7 +165,11 @@ const RightSidebar = () => {
             </svg>
           </a>
           <a
-            href={userCardData?.fields?.linkedIn[0] ? userCardData?.fields?.linkedIn[0]?.url: '#'}
+            href={
+              userCardData?.fields?.linkedIn[0]
+                ? userCardData?.fields?.linkedIn[0]?.url
+                : "#"
+            }
             className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
             style={{ background: color }}
           >
@@ -172,7 +189,11 @@ const RightSidebar = () => {
             </svg>
           </a>
           <a
-            href={userCardData?.fields?.pinterest[0] ? userCardData?.fields?.pinterest[0]?.url: '#'}
+            href={
+              userCardData?.fields?.pinterest[0]
+                ? userCardData?.fields?.pinterest[0]?.url
+                : "#"
+            }
             className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
             style={{ background: color }}
           >
@@ -192,7 +213,11 @@ const RightSidebar = () => {
             </svg>
           </a>
           <a
-           href={userCardData?.fields?.tikTok[0] ? userCardData?.fields?.tikTok[0]?.url: '#'}
+            href={
+              userCardData?.fields?.tikTok[0]
+                ? userCardData?.fields?.tikTok[0]?.url
+                : "#"
+            }
             className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
             style={{ background: color }}
           >
@@ -214,6 +239,11 @@ const RightSidebar = () => {
               />
             </svg>
           </a>
+        </div>
+        <div className="mt-5">
+          {userCardData?.fields?.youTube &&
+          <YouTube userCardData={userCardData} newFeilds={newFeilds}/>
+}
         </div>
       </div>
     </div>
