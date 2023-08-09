@@ -6,11 +6,30 @@ import { useState } from "react";
 import { useEffect } from "react";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-const Phone = ({ index, handlePhoneInputChange, items }) => {
+import { baseUrl } from "@/src/config/Server";
+const Phone = ({ index, handlePhoneInputChange, items, from }) => {
 
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
-
+  const handleRemoveFields = () => {
+    const id = localStorage.getItem('cardId')
+    fetch(`${baseUrl}/cards/fields/delete/${id}`, {
+      method: 'DELETE',
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        fieldName:'Phone',
+        elementId:items?._id
+      }),
+      
+    })
+  .then(response => response.text())
+  .then(result => {
+    window.location.reload()
+  })
+  .catch(error => console.log('error', error));
+  }
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -25,9 +44,9 @@ const Phone = ({ index, handlePhoneInputChange, items }) => {
           </div>
           <h4>Phone</h4>
         </div>
-        <span>
+        <div onClick={() => from ? handleRemoveFields() : ''}>
           <CloseIcon />
-        </span>
+        </div>
       </div>
       <div className="flex gap-2 justify-between">
       {useInternationalNumber  &&<div className="w-[70%] relative ">
@@ -68,6 +87,7 @@ const Phone = ({ index, handlePhoneInputChange, items }) => {
            
             country={'us'}
             enableAreaCodes={true}
+            defaultValue={items?.Number}
             name={`Number `}
             onChange={(e) =>
             
@@ -86,6 +106,7 @@ const Phone = ({ index, handlePhoneInputChange, items }) => {
           <input
             type="text"
             name={"Code"}
+            defaultValue={items?.Code}
             onChange={(e) =>
               handlePhoneInputChange(index, "Code", e.target.value)
             }

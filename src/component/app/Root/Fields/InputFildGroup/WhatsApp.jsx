@@ -1,26 +1,50 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const WhatsApp = ({index,handleWhatsAppInputChange}) => {
+import CloseIcon from "@mui/icons-material/Close";
+import { baseUrl } from "@/src/config/Server";
+const WhatsApp = ({index,handleWhatsAppInputChange,items,from}) => {
+    const handleRemoveFields = () => {
+        const id = localStorage.getItem("cardId");
+        fetch(`${baseUrl}/cards/fields/delete/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fieldName: "whatsApp",
+            elementId: items?._id,
+          }),
+        })
+          .then((response) => response.text())
+          .then((result) => {
+            window.location.reload();
+          })
+          .catch((error) => console.log("error", error));
+      };
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
-            <div className='flex items-center'>
-                <div className='flex items-center gap-2 mb-3'>
-                    <div className='flex flex-col'>
-                        <span>
-                            <KeyboardArrowUpIcon />
-                        </span>
-                        <span className='-mt-4 '>
-                            <KeyboardArrowDownIcon />
-                        </span>
-                    </div>
-                    <h4>WhatsApp</h4>
-                </div>
-            </div>
+            <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 mb">
+          <div className="flex flex-col">
+            <span>
+              <KeyboardArrowUpIcon />
+            </span>
+            <span className="-mt-4 ">
+              <KeyboardArrowDownIcon />
+            </span>
+          </div>
+          <h4>WhatsApp</h4>
+        </div>
+        <div onClick={() => (from ? handleRemoveFields() : "")}>
+          <CloseIcon />
+        </div>
+      </div>
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input
                     name={`number`}
+                    defaultValue={items?.number}
                     onChange={(e) =>
                         handleWhatsAppInputChange(
                         index,
@@ -44,6 +68,7 @@ const WhatsApp = ({index,handleWhatsAppInputChange}) => {
                 <div className='w-full relative '>
                     <input
                     name={`label`}
+                    defaultValue={items?.label}
                     onChange={(e) =>
                        handleWhatsAppInputChange(
                         index,

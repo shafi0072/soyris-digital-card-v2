@@ -2,10 +2,10 @@ import React from "react";
 import Data1 from "./Data1";
 import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
-
+import HomeIcon from '@mui/icons-material/Home';
 const FieldData = ({ userData,newFeilds }) => {
   const { color } = useContext(userContext);
-  console.log(newFeilds)
+  console.log({userData})
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@ const FieldData = ({ userData,newFeilds }) => {
     </svg>
 
   );
-
+const address = <HomeIcon/>
   return (
     <div>
       {userData?.fields?.Phone?.map((items, index) => <Data1
@@ -195,6 +195,15 @@ const FieldData = ({ userData,newFeilds }) => {
 
       {
         userData?.fields?.address?.map((items,index)=><Data1
+        color={color}
+        icon={locationIcon}
+        title={items.location}
+        extra=""
+        label={items.label}
+      />)
+      }
+      {
+        newFeilds?.fields?.address?.map((items,index)=><Data1
         color={color}
         icon={locationIcon}
         title={items.location}

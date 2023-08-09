@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Divider = () => {
+const Divider = ({items,from}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
 
