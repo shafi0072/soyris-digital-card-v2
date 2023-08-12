@@ -75,7 +75,7 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
   );
   console.log("galary", galary);
-  console.log({feilds});
+  console.log({galary});
 
  
   // what's app

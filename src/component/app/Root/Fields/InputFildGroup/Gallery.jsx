@@ -3,6 +3,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { galleryCompressAndConvertToBase64 } from "@/src/config/gallery64";
 const Gallery = ({ galary, setGalary }) => {
+
     const [base64Galary, setBase64Galary] = useState("");
 const gallerybase64= galleryCompressAndConvertToBase64;
   const handleGalleryChange = async (e) => {
@@ -50,7 +51,7 @@ const gallerybase64= galleryCompressAndConvertToBase64;
           }
          </div>
           <label
-            htmlFor="profileImage"
+            htmlFor="image"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
           >
             <span>
@@ -91,6 +92,7 @@ const gallerybase64= galleryCompressAndConvertToBase64;
           </label>
           <input
             type="file"
+            id="image"
             style={{ display: "none" }}
             onChange={handleGalleryChange}
           />
