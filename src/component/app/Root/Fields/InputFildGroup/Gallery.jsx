@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { compressAndConvertToBase64 } from "@/src/config/base64";
+import { galleryCompressAndConvertToBase64 } from "@/src/config/gallery64";
 const Gallery = ({ galary, setGalary }) => {
     const [base64Galary, setBase64Galary] = useState("");
+const gallerybase64= galleryCompressAndConvertToBase64;
   const handleGalleryChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       try {
-        const compressedBase64 = await compressAndConvertToBase64(
+        const compressedBase64 = await gallerybase64(
           file,
           800,
           600,
@@ -19,7 +20,7 @@ const Gallery = ({ galary, setGalary }) => {
 
           return newGalary;
         });
-        setBase64Gallery(compressedBase64);
+        setBase64Galary(compressedBase64);
       } catch (error) {
         console.error("Error compressing image:", error);
       }
@@ -42,6 +43,12 @@ const Gallery = ({ galary, setGalary }) => {
       </div>
       <div className="mb-3">
         <div className="w-full">
+        <div className="flex gap-2 flex-wrap my-4">
+         {
+            galary.map((img,index)=><img className="w-[144px] h-[55px]  object-cover" src={img}/>
+          )
+          }
+         </div>
           <label
             htmlFor="profileImage"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"

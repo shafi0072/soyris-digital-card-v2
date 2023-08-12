@@ -6,7 +6,6 @@ import { baseUrl } from "@/src/config/Server";
 import { compressAndConvertToBase64 } from "@/src/config/base64";
 const Image = ({ items, from, image, setImage }) => {
   const [base64Image, setBase64Image] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
   const handleRemoveFields = () => {
     const id = localStorage.getItem("cardId");
     fetch(`${baseUrl}/cards/fields/delete/${id}`, {
@@ -42,36 +41,6 @@ const Image = ({ items, from, image, setImage }) => {
     }
   };
 
-  // const handleImageUpload = (event) => {
-  //     const file = event.target.files[0];
-  //     croppedCanvas.toBlob(
-  //         (blob) => {
-  //           if (blob) {
-  //             // Convert blob to base64
-  //             const reader = new FileReader();
-  //             reader.onload = () => {
-  //               const base64String = reader.result;
-  //             //   setCroppedImage(base64String);
-  //             setBase64Image(base64String);
-  //             };
-  //             reader.readAsDataURL(blob);
-  //           }
-  //         },
-  //         'image/jpeg', // Use 'image/webp' for WebP format
-  //         0.8 // Adjust the compression quality as needed
-  //       );
-  //     // if (file) {
-  //     //   const reader = new FileReader();
-
-  //     //   reader.onload = (e) => {
-  //     //     const base64String = e.target.result;
-  //     //     setBase64Image(base64String);
-  //     //   };
-
-  //     //   reader.readAsDataURL(file);
-  //     // }
-  // };
-  
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
