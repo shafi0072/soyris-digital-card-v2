@@ -33,6 +33,7 @@ import Divider from "./Divider";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
 import { Container, Draggable } from "react-smooth-dnd";
+import { toast } from "react-toastify";
 
 const Content = ({ feilds, setFeilds }) => {
   const onDrop = (dropResult) => {
@@ -73,9 +74,10 @@ const Content = ({ feilds, setFeilds }) => {
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
   );
-  console.log("galary",galary)
+  console.log("galary", galary);
+  console.log({feilds});
 
-  // console.log({image})
+ 
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
     [...Array(feilds.filter((item) => item === "WhatsApp").length)].map(
@@ -417,7 +419,7 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
-  
+
   // vimeo
   const handleVimeoInputChange = (index, field, value) => {
     setVimeoData((prevVimeoData) => {
@@ -682,6 +684,20 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredYouTubeData = Array.isArray(youtubeData)
     ? youtubeData.filter((item) => item !== undefined)
     : [];
+  // image
+  const imageArray = Array.isArray(userCardData?.fields?.image)
+    ? userCardData.fields.image
+    : [];
+  const filteredImageData = Array.isArray(image)
+    ? image.filter((item) => item !== undefined)
+    : [];
+  // image
+  const galleryArray = Array.isArray(userCardData?.fields?.gallery)
+    ? userCardData.fields.gallery
+    : [];
+  const filteredgalleryData = Array.isArray(galary)
+    ? galary.filter((item) => item !== undefined)
+    : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
@@ -708,10 +724,11 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedQrArray = [...qrArray, ...filteredQrData];
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
-  const updatedYouTubeArray = [...filteredYouTubeData];
-  const updatedImageArray = [...image];
-  console.log(updatedImageArray)
-  console.log("Youtube",updatedYouTubeArray[0]?.YoutubeUserName1);
+  const updatedYouTubeArray = [...youTubeArray,...filteredYouTubeData];
+  const updatedImageArray = [...imageArray,...filteredImageData];
+  const updatedGalaryArray = [...galleryArray,...filteredgalleryData];
+  console.log(updatedImageArray);
+  console.log("Youtube", updatedYouTubeArray[0]?.YoutubeUserName1);
 
   useEffect(() => {
     setNewFeilds({
@@ -740,8 +757,9 @@ const Content = ({ feilds, setFeilds }) => {
         qr: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
-        youTube:updatedYouTubeArray[0]?.YoutubeUserName1,
-        image:updatedImageArray
+        youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
+        image: updatedImageArray,
+        galary: updatedGalaryArray,
       },
     });
   }, [
@@ -771,6 +789,8 @@ const Content = ({ feilds, setFeilds }) => {
     noteData,
     dateData,
     headerData,
+    image,
+    galary
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -808,10 +828,17 @@ const Content = ({ feilds, setFeilds }) => {
           qr: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
-          image:updatedImageArray
+          image: updatedImageArray,
         },
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Profile information updated successfully") {
+          toast.success(data?.message);
+          window.location.reload();
+        }
+      });
   };
 
   return (
@@ -1145,7 +1172,12 @@ const Content = ({ feilds, setFeilds }) => {
           {userCardData?.fields?.image?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
-                <Image setImage={setImage} image={image} items={items} from={true} />
+                <Image
+                  setImage={setImage}
+                  image={image}
+                  items={items}
+                  from={true}
+                />
               </div>
             </Draggable>
           ))}
@@ -1363,7 +1395,7 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "Image" && (
                 <div className="mb-2">
-                  <Image setImage={setImage} image={image}/>
+                  <Image setImage={setImage} image={image} />
                 </div>
               )}
               {items === "Gallery" && (
