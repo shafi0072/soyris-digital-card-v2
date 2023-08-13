@@ -3,11 +3,34 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { galleryCompressAndConvertToBase64 } from "@/src/config/gallery64";
 import { userContext } from "@/src/Storage/ContextApi";
+import CloseIcon from "@mui/icons-material/Close";
+import { baseUrl } from "@/src/config/Server";
 const Gallery = ({ galary, setGalary, items, from }) => {
  const {newFeilds,userCardData} = useContext(userContext);
+
   const [base64Galary, setBase64Galary] = useState("");
   const gallerybase64 = galleryCompressAndConvertToBase64;
   const saveImage = newFeilds?.fields?.galary?.length >0 ?  newFeilds?.fields?.galary : userCardData?.fields?.galary?.length >0 ? userCardData?.fields?.galary: []  ;
+
+  const handleRemoveFields = () => {
+    const id = localStorage.getItem("cardId");
+    fetch(`${baseUrl}/cards/fields/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fieldName: "image",
+        elementId: items,
+      }),
+    })
+      .then((response) => response.text())
+      .then((result) => {
+        window.location.reload();
+      })
+      .catch((error) => console.log("error", error));
+  };
+
   const handleGalleryChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -26,8 +49,8 @@ const Gallery = ({ galary, setGalary, items, from }) => {
   };
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
-      <div className="flex items-center">
-        <div className="flex items-center gap-2 mb-3">
+       <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 mb">
           <div className="flex flex-col">
             <span>
               <KeyboardArrowUpIcon />
@@ -37,6 +60,9 @@ const Gallery = ({ galary, setGalary, items, from }) => {
             </span>
           </div>
           <h4>Gallery</h4>
+        </div>
+        <div onClick={() => (from ? handleRemoveFields() : "")}>
+          <CloseIcon />
         </div>
       </div>
       <div className="mb-3">
