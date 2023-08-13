@@ -19,7 +19,7 @@ const Image = ({ items, from, image, setImage }) => {
       },
       body: JSON.stringify({
         fieldName: "image",
-        elementId: items?._id,
+        elementId: items,
       }),
     })
       .then((response) => response.text())

@@ -74,8 +74,11 @@ const Content = ({ feilds, setFeilds }) => {
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
   );
+  // pdf ---------
+  const [pdf, setPdf] = useState(
+    [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
+  );
   
-
  
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
@@ -185,7 +188,7 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const { userCardData, newFeilds, setNewFeilds } = useContext(userContext);
+  const {userData, userCardData, newFeilds, setNewFeilds } = useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -197,16 +200,7 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
-  // const handleImageInputChange = (index, field, value) => {
-  //   setImage((prevImageData) => {
-  //     const newData = [...prevImageData];
-  //     newData[index] = {
-  //       ...newData[index],
-  //       [field]: value,
-  //     };
-  //     return newData;
-  //   });
-  // };
+
   // website
   const handleWebsiteInputChange = (index, field, value) => {
     setWebsiteData((prevWebsiteData) => {
@@ -507,7 +501,6 @@ const Content = ({ feilds, setFeilds }) => {
     });
   };
 
-  // console.log(userCardData)
 
   const phoneArray = Array.isArray(userCardData?.fields?.Phone)
     ? userCardData.fields.Phone
@@ -697,6 +690,13 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredgalleryData = Array.isArray(galary)
     ? galary.filter((item) => item !== undefined)
     : [];
+  // pdf
+  const pdfArray = Array.isArray(userCardData?.fields?.pdf)
+    ? userCardData.fields.pdf
+    : [];
+  const filteredPdfData = Array.isArray(pdf)
+    ? pdf.filter((item) => item !== undefined)
+    : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
@@ -726,6 +726,7 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedYouTubeArray = [...youTubeArray,...filteredYouTubeData];
   const updatedImageArray = [...imageArray,...filteredImageData];
   const updatedGalaryArray = [...galleryArray,...filteredgalleryData];
+  const updatedPdfArray = [...pdfArray,...filteredPdfData];
 
   useEffect(() => {
     setNewFeilds({
@@ -757,6 +758,7 @@ const Content = ({ feilds, setFeilds }) => {
         youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
         image: updatedImageArray,
         galary: updatedGalaryArray,
+        pdf: updatedPdfArray
       },
     });
   }, [
@@ -787,7 +789,8 @@ const Content = ({ feilds, setFeilds }) => {
     dateData,
     headerData,
     image,
-    galary
+    galary,
+    pdf
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -827,6 +830,7 @@ const Content = ({ feilds, setFeilds }) => {
           divider: updatedDividerArray,
           image: updatedImageArray,
           galary: updatedGalaryArray,
+          pdf: updatedPdfArray
         },
       }),
     })
@@ -1141,19 +1145,21 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.pdf?.map((items, index) => (
-            <Draggable key={items}>
+          {userCardData?.fields?.pdf?.length>0 &&(
+            <Draggable >
               <div className="mb-2">
                 <PDF
-                  items={items}
+                  items={userCardData?.fields?.pdf}
                   index={index}
-                  handlePdfInputChange={handlePdfInputChange}
-                  pdfData={pdfData}
+                  pdf={pdf}
+                  setPdf={setPdf}
                   from={true}
+                  userData={userData}
                 />
               </div>
             </Draggable>
-          ))}
+          )}
+          
           {userCardData?.fields?.notes?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
@@ -1444,9 +1450,9 @@ const Content = ({ feilds, setFeilds }) => {
               {items === "PDF" && (
                 <div className="mb-2">
                   <PDF
-                    index={index}
-                    handlePdfInputChange={handlePdfInputChange}
-                    pdfData={pdfData}
+                    pdf={pdf}
+                    setPdf={setPdf}
+                    userData={userData}
                   />
                 </div>
               )}

@@ -10,6 +10,7 @@ const ShareCard = () => {
   const { userData, settings } = useContext(userContext);
   const [isCopied, setIsCopied] = useState(false);
 
+  
   // handle qr copy
   const handleQrCopy = () => {
     navigator.clipboard.writeText(`https://easycard-gr.vercel.app/${settings?.url}`).then(() => {
