@@ -5,6 +5,7 @@ import Flat from "./Flat/Flat";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FieldData from "./FieldData/FieldData";
 import YouTube from "./YouTube/YouTube";
+import GalleryImage from "./GalleryImage/GalleryImage";
 
 const RightSidebar = () => {
   const {
@@ -18,7 +19,8 @@ const RightSidebar = () => {
     logoImage,
     infos,
   } = useContext(userContext);
-  console.log({userCardData});
+  console.log({ userCardData });
+  console.log({newFeilds});
   return (
     <div className="scroll-hide max-h-[70vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
@@ -239,16 +241,33 @@ const RightSidebar = () => {
             </svg>
           </a>
         </div>
-        {userCardData?.fields?.image.reverse()[0] && !newFeilds?.fields?.image.reverse()[0] &&
+        {userCardData?.fields?.image.toReversed()[0] &&
+          !newFeilds?.fields?.image.toReversed()[0] && (
+            <div className="my-5">
+              <img
+                className=" w-[250px] h-[250px] object-cover rounded"
+                src={userCardData?.fields?.image.reverse()[0]}
+                alt=""
+              />
+            </div>
+          )}
+        {newFeilds?.fields?.image.toReversed()[0] && (
+          <div className="my-5">
+            <img
+              className=" w-[250px] h-[250px] object-cover rounded"
+              src={newFeilds?.fields?.image.toReversed()[0]}
+              alt=""
+            />
+          </div>
+        )}
+        {/* gallery images here */}
+        {userCardData?.fields?.galary> 0 &&
         <div className="my-5">
-          <img className=" w-[250px] h-[250px] object-cover rounded" src={userCardData?.fields?.image.reverse()[0]} alt="" />
+          <GalleryImage userCardData={userCardData} newFeilds={newFeilds}/>
         </div>}
-        {newFeilds?.fields?.image.reverse()[0] &&
-        <div className="my-5">
-          <img className=" w-[250px] h-[250px] object-cover rounded" src={newFeilds?.fields?.image.reverse()[0]} alt="" />
-        </div>}
+        
         <div className="mt-5">
-          {userCardData?.fields?.youTube && (
+          {userCardData?.fields?.youTube >0 && (
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
         </div>

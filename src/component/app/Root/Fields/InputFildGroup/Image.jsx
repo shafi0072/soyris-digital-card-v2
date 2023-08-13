@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext,useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { baseUrl } from "@/src/config/Server";
 import { compressAndConvertToBase64 } from "@/src/config/base64";
+import { userContext } from "@/src/Storage/ContextApi";
+
 const Image = ({ items, from, image, setImage }) => {
+  const {newFeilds,userCardData} = useContext(userContext);
   const [base64Image, setBase64Image] = useState("");
+  const saveImage = newFeilds?.fields?.image?.length >0 ?  newFeilds?.fields?.image : userCardData?.fields?.image?.length >0 ? userCardData?.fields?.image: []  ;
   const handleRemoveFields = () => {
     const id = localStorage.getItem("cardId");
     fetch(`${baseUrl}/cards/fields/delete/${id}`, {
@@ -63,7 +67,7 @@ const Image = ({ items, from, image, setImage }) => {
         <div className="w-full">
          <div className="flex gap-2 flex-wrap my-4">
          {
-            image.map((img,index)=><img className="w-[144px] h-[55px]  object-cover" src={img}/>
+            saveImage?.toReversed()?.slice(0,4).map((img,index)=><img className="w-[144px] h-[55px]  object-cover" src={img}/>
           )
           }
          </div>

@@ -45,7 +45,7 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
-
+  
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
@@ -74,8 +74,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
   );
-  console.log("galary", galary);
-  console.log({galary});
+  
 
  
   // what's app
@@ -692,8 +691,8 @@ const Content = ({ feilds, setFeilds }) => {
     ? image.filter((item) => item !== undefined)
     : [];
   // image
-  const galleryArray = Array.isArray(userCardData?.fields?.gallery)
-    ? userCardData.fields.gallery
+  const galleryArray = Array.isArray(userCardData?.fields?.galary)
+    ? userCardData.fields.galary
     : [];
   const filteredgalleryData = Array.isArray(galary)
     ? galary.filter((item) => item !== undefined)
@@ -727,8 +726,6 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedYouTubeArray = [...youTubeArray,...filteredYouTubeData];
   const updatedImageArray = [...imageArray,...filteredImageData];
   const updatedGalaryArray = [...galleryArray,...filteredgalleryData];
-  console.log(updatedImageArray);
-  console.log("Youtube", updatedYouTubeArray[0]?.YoutubeUserName1);
 
   useEffect(() => {
     setNewFeilds({
@@ -829,6 +826,7 @@ const Content = ({ feilds, setFeilds }) => {
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
           image: updatedImageArray,
+          galary: updatedGalaryArray,
         },
       }),
     })
@@ -1169,18 +1167,31 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.image?.map((items, index) => (
-            <Draggable key={items}>
+          {userCardData?.fields?.image?.length>0 && (
+            <Draggable >
               <div className="mb-2">
                 <Image
                   setImage={setImage}
                   image={image}
-                  items={items}
+                  items={userCardData?.fields?.image}
                   from={true}
                 />
               </div>
             </Draggable>
-          ))}
+          )}
+          {userCardData?.fields?.galary?.length>0 && (
+            <Draggable >
+              <div className="mb-2">
+              <Gallery 
+
+              setGalary={setGalary} 
+              galary={galary} 
+              items={userCardData?.fields?.galary[0]}
+              from={true}
+              />
+              </div>
+            </Draggable>
+          )}
           {userCardData?.fields?.qr?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
