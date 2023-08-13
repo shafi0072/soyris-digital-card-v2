@@ -1,6 +1,6 @@
 import React from "react";
 import DottedQRCode from "./QrMain";
-
+import { QRCode } from 'react-qrcode-logo';
 const QrCodeCard = () => {
   return (
     <div className="p-8  w-full bg-[#F7FAFC]">
@@ -8,13 +8,7 @@ const QrCodeCard = () => {
       <div
         className="flex justify-center"
       >
-        <DottedQRCode
-          value={"asdasd"}
-          size={300}
-          level="M"
-          includeMargin
-          pattern="Square" // Change this prop to "Dots", "Rounded", or "Diamond"
-        />
+         <QRCode value="https://github.com/gcoro/react-qrcode-logo" eyeRadius={10} eyeColor={'red'} qrStyle={'dots'}/>,
       </div>
       <div className="flex justify-center">
         <button className=" mt-8 px-20  py-2 bg-[#0277B5] rounded text-white">
