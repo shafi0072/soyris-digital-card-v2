@@ -8,7 +8,7 @@ const QrCodeCard = () => {
       <div
         className="flex justify-center"
       >
-         <QRCode value="https://github.com/gcoro/react-qrcode-logo" eyeRadius={10} eyeColor={'red'} qrStyle={'dots'}/>,
+         <QRCode value="https://github.com/gcoro/react-qrcode-logo" eyeRadius={10} eyeColor={'red'} qrStyle={'dots'} logoPaddingStyle={"square"} enableCORS={true}  fgColor={"blue"}/>,
       </div>
       <div className="flex justify-center">
         <button className=" mt-8 px-20  py-2 bg-[#0277B5] rounded text-white">
