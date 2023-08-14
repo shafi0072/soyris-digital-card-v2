@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
 import { Box } from "@mui/material";
+import { userContext } from "@/src/Storage/ContextApi";
 
 const Logo = () => {
-    const [selectedLogo,setSelectedLogo] = useState(null)
+    // const [selectedLogo,setSelectedLogo] = useState(null)
+    const {selectedLogo,setSelectedLogo} = useContext(userContext)
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedLogo(URL.createObjectURL(file));
   };
+  // console.log({selectedLogo});
   return (
     <>
       <div className="flex justify-between border-b-2 items-center pb-2 mt-12">
@@ -38,6 +41,7 @@ const Logo = () => {
         </svg>
       </div>
       <div className=" w-[266px] mt-6">
+        {selectedLogo&& <img src={selectedLogo} className=" w-[50px] h-[50px] rounded my-5"/>}
         <label
           htmlFor="logoImages"
           className="flex  bg-gray-200 px-3 py-2 rounded-full"
