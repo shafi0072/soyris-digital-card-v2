@@ -6,6 +6,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FieldData from "./FieldData/FieldData";
 import YouTube from "./YouTube/YouTube";
 import GalleryImage from "./GalleryImage/GalleryImage";
+import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 
 const RightSidebar = () => {
   const {
@@ -20,7 +21,7 @@ const RightSidebar = () => {
     infos,
   } = useContext(userContext);
   console.log({ userCardData });
-  console.log({newFeilds});
+  console.log({ newFeilds });
   return (
     <div className="scroll-hide max-h-[70vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
@@ -243,33 +244,58 @@ const RightSidebar = () => {
         </div>
         {userCardData?.fields?.image.toReversed()[0] &&
           !newFeilds?.fields?.image.toReversed()[0] && (
-            <div className="my-5">
+            <div
+              className={`
+            my-5 w-full relative h-[300px] flex
+            ${
+              userCardData?.fields?.image.toReversed()[0].alignment === "left"
+                ? "items-start"
+                : userCardData?.fields?.image.toReversed()[0].alignment ===
+                  "center"
+                ? "items-center"
+                : "items-end"
+            }
+            `}
+            >
               <img
-                className=" w-[250px] h-[250px] object-cover rounded"
-                src={userCardData?.fields?.image.reverse()[0]}
+                className={`h-[250px] object-cover rounded`}
+                src={userCardData?.fields?.image.toReversed()[0]?.image}
                 alt=""
+                style={{
+                  width: `${
+                    userCardData?.fields?.image.toReversed?.width + "%"
+                  }`,
+                }}
               />
             </div>
           )}
         {newFeilds?.fields?.image.toReversed()[0] && (
           <div className="my-5">
             <img
-              className=" w-[250px] h-[250px] object-cover rounded"
-              src={newFeilds?.fields?.image.toReversed()[0]}
+              className="h-[250px] object-cover rounded"
+              src={newFeilds?.fields?.image.toReversed()[0].image}
               alt=""
+              style={{
+                width: `${userCardData?.fields?.image.toReversed?.width + "%"}`,
+              }}
             />
           </div>
         )}
         {/* gallery images here */}
-        {userCardData?.fields?.galary> 0 &&
-        <div className="my-5">
-          <GalleryImage userCardData={userCardData} newFeilds={newFeilds}/>
-        </div>}
-        
+        {userCardData?.fields?.galary && (
+          <div className="my-5">
+            <GalleryImage userCardData={userCardData} newFeilds={newFeilds} />
+          </div>
+        )}
+
         <div className="mt-5">
-          {userCardData?.fields?.youTube >0 && (
+          {userCardData?.fields?.youTube > 0 && (
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
+        </div>
+
+        <div className="my-5">
+          <DottedQRCode value={userCardData?.fields?.QR[0]?.QrCode}/>
         </div>
       </div>
     </div>
