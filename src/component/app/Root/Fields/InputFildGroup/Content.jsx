@@ -45,7 +45,7 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
-  
+
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
@@ -68,8 +68,10 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // image -----------
   const [image, setImage] = useState(
-    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => {})
   );
+  const [align, setAlign] = useState("center");
+  const [imageWidth, setImageWidth] = useState(50);
   // gallery ---------
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
@@ -78,8 +80,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [pdf, setPdf] = useState(
     [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
   );
-  
- 
+
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
     [...Array(feilds.filter((item) => item === "WhatsApp").length)].map(
@@ -179,6 +180,8 @@ const Content = ({ feilds, setFeilds }) => {
   const [qrData, setQrData] = useState(
     [...Array(feilds.filter((item) => item === "Qr").length)].map(() => "")
   );
+  const [qrAlign, setQrAlign] = useState("center");
+  const [qrWidth, setQrWidth] = useState(50);
   // header
   const [headerData, setHeaderData] = useState(
     [...Array(feilds.filter((item) => item === "Header").length)].map(() => "")
@@ -188,7 +191,8 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const {userData, userCardData, newFeilds, setNewFeilds } = useContext(userContext);
+  const { userData, userCardData, newFeilds, setNewFeilds } =
+    useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -470,14 +474,14 @@ const Content = ({ feilds, setFeilds }) => {
   };
   // qr
   const handleQRInputChange = (index, field, value) => {
-    setQrData((prevQrData) => {
-      const newData = [...prevQrData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
+    setQrData([
+      {
+        width:qrWidth,
+        alignment: qrAlign,
+        QrCode: value
+      }
+    ])
+      
   };
   // header
   const handleHeaderInputChange = (index, field, value) => {
@@ -500,7 +504,6 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
-
 
   const phoneArray = Array.isArray(userCardData?.fields?.Phone)
     ? userCardData.fields.Phone
@@ -723,10 +726,10 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedQrArray = [...qrArray, ...filteredQrData];
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
-  const updatedYouTubeArray = [...youTubeArray,...filteredYouTubeData];
-  const updatedImageArray = [...imageArray,...filteredImageData];
-  const updatedGalaryArray = [...galleryArray,...filteredgalleryData];
-  const updatedPdfArray = [...pdfArray,...filteredPdfData];
+  const updatedYouTubeArray = [...youTubeArray, ...filteredYouTubeData];
+  const updatedImageArray = [...imageArray, ...filteredImageData];
+  const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
+  const updatedPdfArray = [...pdfArray, ...filteredPdfData];
 
   useEffect(() => {
     setNewFeilds({
@@ -752,13 +755,13 @@ const Content = ({ feilds, setFeilds }) => {
         tikTok: updatedTiktokArray,
         notes: updatedNoteArray,
         Date: updatedDateArray,
-        qr: updatedQrArray,
+        QR: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
         youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
         image: updatedImageArray,
         galary: updatedGalaryArray,
-        pdf: updatedPdfArray
+        pdf: updatedPdfArray,
       },
     });
   }, [
@@ -790,7 +793,7 @@ const Content = ({ feilds, setFeilds }) => {
     headerData,
     image,
     galary,
-    pdf
+    pdf,
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -825,12 +828,12 @@ const Content = ({ feilds, setFeilds }) => {
           tikTok: updatedTiktokArray,
           notes: updatedNoteArray,
           Date: updatedDateArray,
-          qr: updatedQrArray,
+          QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
           image: updatedImageArray,
           galary: updatedGalaryArray,
-          pdf: updatedPdfArray
+          pdf: updatedPdfArray,
         },
       }),
     })
@@ -1145,8 +1148,8 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.pdf?.length>0 &&(
-            <Draggable >
+          {userCardData?.fields?.pdf?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
                 <PDF
                   items={userCardData?.fields?.pdf}
@@ -1159,7 +1162,7 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           )}
-          
+
           {userCardData?.fields?.notes?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
@@ -1173,32 +1176,35 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.image?.length>0 && (
-            <Draggable >
+          {userCardData?.fields?.image?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
                 <Image
                   setImage={setImage}
                   image={image}
                   items={userCardData?.fields?.image}
                   from={true}
+                  align={align}
+                  setAlign={setAlign}
+                  imageWidth={imageWidth}
+                  setImageWidth={setImageWidth}
                 />
               </div>
             </Draggable>
           )}
-          {userCardData?.fields?.galary?.length>0 && (
-            <Draggable >
+          {userCardData?.fields?.galary?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
-              <Gallery 
-
-              setGalary={setGalary} 
-              galary={galary} 
-              items={userCardData?.fields?.galary[0]}
-              from={true}
-              />
+                <Gallery
+                  setGalary={setGalary}
+                  galary={galary}
+                  items={userCardData?.fields?.galary[0]}
+                  from={true}
+                />
               </div>
             </Draggable>
           )}
-          {userCardData?.fields?.qr?.map((items, index) => (
+          {userCardData?.fields?.QR?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
                 <QR
@@ -1207,6 +1213,10 @@ const Content = ({ feilds, setFeilds }) => {
                   qrData={qrData}
                   items={items}
                   from={true}
+                  qrAlign={qrAlign}
+                  setQrAlign={setQrAlign}
+                  qrWidth={qrWidth}
+                  setQrWidth={setQrWidth}
                 />
               </div>
             </Draggable>
@@ -1412,7 +1422,14 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "Image" && (
                 <div className="mb-2">
-                  <Image setImage={setImage} image={image} />
+                  <Image
+                    setImage={setImage}
+                    image={image}
+                    align={align}
+                    setAlign={setAlign}
+                    imageWidth={imageWidth}
+                    setImageWidth={setImageWidth}
+                  />
                 </div>
               )}
               {items === "Gallery" && (
@@ -1449,11 +1466,7 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "PDF" && (
                 <div className="mb-2">
-                  <PDF
-                    pdf={pdf}
-                    setPdf={setPdf}
-                    userData={userData}
-                  />
+                  <PDF pdf={pdf} setPdf={setPdf} userData={userData} />
                 </div>
               )}
               {items === "Notes" && (
@@ -1480,6 +1493,10 @@ const Content = ({ feilds, setFeilds }) => {
                     index={index}
                     handleQRInputChange={handleQRInputChange}
                     qrData={qrData}
+                    qrAlign={qrAlign}
+                    setQrAlign={setQrAlign}
+                    qrWidth={qrWidth}
+                    setQrWidth={setQrWidth}
                   />
                 </div>
               )}

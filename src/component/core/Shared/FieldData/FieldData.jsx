@@ -4,6 +4,9 @@ import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
 import HomeIcon from '@mui/icons-material/Home';
 const FieldData = ({ userData,newFeilds }) => {
+  console.log({userData});
+  console.log({newFeilds});
+
   const { color } = useContext(userContext);
   console.log({userData})
   const phoneIcon = (
@@ -150,14 +153,14 @@ const address = <HomeIcon/>
         icon={phoneIcon}
         title={items?.Number}
         extra={items?.Code}
-        label="office"
+        label={items?.choiceLabel}
       />)}
       {newFeilds?.fields?.Phone?.map((items, index) => <Data1
         color={color}
         icon={phoneIcon}
-        title={items?.Number}
+        title={items?.internationalNumber &&  items?.Number ? `+${items?.Number}` : items?.Number}
         extra={items?.Code}
-        label="office"
+        label={items?.choiceLabel}
       />)}
       {userData?.fields?.website?.map((items, index) => <Data1
         color={color}
