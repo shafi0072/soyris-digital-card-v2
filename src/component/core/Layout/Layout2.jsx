@@ -216,11 +216,11 @@ style={{color: 'white'}}
 
         <div class="col-span-11  mt-[5%] ...">
           <SubNavbar />
-          <div className='grid grid-cols-12 ps-8 pt-5 gap-8'>
+          <div className='grid grid-cols-12 ps-8 pt-[6%] gap-8'>
             <div className="col-span-8">
               {children}
             </div>
-            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[10%]"}`}>
+            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[3%]"}`}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }

@@ -185,7 +185,7 @@ const QR = ({ index, handleQRInputChange, items, from,qrWidth,setQrWidth,qrAlign
                   <p>Width</p>
                   <div className="imageWidthSlider">
                   
-                  <Slider valueLabelDisplay="auto" min={30} max={100}  value={items?.width ||qrWidth} sx={{width:200, color: '#D5D8DC', height: 8, padding: '5px 0'}} onChange={handleChange} />
+                  <Slider valueLabelDisplay="auto" min={30} max={100}  defaultValue={items?.width ||qrWidth} sx={{width:200, color: '#D5D8DC', height: 8, padding: '5px 0'}} onChange={handleChange} />
                   
                   </div>
                 </div>

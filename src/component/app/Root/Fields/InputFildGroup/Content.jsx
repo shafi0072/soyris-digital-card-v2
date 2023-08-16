@@ -794,6 +794,7 @@ const Content = ({ feilds, setFeilds }) => {
     image,
     galary,
     pdf,
+    linkedinData
   ]);
 
   const handleFieldsOnSubmit = (e) => {
