@@ -335,36 +335,34 @@ const RightSidebar = () => {
 
           {userCardData?.fields?.pinterest[0] &&
             !newFeilds?.fields?.pinterest[0] && (
-            <a
-              href={
-                userCardData?.fields?.pinterest[0]
-                  ? userCardData?.fields?.pinterest[0]?.url
-                  : "#"
-              }
-              className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
-              style={{ background: color }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="15.621"
-                height="19.768"
-                viewBox="0 0 15.621 19.768"
+              <a
+                href={
+                  userCardData?.fields?.pinterest[0]
+                    ? userCardData?.fields?.pinterest[0]?.url
+                    : "#"
+                }
+                className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
+                style={{ background: color }}
               >
-                <path
-                  id="pinterest-svgrepo-com"
-                  d="M175.46,13.692c-.528,2.722-1.21,4.685-3.117,6.049-.59-4.113.865-7.2,1.54-10.483-1.151-1.906.138-5.743,2.564-4.8,2.985,1.164-2.37,6.809,1.37,7.55,3.9.772,5.3-5.891,2.883-8.312-3.5-3.5-10.466-.531-9.381,4.424a2.066,2.066,0,0,1-1.05,2.566c-1.2-.488-1.32-2.179-1.258-3.829.138-3.794,3.462-6.451,6.8-6.82,4.216-.465,8.173,1.524,8.719,5.431.616,4.408-1.822,9.472-6.331,9.128a8.487,8.487,0,0,1-2.731-.907"
-                  transform="translate(-168.996 0.027)"
-                  fill="#fff"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </a>
-          )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15.621"
+                  height="19.768"
+                  viewBox="0 0 15.621 19.768"
+                >
+                  <path
+                    id="pinterest-svgrepo-com"
+                    d="M175.46,13.692c-.528,2.722-1.21,4.685-3.117,6.049-.59-4.113.865-7.2,1.54-10.483-1.151-1.906.138-5.743,2.564-4.8,2.985,1.164-2.37,6.809,1.37,7.55,3.9.772,5.3-5.891,2.883-8.312-3.5-3.5-10.466-.531-9.381,4.424a2.066,2.066,0,0,1-1.05,2.566c-1.2-.488-1.32-2.179-1.258-3.829.138-3.794,3.462-6.451,6.8-6.82,4.216-.465,8.173,1.524,8.719,5.431.616,4.408-1.822,9.472-6.331,9.128a8.487,8.487,0,0,1-2.731-.907"
+                    transform="translate(-168.996 0.027)"
+                    fill="#fff"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            )}
           {newFeilds?.fields?.pinterest?.toReversed()[0] && (
             <a
-              href={
-                newFeilds?.fields?.pinterest?.toReversed()[0].url
-              }
+              href={newFeilds?.fields?.pinterest?.toReversed()[0].url}
               className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
               style={{ background: color }}
             >
@@ -385,9 +383,7 @@ const RightSidebar = () => {
             </a>
           )}
 
-
-          {userCardData?.fields?.tikTok[0] &&
-            !newFeilds?.fields?.tikTok[0] && (
+          {userCardData?.fields?.tikTok[0] && !newFeilds?.fields?.tikTok[0] && (
             <a
               href={
                 userCardData?.fields?.tikTok[0]
@@ -418,9 +414,7 @@ const RightSidebar = () => {
           )}
           {newFeilds?.fields?.tikTok?.toReversed()[0] && (
             <a
-              href={
-                newFeilds?.fields?.tikTok?.toReversed()[0].url
-              }
+              href={newFeilds?.fields?.tikTok?.toReversed()[0].url}
               className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
               style={{ background: color }}
             >
@@ -494,6 +488,62 @@ const RightSidebar = () => {
           {userCardData?.fields?.youTube > 0 && (
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
+        </div>
+        <div className="mt-5">
+          <div className="flex gap-2 items-center">
+            <div className="bg-[#EB531C] p-4 rounded-full">
+            <svg className="text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20.911"
+              height="23.337"
+              viewBox="0 0 20.911 23.337"
+            >
+              <g id="date-range-svgrepo-com" transform="translate(0.75 0.75)">
+                <path
+                  id="Path_37"
+                  data-name="Path 37"
+                  d="M23.411,11.492V7.853a2.426,2.426,0,0,0-2.426-2.426H6.426A2.426,2.426,0,0,0,4,7.853v3.639m19.411,0V22.411a2.426,2.426,0,0,1-2.426,2.426H6.426A2.426,2.426,0,0,1,4,22.411V11.492m19.411,0H4M8.853,3V7.853M18.558,3V7.853"
+                  transform="translate(-4 -3)"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-width="1.5"
+                />
+                <rect
+                  id="Rectangle_85"
+                  data-name="Rectangle 85"
+                  width="4.226"
+                  height="3.522"
+                  rx="0.5"
+                  transform="translate(2.113 11.271)"
+                  fill="#fff"
+                />
+                <rect
+                  id="Rectangle_86"
+                  data-name="Rectangle 86"
+                  width="3.639"
+                  height="3.639"
+                  rx="0.5"
+                  transform="translate(7.886 10.918)"
+                  fill="#fff"
+                />
+                <rect
+                  id="Rectangle_87"
+                  data-name="Rectangle 87"
+                  width="3.522"
+                  height="3.522"
+                  rx="0.5"
+                  transform="translate(13.384 11.271)"
+                  fill="#fff"
+                />
+              </g>
+            </svg>
+            </div>
+            <div>
+             <p> 10/15/2020</p>
+             <p>Diving </p>
+            </div>
+          </div>
         </div>
         {userCardData?.fields?.QR[0]?.QrCode && (
           <div className="my-5">
