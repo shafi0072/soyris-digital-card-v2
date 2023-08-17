@@ -1,7 +1,7 @@
 import React from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const Date = ({index,handleDateInputChange,from,items}) => {
+const Date = ({index,handleDateInputChange,items,from}) => {
     return (
         <div className='bg-white px-4 py-2 rounded-lg'>
             <div className='flex items-center'>
@@ -21,6 +21,7 @@ const Date = ({index,handleDateInputChange,from,items}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`date`}
+                     defaultValue={items?.date}
                      onChange={(e) =>
                         handleDateInputChange(
                          index,
@@ -47,6 +48,7 @@ const Date = ({index,handleDateInputChange,from,items}) => {
                 <div className='w-full relative '>
                     <input  
                     name={`funding`}
+                    defaultValue={items?.funding}
                     onChange={(e) =>
                        handleDateInputChange(
                         index,
