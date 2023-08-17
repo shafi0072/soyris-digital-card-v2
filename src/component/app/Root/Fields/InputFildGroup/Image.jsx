@@ -10,8 +10,8 @@ import Slider from '@mui/material/Slider';
 
 
 const Image = ({ items, from, image, setImage, align, setAlign,imageWidth,setImageWidth }) => {
-  // console.log({align});
-  // console.log({imageWidth});
+  console.log({align});
+  console.log({imageWidth});
   const { newFeilds, userCardData } = useContext(userContext);
   const [base64Image, setBase64Image] = useState("");
   const saveImage =

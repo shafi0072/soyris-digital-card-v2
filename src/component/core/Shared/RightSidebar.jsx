@@ -8,6 +8,7 @@ import YouTube from "./YouTube/YouTube";
 import GalleryImage from "./GalleryImage/GalleryImage";
 import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 import Moment from "react-moment";
+import Vimeo from "./Vimeo";
 
 const RightSidebar = () => {
   const {
@@ -439,41 +440,51 @@ const RightSidebar = () => {
             </a>
           )}
         </div>
+        {/* image */}
         {userCardData?.fields?.image.toReversed()[0] &&
           !newFeilds?.fields?.image.toReversed()[0] && (
             <div
               className={`
-            my-5 w-full relative h-[300px] flex
+            my-5 w-full  relative h-[300px] flex
             ${
               userCardData?.fields?.image.toReversed()[0].alignment === "left"
-                ? "items-start"
+                ? "justify-start"
                 : userCardData?.fields?.image.toReversed()[0].alignment ===
                   "center"
-                ? "items-center"
-                : "items-end"
+                ? "justify-center"
+                : "justify-end"
             }
             `}
+            
             >
               <img
                 className={`h-[250px] object-cover rounded`}
                 src={userCardData?.fields?.image.toReversed()[0]?.image}
                 alt=""
                 style={{
-                  width: `${
-                    userCardData?.fields?.image.toReversed?.width + "%"
-                  }`,
+                  width: `${userCardData?.fields?.image?.toReversed()[0]?.width}%`
                 }}
               />
             </div>
           )}
-        {newFeilds?.fields?.image.toReversed()[0] && (
-          <div className="my-5">
+        {newFeilds?.fields?.image && (
+          <div className={`
+          my-5 w-full  relative h-[300px] flex
+          ${
+            newFeilds?.fields?.image?.toReversed()[0]?.alignment === "left"
+              ? "justify-start"
+              : newFeilds?.fields?.image?.toReversed()[0]?.alignment ===
+                "center"
+              ? "justify-center"
+              : "justify-end"
+          }
+          `}>
             <img
               className="h-[250px] object-cover rounded"
-              src={newFeilds?.fields?.image.toReversed()[0].image}
+              src={newFeilds?.fields?.image?.toReversed()[0]?.image}
               alt=""
               style={{
-                width: `${userCardData?.fields?.image.toReversed?.width + "%"}`,
+                width: `${newFeilds?.fields?.image?.toReversed()[0]?.width}%`
               }}
             />
           </div>
@@ -490,16 +501,17 @@ const RightSidebar = () => {
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
         </div>
+        {/* vimeo */}
+        <Vimeo userCardData={userCardData} newFeilds={newFeilds}/>
+
         {/* notes here */}
         {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
           <div className="my-5">
             <p className="italic">{userCardData?.fields?.notes[0]}</p>
           </div>
         )}
-        
-          
-      
-        { newFeilds?.fields?.notes && (
+
+        {newFeilds?.fields?.notes && (
           <div className="my-5">
             <p className="italic">{newFeilds?.fields?.notes}</p>
           </div>

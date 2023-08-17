@@ -158,11 +158,11 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // Vimeo
   const [vimeoData, setVimeoData] = useState(
-    [...Array(feilds.filter((item) => item === "Vimeo").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "vimeo").length)].map(() => "")
   );
   // Wistia
   const [wistiaData, setWistiaData] = useState(
-    [...Array(feilds.filter((item) => item === "Wistia").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "wistia").length)].map(() => "")
   );
   // pdf
   const [pdfData, setPdfData] = useState(
@@ -680,6 +680,20 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredYouTubeData = Array.isArray(youtubeData)
     ? youtubeData.filter((item) => item !== undefined)
     : [];
+  // vimeo
+  const vimeoArray = Array.isArray(userCardData?.fields?.vimeo)
+    ? userCardData.fields.vimeo
+    : [];
+  const filteredVimeoData = Array.isArray(vimeoData)
+    ? vimeoData.filter((item) => item !== undefined)
+    : [];
+  // wistia
+  const wistiaArray = Array.isArray(userCardData?.fields?.wistia)
+    ? userCardData.fields.wistia
+    : [];
+  const filteredWistiaData = Array.isArray(wistiaData)
+    ? wistiaData.filter((item) => item !== undefined)
+    : [];
   // image
   const imageArray = Array.isArray(userCardData?.fields?.image)
     ? userCardData.fields.image
@@ -731,6 +745,8 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedImageArray = [...imageArray, ...filteredImageData];
   const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
   const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  const updatedVimeoArray = [...vimeoArray, ...filteredVimeoData];
+  const updatedWistiaArray = [...wistiaArray, ...filteredWistiaData];
 
   useEffect(() => {
     setNewFeilds({
@@ -755,6 +771,8 @@ const Content = ({ feilds, setFeilds }) => {
         pinterest: updatedPinterestArray,
         tikTok: updatedTiktokArray,
         notes: updatedNoteArray?.reverse()[0]?.note,
+        vimeo: updatedVimeoArray?.reverse()[0]?.data,
+        wistia: updatedWistiaArray?.reverse()[0]?.data,
         dateData: updatedDateArray,
         QR: updatedQrArray,
         Header: updatedHeaderArray,
@@ -796,6 +814,8 @@ const Content = ({ feilds, setFeilds }) => {
     galary,
     pdf,
     linkedinData,
+    align,
+    imageWidth
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -829,6 +849,8 @@ const Content = ({ feilds, setFeilds }) => {
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
           notes: updatedNoteArray?.reverse()[0]?.note,
+          vimeo: updatedVimeoArray?.reverse()[0]?.data,
+          wistia: updatedWistiaArray?.reverse()[0]?.data,
           dateData: updatedDateArray,
           QR: updatedQrArray,
           Header: updatedHeaderArray,
