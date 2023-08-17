@@ -45,7 +45,11 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
-
+  const {loading, userData, userCardData, newFeilds, setNewFeilds } =
+    useContext(userContext);
+    if(loading){
+      return 'Loading...';
+    }
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
@@ -68,10 +72,11 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // image -----------
   const [image, setImage] = useState(
-    [...Array(feilds.filter((item) => item === "image").length)].map(() => {})
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
   );
-  const [align, setAlign] = useState("center");
-  const [imageWidth, setImageWidth] = useState(50);
+  const [align, setAlign] = useState(userCardData?.fields?.image[0]?.alignment || 'center');
+  console.log('align',userCardData?.fields?.image[0]?.alignment);
+  const [imageWidth, setImageWidth] = useState(userCardData?.fields?.image[0]?.width || 50 );
   // gallery ---------
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
@@ -193,8 +198,6 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const { userData, userCardData, newFeilds, setNewFeilds } =
-    useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -778,7 +781,7 @@ const Content = ({ feilds, setFeilds }) => {
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
         youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
-        image: updatedImageArray,
+        image: updatedImageArray?.reverse()[0],
         galary: updatedGalaryArray,
         pdf: updatedPdfArray,
       },
@@ -815,7 +818,7 @@ const Content = ({ feilds, setFeilds }) => {
     pdf,
     linkedinData,
     align,
-    imageWidth
+    imageWidth,
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -855,7 +858,7 @@ const Content = ({ feilds, setFeilds }) => {
           QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
-          image: updatedImageArray,
+          image: updatedImageArray?.reverse()[0],
           galary: updatedGalaryArray,
           pdf: updatedPdfArray,
         },

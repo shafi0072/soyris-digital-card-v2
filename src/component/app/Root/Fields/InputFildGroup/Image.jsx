@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -13,13 +13,15 @@ const Image = ({ items, from, image, setImage, align, setAlign,imageWidth,setIma
   console.log({align});
   console.log({imageWidth});
   const { newFeilds, userCardData } = useContext(userContext);
-  const [base64Image, setBase64Image] = useState("");
+
   const saveImage =
     newFeilds?.fields?.image?.length > 0
       ? newFeilds?.fields?.image
       : userCardData?.fields?.image?.length > 0
       ? userCardData?.fields?.image
       : null;
+  const [base64Image, setBase64Image] = useState(saveImage?.toReversed()[0]?.image || '');
+  
   const handleRemoveFields = () => {
     const id = localStorage.getItem("cardId");
     fetch(`${baseUrl}/cards/fields/delete/${id}`, {
@@ -53,17 +55,20 @@ const Image = ({ items, from, image, setImage, align, setAlign,imageWidth,setIma
 
         //   return newImage;
         // });
-        setImage([{
-          alignment:align,
-          width: imageWidth,
-          image: compressedBase64
-        }])
+        
         setBase64Image(compressedBase64);
       } catch (error) {
         console.error("Error compressing image:", error);
       }
     }
   },[align,imageWidth])
+  useEffect(()=>{
+    setImage([{
+      alignment:align,
+      width: imageWidth,
+      image: base64Image
+    }])
+  },[base64Image,align,imageWidth,userCardData?.fields?.image])
   const handleChange = (event, newValue) => {
     setImageWidth(newValue);
   };

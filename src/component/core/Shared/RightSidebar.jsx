@@ -442,38 +442,18 @@ const RightSidebar = () => {
         </div>
         {/* image */}
         {userCardData?.fields?.image.toReversed()[0] &&
-          !newFeilds?.fields?.image.toReversed()[0] && (
-            <div
-              className={`
-            my-5 w-full  relative h-[300px] flex
-            ${
-              userCardData?.fields?.image.toReversed()[0].alignment === "left"
-                ? "justify-start"
-                : userCardData?.fields?.image.toReversed()[0].alignment ===
-                  "center"
-                ? "justify-center"
-                : "justify-end"
-            }
-            `}
+          !newFeilds?.fields?.image && (
             
-            >
-              <img
-                className={`h-[250px] object-cover rounded`}
-                src={userCardData?.fields?.image.toReversed()[0]?.image}
-                alt=""
-                style={{
-                  width: `${userCardData?.fields?.image?.toReversed()[0]?.width}%`
-                }}
-              />
-            </div>
+           <div>image 2</div>
+            
           )}
         {newFeilds?.fields?.image && (
           <div className={`
           my-5 w-full  relative h-[300px] flex
           ${
-            newFeilds?.fields?.image?.toReversed()[0]?.alignment === "left"
+            newFeilds?.fields?.image?.alignment === "left"
               ? "justify-start"
-              : newFeilds?.fields?.image?.toReversed()[0]?.alignment ===
+              : newFeilds?.fields?.image?.alignment ===
                 "center"
               ? "justify-center"
               : "justify-end"
@@ -481,13 +461,14 @@ const RightSidebar = () => {
           `}>
             <img
               className="h-[250px] object-cover rounded"
-              src={newFeilds?.fields?.image?.toReversed()[0]?.image}
+              src={newFeilds?.fields?.image?.image}
               alt=""
               style={{
-                width: `${newFeilds?.fields?.image?.toReversed()[0]?.width}%`
+                width: `${newFeilds?.fields?.image?.width}%`
               }}
             />
           </div>
+          
         )}
         {/* gallery images here */}
         {userCardData?.fields?.galary && (
