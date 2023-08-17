@@ -80,6 +80,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [pdf, setPdf] = useState(
     [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
   );
+  // console.log(pdf)
 
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
@@ -443,16 +444,16 @@ const Content = ({ feilds, setFeilds }) => {
   };
 
   // pdf
-  const handlePdfInputChange = (index, field, value) => {
-    setPdfData((prevPdfData) => {
-      const newData = [...prevPdfData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
-  };
+  // const handlePdfInputChange = (index, field, value) => {
+  //   setPdfData((prevPdfData) => {
+  //     const newData = [...prevPdfData];
+  //     newData[index] = {
+  //       ...newData[index],
+  //       [field]: value,
+  //     };
+  //     return newData;
+  //   });
+  // };
   const handleNoteInputChange = (index, field, value) => {
     setNoteData((prevNoteData) => {
       const newData = [...prevNoteData];
@@ -695,12 +696,12 @@ const Content = ({ feilds, setFeilds }) => {
     ? galary.filter((item) => item !== undefined)
     : [];
   // pdf
-  const pdfArray = Array.isArray(userCardData?.fields?.pdf)
-    ? userCardData.fields.pdf
-    : [];
-  const filteredPdfData = Array.isArray(pdf)
-    ? pdf.filter((item) => item !== undefined)
-    : [];
+  // const pdfArray = Array.isArray(userCardData?.fields?.pdf)
+  //   ? userCardData.fields.pdf
+  //   : [];
+  // const filteredPdfData = Array.isArray(pdf)
+  //   ? pdf.filter((item) => item !== undefined)
+  //   : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
@@ -730,7 +731,7 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedYouTubeArray = [...youTubeArray, ...filteredYouTubeData];
   const updatedImageArray = [...imageArray, ...filteredImageData];
   const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
-  const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  // const updatedPdfArray = [...pdfArray, ...filteredPdfData];
 
   useEffect(() => {
     setNewFeilds({
@@ -762,7 +763,7 @@ const Content = ({ feilds, setFeilds }) => {
         youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
         image: updatedImageArray,
         galary: updatedGalaryArray,
-        pdf: updatedPdfArray,
+        pdf: pdf,
       },
     });
   }, [
@@ -788,7 +789,7 @@ const Content = ({ feilds, setFeilds }) => {
     tiktokData,
     youtubeData,
     vimeoData,
-    pdfData,
+    // pdfData,
     wistiaData,
     noteData,
     dateData,
@@ -836,7 +837,7 @@ const Content = ({ feilds, setFeilds }) => {
           divider: updatedDividerArray,
           image: updatedImageArray,
           galary: updatedGalaryArray,
-          pdf: updatedPdfArray,
+          pdf: pdf,
         },
       }),
     })
@@ -1156,7 +1157,7 @@ const Content = ({ feilds, setFeilds }) => {
               <div className="mb-2">
                 <PDF
                   items={userCardData?.fields?.pdf}
-                  index={index}
+                  // index={index}
                   pdf={pdf}
                   setPdf={setPdf}
                   from={true}
