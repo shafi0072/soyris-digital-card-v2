@@ -7,6 +7,7 @@ import FieldData from "./FieldData/FieldData";
 import YouTube from "./YouTube/YouTube";
 import GalleryImage from "./GalleryImage/GalleryImage";
 import DottedQRCode from "../../app/Root/QrCodes/QrMain";
+import Moment from "react-moment";
 
 const RightSidebar = () => {
   const {
@@ -335,36 +336,34 @@ const RightSidebar = () => {
 
           {userCardData?.fields?.pinterest[0] &&
             !newFeilds?.fields?.pinterest[0] && (
-            <a
-              href={
-                userCardData?.fields?.pinterest[0]
-                  ? userCardData?.fields?.pinterest[0]?.url
-                  : "#"
-              }
-              className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
-              style={{ background: color }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="15.621"
-                height="19.768"
-                viewBox="0 0 15.621 19.768"
+              <a
+                href={
+                  userCardData?.fields?.pinterest[0]
+                    ? userCardData?.fields?.pinterest[0]?.url
+                    : "#"
+                }
+                className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
+                style={{ background: color }}
               >
-                <path
-                  id="pinterest-svgrepo-com"
-                  d="M175.46,13.692c-.528,2.722-1.21,4.685-3.117,6.049-.59-4.113.865-7.2,1.54-10.483-1.151-1.906.138-5.743,2.564-4.8,2.985,1.164-2.37,6.809,1.37,7.55,3.9.772,5.3-5.891,2.883-8.312-3.5-3.5-10.466-.531-9.381,4.424a2.066,2.066,0,0,1-1.05,2.566c-1.2-.488-1.32-2.179-1.258-3.829.138-3.794,3.462-6.451,6.8-6.82,4.216-.465,8.173,1.524,8.719,5.431.616,4.408-1.822,9.472-6.331,9.128a8.487,8.487,0,0,1-2.731-.907"
-                  transform="translate(-168.996 0.027)"
-                  fill="#fff"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </a>
-          )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15.621"
+                  height="19.768"
+                  viewBox="0 0 15.621 19.768"
+                >
+                  <path
+                    id="pinterest-svgrepo-com"
+                    d="M175.46,13.692c-.528,2.722-1.21,4.685-3.117,6.049-.59-4.113.865-7.2,1.54-10.483-1.151-1.906.138-5.743,2.564-4.8,2.985,1.164-2.37,6.809,1.37,7.55,3.9.772,5.3-5.891,2.883-8.312-3.5-3.5-10.466-.531-9.381,4.424a2.066,2.066,0,0,1-1.05,2.566c-1.2-.488-1.32-2.179-1.258-3.829.138-3.794,3.462-6.451,6.8-6.82,4.216-.465,8.173,1.524,8.719,5.431.616,4.408-1.822,9.472-6.331,9.128a8.487,8.487,0,0,1-2.731-.907"
+                    transform="translate(-168.996 0.027)"
+                    fill="#fff"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            )}
           {newFeilds?.fields?.pinterest?.toReversed()[0] && (
             <a
-              href={
-                newFeilds?.fields?.pinterest?.toReversed()[0].url
-              }
+              href={newFeilds?.fields?.pinterest?.toReversed()[0].url}
               className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
               style={{ background: color }}
             >
@@ -385,9 +384,7 @@ const RightSidebar = () => {
             </a>
           )}
 
-
-          {userCardData?.fields?.tikTok[0] &&
-            !newFeilds?.fields?.tikTok[0] && (
+          {userCardData?.fields?.tikTok[0] && !newFeilds?.fields?.tikTok[0] && (
             <a
               href={
                 userCardData?.fields?.tikTok[0]
@@ -418,9 +415,7 @@ const RightSidebar = () => {
           )}
           {newFeilds?.fields?.tikTok?.toReversed()[0] && (
             <a
-              href={
-                newFeilds?.fields?.tikTok?.toReversed()[0].url
-              }
+              href={newFeilds?.fields?.tikTok?.toReversed()[0].url}
               className="w-[40px] h-[40px] rounded-full  flex items-center justify-center"
               style={{ background: color }}
             >
@@ -495,6 +490,86 @@ const RightSidebar = () => {
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
         </div>
+        {/* notes here */}
+        {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
+          <div className="my-5">
+            <p className="italic">{userCardData?.fields?.notes[0]}</p>
+          </div>
+        )}
+        
+          
+      
+        { newFeilds?.fields?.notes && (
+          <div className="my-5">
+            <p className="italic">{newFeilds?.fields?.notes}</p>
+          </div>
+        )}
+        {/* date here */}
+        {userCardData?.fields?.dateData[0] &&
+          !newFeilds?.fields?.dateData[0] && (
+            <div className="my-5 flex gap-4 items-center">
+              <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20.911"
+                  height="23.337"
+                  viewBox="0 0 20.911 23.337"
+                >
+                  <path
+                    id="Path_37"
+                    data-name="Path 37"
+                    d="M23.411,11.492V7.853a2.426,2.426,0,0,0-2.426-2.426H6.426A2.426,2.426,0,0,0,4,7.853v3.639m19.411,0V22.411a2.426,2.426,0,0,1-2.426,2.426H6.426A2.426,2.426,0,0,1,4,22.411V11.492m19.411,0H4M8.853,3V7.853M18.558,3V7.853"
+                    transform="translate(-3.25 -2.25)"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p>
+                  <Moment format="DD/MM/YYYY">
+                    {userCardData?.fields?.dateData[0]?.date}
+                  </Moment>
+                </p>
+                <p>{userCardData?.fields?.dateData[0]?.funding}</p>
+              </div>
+            </div>
+          )}
+
+        {newFeilds?.fields?.dateData[0] && (
+          <div className="my-5 flex gap-4 items-center">
+            <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20.911"
+                height="23.337"
+                viewBox="0 0 20.911 23.337"
+              >
+                <path
+                  id="Path_37"
+                  data-name="Path 37"
+                  d="M23.411,11.492V7.853a2.426,2.426,0,0,0-2.426-2.426H6.426A2.426,2.426,0,0,0,4,7.853v3.639m19.411,0V22.411a2.426,2.426,0,0,1-2.426,2.426H6.426A2.426,2.426,0,0,1,4,22.411V11.492m19.411,0H4M8.853,3V7.853M18.558,3V7.853"
+                  transform="translate(-3.25 -2.25)"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </div>
+            <div>
+              <p>
+                <Moment format="DD/MM/YYYY">
+                  {newFeilds?.fields?.dateData[0]?.date}
+                </Moment>
+                {/* {newFeilds?.fields?.Date[0]?.date} */}
+              </p>
+              <p>{newFeilds?.fields?.dateData[0]?.funding}</p>
+            </div>
+          </div>
+        )}
         {userCardData?.fields?.QR[0]?.QrCode && (
           <div className="my-5">
             <DottedQRCode value={userCardData?.fields?.QR[0]?.QrCode} />

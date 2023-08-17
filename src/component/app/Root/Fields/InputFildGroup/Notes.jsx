@@ -43,11 +43,12 @@ const Notes = ({ index, handleNoteInputChange, items,from }) => {
       <div className="mb-3">
         <div className="w-full">
           <textarea
-            name={`note${index + 1}`}
+            name={`note`}
             onChange={(e) =>
-              handleNoteInputChange(index, `note${index + 1}`, e.target.value)
+              handleNoteInputChange(index, `note`, e.target.value)
             
             }
+            defaultValue={items}
             placeholder="Enter your Notes"
             rows="4"
             className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
