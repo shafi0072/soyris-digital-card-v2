@@ -3,7 +3,39 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { baseUrl } from "@/src/config/Server";
-const PDF = ({ index, handlePdfInputChange, items, from }) => {
+import { useState } from "react";
+import { convertPDFToBase64 } from "@/src/config/pdfBase64";
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+const PDF = ({ userData,pdf, setPdf, items, from }) => {
+  const [PdfBase64, setPdfBase64] = useState("");
+console.log({userData});
+
+  const filename = `${userData?.email?.slice(0,6)}-document.pdf`;
+
+  const downloadBase64File = () => {
+    const link = document.createElement('a');
+    link.href = `${pdf}`;
+    link.download = filename;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      try {
+        const base64PDF = await convertPDFToBase64(file);
+        setPdf(base64PDF);
+        setPdfBase64(base64PDF);
+      } catch (error) {
+        console.error("Error converting PDF to base64:", error);
+      }
+    }
+  };
   const handleRemoveFields = () => {
     const id = localStorage.getItem("cardId");
     fetch(`${baseUrl}/cards/fields/delete/${id}`, {
@@ -22,6 +54,7 @@ const PDF = ({ index, handlePdfInputChange, items, from }) => {
       })
       .catch((error) => console.log("error", error));
   };
+
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -42,8 +75,17 @@ const PDF = ({ index, handlePdfInputChange, items, from }) => {
       </div>
       <div className="mb-3">
         <div className="w-full">
+          <div className=" flex-wrap my-4">
+            
+            {
+              pdf.length > 0 && <p className="flex gap-4 items-center"> <PictureAsPdfIcon fontSize="large"/> <button title="Click to Download" onClick={downloadBase64File}>
+                <CloudDownloadIcon/>
+                </button> </p>
+            }
+            
+          </div>
           <label
-            htmlFor="profileImage"
+            htmlFor="p"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
           >
             <span>
@@ -83,12 +125,9 @@ const PDF = ({ index, handlePdfInputChange, items, from }) => {
             <p className="text-md">Add PDF</p>
           </label>
           <input
-            name={`PdfFile${index + 1}`}
-            onChange={(e) =>
-              handlePdfInputChange(index, `PdfFile${index + 1}`, e.target.value)
-            }
+            onChange={handleFileChange}
             type="file"
-            id="profileImage"
+            id="p"
             style={{ display: "none" }}
           />
         </div>

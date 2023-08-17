@@ -11,11 +11,21 @@ const ContextApi = ({ children }) => {
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState({})
+    const [qrStyle,setQrStyle] = useState('squares');
+    const [foregroundColor, setForegroundColor] = useState('#000000')
+    const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+    const [eyeColor, setEyeColor] = useState("#DC0E74");
+    const [selectedLogo,setSelectedLogo] = useState(null)
     console.log({infos})
     const value = {
+        selectedLogo,
+        eyeColor,
+        backgroundColor,
         newFeilds,
         color,
         infos,
+        foregroundColor,
+        qrStyle,
         setColor,
         profileImage,
         logoImage,
@@ -27,7 +37,12 @@ const ContextApi = ({ children }) => {
         setDesign,
         userData,
         settings,
-        setNewFeilds
+        setNewFeilds,
+        setQrStyle,
+        setForegroundColor,
+        setBackgroundColor,
+        setEyeColor,
+        setSelectedLogo
     }
     
     

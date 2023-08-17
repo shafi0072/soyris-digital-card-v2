@@ -2,12 +2,16 @@ import React from "react";
 import { shapes } from "@/src/constant/Shapes";
 import { useState } from "react";
 import { ChromePicker } from "react-color";
+import { useContext } from "react";
+import { userContext } from "@/src/Storage/ContextApi";
 
 const EyeStyle = () => {
   const [innerColor, setInnerColor] = useState("#DC0E74");
   const [innerCustomColor, setInnerCustomColor] = useState(false);
   const [outerColor, setOuterColor] = useState("#000000");
   const [outerCustomColor, setOutCustomColor] = useState(false);
+  const {eyeColor,setEyeColor} = useContext(userContext);
+
   return (
     <>
       <div className="flex justify-between border-b-2 items-center pb-2 mt-12">
@@ -62,17 +66,17 @@ const EyeStyle = () => {
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: innerColor }}
+            style={{ background: eyeColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{innerColor}</span>
+            <span className="text-center">{eyeColor}</span>
           </div>
         </div>
         <div>
           {innerCustomColor && (
             <ChromePicker
-              color={innerColor}
-              onChange={(e) => setInnerColor(e.hex)}
+              color={eyeColor}
+              onChange={(e) => setEyeColor(e.hex)}
             />
           )}
         </div>

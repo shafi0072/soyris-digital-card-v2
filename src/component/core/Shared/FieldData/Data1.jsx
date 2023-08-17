@@ -7,8 +7,8 @@ const Data1 = ({color,icon,title,extra,label}) => {
                 {icon}
             </div>
             <div>
-                <p className='w-[217px]'>
-                    {title && title} <span className='ms-5'> {extra && `extra: ${extra}`} </span> <br /> {label&& label}
+                <p className='w-[230px]'>
+                    {title && title} <span className='ms-5'> {extra && `ext: ${extra}`} </span> <br /> {label&& label}
                 </p>
             </div>
         </div>

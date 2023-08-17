@@ -33,6 +33,7 @@ import Divider from "./Divider";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
 import { Container, Draggable } from "react-smooth-dnd";
+import { toast } from "react-toastify";
 
 const Content = ({ feilds, setFeilds }) => {
   const onDrop = (dropResult) => {
@@ -67,15 +68,19 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // image -----------
   const [image, setImage] = useState(
-    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => {})
   );
+  const [align, setAlign] = useState("center");
+  const [imageWidth, setImageWidth] = useState(50);
   // gallery ---------
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
   );
-  console.log("galary",galary)
+  // pdf ---------
+  const [pdf, setPdf] = useState(
+    [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
+  );
 
-  // console.log({image})
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
     [...Array(feilds.filter((item) => item === "WhatsApp").length)].map(
@@ -175,6 +180,8 @@ const Content = ({ feilds, setFeilds }) => {
   const [qrData, setQrData] = useState(
     [...Array(feilds.filter((item) => item === "Qr").length)].map(() => "")
   );
+  const [qrAlign, setQrAlign] = useState("center");
+  const [qrWidth, setQrWidth] = useState(50);
   // header
   const [headerData, setHeaderData] = useState(
     [...Array(feilds.filter((item) => item === "Header").length)].map(() => "")
@@ -184,7 +191,8 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const { userCardData, newFeilds, setNewFeilds } = useContext(userContext);
+  const { userData, userCardData, newFeilds, setNewFeilds } =
+    useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -196,16 +204,7 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
-  // const handleImageInputChange = (index, field, value) => {
-  //   setImage((prevImageData) => {
-  //     const newData = [...prevImageData];
-  //     newData[index] = {
-  //       ...newData[index],
-  //       [field]: value,
-  //     };
-  //     return newData;
-  //   });
-  // };
+
   // website
   const handleWebsiteInputChange = (index, field, value) => {
     setWebsiteData((prevWebsiteData) => {
@@ -417,7 +416,7 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
-  
+
   // vimeo
   const handleVimeoInputChange = (index, field, value) => {
     setVimeoData((prevVimeoData) => {
@@ -475,14 +474,14 @@ const Content = ({ feilds, setFeilds }) => {
   };
   // qr
   const handleQRInputChange = (index, field, value) => {
-    setQrData((prevQrData) => {
-      const newData = [...prevQrData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
+    setQrData([
+      {
+        width:qrWidth,
+        alignment: qrAlign,
+        QrCode: value
+      }
+    ])
+      
   };
   // header
   const handleHeaderInputChange = (index, field, value) => {
@@ -505,8 +504,6 @@ const Content = ({ feilds, setFeilds }) => {
       return newData;
     });
   };
-
-  // console.log(userCardData)
 
   const phoneArray = Array.isArray(userCardData?.fields?.Phone)
     ? userCardData.fields.Phone
@@ -682,6 +679,27 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredYouTubeData = Array.isArray(youtubeData)
     ? youtubeData.filter((item) => item !== undefined)
     : [];
+  // image
+  const imageArray = Array.isArray(userCardData?.fields?.image)
+    ? userCardData.fields.image
+    : [];
+  const filteredImageData = Array.isArray(image)
+    ? image.filter((item) => item !== undefined)
+    : [];
+  // image
+  const galleryArray = Array.isArray(userCardData?.fields?.galary)
+    ? userCardData.fields.galary
+    : [];
+  const filteredgalleryData = Array.isArray(galary)
+    ? galary.filter((item) => item !== undefined)
+    : [];
+  // pdf
+  const pdfArray = Array.isArray(userCardData?.fields?.pdf)
+    ? userCardData.fields.pdf
+    : [];
+  const filteredPdfData = Array.isArray(pdf)
+    ? pdf.filter((item) => item !== undefined)
+    : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
@@ -708,10 +726,10 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedQrArray = [...qrArray, ...filteredQrData];
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
-  const updatedYouTubeArray = [...filteredYouTubeData];
-  const updatedImageArray = [...image];
-  console.log(updatedImageArray)
-  console.log("Youtube",updatedYouTubeArray[0]?.YoutubeUserName1);
+  const updatedYouTubeArray = [...youTubeArray, ...filteredYouTubeData];
+  const updatedImageArray = [...imageArray, ...filteredImageData];
+  const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
+  const updatedPdfArray = [...pdfArray, ...filteredPdfData];
 
   useEffect(() => {
     setNewFeilds({
@@ -737,11 +755,13 @@ const Content = ({ feilds, setFeilds }) => {
         tikTok: updatedTiktokArray,
         notes: updatedNoteArray,
         Date: updatedDateArray,
-        qr: updatedQrArray,
+        QR: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
-        youTube:updatedYouTubeArray[0]?.YoutubeUserName1,
-        image:updatedImageArray
+        youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
+        image: updatedImageArray,
+        galary: updatedGalaryArray,
+        pdf: updatedPdfArray,
       },
     });
   }, [
@@ -771,6 +791,10 @@ const Content = ({ feilds, setFeilds }) => {
     noteData,
     dateData,
     headerData,
+    image,
+    galary,
+    pdf,
+    linkedinData
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -805,13 +829,22 @@ const Content = ({ feilds, setFeilds }) => {
           tikTok: updatedTiktokArray,
           notes: updatedNoteArray,
           Date: updatedDateArray,
-          qr: updatedQrArray,
+          QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
-          image:updatedImageArray
+          image: updatedImageArray,
+          galary: updatedGalaryArray,
+          pdf: updatedPdfArray,
         },
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Profile information updated successfully") {
+          toast.success(data?.message);
+          window.location.reload();
+        }
+      });
   };
 
   return (
@@ -1116,19 +1149,21 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.pdf?.map((items, index) => (
-            <Draggable key={items}>
+          {userCardData?.fields?.pdf?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
                 <PDF
-                  items={items}
+                  items={userCardData?.fields?.pdf}
                   index={index}
-                  handlePdfInputChange={handlePdfInputChange}
-                  pdfData={pdfData}
+                  pdf={pdf}
+                  setPdf={setPdf}
                   from={true}
+                  userData={userData}
                 />
               </div>
             </Draggable>
-          ))}
+          )}
+
           {userCardData?.fields?.notes?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
@@ -1142,14 +1177,35 @@ const Content = ({ feilds, setFeilds }) => {
               </div>
             </Draggable>
           ))}
-          {userCardData?.fields?.image?.map((items, index) => (
-            <Draggable key={items}>
+          {userCardData?.fields?.image?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
-                <Image setImage={setImage} image={image} items={items} from={true} />
+                <Image
+                  setImage={setImage}
+                  image={image}
+                  items={userCardData?.fields?.image}
+                  from={true}
+                  align={align}
+                  setAlign={setAlign}
+                  imageWidth={imageWidth}
+                  setImageWidth={setImageWidth}
+                />
               </div>
             </Draggable>
-          ))}
-          {userCardData?.fields?.qr?.map((items, index) => (
+          )}
+          {userCardData?.fields?.galary?.length > 0 && (
+            <Draggable>
+              <div className="mb-2">
+                <Gallery
+                  setGalary={setGalary}
+                  galary={galary}
+                  items={userCardData?.fields?.galary[0]}
+                  from={true}
+                />
+              </div>
+            </Draggable>
+          )}
+          {userCardData?.fields?.QR?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
                 <QR
@@ -1158,6 +1214,10 @@ const Content = ({ feilds, setFeilds }) => {
                   qrData={qrData}
                   items={items}
                   from={true}
+                  qrAlign={qrAlign}
+                  setQrAlign={setQrAlign}
+                  qrWidth={qrWidth}
+                  setQrWidth={setQrWidth}
                 />
               </div>
             </Draggable>
@@ -1363,7 +1423,14 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "Image" && (
                 <div className="mb-2">
-                  <Image setImage={setImage} image={image}/>
+                  <Image
+                    setImage={setImage}
+                    image={image}
+                    align={align}
+                    setAlign={setAlign}
+                    imageWidth={imageWidth}
+                    setImageWidth={setImageWidth}
+                  />
                 </div>
               )}
               {items === "Gallery" && (
@@ -1400,11 +1467,7 @@ const Content = ({ feilds, setFeilds }) => {
               )}
               {items === "PDF" && (
                 <div className="mb-2">
-                  <PDF
-                    index={index}
-                    handlePdfInputChange={handlePdfInputChange}
-                    pdfData={pdfData}
-                  />
+                  <PDF pdf={pdf} setPdf={setPdf} userData={userData} />
                 </div>
               )}
               {items === "Notes" && (
@@ -1431,6 +1494,10 @@ const Content = ({ feilds, setFeilds }) => {
                     index={index}
                     handleQRInputChange={handleQRInputChange}
                     qrData={qrData}
+                    qrAlign={qrAlign}
+                    setQrAlign={setQrAlign}
+                    qrWidth={qrWidth}
+                    setQrWidth={setQrWidth}
                   />
                 </div>
               )}

@@ -20,7 +20,7 @@ export const nav_data = [
     drowpDown:[
       {
         title:"QR Codes",
-        link:"/user/qr"
+        link:"/qrcodes"
       },
       {
         title:"Wallet passes",

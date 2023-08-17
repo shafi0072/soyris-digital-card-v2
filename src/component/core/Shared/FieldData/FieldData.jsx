@@ -2,10 +2,12 @@ import React from "react";
 import Data1 from "./Data1";
 import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
-import HomeIcon from '@mui/icons-material/Home';
-const FieldData = ({ userData,newFeilds }) => {
+import HomeIcon from "@mui/icons-material/Home";
+import { useState } from "react";
+import { useEffect } from "react";
+const FieldData = ({ userData, newFeilds }) => {
   const { color } = useContext(userContext);
-  console.log({userData})
+
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -134,135 +136,183 @@ const FieldData = ({ userData,newFeilds }) => {
     </svg>
   );
   const viberIcon = (
-    <svg id="viber-svgrepo-com" xmlns="http://www.w3.org/2000/svg" width="20.938" height="21.584" viewBox="0 0 20.938 21.584">
-      <path id="Path_16" data-name="Path 16" d="M12.924,4a.924.924,0,0,0,0,1.847,3.7,3.7,0,0,1,2.7,1,3.7,3.7,0,0,1,1,2.7.924.924,0,1,0,1.847,0,5.539,5.539,0,0,0-1.541-4A5.54,5.54,0,0,0,12.924,4Z" transform="translate(-1.531 -0.823)" fill="#fff" />
-      <path id="Path_17" data-name="Path 17" d="M5.013,7.853C5.118,7.018,6.2,5.884,7.064,6.01h0c.72.137,1.31,1.22,1.7,1.934.064.117.122.225.175.316a.915.915,0,0,1-.154,1.148l-.089.071c-.329.261-.756.6-.656.941a13.173,13.173,0,0,0,3.639,3.627c.348.2.618-.189.85-.524.055-.079.107-.155.158-.219a.9.9,0,0,1,1.14-.158A12.715,12.715,0,0,1,15.8,14.562a.78.78,0,0,1,.165,1.03c-.372.7-1.449,1.626-2.23,1.438A12.833,12.833,0,0,1,5.074,8.363a.916.916,0,0,1-.064-.488Z" transform="translate(-0.997 -0.976)" fill="#fff" />
-      <path id="Path_18" data-name="Path 18" d="M12.924,7a.924.924,0,1,0,0,1.847,1.082,1.082,0,0,1,.924.924.924.924,0,1,0,1.847,0A2.9,2.9,0,0,0,12.924,7Z" transform="translate(-1.531 -1.052)" fill="#fff" />
-      <path id="Path_19" data-name="Path 19" d="M6.994,22.054q.039.022.081.04c.5.216,1.12-.266,2.358-1.228l1.24-.964a17.572,17.572,0,0,0,6.292-.825,6.466,6.466,0,0,0,3.967-3.967,18.256,18.256,0,0,0,0-9.813,6.466,6.466,0,0,0-3.967-3.967,22.489,22.489,0,0,0-11.66,0A6.466,6.466,0,0,0,1.337,5.3a18.256,18.256,0,0,0,0,9.813A6.466,6.466,0,0,0,5.3,19.076a10.211,10.211,0,0,0,1.212.363C6.516,21.007,6.516,21.791,6.994,22.054Zm1.369-2.7V18.323A.46.46,0,0,0,8,17.872a17.043,17.043,0,0,1-2.085-.539A4.618,4.618,0,0,1,3.081,14.5a14.1,14.1,0,0,1-.568-4.3,14.1,14.1,0,0,1,.568-4.3A4.618,4.618,0,0,1,5.915,3.073a17.436,17.436,0,0,1,5.2-.665,17.39,17.39,0,0,1,5.239.665,4.618,4.618,0,0,1,2.834,2.834,14.1,14.1,0,0,1,.568,4.3,14.1,14.1,0,0,1-.568,4.3,4.618,4.618,0,0,1-2.834,2.834,16.881,16.881,0,0,1-6.121.705.465.465,0,0,0-.3.1Z" transform="translate(-0.666 -0.56)" fill="#fff" fill-rule="evenodd" />
+    <svg
+      id="viber-svgrepo-com"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20.938"
+      height="21.584"
+      viewBox="0 0 20.938 21.584"
+    >
+      <path
+        id="Path_16"
+        data-name="Path 16"
+        d="M12.924,4a.924.924,0,0,0,0,1.847,3.7,3.7,0,0,1,2.7,1,3.7,3.7,0,0,1,1,2.7.924.924,0,1,0,1.847,0,5.539,5.539,0,0,0-1.541-4A5.54,5.54,0,0,0,12.924,4Z"
+        transform="translate(-1.531 -0.823)"
+        fill="#fff"
+      />
+      <path
+        id="Path_17"
+        data-name="Path 17"
+        d="M5.013,7.853C5.118,7.018,6.2,5.884,7.064,6.01h0c.72.137,1.31,1.22,1.7,1.934.064.117.122.225.175.316a.915.915,0,0,1-.154,1.148l-.089.071c-.329.261-.756.6-.656.941a13.173,13.173,0,0,0,3.639,3.627c.348.2.618-.189.85-.524.055-.079.107-.155.158-.219a.9.9,0,0,1,1.14-.158A12.715,12.715,0,0,1,15.8,14.562a.78.78,0,0,1,.165,1.03c-.372.7-1.449,1.626-2.23,1.438A12.833,12.833,0,0,1,5.074,8.363a.916.916,0,0,1-.064-.488Z"
+        transform="translate(-0.997 -0.976)"
+        fill="#fff"
+      />
+      <path
+        id="Path_18"
+        data-name="Path 18"
+        d="M12.924,7a.924.924,0,1,0,0,1.847,1.082,1.082,0,0,1,.924.924.924.924,0,1,0,1.847,0A2.9,2.9,0,0,0,12.924,7Z"
+        transform="translate(-1.531 -1.052)"
+        fill="#fff"
+      />
+      <path
+        id="Path_19"
+        data-name="Path 19"
+        d="M6.994,22.054q.039.022.081.04c.5.216,1.12-.266,2.358-1.228l1.24-.964a17.572,17.572,0,0,0,6.292-.825,6.466,6.466,0,0,0,3.967-3.967,18.256,18.256,0,0,0,0-9.813,6.466,6.466,0,0,0-3.967-3.967,22.489,22.489,0,0,0-11.66,0A6.466,6.466,0,0,0,1.337,5.3a18.256,18.256,0,0,0,0,9.813A6.466,6.466,0,0,0,5.3,19.076a10.211,10.211,0,0,0,1.212.363C6.516,21.007,6.516,21.791,6.994,22.054Zm1.369-2.7V18.323A.46.46,0,0,0,8,17.872a17.043,17.043,0,0,1-2.085-.539A4.618,4.618,0,0,1,3.081,14.5a14.1,14.1,0,0,1-.568-4.3,14.1,14.1,0,0,1,.568-4.3A4.618,4.618,0,0,1,5.915,3.073a17.436,17.436,0,0,1,5.2-.665,17.39,17.39,0,0,1,5.239.665,4.618,4.618,0,0,1,2.834,2.834,14.1,14.1,0,0,1,.568,4.3,14.1,14.1,0,0,1-.568,4.3,4.618,4.618,0,0,1-2.834,2.834,16.881,16.881,0,0,1-6.121.705.465.465,0,0,0-.3.1Z"
+        transform="translate(-0.666 -0.56)"
+        fill="#fff"
+        fill-rule="evenodd"
+      />
     </svg>
-
   );
-const address = <HomeIcon/>
+  const address = <HomeIcon />;
   return (
     <div>
-      {userData?.fields?.Phone?.map((items, index) => <Data1
-        color={color}
-        icon={phoneIcon}
-        title={items?.Number}
-        extra={items?.Code}
-        label="office"
-      />)}
-      {newFeilds?.fields?.Phone?.map((items, index) => <Data1
-        color={color}
-        icon={phoneIcon}
-        title={items?.Number}
-        extra={items?.Code}
-        label="office"
-      />)}
-      {userData?.fields?.website?.map((items, index) => <Data1
-        color={color}
-        icon={websiteIcon}
-        title={items?.address}
-        extra=""
-        label={items?.label}
-      />)}
-      {newFeilds?.fields?.website?.map((items, index) => <Data1
-        color={color}
-        icon={websiteIcon}
-        title={items?.address}
-        extra=""
-        label={items?.label}
-      />)}
+      {userData?.fields?.Phone?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={phoneIcon}
+          title={items?.Number}
+          extra={items?.Code}
+          label={items?.choiceLabel}
+        />
+      ))}
+      {newFeilds?.fields?.Phone?.map((items, index) => {
+        const formatted = `(${items?.Number.substring(
+          0,
+          3
+        )}) ${items?.Number.substring(3, 6)}-${items?.Number.substring(6)}`; 
+        return (
+          <Data1
+            color={color}
+            icon={phoneIcon}
+            title={
+              items?.internationalNumber && items?.Number
+                ? `+${formatted}`
+                : items?.Number
+            }
+            extra={items?.Code}
+            label={items?.choiceLabel}
+          />
+        );
+      })}
+      {userData?.fields?.website?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={websiteIcon}
+          title={items?.address}
+          extra=""
+          label={items?.label}
+        />
+      ))}
+      {newFeilds?.fields?.website?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={websiteIcon}
+          title={items?.address}
+          extra=""
+          label={items?.label}
+        />
+      ))}
 
-    {
-      userData?.fields?.email?.map((items,index)=>  <Data1
-      color={color}
-      icon={emailIcon}
-      title={items.address}
-      extra=""
-      label={items.label}
-    />)
-    }
-    {
-      newFeilds?.fields?.email?.map((items,index)=>  <Data1
-      color={color}
-      icon={emailIcon}
-      title={items.address}
-      extra=""
-      label={items.label}
-    />)
-    }
+      {userData?.fields?.email?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={emailIcon}
+          title={items.address}
+          extra=""
+          label={items.label}
+        />
+      ))}
+      {newFeilds?.fields?.email?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={emailIcon}
+          title={items.address}
+          extra=""
+          label={items.label}
+        />
+      ))}
 
-      {
-        userData?.fields?.address?.map((items,index)=><Data1
-        color={color}
-        icon={locationIcon}
-        title={items.location}
-        extra=""
-        label={items.label}
-      />)
-      }
-      {
-        newFeilds?.fields?.address?.map((items,index)=><Data1
-        color={color}
-        icon={locationIcon}
-        title={items.location}
-        extra=""
-        label={items.label}
-      />)
-      }
-      {
-        userData?.fields?.link?.map((items,index)=><Data1
-        color={color}
-        icon={linkIcon}
-        title={items.url}
-        label={items.label}
-      />)
-      }
-      {
-        newFeilds?.fields?.link?.map((items,index)=><Data1
-        color={color}
-        icon={linkIcon}
-        title={items.url}
-        label={items.label}
-      />)
-      }
+      {userData?.fields?.address?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={locationIcon}
+          title={items.location}
+          extra=""
+          label={items.label}
+        />
+      ))}
+      {newFeilds?.fields?.address?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={locationIcon}
+          title={items.location}
+          extra=""
+          label={items.label}
+        />
+      ))}
+      {userData?.fields?.link?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={linkIcon}
+          title={items.url}
+          label={items.label}
+        />
+      ))}
+      {newFeilds?.fields?.link?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={linkIcon}
+          title={items.url}
+          label={items.label}
+        />
+      ))}
 
-     {
-      userData?.fields?.whatsApp?.map((items,index)=> <Data1
-      color={color}
-      icon={whatsapppIcon}
-      title={items.number}
-      label={items.label}
-    />)
-     }
-     {
-      newFeilds?.fields?.whatsApp?.map((items,index)=> <Data1
-      color={color}
-      icon={whatsapppIcon}
-      title={items.number}
-      label={items.label}
-    />)
-     }
+      {userData?.fields?.whatsApp?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={whatsapppIcon}
+          title={items.number}
+          label={items.label}
+        />
+      ))}
+      {newFeilds?.fields?.whatsApp?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={whatsapppIcon}
+          title={items.number}
+          label={items.label}
+        />
+      ))}
 
-    {
-      userData?.fields?.viber?.map((items,index)=>  <Data1
-      color={color}
-      icon={viberIcon}
-      title={items.number}
-      extra=""
-      label={items.label}
-    />)
-    }
-    {
-      newFeilds?.fields?.viber?.map((items,index)=>  <Data1
-      color={color}
-      icon={viberIcon}
-      title={items.number}
-      extra=""
-      label={items.label}
-    />)
-    }
+      {userData?.fields?.viber?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={viberIcon}
+          title={items.number}
+          extra=""
+          label={items.label}
+        />
+      ))}
+      {newFeilds?.fields?.viber?.map((items, index) => (
+        <Data1
+          color={color}
+          icon={viberIcon}
+          title={items.number}
+          extra=""
+          label={items.label}
+        />
+      ))}
     </div>
   );
 };
