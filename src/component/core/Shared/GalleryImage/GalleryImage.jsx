@@ -19,7 +19,7 @@ const GalleryImage = ({ newFeilds, userCardData }) => {
               ?.toReversed()
               ?.slice(0, 10)
               ?.map((item, index) => (
-                <div key={index} className="col-span-5">
+                <div key={index} className="col-span-6">
                   <img
                     src={item}
                     className="w-full h-[100px] object-cover rounded"

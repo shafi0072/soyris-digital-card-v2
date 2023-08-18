@@ -8,6 +8,7 @@ import YouTube from "./YouTube/YouTube";
 import GalleryImage from "./GalleryImage/GalleryImage";
 import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 import Moment from "react-moment";
+import Pdf from "./Pdf";
 
 const RightSidebar = () => {
   const {
@@ -25,7 +26,7 @@ const RightSidebar = () => {
   console.log({ newFeilds });
 
   return (
-    <div className="scroll-hide max-h-[90vh] overflow-y-scroll">
+    <div className="scroll-hide h-[76vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
         {design === "classic" && (
           <Classic
@@ -490,6 +491,8 @@ const RightSidebar = () => {
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
         </div>
+        {/* pdf here  */}
+        <Pdf userCardData={userCardData} newFeilds={newFeilds} userData={userData} />
         {/* notes here */}
         {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
           <div className="my-5">

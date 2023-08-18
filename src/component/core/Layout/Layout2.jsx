@@ -214,13 +214,13 @@ style={{color: 'white'}}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 
-        <div class="col-span-11  mt-[5%] ...">
+        <div className="col-span-11  mt-[5%] ...">
           <SubNavbar />
           <div className='grid grid-cols-12 ps-8 pt-[6%] gap-8'>
             <div className="col-span-8">
               {children}
             </div>
-            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[3%]"}`}>
+            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[3%] "} `}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }
