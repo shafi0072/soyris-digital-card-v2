@@ -50,6 +50,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
   );
+  console.log(phoneData)
   // website
   const [websiteData, setWebsiteData] = useState(
     [...Array(feilds.filter((item) => item === "Website").length)].map(() => "")
@@ -513,6 +514,7 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
+    // console.log(filteredPhoneData)
 
   const websiteArray = Array.isArray(userCardData?.fields?.website)
     ? userCardData.fields.website
@@ -704,6 +706,7 @@ const Content = ({ feilds, setFeilds }) => {
   //   : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
+  // console.log(updatedPhoneArray)
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
   const updatedEmailArray = [...emailArray, ...filteredEmailData];
   const updatedAddressArray = [...addressArray, ...filteredAddressData];
@@ -736,7 +739,7 @@ const Content = ({ feilds, setFeilds }) => {
   useEffect(() => {
     setNewFeilds({
       fields: {
-        Phone: updatedPhoneArray,
+        Phone: filteredPhoneData,
         website: updatedWebsiteArray,
         email: updatedEmailArray,
         address: updatedAddressArray,

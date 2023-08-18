@@ -492,17 +492,19 @@ const RightSidebar = () => {
           )}
         </div>
         {/* pdf here  */}
-        <Pdf userCardData={userCardData} newFeilds={newFeilds} userData={userData} />
+        <Pdf
+          userCardData={userCardData}
+          newFeilds={newFeilds}
+          userData={userData}
+        />
         {/* notes here */}
         {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
           <div className="my-5">
             <p className="italic">{userCardData?.fields?.notes[0]}</p>
           </div>
         )}
-        
-          
-      
-        { newFeilds?.fields?.notes && (
+
+        {newFeilds?.fields?.notes && (
           <div className="my-5">
             <p className="italic">{newFeilds?.fields?.notes}</p>
           </div>
