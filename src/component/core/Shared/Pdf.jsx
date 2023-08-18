@@ -17,7 +17,8 @@ const Pdf = ({ newFeilds, userCardData, userData }) => {
   };
   return (
     <>
-      {userCardData?.fields?.pdf[0] && !newFeilds?.fields?.pdf && (
+      <div className={`${!userCardData?.fields?.pdf.length > 0 && !newFeilds?.fields?.pdf ?  'hidden' : 'block mt-5' } `}>
+      {userCardData?.fields?.pdf.length > 0 && newFeilds?.fields?.pdf?.length == 0  &&(
         <div className="mt-5">
           <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
             More Details
@@ -33,7 +34,7 @@ const Pdf = ({ newFeilds, userCardData, userData }) => {
           </div>
         </div>
       )}
-      {newFeilds?.fields?.pdf && (
+      {newFeilds?.fields?.pdf.length > 0 && (
         <div className="mt-5">
           <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
             More Details
@@ -49,6 +50,7 @@ const Pdf = ({ newFeilds, userCardData, userData }) => {
           </div>
         </div>
       )}
+      </div>
     </>
   );
 };
