@@ -174,7 +174,7 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // date
   const [dateData, setDataData] = useState(
-    [...Array(feilds.filter((item) => item === "Date").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "dateData").length)].map(() => "")
   );
   // qr ---
   const [qrData, setQrData] = useState(
@@ -645,8 +645,8 @@ const Content = ({ feilds, setFeilds }) => {
     ? noteData.filter((item) => item !== undefined)
     : [];
   // data
-  const dateArray = Array.isArray(userCardData?.fields?.Date)
-    ? userCardData.fields.Date
+  const dateArray = Array.isArray(userCardData?.fields?.dateData)
+    ? userCardData.fields.dateData
     : [];
   const filteredDateData = Array.isArray(dateData)
     ? dateData.filter((item) => item !== undefined)
@@ -754,7 +754,7 @@ const Content = ({ feilds, setFeilds }) => {
         pinterest: updatedPinterestArray,
         tikTok: updatedTiktokArray,
         notes: updatedNoteArray,
-        Date: updatedDateArray,
+        dateData: updatedDateArray,
         QR: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
@@ -828,7 +828,7 @@ const Content = ({ feilds, setFeilds }) => {
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
           notes: updatedNoteArray,
-          Date: updatedDateArray,
+          dateData: updatedDateArray,
           QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
@@ -1232,6 +1232,19 @@ const Content = ({ feilds, setFeilds }) => {
                   items={items}
                   from={true}
                 />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.dateData?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+              <Date
+                    index={index}
+                    handleDateInputChange={handleDateInputChange}
+                    dateData={dateData}
+                    items={items}
+                  from={true}
+                  />
               </div>
             </Draggable>
           ))}
