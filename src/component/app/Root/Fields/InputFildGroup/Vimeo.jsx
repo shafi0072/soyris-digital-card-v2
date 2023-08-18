@@ -43,12 +43,12 @@ const Vimeo = ({ index, handleVimeoInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`data`}
+            name={`vimeo`}
             defaultValue={items}
             onChange={(e) =>
               handleVimeoInputChange(
                 index,
-                `data`,
+                `vimeo`,
                 e.target.value
               )
             }

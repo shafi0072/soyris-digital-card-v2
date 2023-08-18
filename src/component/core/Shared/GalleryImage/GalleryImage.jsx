@@ -2,7 +2,8 @@ import React from 'react';
 
 const GalleryImage = ({newFeilds,userCardData}) => {
 
-    const saveImage = newFeilds?.fields?.galary?.length >0 ?  newFeilds?.fields?.galary : userCardData?.fields?.galary?.length >0 ? userCardData?.fields?.galary: []  ;
+    // const saveImage = newFeilds?.fields?.galary?.length >0 ?  newFeilds?.fields?.galary : userCardData?.fields?.galary?.length >0 ? userCardData?.fields?.galary: []  ;
+    const saveImage = newFeilds?.fields?.galary?.length > 0 ? newFeilds?.fields?.galary : userCardData?.fields?.galary?.length > 0 ? userCardData?.fields?.galary :null
     return (
         <div>
            

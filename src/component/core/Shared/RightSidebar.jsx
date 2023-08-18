@@ -26,7 +26,7 @@ const RightSidebar = () => {
   console.log({ newFeilds });
 
   return (
-    <div className="scroll-hide max-h-[90vh] overflow-y-scroll">
+    <div className="scroll-hide max-h-[76vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
         {design === "classic" && (
           <Classic
@@ -441,34 +441,30 @@ const RightSidebar = () => {
           )}
         </div>
         {/* image */}
-        {userCardData?.fields?.image.toReversed()[0] &&
-          !newFeilds?.fields?.image && (
-            
-           <div>image 2</div>
-            
-          )}
-        {newFeilds?.fields?.image && (
-          <div className={`
+        {/* {userCardData?.fields?.image.toReversed()[0] &&
+          !newFeilds?.fields?.image && <div>image 2</div>} */}
+        {newFeilds?.fields?.image?.image && (
+          <div
+            className={`
           my-5 w-full  relative h-[300px] flex
           ${
             newFeilds?.fields?.image?.alignment === "left"
               ? "justify-start"
-              : newFeilds?.fields?.image?.alignment ===
-                "center"
+              : newFeilds?.fields?.image?.alignment === "center"
               ? "justify-center"
               : "justify-end"
           }
-          `}>
+          `}
+          >
             <img
               className="h-[250px] object-cover rounded"
-              src={newFeilds?.fields?.image?.image}
+              src={newFeilds?.fields?.image?.image || ''}
               alt=""
               style={{
-                width: `${newFeilds?.fields?.image?.width}%`
+                width: `${newFeilds?.fields?.image?.width}%`,
               }}
             />
           </div>
-          
         )}
         {/* gallery images here */}
         {userCardData?.fields?.galary && (
@@ -477,13 +473,11 @@ const RightSidebar = () => {
           </div>
         )}
 
-        <div className="mt-5">
-          {userCardData?.fields?.youTube > 0 && (
-            <YouTube userCardData={userCardData} newFeilds={newFeilds} />
-          )}
-        </div>
+        {/* YouTube */}
+        <YouTube userCardData={userCardData} newFeilds={newFeilds} />
+
         {/* vimeo */}
-        <Vimeo userCardData={userCardData} newFeilds={newFeilds}/>
+        <Vimeo userCardData={userCardData} newFeilds={newFeilds} />
 
         {/* notes here */}
         {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
@@ -564,7 +558,7 @@ const RightSidebar = () => {
           </div>
         )}
         {userCardData?.fields?.QR[0]?.QrCode && (
-          <div className="my-5">
+          <div className="mt-5">
             <DottedQRCode value={userCardData?.fields?.QR[0]?.QrCode} />
           </div>
         )}

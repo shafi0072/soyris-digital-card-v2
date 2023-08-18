@@ -72,7 +72,7 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // image -----------
   const [image, setImage] = useState(
-    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => null)
   );
   const [align, setAlign] = useState(userCardData?.fields?.image[0]?.alignment || 'center');
   console.log('align',userCardData?.fields?.image[0]?.alignment);
@@ -774,13 +774,13 @@ const Content = ({ feilds, setFeilds }) => {
         pinterest: updatedPinterestArray,
         tikTok: updatedTiktokArray,
         notes: updatedNoteArray?.reverse()[0]?.note,
-        vimeo: updatedVimeoArray?.reverse()[0]?.data,
+        vimeo: updatedVimeoArray?.reverse()[0]?.vimeo,
         wistia: updatedWistiaArray?.reverse()[0]?.data,
         dateData: updatedDateArray,
         QR: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
-        youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
+        youTube: updatedYouTubeArray[0]?.youtube,
         image: updatedImageArray?.reverse()[0],
         galary: updatedGalaryArray,
         pdf: updatedPdfArray,
@@ -843,7 +843,7 @@ const Content = ({ feilds, setFeilds }) => {
           signal: updatedSignalArray,
           telegram: updatedTelegramArray,
           discord: updatedDiscordArray,
-          youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
+          youTube: updatedYouTubeArray[0]?.youtube,
           slack: updatedSlackArray,
           facebook: updatedFacebookArray,
           instagram: updatedInstagramArray,
@@ -852,7 +852,7 @@ const Content = ({ feilds, setFeilds }) => {
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
           notes: updatedNoteArray?.reverse()[0]?.note,
-          vimeo: updatedVimeoArray?.reverse()[0]?.data,
+          vimeo: updatedVimeoArray?.toReversed()[0]?.vimeo,
           wistia: updatedWistiaArray?.reverse()[0]?.data,
           dateData: updatedDateArray,
           QR: updatedQrArray,
