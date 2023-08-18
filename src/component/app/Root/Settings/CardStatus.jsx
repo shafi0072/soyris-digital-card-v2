@@ -6,19 +6,19 @@ import Swal from 'sweetalert2';
 
 const CardStatus = () => {
     const {settings} = useContext(userContext)
-    const [cardStatus,setCardStatus] = useState(false);
-    const {userData} = useContext(userContext);
+    const [cardStatus,setCardStatus] = useState(settings?.cardStatus);
+    const {userData,userCardData} = useContext(userContext);
 
     // handle card status
     const handleCardStatus = ()=>{
         var raw = JSON.stringify({
             setting: {
               cardName: settings.cardName,
-              cardStatus: cardStatus,
+              cardStatus: !cardStatus,
               url: settings.url,
             },
           });
-        fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
+        fetch(`${baseUrl}/cards/profile/setting/${userCardData?._id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: raw,
