@@ -45,7 +45,11 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
-
+  const {loading, userData, userCardData, newFeilds, setNewFeilds } =
+    useContext(userContext);
+    if(loading){
+      return 'Loading...';
+    }
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
@@ -68,10 +72,11 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // image -----------
   const [image, setImage] = useState(
-    [...Array(feilds.filter((item) => item === "image").length)].map(() => {})
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => "")
   );
-  const [align, setAlign] = useState("center");
-  const [imageWidth, setImageWidth] = useState(50);
+  const [align, setAlign] = useState(userCardData?.fields?.image[0]?.alignment || 'center');
+  console.log('align',userCardData?.fields?.image[0]?.alignment);
+  const [imageWidth, setImageWidth] = useState(userCardData?.fields?.image[0]?.width || 50 );
   // gallery ---------
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
@@ -158,11 +163,11 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // Vimeo
   const [vimeoData, setVimeoData] = useState(
-    [...Array(feilds.filter((item) => item === "Vimeo").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "vimeo").length)].map(() => "")
   );
   // Wistia
   const [wistiaData, setWistiaData] = useState(
-    [...Array(feilds.filter((item) => item === "Wistia").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "wistia").length)].map(() => "")
   );
   // pdf
   const [pdfData, setPdfData] = useState(
@@ -174,7 +179,9 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // date
   const [dateData, setDataData] = useState(
-    [...Array(feilds.filter((item) => item === "Date").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "dateData").length)].map(
+      () => ""
+    )
   );
   // qr ---
   const [qrData, setQrData] = useState(
@@ -191,8 +198,6 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const { userData, userCardData, newFeilds, setNewFeilds } =
-    useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
     setPhoneData((prevPhoneData) => {
@@ -476,12 +481,11 @@ const Content = ({ feilds, setFeilds }) => {
   const handleQRInputChange = (index, field, value) => {
     setQrData([
       {
-        width:qrWidth,
+        width: qrWidth,
         alignment: qrAlign,
-        QrCode: value
-      }
-    ])
-      
+        QrCode: value,
+      },
+    ]);
   };
   // header
   const handleHeaderInputChange = (index, field, value) => {
@@ -652,8 +656,8 @@ const Content = ({ feilds, setFeilds }) => {
     ? dateData.filter((item) => item !== undefined)
     : [];
   // qr
-  const qrArray = Array.isArray(userCardData?.fields?.qr)
-    ? userCardData.fields.qr
+  const qrArray = Array.isArray(userCardData?.fields?.QR)
+    ? userCardData.fields.QR
     : [];
   const filteredQrData = Array.isArray(qrData)
     ? qrData.filter((item) => item !== undefined)
@@ -678,6 +682,20 @@ const Content = ({ feilds, setFeilds }) => {
     : [];
   const filteredYouTubeData = Array.isArray(youtubeData)
     ? youtubeData.filter((item) => item !== undefined)
+    : [];
+  // vimeo
+  const vimeoArray = Array.isArray(userCardData?.fields?.vimeo)
+    ? userCardData.fields.vimeo
+    : [];
+  const filteredVimeoData = Array.isArray(vimeoData)
+    ? vimeoData.filter((item) => item !== undefined)
+    : [];
+  // wistia
+  const wistiaArray = Array.isArray(userCardData?.fields?.wistia)
+    ? userCardData.fields.wistia
+    : [];
+  const filteredWistiaData = Array.isArray(wistiaData)
+    ? wistiaData.filter((item) => item !== undefined)
     : [];
   // image
   const imageArray = Array.isArray(userCardData?.fields?.image)
@@ -730,6 +748,8 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedImageArray = [...imageArray, ...filteredImageData];
   const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
   const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  const updatedVimeoArray = [...vimeoArray, ...filteredVimeoData];
+  const updatedWistiaArray = [...wistiaArray, ...filteredWistiaData];
 
   useEffect(() => {
     setNewFeilds({
@@ -753,13 +773,15 @@ const Content = ({ feilds, setFeilds }) => {
         linkedIn: updatedLinkedinArray,
         pinterest: updatedPinterestArray,
         tikTok: updatedTiktokArray,
-        notes: updatedNoteArray,
-        Date: updatedDateArray,
+        notes: updatedNoteArray?.reverse()[0]?.note,
+        vimeo: updatedVimeoArray?.reverse()[0]?.data,
+        wistia: updatedWistiaArray?.reverse()[0]?.data,
+        dateData: updatedDateArray,
         QR: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
         youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
-        image: updatedImageArray,
+        image: updatedImageArray?.reverse()[0],
         galary: updatedGalaryArray,
         pdf: updatedPdfArray,
       },
@@ -794,6 +816,9 @@ const Content = ({ feilds, setFeilds }) => {
     image,
     galary,
     pdf,
+    linkedinData,
+    align,
+    imageWidth,
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -826,12 +851,14 @@ const Content = ({ feilds, setFeilds }) => {
           linkedIn: updatedLinkedinArray,
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
-          notes: updatedNoteArray,
-          Date: updatedDateArray,
+          notes: updatedNoteArray?.reverse()[0]?.note,
+          vimeo: updatedVimeoArray?.reverse()[0]?.data,
+          wistia: updatedWistiaArray?.reverse()[0]?.data,
+          dateData: updatedDateArray,
           QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
-          image: updatedImageArray,
+          image: updatedImageArray?.reverse()[0],
           galary: updatedGalaryArray,
           pdf: updatedPdfArray,
         },
@@ -1228,6 +1255,19 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handleDriverInputChange={handleDriverInputChange}
                   driverData={driverData}
+                  items={items}
+                  from={true}
+                />
+              </div>
+            </Draggable>
+          ))}
+          {userCardData?.fields?.dateData?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Date
+                  index={index}
+                  handleDateInputChange={handleDateInputChange}
+                  dateData={dateData}
                   items={items}
                   from={true}
                 />
