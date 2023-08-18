@@ -54,6 +54,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
   );
+  console.log(phoneData)
   // website
   const [websiteData, setWebsiteData] = useState(
     [...Array(feilds.filter((item) => item === "Website").length)].map(() => "")
@@ -85,6 +86,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [pdf, setPdf] = useState(
     [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
   );
+  // console.log(pdf)
 
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
@@ -98,32 +100,32 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // skype
   const [skypeData, setSkypeData] = useState(
-    [...Array(feilds.filter((item) => item === "Skype").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "skype").length)].map(() => "")
   );
   // snapChat
   const [snapChatData, setSnapChatData] = useState(
-    [...Array(feilds.filter((item) => item === "SnapChat").length)].map(
+    [...Array(feilds.filter((item) => item === "snapChat").length)].map(
       () => ""
     )
   );
   // signal
   const [signalData, setSignalData] = useState(
-    [...Array(feilds.filter((item) => item === "Signal").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "signal").length)].map(() => "")
   );
   // telegram------
   const [telegramData, setTelegramData] = useState(
-    [...Array(feilds.filter((item) => item === "Telegram").length)].map(
+    [...Array(feilds.filter((item) => item === "telegram").length)].map(
       () => ""
     )
   );
 
   // discord ----
   const [discordData, setDiscordData] = useState(
-    [...Array(feilds.filter((item) => item === "Discord").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "discord").length)].map(() => "")
   );
   // slack
   const [slackData, setSlackData] = useState(
-    [...Array(feilds.filter((item) => item === "Slack").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "slack").length)].map(() => "")
   );
   // facebook
   const [facebookData, setFacebookData] = useState(
@@ -446,16 +448,16 @@ const Content = ({ feilds, setFeilds }) => {
   };
 
   // pdf
-  const handlePdfInputChange = (index, field, value) => {
-    setPdfData((prevPdfData) => {
-      const newData = [...prevPdfData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
-  };
+  // const handlePdfInputChange = (index, field, value) => {
+  //   setPdfData((prevPdfData) => {
+  //     const newData = [...prevPdfData];
+  //     newData[index] = {
+  //       ...newData[index],
+  //       [field]: value,
+  //     };
+  //     return newData;
+  //   });
+  // };
   const handleNoteInputChange = (index, field, value) => {
     setNoteData((prevNoteData) => {
       const newData = [...prevNoteData];
@@ -515,6 +517,7 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
+    // console.log(filteredPhoneData)
 
   const websiteArray = Array.isArray(userCardData?.fields?.website)
     ? userCardData.fields.website
@@ -649,8 +652,8 @@ const Content = ({ feilds, setFeilds }) => {
     ? noteData.filter((item) => item !== undefined)
     : [];
   // data
-  const dateArray = Array.isArray(userCardData?.fields?.Date)
-    ? userCardData.fields.Date
+  const dateArray = Array.isArray(userCardData?.fields?.dateData)
+    ? userCardData.fields.dateData
     : [];
   const filteredDateData = Array.isArray(dateData)
     ? dateData.filter((item) => item !== undefined)
@@ -720,6 +723,7 @@ const Content = ({ feilds, setFeilds }) => {
     : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
+  // console.log(updatedPhoneArray)
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
   const updatedEmailArray = [...emailArray, ...filteredEmailData];
   const updatedAddressArray = [...addressArray, ...filteredAddressData];
@@ -754,19 +758,19 @@ const Content = ({ feilds, setFeilds }) => {
   useEffect(() => {
     setNewFeilds({
       fields: {
-        Phone: updatedPhoneArray,
-        website: updatedWebsiteArray,
-        email: updatedEmailArray,
-        address: updatedAddressArray,
-        link: updatedLinkArray,
-        whatsApp: updatedWhatsAppArray,
-        viber: updatedViberArray,
-        skype: updatedSkypeArray,
-        snapchat: updatedSnapchatArray,
-        signal: updatedSignalArray,
-        telegram: updatedTelegramArray,
-        discord: updatedDiscordArray,
-        slack: updatedSlackArray,
+        Phone: filteredPhoneData,
+        website: filteredWebsiteData,
+        email: filteredEmailData,
+        address: filteredAddressData,
+        link: filteredLinkData,
+        whatsApp: filteredWhatsAppData,
+        viber: filteredViberData,
+        skype: filteredSkypeData,
+        snapchat: filteredSnapchatData,
+        signal: filteredSignalData,
+        telegram: filteredTelegramData,
+        discord: filteredDiscordData,
+        slack: filteredSlackData,
         facebook: updatedFacebookArray,
         instagram: updatedInstagramArray,
         twitter: updatedTwitterArray,
@@ -783,7 +787,7 @@ const Content = ({ feilds, setFeilds }) => {
         youTube: updatedYouTubeArray[0]?.youtube,
         image: updatedImageArray?.reverse()[0],
         galary: updatedGalaryArray,
-        pdf: updatedPdfArray,
+        pdf: pdf,
       },
     });
   }, [
@@ -799,6 +803,7 @@ const Content = ({ feilds, setFeilds }) => {
     addressData,
     linkData,
     skypeData,
+    snapChatData,
     viberData,
     telegramData,
     signalData,
@@ -808,7 +813,7 @@ const Content = ({ feilds, setFeilds }) => {
     tiktokData,
     youtubeData,
     vimeoData,
-    pdfData,
+    // pdfData,
     wistiaData,
     noteData,
     dateData,
@@ -860,7 +865,7 @@ const Content = ({ feilds, setFeilds }) => {
           divider: updatedDividerArray,
           image: updatedImageArray?.reverse()[0],
           galary: updatedGalaryArray,
-          pdf: updatedPdfArray,
+          pdf: pdf,
         },
       }),
     })
@@ -1180,7 +1185,7 @@ const Content = ({ feilds, setFeilds }) => {
               <div className="mb-2">
                 <PDF
                   items={userCardData?.fields?.pdf}
-                  index={index}
+                  // index={index}
                   pdf={pdf}
                   setPdf={setPdf}
                   from={true}
