@@ -44,7 +44,7 @@ const Slack = ({ index, handleSlackInputChange, items, from }) => {
         <div className="w-full relative ">
           <input
             name={`number`}
-            // defaultValue={`${items?.slackUserName + index + 1}`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleSlackInputChange(
                 index,
@@ -79,7 +79,7 @@ const Slack = ({ index, handleSlackInputChange, items, from }) => {
         <div className="w-full relative ">
           <input
             name={`label`}
-            // defaultValue={`${items?.slackNumber + index + 1}`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleSlackInputChange(
                 index,
