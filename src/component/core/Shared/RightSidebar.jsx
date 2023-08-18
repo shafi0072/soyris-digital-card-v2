@@ -9,6 +9,7 @@ import GalleryImage from "./GalleryImage/GalleryImage";
 import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 import Moment from "react-moment";
 import Pdf from "./Pdf";
+import Vimeo from "./Vimeo";
 
 const RightSidebar = () => {
   const {
@@ -440,41 +441,28 @@ const RightSidebar = () => {
             </a>
           )}
         </div>
-        {userCardData?.fields?.image.toReversed()[0] &&
-          !newFeilds?.fields?.image.toReversed()[0] && (
-            <div
-              className={`
-            my-5 w-full relative h-[300px] flex
-            ${
-              userCardData?.fields?.image.toReversed()[0].alignment === "left"
-                ? "items-start"
-                : userCardData?.fields?.image.toReversed()[0].alignment ===
-                  "center"
-                ? "items-center"
-                : "items-end"
-            }
-            `}
-            >
-              <img
-                className={`h-[250px] object-cover rounded`}
-                src={userCardData?.fields?.image.toReversed()[0]?.image}
-                alt=""
-                style={{
-                  width: `${
-                    userCardData?.fields?.image.toReversed?.width + "%"
-                  }`,
-                }}
-              />
-            </div>
-          )}
-        {newFeilds?.fields?.image.toReversed()[0] && (
-          <div className="my-5">
+        {/* image */}
+        {/* {userCardData?.fields?.image.toReversed()[0] &&
+          !newFeilds?.fields?.image && <div>image 2</div>} */}
+        {newFeilds?.fields?.image?.image && (
+          <div
+            className={`
+          my-5 w-full  relative h-[300px] flex
+          ${
+            newFeilds?.fields?.image?.alignment === "left"
+              ? "justify-start"
+              : newFeilds?.fields?.image?.alignment === "center"
+              ? "justify-center"
+              : "justify-end"
+          }
+          `}
+          >
             <img
               className="h-[250px] object-cover rounded"
-              src={newFeilds?.fields?.image.toReversed()[0].image}
+              src={newFeilds?.fields?.image?.image || ''}
               alt=""
               style={{
-                width: `${userCardData?.fields?.image.toReversed?.width + "%"}`,
+                width: `${newFeilds?.fields?.image?.width}%`,
               }}
             />
           </div>
@@ -497,6 +485,12 @@ const RightSidebar = () => {
           newFeilds={newFeilds}
           userData={userData}
         />
+        {/* YouTube */}
+        <YouTube userCardData={userCardData} newFeilds={newFeilds} />
+
+        {/* vimeo */}
+        <Vimeo userCardData={userCardData} newFeilds={newFeilds} />
+
         {/* notes here */}
         {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
           <div className="my-5">
@@ -576,7 +570,7 @@ const RightSidebar = () => {
           </div>
         )}
         {userCardData?.fields?.QR[0]?.QrCode && (
-          <div className="my-5">
+          <div className="mt-5">
             <DottedQRCode value={userCardData?.fields?.QR[0]?.QrCode} />
           </div>
         )}
