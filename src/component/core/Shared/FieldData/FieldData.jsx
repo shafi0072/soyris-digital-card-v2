@@ -307,7 +307,7 @@ const FieldData = ({ userData, newFeilds }) => {
   const address = <HomeIcon />;
   return (
     <div>
-      {userData?.fields?.Phone?.map((items, index) => (
+      {/* { userData?.fields?.Phone?.map((items, index) => (
         <Data1
           color={color}
           icon={phoneIcon}
@@ -315,7 +315,7 @@ const FieldData = ({ userData, newFeilds }) => {
           extra={items?.Code}
           label={items?.choiceLabel}
         />
-      ))}
+      ))} */}
       {newFeilds?.fields?.Phone?.map((items, index) => {
         const formatted = `(${items?.Number.substring(
           0,
@@ -335,6 +335,7 @@ const FieldData = ({ userData, newFeilds }) => {
           />
         );
       })}
+
       {userData?.fields?.website?.map((items, index) => (
         <Data1
           color={color}

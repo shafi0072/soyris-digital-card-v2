@@ -23,8 +23,8 @@ const RightSidebar = () => {
     logoImage,
     infos,
   } = useContext(userContext);
-  console.log({ userCardData });
-  console.log({ newFeilds });
+  // console.log({ userCardData });
+  // console.log({ newFeilds });
 
   return (
     <div className="scroll-hide h-[76vh] overflow-y-scroll">

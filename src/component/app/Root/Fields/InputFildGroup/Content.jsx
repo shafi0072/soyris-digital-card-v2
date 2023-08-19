@@ -202,8 +202,10 @@ const Content = ({ feilds, setFeilds }) => {
 
   // phone
   const handlePhoneInputChange = (index, field, value) => {
+    console.log({index});
     setPhoneData((prevPhoneData) => {
       const newData = [...prevPhoneData];
+     
       newData[index] = {
         ...newData[index],
         [field]: value,
@@ -214,6 +216,7 @@ const Content = ({ feilds, setFeilds }) => {
 
   // website
   const handleWebsiteInputChange = (index, field, value) => {
+    console.log('index',index);
     setWebsiteData((prevWebsiteData) => {
       const newData = [...prevWebsiteData];
       newData[index] = {
@@ -517,7 +520,7 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
-    // console.log(filteredPhoneData)
+    // console.log({filteredPhoneData})
 
   const websiteArray = Array.isArray(userCardData?.fields?.website)
     ? userCardData.fields.website
@@ -758,7 +761,7 @@ const Content = ({ feilds, setFeilds }) => {
   useEffect(() => {
     setNewFeilds({
       fields: {
-        Phone: filteredPhoneData,
+        Phone: updatedPhoneArray,
         website: filteredWebsiteData,
         email: filteredEmailData,
         address: filteredAddressData,
@@ -890,6 +893,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handlePhoneInputChange={handlePhoneInputChange}
                   phoneData={phoneData}
+                  setPhoneData={setPhoneData}
                   from={true}
                 />
               </div>

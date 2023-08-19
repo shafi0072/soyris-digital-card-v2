@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -7,8 +7,11 @@ import { useEffect } from "react";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { baseUrl } from "@/src/config/Server";
-const Phone = ({ index, handlePhoneInputChange, items, from }) => {
-
+import { userContext } from "@/src/Storage/ContextApi";
+const Phone = ({ index,phoneData, handlePhoneInputChange, items, from }) => {
+  const {userCardData}= useContext(userContext);
+  let n = userCardData?.fields?.Phone?.length > 0 ? userCardData.fields?.Phone?.length +1 : index
+  console.log({n});
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const handleRemoveFields = () => {
@@ -30,6 +33,7 @@ const Phone = ({ index, handlePhoneInputChange, items, from }) => {
   })
   .catch(error => console.log('error', error));
   }
+
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
