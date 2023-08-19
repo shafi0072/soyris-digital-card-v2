@@ -807,7 +807,13 @@ export const field_data = [
             />
           </svg>
         ),
-        
+
+        fields: {
+          url: "",
+          type: "Youtube",
+          pleaceholder: "tiktok.com/@username",
+          icon: tiktokIcon,
+        },
       },
       {
         name: "Vimeo",
@@ -1127,5 +1133,3 @@ export const field_data = [
     ],
   },
 ];
-
-

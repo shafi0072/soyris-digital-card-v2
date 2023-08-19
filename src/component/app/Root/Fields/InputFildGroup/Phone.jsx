@@ -8,7 +8,14 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { baseUrl } from "@/src/config/Server";
 import { userContext } from "@/src/Storage/ContextApi";
-const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
+const Phone = ({
+  index,
+  phoneData,
+  handlePhoneInputChange,
+  items,
+  from,
+  handleFieldChange,
+}) => {
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const handleRemoveFields = () => {
@@ -30,6 +37,8 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
       .catch((error) => console.log("error", error));
   };
 
+  console.log({ items });
+
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -49,33 +58,68 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {useInternationalNumber &&  (
+        {useInternationalNumber && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
           >
-            {items?.type !== "Address" ? (
-              <input
-                type="text"
-                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
-                placeholder={items?.pleaceholder}
-              />
-            ) : (
-              <textarea
-                name={`location`}
-                onChange={(e) =>
-                  handleAddressInputChange(index, `location`, e.target.value)
-                }
-                placeholder={items?.pleaceholder}
-                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
-              ></textarea>
-            )}
+            <input
+              type="text"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+              placeholder={items?.pleaceholder}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "number", e.target.value)
+              }
+            />
+
             <label htmlFor="" className="absolute top-1/4 left-2">
               {items?.icon}
             </label>
           </div>
         )}
+
+        {items?.hasOwnProperty("url") && (
+          <div
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
+          >
+            <input
+              type="text"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+              placeholder={items?.pleaceholder}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "url", e.target.value)
+              }
+            />
+            <label htmlFor="" className="absolute top-1/4 left-2">
+              {items?.icon}
+            </label>
+          </div>
+        )}
+        {items?.hasOwnProperty("address") && (
+          <div
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
+            placeholder={items?.pleaceholder}
+            onChange={(e) =>
+              handleFieldChange(items?.id, "address", e.target.value)
+            }
+          >
+            <textarea
+              placeholder="Enter your address"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
+            >
+              {items?.location}
+            </textarea>
+            <label htmlFor="" className="absolute top-1/4 left-2">
+              {items?.icon}
+            </label>
+          </div>
+        )}
+
         {!useInternationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
@@ -96,7 +140,7 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
               name={"Code"}
               defaultValue={items?.Code}
               onChange={(e) =>
-                handlePhoneInputChange(index, "Code", e.target.value)
+                handleFieldChange(items?.id, "ext", e.target.value)
               }
               className="border w-full border-[#C1C1C1] rounded-xl py-1 pl-4"
             />
@@ -194,7 +238,7 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
           <div className="w-full relative ">
             <input
               onChange={(e) =>
-                handleWebsiteInputChange(index, `label`, e.target.value)
+                handleFieldChange(items?.id, "displayUrl", e.target.value)
               }
               type="text"
               placeholder={items?.displayPleaceHolder}
@@ -221,89 +265,44 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
       )}
 
       {/* not phone */}
-      {items?.type !== "Phone" &&
-        items?.type !== "Facebook" &&
-        items?.type !== "Twitter" &&
-        items?.type !== "Instagram" &&
-        items?.type !== "Pinterest" &&
-        items?.type !== "Tiktok" &&
-        items?.type !== "LinkedIn" &&
-        items?.type !== "Image" &&
-        items?.type !== "Galary" &&
-         (
-          <div className="my-3">
-            <div className="w-full relative ">
-              <input
-                defaultValue={items?.label}
-                onChange={(e) =>
-                  handleWebsiteInputChange(index, `label`, e.target.value)
-                }
-                type="text"
-                placeholder={items?.labelPleaceholder}
-                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
-              />
-              <label htmlFor="" className="absolute top-3 left-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14.221"
-                  height="13.431"
-                  viewBox="0 0 14.221 13.431"
-                >
-                  <path
-                    id="text-tool-svgrepo-com"
-                    d="M3,4.79A.79.79,0,0,1,3.79,4H16.431a.79.79,0,0,1,.79.79V6.37a.79.79,0,1,1-1.58,0V5.58H10.9V15.851h1.58a.79.79,0,0,1,0,1.58H7.74a.79.79,0,0,1,0-1.58H9.32V5.58H4.58v.79A.79.79,0,0,1,3,6.37Z"
-                    transform="translate(-3 -4)"
-                    fill="#989898"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </label>
-            </div>
+      {items?.hasOwnProperty("label") && (
+        <div className="my-3">
+          <div className="w-full relative ">
+            <input
+              defaultValue={items?.label}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "label", e.target.value)
+              }
+              type="text"
+              placeholder={items?.labelPleaceholder}
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+            />
+            <label htmlFor="" className="absolute top-3 left-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14.221"
+                height="13.431"
+                viewBox="0 0 14.221 13.431"
+              >
+                <path
+                  id="text-tool-svgrepo-com"
+                  d="M3,4.79A.79.79,0,0,1,3.79,4H16.431a.79.79,0,0,1,.79.79V6.37a.79.79,0,1,1-1.58,0V5.58H10.9V15.851h1.58a.79.79,0,0,1,0,1.58H7.74a.79.79,0,0,1,0-1.58H9.32V5.58H4.58v.79A.79.79,0,0,1,3,6.37Z"
+                  transform="translate(-3 -4)"
+                  fill="#989898"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </label>
           </div>
-        )}
-        {
-          items.hasOwnProperty("image") &&
-          <div>
-             <label
+        </div>
+      )}
+      {items.hasOwnProperty("image") && (
+        <div>
+          <label
             htmlFor="profileImage"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
           >
-            <span>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="13"
-                height="12.587"
-                viewBox="0 0 13 12.587"
-              >
-                <g
-                  id="Group_5"
-                  data-name="Group 5"
-                  transform="translate(0.399 0.026)"
-                >
-                  <line
-                    id="Line_1"
-                    data-name="Line 1"
-                    x2="13"
-                    transform="translate(-0.399 6.21)"
-                    fill="none"
-                    stroke="#0277b5"
-                    stroke-width="2.5"
-                  />
-                  <path
-                    id="Path_516"
-                    data-name="Path 516"
-                    d="M0,0,.13,6.268l.13,6.268"
-                    transform="translate(5.741 0)"
-                    fill="none"
-                    stroke="#0277b5"
-                    stroke-width="2.5"
-                  />
-                </g>
-              </svg> */}
-              {
-                items.icon
-              }
-            </span>
+            <span>{items.icon}</span>
 
             <p className="text-md">Add Media</p>
           </label>
@@ -313,8 +312,8 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
             // onChange={handleFileChange}
             style={{ display: "none" }}
           />
-          </div>
-        }
+        </div>
+      )}
     </div>
   );
 };
