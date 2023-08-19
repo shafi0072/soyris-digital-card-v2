@@ -11,12 +11,10 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
     status: false,
   });
 
-  const handleFieldSelect = (e) => {
-    let fields = [...newFeilds];
-    fields.push({
-      type: e
-    });
-    setNewFeilds(fields);
+  const handleFieldSelect = (e, fields) => {
+    let fieldss = [...newFeilds];
+    fieldss.push({id: newFeilds?.length + 1, ...fields})
+    setNewFeilds(fieldss);
   };
   console.log({newFeilds});
 
@@ -59,7 +57,7 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
                 {items?.fields?.map((item, indes) => (
                   <div
                     key={indes}
-                    onClick={() => handleFieldSelect(item?.name)}
+                    onClick={() => handleFieldSelect(item?.name, item?.fields)}
                     className="bg-gray-100 p-2 text-center rounded"
                   >
                     <div className="flex justify-center mb-2">{item?.icon}</div>

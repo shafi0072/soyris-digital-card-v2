@@ -46,7 +46,7 @@ const Phone = ({ index,phoneData, handlePhoneInputChange, items, from }) => {
               <KeyboardArrowDownIcon />
             </span>
           </div>
-          <h4>Phone</h4>
+          <h4>{items?.type}</h4>
         </div>
         <div onClick={() => from ? handleRemoveFields() : ''}>
           <CloseIcon />
@@ -106,7 +106,7 @@ const Phone = ({ index,phoneData, handlePhoneInputChange, items, from }) => {
             }}
           />
           </div>}
-        <div className="relative w-[25%]">
+        {items?.hasOwnProperty('ext') && <div className="relative w-[25%]">
           <input
             type="text"
             name={"Code"}
@@ -119,7 +119,7 @@ const Phone = ({ index,phoneData, handlePhoneInputChange, items, from }) => {
           <label htmlFor="" className="absolute top-1 left-2 color-[#C1C1C1]">
             #
           </label>
-        </div>
+        </div>}
       </div>
 
       <div class="flex items-center mt-4">
