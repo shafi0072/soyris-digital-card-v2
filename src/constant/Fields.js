@@ -798,7 +798,7 @@ export const field_data = [
         fields: {
           url: "",
           type: "Youtube",
-          pleaceholder: "tiktok.com/@username",
+          pleaceholder: "youtube.com/myvideo/12132a",
           icon: tiktokIcon,
         },
       },

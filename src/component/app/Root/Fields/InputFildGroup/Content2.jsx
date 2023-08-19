@@ -7,7 +7,6 @@ import { baseUrl } from "@/src/config/Server";
 
 const Content2 = () => {
   const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
-
   const onDrop = (dropResult) => {
     if (!dropResult.removedIndex && !dropResult.addedIndex) return;
 
