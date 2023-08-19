@@ -1,3 +1,4 @@
+import DescriptionIcon from '@mui/icons-material/Description';
 export const phoneIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -458,4 +459,16 @@ export const imageIcon = (
       />
     </g>
   </svg>
+);
+
+export const notesIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="17.803" height="18.122" viewBox="0 0 17.803 18.122">
+  <g id="notes-svgrepo-com" transform="translate(0.488 0.47)">
+    <path id="Path_33" data-name="Path 33" d="M11.777,10l4.15,1.112" transform="translate(-3.377 -3.126)" fill="none" stroke="#989898" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_34" data-name="Path 34" d="M11,12.9l2.49.667" transform="translate(-3.267 -3.534)" fill="none" stroke="#989898" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_35" data-name="Path 35" d="M18.437,11.148c-.519,1.938-.779,2.906-1.367,3.535a3.437,3.437,0,0,1-1.728,1,2.385,2.385,0,0,1-.253.045A10.418,10.418,0,0,1,11.6,15.1c-1.938-.519-2.906-.779-3.535-1.367a3.437,3.437,0,0,1-1-1.728c-.2-.838.064-1.807.583-3.745L8.093,6.6c.075-.279.144-.537.21-.778A6.461,6.461,0,0,1,9.46,3.063a3.437,3.437,0,0,1,1.728-1c.838-.2,1.807.064,3.745.583s2.906.779,3.535,1.367a3.437,3.437,0,0,1,1,1.728,4.941,4.941,0,0,1-.2,2.271" transform="translate(-2.704 -2)" fill="none" stroke="#989898" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_36" data-name="Path 36" d="M3.093,15.211c.519,1.938.779,2.906,1.367,3.535a3.437,3.437,0,0,0,1.728,1c.838.2,1.807-.064,3.745-.583s2.906-.779,3.535-1.367a3.437,3.437,0,0,0,.918-1.442M7.6,6.445c-.3.078-.635.167-1,.265C4.66,7.23,3.691,7.49,3.063,8.078a3.437,3.437,0,0,0-1,1.728,4.942,4.942,0,0,0,.2,2.271" transform="translate(-2 -2.626)" fill="none" stroke="#989898" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>
+
 );

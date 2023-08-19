@@ -7,6 +7,7 @@ import {
   instagramIcon,
   linkIcon,
   linkedInIcon,
+  notesIcon,
   phoneIcon,
   pinterestIcon,
   signalIcon,
@@ -719,7 +720,6 @@ export const field_data = [
         fields: {
           image:"",
           type: "Image",
-          // imagePlaceholder: "Add Media",
           icon: imageIcon,
         },
       },
@@ -781,7 +781,6 @@ export const field_data = [
         fields: {
           image:"",
           type: "Galary",
-          // imagePlaceholder: "Add Media",
           icon: imageIcon,
         },
       },
@@ -807,13 +806,7 @@ export const field_data = [
             />
           </svg>
         ),
-
-        fields: {
-          url: "",
-          type: "Youtube",
-          pleaceholder: "tiktok.com/@username",
-          icon: tiktokIcon,
-        },
+        
       },
       {
         name: "Vimeo",
@@ -895,6 +888,11 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          pdf:"",
+          type: "Pdf",
+          icon: imageIcon,
+        },
       },
       {
         name: "Notes",
@@ -950,6 +948,12 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          notes: "",
+          type: "Notes",
+          pleaceholder: "Enter your notes",
+          icon: notesIcon,
+        },
       },
       {
         name: "Date",
@@ -998,6 +1002,13 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          date:"",
+          type: "Date",
+          label:"",
+          labelPleaceholder:"label",
+          icon: imageIcon,
+        },
       },
     ],
   },
@@ -1133,3 +1144,5 @@ export const field_data = [
     ],
   },
 ];
+
+
