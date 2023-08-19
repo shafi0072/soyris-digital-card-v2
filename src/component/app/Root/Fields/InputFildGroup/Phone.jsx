@@ -8,7 +8,14 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { baseUrl } from "@/src/config/Server";
 import { userContext } from "@/src/Storage/ContextApi";
-const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFieldChange }) => {
+const Phone = ({
+  index,
+  phoneData,
+  handlePhoneInputChange,
+  items,
+  from,
+  handleFieldChange,
+}) => {
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const handleRemoveFields = () => {
@@ -30,7 +37,7 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFi
       .catch((error) => console.log("error", error));
   };
 
-  console.log({items})
+  console.log({ items });
 
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
@@ -51,34 +58,70 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFi
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {useInternationalNumber && (
+        {useInternationalNumber && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
           >
-            {items?.type !== "Address" ? (
-              <input
-                type="text"
-                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
-                placeholder={items?.pleaceholder}
-                onChange={e => handleFieldChange(items?.id, 'number', e.target.value)}
-              />
-            ) : (
-              <textarea
-                name={`location`}
-                onChange={(e) =>
-                  handleAddressInputChange(index, `location`, e.target.value)
-                }
-                placeholder={items?.pleaceholder}
-                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
-              ></textarea>
-            )}
+            <input
+              type="text"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+              placeholder={items?.pleaceholder}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "number", e.target.value)
+              }
+            />
+
             <label htmlFor="" className="absolute top-1/4 left-2">
               {items?.icon}
             </label>
           </div>
         )}
+
+        {items?.hasOwnProperty("url") && (
+          <div
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
+          >
+            <input
+              type="text"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+              placeholder={items?.pleaceholder}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "url", e.target.value)
+              }
+            />
+            <label htmlFor="" className="absolute top-1/4 left-2">
+              {items?.icon}
+            </label>
+          </div>
+        )}
+        {items?.hasOwnProperty("address") && (
+          <div
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
+            placeholder={items?.pleaceholder}
+            onChange={(e) =>
+              handleFieldChange(items?.id, "address", e.target.value)
+            }
+          >
+            <textarea
+              
+             
+              placeholder="Enter your address"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
+            >
+              {items?.location}
+            </textarea>
+            <label htmlFor="" className="absolute top-1/4 left-2">
+              {items?.icon}
+            </label>
+          </div>
+        )}
+
         {!useInternationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
@@ -99,7 +142,7 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFi
               name={"Code"}
               defaultValue={items?.Code}
               onChange={(e) =>
-                handlePhoneInputChange(index, "Code", e.target.value)
+                handleFieldChange(items?.id, "ext", e.target.value)
               }
               className="border w-full border-[#C1C1C1] rounded-xl py-1 pl-4"
             />
@@ -197,7 +240,7 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFi
           <div className="w-full relative ">
             <input
               onChange={(e) =>
-                handleWebsiteInputChange(index, `label`, e.target.value)
+                handleFieldChange(items?.id, "displayUrl", e.target.value)
               }
               type="text"
               placeholder={items?.displayPleaceHolder}
@@ -224,19 +267,13 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFi
       )}
 
       {/* not phone */}
-      {items?.type !== "Phone" &&
-        items?.type !== "Facebook" &&
-        items?.type !== "Twitter" &&
-        items?.type !== "Instagram" &&
-        items?.type !== "Pinterest" &&
-        items?.type !== "Tiktok" &&
-        items?.type !== "LinkedIn" && (
+      { items?.hasOwnProperty('label')  && (
           <div className="my-3">
             <div className="w-full relative ">
               <input
                 defaultValue={items?.label}
                 onChange={(e) =>
-                  handleWebsiteInputChange(index, `label`, e.target.value)
+                  handleFieldChange(items?.id, "label", e.target.value)
                 }
                 type="text"
                 placeholder={items?.labelPleaceholder}

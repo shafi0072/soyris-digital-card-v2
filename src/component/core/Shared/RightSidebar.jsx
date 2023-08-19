@@ -48,11 +48,11 @@ const RightSidebar = () => {
         {infos && (
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
-        <div className="my-3">
+        {/* <div className="my-3">
           <FieldData userData={userCardData} newFeilds={newFeilds} />
-        </div>
+        </div> */}
 
-        <div className="mt-5 border-t flex gap-2 pt-3">
+        {/* <div className="mt-5 border-t flex gap-2 pt-3">
           {userCardData?.fields?.facebook[0] &&
             !newFeilds?.fields?.facebook[0] && (
               <a
@@ -440,11 +440,11 @@ const RightSidebar = () => {
               </svg>
             </a>
           )}
-        </div>
+        </div> */}
         {/* image */}
         {/* {userCardData?.fields?.image.toReversed()[0] &&
           !newFeilds?.fields?.image && <div>image 2</div>} */}
-        {newFeilds?.fields?.image?.image && (
+        {/* {newFeilds?.fields?.image?.image && (
           <div
             className={`
           my-5 w-full  relative h-[300px] flex
@@ -466,45 +466,45 @@ const RightSidebar = () => {
               }}
             />
           </div>
-        )}
+        )} */}
         {/* gallery images here */}
-        {userCardData?.fields?.galary && (
+        {/* {userCardData?.fields?.galary && (
           <div className="my-5">
             <GalleryImage userCardData={userCardData} newFeilds={newFeilds} />
           </div>
-        )}
+        )} */}
 
-        <div className="mt-5">
+        {/* <div className="mt-5">
           {userCardData?.fields?.youTube > 0 && (
             <YouTube userCardData={userCardData} newFeilds={newFeilds} />
           )}
-        </div>
+        </div> */}
         {/* pdf here  */}
-        <Pdf
+        {/* <Pdf
           userCardData={userCardData}
           newFeilds={newFeilds}
           userData={userData}
-        />
+        /> */}
         {/* YouTube */}
-        <YouTube userCardData={userCardData} newFeilds={newFeilds} />
+        {/* <YouTube userCardData={userCardData} newFeilds={newFeilds} /> */}
 
         {/* vimeo */}
-        <Vimeo userCardData={userCardData} newFeilds={newFeilds} />
+        {/* <Vimeo userCardData={userCardData} newFeilds={newFeilds} /> */}
 
         {/* notes here */}
-        {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
+        {/* {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
           <div className="my-5">
             <p className="italic">{userCardData?.fields?.notes[0]}</p>
           </div>
-        )}
+        )} */}
 
-        {newFeilds?.fields?.notes && (
+        {/* {newFeilds?.fields?.notes && (
           <div className="my-5">
             <p className="italic">{newFeilds?.fields?.notes}</p>
           </div>
-        )}
+        )} */}
         {/* date here */}
-        {userCardData?.fields?.dateData[0] &&
+        {/* {userCardData?.fields?.dateData[0] &&
           !newFeilds?.fields?.dateData[0] && (
             <div className="my-5 flex gap-4 items-center">
               <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
@@ -535,9 +535,9 @@ const RightSidebar = () => {
                 <p>{userCardData?.fields?.dateData[0]?.funding}</p>
               </div>
             </div>
-          )}
+          )} */}
 
-        {newFeilds?.fields?.dateData[0] && (
+        {/* {newFeilds?.fields?.dateData[0] && (
           <div className="my-5 flex gap-4 items-center">
             <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
               <svg
@@ -563,7 +563,6 @@ const RightSidebar = () => {
                 <Moment format="DD/MM/YYYY">
                   {newFeilds?.fields?.dateData[0]?.date}
                 </Moment>
-                {/* {newFeilds?.fields?.Date[0]?.date} */}
               </p>
               <p>{newFeilds?.fields?.dateData[0]?.funding}</p>
             </div>
@@ -573,7 +572,7 @@ const RightSidebar = () => {
           <div className="mt-5">
             <DottedQRCode value={userCardData?.fields?.QR[0]?.QrCode} />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
