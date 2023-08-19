@@ -730,6 +730,7 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedLinkArray = [...linkArray, ...filteredLinkData];
   const updatedWhatsAppArray = [...whatsAppArray, ...filteredWhatsAppData];
   const updatedViberArray = [...viberArray, ...filteredViberData];
+  // console.log(updatedViberArray);
   const updatedSkypeArray = [...skypeArray, ...filteredSkypeData];
   const updatedSnapchatArray = [...snapchatArray, ...filteredSnapchatData];
   const updatedSignalArray = [...signalArray, ...filteredSignalData];

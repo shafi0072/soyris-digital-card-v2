@@ -5,6 +5,7 @@ import Content from "./InputFildGroup/Content";
 
 const Fields = () => {
   const [feilds, setFeilds] = useState([]);
+  console.log(feilds)
   return (
     <div className="grid grid-cols-3 gap-4">
       <div className="...">
