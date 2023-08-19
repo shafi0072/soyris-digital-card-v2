@@ -18,7 +18,17 @@ const Content2 = () => {
       };
 
       
-
+      const handleFieldChange = (id, fieldName, value) => {
+        setNewFeilds(prevFields =>
+          prevFields.map(field => {
+            if (field.id === id) {
+              return { ...field, [fieldName]: value };
+            }
+            return field;
+          })
+        );
+      };
+      console.log({newFeilds})
       return (
         <>
           <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
@@ -26,7 +36,7 @@ const Content2 = () => {
               {newFeilds.map((items, index) => (
                 <Draggable key={index}>
                   <div className='mb-4'>
-                    <Phone items={items}/>
+                    <Phone items={items} handleFieldChange={handleFieldChange}/>
                   </div>
                 </Draggable>
               ))}

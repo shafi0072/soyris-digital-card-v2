@@ -8,7 +8,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { baseUrl } from "@/src/config/Server";
 import { userContext } from "@/src/Storage/ContextApi";
-const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
+const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFieldChange }) => {
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const handleRemoveFields = () => {
@@ -60,6 +60,7 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from }) => {
                 type="text"
                 className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
                 placeholder={items?.pleaceholder}
+                onChange={e => handleFieldChange(items?.id, 'number', e.target.value)}
               />
             ) : (
               <textarea

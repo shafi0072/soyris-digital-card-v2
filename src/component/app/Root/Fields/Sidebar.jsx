@@ -74,3 +74,22 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
 };
 
 export default Sidebar;
+
+
+// const [newFields, setNewFields] = useState([
+//   {
+//     id:1,
+//   number:'',
+//   label:''
+//   },
+//   {
+//     id:2,
+//   url:'',
+//   label:''
+//   },
+//   {
+//     id:3,
+//   location:'',
+//   label:''
+//   }
+// ])
