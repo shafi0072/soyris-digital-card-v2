@@ -30,6 +30,8 @@ const Phone = ({ index, phoneData, handlePhoneInputChange, items, from, handleFi
       .catch((error) => console.log("error", error));
   };
 
+  console.log({items})
+
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
