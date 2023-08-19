@@ -323,3 +323,14 @@ export const field_data = [
     ]
   },
 ]
+
+
+const phone = [{
+  id:1,
+  number:'',
+  ext:'',
+  internationalNumber:false,
+  chooseLabel:'',
+  hidelabelCopy:'',
+  type:'Phone'
+}]

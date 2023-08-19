@@ -45,6 +45,7 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
+  console.log({feilds})
   const {loading, userData, userCardData, newFeilds, setNewFeilds } =
     useContext(userContext);
     if(loading){
