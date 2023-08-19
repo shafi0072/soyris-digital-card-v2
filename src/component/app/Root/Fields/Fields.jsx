@@ -1,17 +1,20 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-import Content from "./InputFildGroup/Content";
+import Content2 from "./InputFildGroup/Content2";
+import { useContext } from "react";
+import { userContext } from "@/src/Storage/ContextApi";
 
 const Fields = () => {
-  const [feilds, setFeilds] = useState([]);
+  const {newFeilds,setNewFeilds} = useContext(userContext)
+
   return (
-    <div class="grid grid-cols-3 gap-4">
-      <div class="...">
-        <Sidebar feilds={feilds} setFeilds={setFeilds} />
+    <div className="grid grid-cols-3 gap-4">
+      <div className="...">
+        <Sidebar newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
       </div>
-      <div class="col-span-2 ...">
-        <Content feilds={feilds} setFeilds={setFeilds}/>
+      <div className="col-span-2 ...">
+        <Content2 newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
       </div>
       
     </div>

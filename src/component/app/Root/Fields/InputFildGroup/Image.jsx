@@ -15,12 +15,12 @@ const Image = ({ items, from, image, setImage, align, setAlign,imageWidth,setIma
   const { newFeilds, userCardData } = useContext(userContext);
 
   const saveImage =
-    newFeilds?.fields?.image?.length > 0
-      ? newFeilds?.fields?.image
-      : userCardData?.fields?.image?.length > 0
-      ? userCardData?.fields?.image
+    newFeilds?.fields?.image
+      ? newFeilds?.fields?.image?.image
+      : userCardData?.fields?.image[0]
+      ? userCardData?.fields?.image[0]
       : null;
-  const [base64Image, setBase64Image] = useState(saveImage?.toReversed()[0]?.image || '');
+  const [base64Image, setBase64Image] = useState(saveImage?.image || '');
   
   const handleRemoveFields = () => {
     const id = localStorage.getItem("cardId");
@@ -99,7 +99,7 @@ const Image = ({ items, from, image, setImage, align, setAlign,imageWidth,setIma
                 <div>
                   <img
                     className="w-[144px] h-[55px]  object-cover "
-                    src={saveImage?.toReversed()[0]?.image}
+                    src={saveImage && saveImage}
                   />
                 </div>
                 <div className="mt-3 flex items-center gap-4">

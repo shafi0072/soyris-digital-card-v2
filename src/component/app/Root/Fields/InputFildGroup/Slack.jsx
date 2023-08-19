@@ -43,12 +43,12 @@ const Slack = ({ index, handleSlackInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`slackUserName${index + 1}`}
-            defaultValue={`${items?.slackUserName + index + 1}`}
+            name={`number`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleSlackInputChange(
                 index,
-                `slackUserName${index + 1}`,
+                `number`,
                 e.target.value
               )
             }
@@ -78,12 +78,12 @@ const Slack = ({ index, handleSlackInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`slackNumber${index + 1}`}
-            defaultValue={`${items?.slackNumber + index + 1}`}
+            name={`label`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleSlackInputChange(
                 index,
-                `slackNumber${index + 1}`,
+                `label`,
                 e.target.value
               )
             }
