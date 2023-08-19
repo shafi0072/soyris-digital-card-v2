@@ -9,7 +9,7 @@ const GalleryImage = ({ newFeilds, userCardData }) => {
       : [];
   return (
     <div>
-      {saveImage && (
+      {saveImage?.length >0 && (
         <>
           <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
             My Work

@@ -10,14 +10,14 @@ const ContextApi = ({ children }) => {
     const [logoImage, setLogoImage] = useState(null)
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
-    const [newFeilds, setNewFeilds] = useState({})
+    const [newFeilds, setNewFeilds] = useState([])
     const [qrStyle,setQrStyle] = useState('squares');
     const [foregroundColor, setForegroundColor] = useState('#000000')
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
     const [eyeColor, setEyeColor] = useState("#DC0E74");
     const [selectedLogo,setSelectedLogo] = useState(null)
     const [loading,setLoading]= useState(true)
-    console.log({infos})
+    // console.log({infos})
     const value = {
         loading,
         selectedLogo,

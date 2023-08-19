@@ -23,7 +23,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   };
 
   // handle change ---------------
-  const permanentUrl = "https://easycard.pro/profile/"; // The permanent URL
+  const permanentUrl = "https://easycard-gr.vercel.app/"; // The permanent URL
   const [inputValue, setInputValue] = useState(settings.url);
 
   console.log({ inputValue });
@@ -46,7 +46,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
             <div className="flex gap-3 items-center">
               <input
                 
-                value={permanentUrl + inputValue}
+                value={permanentUrl+ settings?.url}
                
                 type="text"
                 className="px-2 py-1 shadow-lg rounded w-[306px] text-[17px] font-medium"

@@ -16,16 +16,16 @@ const Settings = () => {
   const [isEdit, setEdit] = useState(false);
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
-  const { userData } = useContext(userContext);
+  const { userData,userCardData } = useContext(userContext);
  
-
+console.log({userCardData});
   
   const handleCardNameOnChange = (event) => {
     const cardName = event.target.value;
     setCardName(cardName);
   };
  
-
+console.log({userData});
 
  
 
@@ -34,11 +34,11 @@ const Settings = () => {
     var raw = JSON.stringify({
       setting: {
         cardName: cardName,
-        cardStatus: userData.setting.cardStatus,
-        url: userData.setting.url,
+        cardStatus: userData?.setting?.cardStatus,
+        url: userData?.setting?.url,
       },
     });
-    fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
+    fetch(`${baseUrl}/cards/profile/setting/${userCardData?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: raw,
@@ -64,13 +64,13 @@ const Settings = () => {
   const handleUrl = () => {
     var raw = JSON.stringify({
       setting: {
+        url: url,
         cardName: settings.cardName,
         cardStatus: settings.cardStatus,
-        url: url,
       },
     });
     const cardId = localStorage.getItem("cardId");
-    fetch(`${baseUrl}/cards/profile/setting/${cardId}`, {
+    fetch(`${baseUrl}/cards/profile/setting/${userCardData?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: raw,
@@ -79,6 +79,7 @@ const Settings = () => {
       .then((data) => {
         console.log(data);
         if (data.message === "Profile information updated successfully") {
+          setEdit(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
