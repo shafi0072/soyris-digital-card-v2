@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -7,14 +7,10 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-const Phone = ({
-  items,
-  handleFieldChange,
-}) => {
+const Inputs = ({items}) => {
+  console.log(items)
   const [hideLabel, setHideLabel] = useState(true);
-  
-
-
+  const [InternationalNumber, setUseInternationalNumber] = useState(true);
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -37,7 +33,7 @@ const Phone = ({
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {items?.internationalNumber && items?.hasOwnProperty("number") && (
+        {items?.internationalNumber  && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
@@ -119,7 +115,7 @@ const Phone = ({
           </div>
         )}
         
-        {!items?.internationalNumber && (
+        {!InternationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}
@@ -159,13 +155,13 @@ const Phone = ({
           <div class="flex items-center mt-4">
             <input
               onChange={(e) =>
-                handleFieldChange(items?.id, "internationalNumber", !items?.internationalNumber)
+                handleFieldChange(items?.id, "internationalNumber", e.target.value)
               }
               
-              onClick={() => handleFieldChange(items?.id, 'internationalNumber', !items?.internationalNumber)}
+              onClick={() => setUseInternationalNumber(!InternationalNumber)}
               id="default-checkbox"
               type="checkbox"
-              value={items?.internationalNumber}
+              value={InternationalNumber}
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
@@ -297,4 +293,4 @@ const Phone = ({
   );
 };
 
-export default Phone;
+export default Inputs;
