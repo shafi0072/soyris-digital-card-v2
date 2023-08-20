@@ -12,6 +12,7 @@ import Pdf from "./Pdf";
 import Vimeo from "./Vimeo";
 import Content from "./Content/Content";
 import Social from "./Social/Social";
+import Image from "./Image";
 
 const RightSidebar = () => {
   const {
@@ -92,10 +93,28 @@ const RightSidebar = () => {
                 {item?.type === "Twitter" && <Social item={item} />}
                 {item?.type === "LinkedIn" && <Social item={item} />}
                 {item?.type === "Pinterest" && <Social item={item} />}
-                {item?.type === "Pinterest" && <Social item={item} />}
+                {item?.type === "Tiktok" && <Social item={item} />}
               </>
             ))}
           </div>
+        </div>
+        <div className="mt-5">
+          {newFeilds?.map((item, index) => (
+            <>
+              {item?.type === "Image" && <Image item={item} />}
+              {item?.type === "Galary" && <GalleryImage item={item} />}
+
+              {item?.type === "Youtube" && <YouTube item={item} />}
+              {item?.type === "Vimeo" && <YouTube item={item} />}
+              {item?.type === "Wistia" && <YouTube item={item} />}
+
+              {/* {item?.type === "Vimeo" && <Vimeo item={item}/>}
+               */}
+
+               {/* pdf  */}
+               {item?.type === "PDF" && <Pdf item={item}/>}
+            </>
+          ))}
         </div>
 
         {/* <div className="my-3">

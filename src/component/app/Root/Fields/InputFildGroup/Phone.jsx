@@ -320,9 +320,7 @@ const Phone = ({
           >
             <span>
               {items?.type === "Image" && imageIcon}
-              {
-                items?.type === "Galary" && imageIcon
-              }
+             
             </span>
 
             <p className="text-md">Add Media</p>
@@ -341,7 +339,9 @@ const Phone = ({
             htmlFor="galaryImage"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
           >
-            <span>{items.icon}</span>
+             {
+                items?.type === "Galary" && imageIcon
+              }
 
             <p className="text-md">Add Media</p>
           </label>
