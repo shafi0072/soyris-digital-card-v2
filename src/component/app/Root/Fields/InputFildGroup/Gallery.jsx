@@ -1,24 +1,44 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { galleryCompressAndConvertToBase64 } from "@/src/config/gallery64";
-const Gallery = ({ galary, setGalary }) => {
+import { userContext } from "@/src/Storage/ContextApi";
+import CloseIcon from "@mui/icons-material/Close";
+import { baseUrl } from "@/src/config/Server";
+const Gallery = ({ galary, setGalary, items, from }) => {
+ const {newFeilds,userCardData} = useContext(userContext);
 
-    const [base64Galary, setBase64Galary] = useState("");
-const gallerybase64= galleryCompressAndConvertToBase64;
+  const [base64Galary, setBase64Galary] = useState("");
+  const gallerybase64 = galleryCompressAndConvertToBase64;
+  const saveImage = newFeilds?.fields?.galary?.length >0 ?  newFeilds?.fields?.galary : userCardData?.fields?.galary?.length >0 ? userCardData?.fields?.galary: []  ;
+
+  const handleRemoveFields = () => {
+    const id = localStorage.getItem("cardId");
+    fetch(`${baseUrl}/cards/fields/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fieldName: "image",
+        elementId: items,
+      }),
+    })
+      .then((response) => response.text())
+      .then((result) => {
+        window.location.reload();
+      })
+      .catch((error) => console.log("error", error));
+  };
+
   const handleGalleryChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       try {
-        const compressedBase64 = await gallerybase64(
-          file,
-          800,
-          600,
-          0.8
-        );
+        const compressedBase64 = await gallerybase64(file, 800, 600, 0.8);
         setGalary((prev) => {
           const newGalary = [...prev, compressedBase64];
-
+          
           return newGalary;
         });
         setBase64Galary(compressedBase64);
@@ -29,8 +49,8 @@ const gallerybase64= galleryCompressAndConvertToBase64;
   };
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
-      <div className="flex items-center">
-        <div className="flex items-center gap-2 mb-3">
+       <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 mb">
           <div className="flex flex-col">
             <span>
               <KeyboardArrowUpIcon />
@@ -41,15 +61,17 @@ const gallerybase64= galleryCompressAndConvertToBase64;
           </div>
           <h4>Gallery</h4>
         </div>
+        <div onClick={() => (from ? handleRemoveFields() : "")}>
+          <CloseIcon />
+        </div>
       </div>
       <div className="mb-3">
         <div className="w-full">
-        <div className="flex gap-2 flex-wrap my-4">
-         {
-            galary.map((img,index)=><img className="w-[144px] h-[55px]  object-cover" src={img}/>
-          )
-          }
-         </div>
+          <div className="flex gap-2 flex-wrap my-4">
+            {saveImage?.toReversed()?.slice(0,4).map((img, index) => (
+              <img key={index} className="w-[144px] h-[55px]  object-cover" src={img} />
+            ))}
+          </div>
           <label
             htmlFor="image"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"

@@ -10,23 +10,24 @@ const SubNavbar = () => {
   const router = useRouter();
 
   const handleCreateCards = () => {
-    fetch(`${baseUrl}/cards/add-cards`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: userData?.email,
-        cardUserId: userData?._id,
-        design:"classic"
-      })
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("cardId", data?._id);
-        window.location.assign("/profileInfo");
-      })
-      .catch((err) => console.log(err));
+    // fetch(`${baseUrl}/cards/add-cards`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email: userData?.email,
+    //     cardUserId: userData?._id,
+    //     design:"classic"
+    //   })
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     localStorage.setItem("cardId", data?._id);
+    //     window.location.assign("/profileInfo");
+    //   })
+    //   .catch((err) => console.log(err));
+    router.push('/selectCard');
   };
 
   return (
@@ -76,10 +77,17 @@ const SubNavbar = () => {
               Create a card
             </button>
           </div>
-        ) : (
+        ):
+        router.pathname === '/selectCard' ? 
+        (
+          <div className="">
+            <p className="ps-5 py-2">Select one of our templates to get started.</p>
+          </div>
+        )
+         : (
           <ul style={{ display: "flex" }}>
             {sub_Navbar_data?.map((items, index) => (
-              <li
+              <li key={index}
                 className="mx-2 my-2 "
                 onClick={() => {
                   setActive(index);

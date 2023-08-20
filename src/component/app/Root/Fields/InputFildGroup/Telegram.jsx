@@ -43,12 +43,12 @@ const Telegram = ({ index, handleTelegramInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`telegramUserName${index + 1}`}
-            defaultValue={`${items?.telegramUserName + index + 1}`}
+            name={`number`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleTelegramInputChange(
                 index,
-                `telegramUserName${index + 1}`,
+                `number`,
                 e.target.value
               )
             }
@@ -79,12 +79,12 @@ const Telegram = ({ index, handleTelegramInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`telegramNumber${index + 1}`}
-            defaultValue={`${items?.telegramNumber + index + 1}`}
+            name={`label`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleTelegramInputChange(
                 index,
-                `telegramNumber${index + 1}`,
+                `label`,
                 e.target.value
               )
             }

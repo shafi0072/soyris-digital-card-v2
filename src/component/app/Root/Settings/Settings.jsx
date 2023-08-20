@@ -9,29 +9,36 @@ import { data } from "autoprefixer";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
+import { useEffect } from "react";
 
 const Settings = () => {
-  const {settings} = useContext(userContext)
+  const { settings } = useContext(userContext);
+  const [isEdit, setEdit] = useState(false);
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
-  const { userData } = useContext(userContext);
-  // console.log(cardName, url);
-
+  const { userData,userCardData } = useContext(userContext);
+ 
+console.log({userCardData});
+  
   const handleCardNameOnChange = (event) => {
     const cardName = event.target.value;
     setCardName(cardName);
   };
+ 
+console.log({userData});
+
+ 
 
   // handle cardName
   const handleCardName = () => {
     var raw = JSON.stringify({
       setting: {
         cardName: cardName,
-        cardStatus: userData.setting.cardStatus,
-        url: userData.setting.url,
+        cardStatus: userData?.setting?.cardStatus,
+        url: userData?.setting?.url,
       },
     });
-    fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
+    fetch(`${baseUrl}/cards/profile/setting/${userCardData?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: raw,
@@ -40,6 +47,7 @@ const Settings = () => {
       .then((data) => {
         console.log(data);
         if (data.message === "Profile information updated successfully") {
+          setEdit(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -56,13 +64,13 @@ const Settings = () => {
   const handleUrl = () => {
     var raw = JSON.stringify({
       setting: {
+        url: url,
         cardName: settings.cardName,
         cardStatus: settings.cardStatus,
-        url: url,
       },
     });
-    const cardId = localStorage.getItem('cardId')
-    fetch(`${baseUrl}/cards/profile/setting/${cardId}`, {
+    const cardId = localStorage.getItem("cardId");
+    fetch(`${baseUrl}/cards/profile/setting/${userCardData?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: raw,
@@ -71,6 +79,7 @@ const Settings = () => {
       .then((data) => {
         console.log(data);
         if (data.message === "Profile information updated successfully") {
+          setEdit(false);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -84,11 +93,17 @@ const Settings = () => {
 
   return (
     <div>
+      
       <CardName
         handleCardNameOnChange={handleCardNameOnChange}
         handleCardName={handleCardName}
       />
-      <Personalised setUrl={setUrl} handleUrl={handleUrl} />
+      <Personalised
+        setUrl={setUrl}
+        handleUrl={handleUrl}
+        isEdit={isEdit}
+        setEdit={setEdit}
+      />
       <CardStatus />
       <DuplicateCard />
       <DeleteCard />

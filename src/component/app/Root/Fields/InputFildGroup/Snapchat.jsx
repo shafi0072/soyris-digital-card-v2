@@ -43,12 +43,12 @@ const Snapchat = ({ index, handleSnapChatInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`snapChatUserName${index + 1}`}
-            defaultValue={`${items?.snapChatUserName + index + 1}`}
+            name={`number`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleSnapChatInputChange(
                 index,
-                `snapChatUserName${index + 1}`,
+                `number`,
                 e.target.value
               )
             }
@@ -77,12 +77,12 @@ const Snapchat = ({ index, handleSnapChatInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`snapChatNumber${index + 1}`}
-            defaultValue={`${items?.snapChatNumber + index + 1}`}
+            name={`label`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleSnapChatInputChange(
                 index,
-                `snapChatNumber${index + 1}`,
+                `label`,
                 e.target.value
               )
             }

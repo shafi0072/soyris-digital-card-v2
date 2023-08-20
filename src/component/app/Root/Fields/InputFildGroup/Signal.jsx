@@ -20,12 +20,12 @@ const Signal = ({index,handleSignalInputChange,items}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`signalUserName${index + 1}`}
-                     defaultValue={`${items?.signalUserName + index+1}`}
+                     name={`number`}
+                     defaultValue={items?.number}
                      onChange={(e) =>
                          handleSignalInputChange(
                          index,
-                         `signalUserName${index + 1}`,
+                         `number`,
                          e.target.value
                        )
                      }
@@ -45,12 +45,12 @@ const Signal = ({index,handleSignalInputChange,items}) => {
             <div className='mb-3'>
                 <div className='w-full relative '>
                     <input 
-                     name={`signalNumber${index + 1}`}
-                     defaultValue={`${items?.signalNumber + index+1}`}
+                     name={`label`}
+                     defaultValue={items?.label}
                      onChange={(e) =>
                          handleSignalInputChange(
                          index,
-                         `signalNumber${index + 1}`,
+                         `label`,
                          e.target.value
                        )
                      }

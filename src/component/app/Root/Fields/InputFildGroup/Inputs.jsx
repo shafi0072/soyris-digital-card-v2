@@ -1,21 +1,16 @@
-import React, { useContext } from "react";
+import React from 'react';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
-import { useEffect } from "react";
+
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { baseUrl } from "@/src/config/Server";
-import { userContext } from "@/src/Storage/ContextApi";
-const Phone = ({
-  items,
-  handleFieldChange,
-}) => {
+
+const Inputs = ({items}) => {
+  console.log(items)
   const [hideLabel, setHideLabel] = useState(true);
-  const [useInternationalNumber, setUseInternationalNumber] = useState(true);
-
-
+  const [InternationalNumber, setUseInternationalNumber] = useState(true);
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -28,7 +23,7 @@ const Phone = ({
               <KeyboardArrowDownIcon />
             </span>
           </div>
-          {items?.hasOwnProperty('devider') && <button className="ms-4">{items?.type}</button>}
+          {items?.hasOwnProperty('devider')&& <button className="ms-4">{items?.type}</button>}
           {!items?.hasOwnProperty('devider') &&
             <h4>{items?.type}</h4>
           }
@@ -38,10 +33,11 @@ const Phone = ({
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {useInternationalNumber && items?.hasOwnProperty("number") && (
+        {items?.internationalNumber  && items?.hasOwnProperty("number") && (
           <div
-            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-              }  relative`}
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
           >
             <input
               type="text"
@@ -53,18 +49,16 @@ const Phone = ({
             />
 
             <label htmlFor="" className="absolute top-1/4 left-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12.038" height="13.459" viewBox="0 0 12.038 13.459">
-                <path id="phone-svgrepo-com" d="M9.579,5.473S9.377,5,9.069,5a.768.768,0,0,0-.566.237C8.4,5.333,6.637,6.78,6.637,6.78a1.663,1.663,0,0,0-.473,1.288,8.537,8.537,0,0,0,1.052,3.706,17.162,17.162,0,0,0,4.311,5.1,10,10,0,0,0,2.4,1.34,6.953,6.953,0,0,0,1.164.243,1.182,1.182,0,0,0,.762-.236c.328-.238,2.168-1.717,2.168-1.717a.56.56,0,0,0-.073-.88c-.526-.473-2.121-1.525-2.462-1.8a.844.844,0,0,0-1.039.033c-.21.191-.585.507-.631.546-.069.053-.256.223-.467.138a6.438,6.438,0,0,1-2.385-2.1,6.514,6.514,0,0,1-1.275-2.339.343.343,0,0,1,.138-.4c.152-.105.71-.571.71-.571a.806.806,0,0,0,.21-.777c-.151-.42-1.166-2.885-1.166-2.885Z" transform="translate(-6.161 -5)" fill="#989898" />
-              </svg>
-
+              {items?.icon}
             </label>
           </div>
         )}
 
         {items?.hasOwnProperty("url") && (
           <div
-            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-              }  relative`}
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
           >
             <input
               type="text"
@@ -81,8 +75,9 @@ const Phone = ({
         )}
         {items?.hasOwnProperty("address") && (
           <div
-            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-              }  relative`}
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
           >
             <textarea
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
@@ -98,8 +93,9 @@ const Phone = ({
         )}
         {items?.hasOwnProperty("title") && (
           <div
-            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-              }  relative`}
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
             placeholder={items?.pleaceholder}
             onChange={(e) =>
               handleFieldChange(items?.id, "title", e.target.value)
@@ -118,8 +114,8 @@ const Phone = ({
             </label>
           </div>
         )}
-
-        {!useInternationalNumber && (
+        
+        {!InternationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}
@@ -161,11 +157,11 @@ const Phone = ({
               onChange={(e) =>
                 handleFieldChange(items?.id, "internationalNumber", e.target.value)
               }
-
-              onClick={() => setUseInternationalNumber(!useInternationalNumber)}
+              
+              onClick={() => setUseInternationalNumber(!InternationalNumber)}
               id="default-checkbox"
               type="checkbox"
-              value={useInternationalNumber}
+              value={InternationalNumber}
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
@@ -261,90 +257,6 @@ const Phone = ({
         </div>
       )}
 
-      
-      {items.hasOwnProperty("image") && (
-        <div>
-          <label
-            htmlFor="profileImage"
-            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
-          >
-            <span>{items.icon}</span>
-
-            <p className="text-md">Add Media</p>
-          </label>
-          <input
-            type="file"
-            id="profileImage"
-            // onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-        </div>
-      )}
-      {
-        items.hasOwnProperty("pdf") && 
-        <div>
-           <label
-            htmlFor="p"
-            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
-          >
-            <span>
-             {items.icon}
-            </span>
-
-            <p className="text-md">Add PDF</p>
-          </label>
-          <input
-            type="file"
-            id="p"
-            style={{ display: "none" }}
-          />
-        </div>
-      }
-      {
-        items?.hasOwnProperty("notes") && 
-        <div>
-          <textarea
-              placeholder="Enter your address"
-              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
-            >
-          
-            </textarea>
-            <label htmlFor="" className="absolute top-12 left-5">
-              {items?.icon}
-            </label>
-        </div>
-      }
-      {
-        items?.hasOwnProperty("date") && 
-        <div className='mb-3'>
-        <div className='w-full relative '>
-            <input 
-             name={`date`}
-            //  defaultValue={items?.date}
-            //  onChange={(e) =>
-            //     handleDateInputChange(
-            //      index,
-            //      `date`,
-            //      e.target.value
-            //    )
-            //  }
-            type="date" placeholder='sype' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
-
-            <label htmlFor="" className='absolute top-2 left-3'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14.059" height="15.692" viewBox="0 0 14.059 15.692">
-                    <g id="date-range-svgrepo-com" transform="translate(0.5 0.5)">
-                        <path id="Path_37" data-name="Path 37" d="M17.059,8.713V6.265a1.632,1.632,0,0,0-1.632-1.632H5.632A1.632,1.632,0,0,0,4,6.265V8.713m13.059,0v7.346a1.632,1.632,0,0,1-1.632,1.632H5.632A1.632,1.632,0,0,1,4,16.059V8.713m13.059,0H4M7.265,3V6.265M13.795,3V6.265" transform="translate(-4 -3)" fill="none" stroke="#989898" stroke-linecap="round" stroke-width="1" />
-                        <rect id="Rectangle_85" data-name="Rectangle 85" width="2.844" height="2.37" rx="0.5" transform="translate(1.422 7.583)" fill="#989898" />
-                        <rect id="Rectangle_86" data-name="Rectangle 86" width="2.449" height="2.449" rx="0.5" transform="translate(5.305 7.346)" fill="#989898" />
-                        <rect id="Rectangle_87" data-name="Rectangle 87" width="2.37" height="2.37" rx="0.5" transform="translate(9.005 7.583)" fill="#989898" />
-                    </g>
-                </svg>
-
-            </label>
-        </div>
-    </div>
-      }
-
       {/* not phone */}
       {items?.hasOwnProperty("label") && (
         <div className="my-3">
@@ -381,4 +293,4 @@ const Phone = ({
   );
 };
 
-export default Phone;
+export default Inputs;

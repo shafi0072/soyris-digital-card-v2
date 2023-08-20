@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { ChromePicker } from "react-color";
 import { shapes } from "@/src/constant/Shapes";
 import Slider from "@mui/material/Slider";
 import { Box } from "@mui/material";
+import { userContext } from "@/src/Storage/ContextApi";
 const Pattern = () => {
-  const [color, setColor] = useState("#000000");
-  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+  
   const [customColor, setCustomColor] = useState(false);
   const [customBackgroundColor, setCustomBackgroundColor] = useState(false);
+  const {qrStyle,setQrStyle,foregroundColor,setForegroundColor,backgroundColor,setBackgroundColor}= useContext(userContext);
+
+  const handleQrStyle = (style)=> {
+    setQrStyle(style);
+  }
   // shapes
   return (
     <>
@@ -44,8 +49,9 @@ const Pattern = () => {
       <div className="flex gap-4 ">
         {shapes.slice(0, 4).map((shape, index) => (
           <button
-            className="bg-[#E6ECF2] flex gap-2 items-center px-4 py-2 rounded"
+            className={`${qrStyle === shape.label ? 'bg-green-400': 'bg-[#e6ecf2]'} flex gap-2 items-center px-4 py-2 rounded`}
             key={index}
+            onClick={()=> handleQrStyle(shape.label)}
           >
             {shape.icon}
             {shape.name}
@@ -72,15 +78,15 @@ const Pattern = () => {
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: color }}
+            style={{ background: foregroundColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{color}</span>
+            <span className="text-center">{foregroundColor}</span>
           </div>
         </div>
         <div>
           {customColor && (
-            <ChromePicker color={color} onChange={(e) => setColor(e.hex)} />
+            <ChromePicker color={foregroundColor} onChange={(e) => setForegroundColor(e.hex)} />
           )}
         </div>
       </div>
