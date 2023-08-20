@@ -119,7 +119,7 @@ const Phone = ({
           </div>
         )}
         
-        {!items?.internationalNumber && (
+        {!items?.internationalNumber && items?.type === 'Phone' &&(
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}

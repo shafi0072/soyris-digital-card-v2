@@ -70,18 +70,32 @@ const RightSidebar = () => {
 
               {(item?.type === "Facebook" || item?.type === "Instagram") && (
                 <div className="my-5">
-                  <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-                    Social Media
-                  </h2>
                   <div className="mt-5  flex gap-2 pt-3">
-                  <div>{item?.type === 'Facebook' && <Social item={item}/>}</div>
-                   <div> {item?.type === 'Instagram' && <Social item={item}/>}</div>
+                    <div></div>
+                    <div> </div>
                   </div>
                 </div>
               )}
-
             </div>
           ))}
+        </div>
+
+        <div className="my-5">
+          <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
+            Social Media
+          </h2>
+          <div className="mt-5  flex gap-2 pt-3">
+            {newFeilds?.map((item, index) => (
+              <>
+                {item?.type === "Facebook" && <Social item={item} />}
+                {item?.type === "Instagram" && <Social item={item} />}
+                {item?.type === "Twitter" && <Social item={item} />}
+                {item?.type === "LinkedIn" && <Social item={item} />}
+                {item?.type === "Pinterest" && <Social item={item} />}
+                {item?.type === "Tiktok" && <Social item={item} />}
+              </>
+            ))}
+          </div>
         </div>
 
         {/* <div className="my-3">
