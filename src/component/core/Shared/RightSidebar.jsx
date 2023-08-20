@@ -10,6 +10,8 @@ import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 import Moment from "react-moment";
 import Pdf from "./Pdf";
 import Vimeo from "./Vimeo";
+import Content from "./Content/Content";
+import Social from "./Social/Social";
 
 const RightSidebar = () => {
   const {
@@ -49,8 +51,52 @@ const RightSidebar = () => {
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
 
+        <div className="my-5">
+          {newFeilds?.map((item, index) => (
+            <div key={index}>
+              {item?.type === "Phone" && <Content item={item} />}
+              {item?.type === "Website" && <Content item={item} />}
+              {item?.type === "Email" && <Content item={item} />}
+              {item?.type === "Address" && <Content item={item} />}
+              {item?.type === "Link" && <Content item={item} />}
+              {item?.type === "WhatsApp" && <Content item={item} />}
+              {item?.type === "Viber" && <Content item={item} />}
+              {item?.type === "Skype" && <Content item={item} />}
+              {item?.type === "Snapchat" && <Content item={item} />}
+              {item?.type === "Signal" && <Content item={item} />}
+              {item?.type === "Telegram" && <Content item={item} />}
+              {item?.type === "Discord" && <Content item={item} />}
+              {item?.type === "Slack" && <Content item={item} />}
 
+              {(item?.type === "Facebook" || item?.type === "Instagram") && (
+                <div className="my-5">
+                  <div className="mt-5  flex gap-2 pt-3">
+                    <div></div>
+                    <div> </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
+        <div className="my-5">
+          <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
+            Social Media
+          </h2>
+          <div className="mt-5  flex gap-2 pt-3">
+            {newFeilds?.map((item, index) => (
+              <>
+                {item?.type === "Facebook" && <Social item={item} />}
+                {item?.type === "Instagram" && <Social item={item} />}
+                {item?.type === "Twitter" && <Social item={item} />}
+                {item?.type === "LinkedIn" && <Social item={item} />}
+                {item?.type === "Pinterest" && <Social item={item} />}
+                {item?.type === "Pinterest" && <Social item={item} />}
+              </>
+            ))}
+          </div>
+        </div>
 
         {/* <div className="my-3">
           <FieldData userData={userCardData} newFeilds={newFeilds} />
