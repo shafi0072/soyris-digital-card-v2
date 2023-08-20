@@ -430,36 +430,7 @@ export const slackIcon = (
   </svg>
 );
 
-export const imageIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="13"
-    height="12.587"
-    viewBox="0 0 13 12.587"
-  >
-    <g id="Group_13" data-name="Group 13" transform="translate(0.473 0.026)">
-      <line
-        id="Line_1"
-        data-name="Line 1"
-        x2="13"
-        transform="translate(-0.473 6.122)"
-        fill="none"
-        stroke="#0277b5"
-        stroke-width="2.5"
-      />
-      <line
-        id="Line_2"
-        data-name="Line 2"
-        x2="0.261"
-        y2="12.536"
-        transform="translate(5.355 0)"
-        fill="none"
-        stroke="#0277b5"
-        stroke-width="2.5"
-      />
-    </g>
-  </svg>
-);
+
 
 export const notesIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="17.803" height="18.122" viewBox="0 0 17.803 18.122">
@@ -660,6 +631,37 @@ viewBox="0 0 14.059 15.692"
     rx="0.5"
     transform="translate(9.005 7.583)"
     fill="#989898"
+  />
+</g>
+</svg>;
+export const imageIcon =  <svg
+xmlns="http://www.w3.org/2000/svg"
+width="13"
+height="12.587"
+viewBox="0 0 13 12.587"
+>
+<g
+  id="Group_5"
+  data-name="Group 5"
+  transform="translate(0.399 0.026)"
+>
+  <line
+    id="Line_1"
+    data-name="Line 1"
+    x2="13"
+    transform="translate(-0.399 6.21)"
+    fill="none"
+    stroke="#0277b5"
+    stroke-width="2.5"
+  />
+  <path
+    id="Path_516"
+    data-name="Path 516"
+    d="M0,0,.13,6.268l.13,6.268"
+    transform="translate(5.741 0)"
+    fill="none"
+    stroke="#0277b5"
+    stroke-width="2.5"
   />
 </g>
 </svg>

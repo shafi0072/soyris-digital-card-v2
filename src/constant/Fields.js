@@ -707,8 +707,9 @@ export const field_data = [
         fields: {
           image: "",
           type: "Image",
-          align: "center",
-          width: 50,
+          icon: imageIcon,
+          align:'center',
+          width:50
         },
       },
       {

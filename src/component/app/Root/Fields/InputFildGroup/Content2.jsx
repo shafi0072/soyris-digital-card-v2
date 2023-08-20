@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { baseUrl } from "@/src/config/Server";
 import Inputs from "./Inputs";
 import { compressAndConvertToBase64 } from "@/src/config/base64";
+import { convertPDFToBase64 } from "@/src/config/pdfBase64";
 
 const Content2 = () => {
   const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
@@ -60,6 +61,18 @@ const Content2 = () => {
       })
     );
   };
+  const handlePdfChanges = async (id, value) => {
+    const files = value
+    const compressedBase64 = await convertPDFToBase64(files);
+    setNewFeilds((prevFields) =>
+      prevFields.map((field) => {
+        if (field.id === id) {
+          return { ...field, pdf: compressedBase64 };
+        }
+        return field;
+      })
+    );
+  };
 
   const handleGalaryChanges = async (id, newImage) => {
     const files = newImage
@@ -83,6 +96,9 @@ const Content2 = () => {
     })
   }
   console.log({ newFeilds });
+  const handleDelete = (idToDelete) => {
+    setNewFeilds(prevState => prevState.filter(item => item.id !== idToDelete));
+  };
   return (
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
@@ -90,7 +106,7 @@ const Content2 = () => {
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
               <div className="mb-4">
-                <Phone items={items} handleFieldChange={handleFieldChange} handleImageChanges={handleImageChanges} handleGalaryChanges={handleGalaryChanges}/>
+                <Phone items={items} handleFieldChange={handleFieldChange} handleImageChanges={handleImageChanges} handleGalaryChanges={handleGalaryChanges} handlePdfChanges={handlePdfChanges} handleDelete={handleDelete}/>
                 {/* <Inputs id={items.id}  items={items}  handleFieldChange={handleFieldChange}/> */}
               </div>
             </Draggable>
