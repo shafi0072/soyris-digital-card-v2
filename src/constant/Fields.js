@@ -4,9 +4,11 @@ import {
   emailIcon,
   facebookIcon,
   headerIcon,
+  imageIcon,
   instagramIcon,
   linkIcon,
   linkedInIcon,
+  notesIcon,
   phoneIcon,
   pinterestIcon,
   qrIcon,
@@ -720,6 +722,11 @@ export const field_data = [
             />
           </svg>
         ),
+        fields: {
+          image:"",
+          type: "Image",
+          icon: imageIcon,
+        },
       },
       {
         name: "Gallery",
@@ -776,6 +783,11 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          image:"",
+          type: "Galary",
+          icon: imageIcon,
+        },
       },
     ],
   },
@@ -899,6 +911,11 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          pdf:"",
+          type: "Pdf",
+          icon: imageIcon,
+        },
       },
       {
         name: "Notes",
@@ -954,6 +971,12 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          notes: "",
+          type: "Notes",
+          pleaceholder: "Enter your notes",
+          icon: notesIcon,
+        },
       },
       {
         name: "Date",
@@ -1002,6 +1025,13 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          date:"",
+          type: "Date",
+          label:"",
+          labelPleaceholder:"label",
+          icon: imageIcon,
+        },
       },
     ],
   },
@@ -1153,3 +1183,5 @@ export const field_data = [
     ],
   },
 ];
+
+

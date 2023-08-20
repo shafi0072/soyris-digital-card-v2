@@ -92,7 +92,7 @@ const RightSidebar = () => {
                 {item?.type === "Twitter" && <Social item={item} />}
                 {item?.type === "LinkedIn" && <Social item={item} />}
                 {item?.type === "Pinterest" && <Social item={item} />}
-                {item?.type === "Tiktok" && <Social item={item} />}
+                {item?.type === "Pinterest" && <Social item={item} />}
               </>
             ))}
           </div>
