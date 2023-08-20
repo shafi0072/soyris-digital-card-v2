@@ -430,36 +430,7 @@ export const slackIcon = (
   </svg>
 );
 
-export const imageIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="13"
-    height="12.587"
-    viewBox="0 0 13 12.587"
-  >
-    <g id="Group_13" data-name="Group 13" transform="translate(0.473 0.026)">
-      <line
-        id="Line_1"
-        data-name="Line 1"
-        x2="13"
-        transform="translate(-0.473 6.122)"
-        fill="none"
-        stroke="#0277b5"
-        stroke-width="2.5"
-      />
-      <line
-        id="Line_2"
-        data-name="Line 2"
-        x2="0.261"
-        y2="12.536"
-        transform="translate(5.355 0)"
-        fill="none"
-        stroke="#0277b5"
-        stroke-width="2.5"
-      />
-    </g>
-  </svg>
-);
+
 
 export const notesIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="17.803" height="18.122" viewBox="0 0 17.803 18.122">
@@ -471,58 +442,7 @@ export const notesIcon = (
   </g>
 </svg>)
 
-
-
-
-
-
-
-
-export const youtubeIcon = <svg
-xmlns="http://www.w3.org/2000/svg"
-width="15.584"
-height="13.459"
-viewBox="0 0 15.584 13.459"
->
-<path
-  id="youtube-svgrepo-com"
-  d="M5.849,4.112a22.3,22.3,0,0,1,5.887,0A3.721,3.721,0,0,1,14.943,6.78a13.482,13.482,0,0,1,0,4.9,3.721,3.721,0,0,1-3.207,2.668,22.307,22.307,0,0,1-5.887,0,3.721,3.721,0,0,1-3.208-2.668,13.481,13.481,0,0,1,0-4.9A3.721,3.721,0,0,1,5.849,4.112Zm6.085-1.4a23.716,23.716,0,0,0-6.284,0,5.126,5.126,0,0,0-4.4,3.8,14.893,14.893,0,0,0,0,5.445,5.126,5.126,0,0,0,4.4,3.8,23.716,23.716,0,0,0,6.284,0,5.126,5.126,0,0,0,4.4-3.8,14.9,14.9,0,0,0,0-5.445A5.126,5.126,0,0,0,11.934,2.709Zm-4.166,3.1a.708.708,0,0,0-1.1.589v5.667a.708.708,0,0,0,1.1.589l4.25-2.833a.708.708,0,0,0,0-1.179Zm2.58,3.423-2.265,1.51V7.72Z"
-  transform="translate(-1 -2.5)"
-  fill="#989898"
-  fill-rule="evenodd"
-/>
-</svg>
-export const vimeoIcon =  <svg
-xmlns="http://www.w3.org/2000/svg"
-width="15.584"
-height="13.459"
-viewBox="0 0 33 28.811"
->
-<path
-  id="vimeo-svgrepo-com"
-  d="M35.485,13.337q-.207,4.526-6.322,12.393-6.322,8.215-10.7,8.216-2.711,0-4.586-5l-2.5-9.174q-1.392-5-2.987-5a9.593,9.593,0,0,0-2.434,1.46L4.5,14.346q2.295-2.016,4.524-4.034,3.061-2.644,4.594-2.783,3.618-.348,4.454,4.946.9,5.713,1.253,7.1,1.044,4.74,2.3,4.738.972,0,2.923-3.075a12.113,12.113,0,0,0,2.087-4.68q.278-2.653-2.087-2.655a5.811,5.811,0,0,0-2.295.508q2.286-7.484,8.731-7.274Q35.759,7.281,35.485,13.337Z"
-  transform="translate(-3.5 -6.135)"
-  fill="none"
-  stroke="#989898"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  stroke-width="2"
-/>
-</svg>
-export const wistiaIcon = <svg
-xmlns="http://www.w3.org/2000/svg"
-width="15.584"
-height="13.459"
-viewBox="0 0 30 23.347"
->
-<path
-  id="wistia-svgrepo-com"
-  d="M29.612,7.591c.634-3.867-1.55-4.93-1.55-4.93s.091,3.149-5.694,3.816C17.233,7.07,0,6.622,0,6.622l5.537,6.351a4.668,4.668,0,0,0,3.984,2.041,71.35,71.35,0,0,0,7.931-.12c2.757-.211,6.687-1.11,9.346-3.169a7.036,7.036,0,0,0,2.812-4.135m.355,4.006s-.695,1.381-4.162,3.566a21.4,21.4,0,0,1-8.491,2.3c-2.131.207-6.052.039-7.735.039s-2.467.356-3.984,2.065L0,25.872s1.937.01,3.4.01,10.61.531,14.669-.585c13.182-3.624,11.9-13.7,11.9-13.7Z"
-  transform="translate(0 -2.661)"
-/>
-</svg>
-
-export const qrIcon =  <svg
+export const qrIcon = <svg
 xmlns="http://www.w3.org/2000/svg"
 width="14.024"
 height="14.024"
@@ -602,6 +522,57 @@ viewBox="0 0 14.024 14.024"
   />
 </g>
 </svg>
+
+
+
+
+
+
+export const youtubeIcon = <svg
+xmlns="http://www.w3.org/2000/svg"
+width="15.584"
+height="13.459"
+viewBox="0 0 15.584 13.459"
+>
+<path
+  id="youtube-svgrepo-com"
+  d="M5.849,4.112a22.3,22.3,0,0,1,5.887,0A3.721,3.721,0,0,1,14.943,6.78a13.482,13.482,0,0,1,0,4.9,3.721,3.721,0,0,1-3.207,2.668,22.307,22.307,0,0,1-5.887,0,3.721,3.721,0,0,1-3.208-2.668,13.481,13.481,0,0,1,0-4.9A3.721,3.721,0,0,1,5.849,4.112Zm6.085-1.4a23.716,23.716,0,0,0-6.284,0,5.126,5.126,0,0,0-4.4,3.8,14.893,14.893,0,0,0,0,5.445,5.126,5.126,0,0,0,4.4,3.8,23.716,23.716,0,0,0,6.284,0,5.126,5.126,0,0,0,4.4-3.8,14.9,14.9,0,0,0,0-5.445A5.126,5.126,0,0,0,11.934,2.709Zm-4.166,3.1a.708.708,0,0,0-1.1.589v5.667a.708.708,0,0,0,1.1.589l4.25-2.833a.708.708,0,0,0,0-1.179Zm2.58,3.423-2.265,1.51V7.72Z"
+  transform="translate(-1 -2.5)"
+  fill="#989898"
+  fill-rule="evenodd"
+/>
+</svg>
+export const vimeoIcon =  <svg
+xmlns="http://www.w3.org/2000/svg"
+width="15.584"
+height="13.459"
+viewBox="0 0 33 28.811"
+>
+<path
+  id="vimeo-svgrepo-com"
+  d="M35.485,13.337q-.207,4.526-6.322,12.393-6.322,8.215-10.7,8.216-2.711,0-4.586-5l-2.5-9.174q-1.392-5-2.987-5a9.593,9.593,0,0,0-2.434,1.46L4.5,14.346q2.295-2.016,4.524-4.034,3.061-2.644,4.594-2.783,3.618-.348,4.454,4.946.9,5.713,1.253,7.1,1.044,4.74,2.3,4.738.972,0,2.923-3.075a12.113,12.113,0,0,0,2.087-4.68q.278-2.653-2.087-2.655a5.811,5.811,0,0,0-2.295.508q2.286-7.484,8.731-7.274Q35.759,7.281,35.485,13.337Z"
+  transform="translate(-3.5 -6.135)"
+  fill="none"
+  stroke="#989898"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+/>
+</svg>
+export const wistiaIcon = <svg
+xmlns="http://www.w3.org/2000/svg"
+width="15.584"
+height="13.459"
+viewBox="0 0 30 23.347"
+>
+<path
+  id="wistia-svgrepo-com"
+  d="M29.612,7.591c.634-3.867-1.55-4.93-1.55-4.93s.091,3.149-5.694,3.816C17.233,7.07,0,6.622,0,6.622l5.537,6.351a4.668,4.668,0,0,0,3.984,2.041,71.35,71.35,0,0,0,7.931-.12c2.757-.211,6.687-1.11,9.346-3.169a7.036,7.036,0,0,0,2.812-4.135m.355,4.006s-.695,1.381-4.162,3.566a21.4,21.4,0,0,1-8.491,2.3c-2.131.207-6.052.039-7.735.039s-2.467.356-3.984,2.065L0,25.872s1.937.01,3.4.01,10.61.531,14.669-.585c13.182-3.624,11.9-13.7,11.9-13.7Z"
+  transform="translate(0 -2.661)"
+/>
+</svg>
+
+
 export const headerIcon= <svg
 xmlns="http://www.w3.org/2000/svg"
 width="14.221"
@@ -615,4 +586,82 @@ viewBox="0 0 14.221 13.431"
   fill="#989898"
   fill-rule="evenodd"
 />
+</svg>
+
+export const  dateIcon =    <svg
+xmlns="http://www.w3.org/2000/svg"
+width="14.059"
+height="15.692"
+viewBox="0 0 14.059 15.692"
+>
+<g id="date-range-svgrepo-com" transform="translate(0.5 0.5)">
+  <path
+    id="Path_37"
+    data-name="Path 37"
+    d="M17.059,8.713V6.265a1.632,1.632,0,0,0-1.632-1.632H5.632A1.632,1.632,0,0,0,4,6.265V8.713m13.059,0v7.346a1.632,1.632,0,0,1-1.632,1.632H5.632A1.632,1.632,0,0,1,4,16.059V8.713m13.059,0H4M7.265,3V6.265M13.795,3V6.265"
+    transform="translate(-4 -3)"
+    fill="none"
+    stroke="#989898"
+    stroke-linecap="round"
+    stroke-width="1"
+  />
+  <rect
+    id="Rectangle_85"
+    data-name="Rectangle 85"
+    width="2.844"
+    height="2.37"
+    rx="0.5"
+    transform="translate(1.422 7.583)"
+    fill="#989898"
+  />
+  <rect
+    id="Rectangle_86"
+    data-name="Rectangle 86"
+    width="2.449"
+    height="2.449"
+    rx="0.5"
+    transform="translate(5.305 7.346)"
+    fill="#989898"
+  />
+  <rect
+    id="Rectangle_87"
+    data-name="Rectangle 87"
+    width="2.37"
+    height="2.37"
+    rx="0.5"
+    transform="translate(9.005 7.583)"
+    fill="#989898"
+  />
+</g>
+</svg>;
+export const imageIcon =  <svg
+xmlns="http://www.w3.org/2000/svg"
+width="13"
+height="12.587"
+viewBox="0 0 13 12.587"
+>
+<g
+  id="Group_5"
+  data-name="Group 5"
+  transform="translate(0.399 0.026)"
+>
+  <line
+    id="Line_1"
+    data-name="Line 1"
+    x2="13"
+    transform="translate(-0.399 6.21)"
+    fill="none"
+    stroke="#0277b5"
+    stroke-width="2.5"
+  />
+  <path
+    id="Path_516"
+    data-name="Path 516"
+    d="M0,0,.13,6.268l.13,6.268"
+    transform="translate(5.741 0)"
+    fill="none"
+    stroke="#0277b5"
+    stroke-width="2.5"
+  />
+</g>
 </svg>
