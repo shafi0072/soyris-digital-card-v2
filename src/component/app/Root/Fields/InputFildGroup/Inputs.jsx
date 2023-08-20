@@ -33,7 +33,7 @@ const Inputs = ({items}) => {
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {InternationalNumber  || items?.hasOwnProperty("number") && (
+        {items?.internationalNumber  && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"

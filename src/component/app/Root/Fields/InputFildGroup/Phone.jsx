@@ -12,7 +12,7 @@ const Phone = ({
   handleFieldChange,
 }) => {
   const [hideLabel, setHideLabel] = useState(true);
-  const [useInternationalNumber, setUseInternationalNumber] = useState(true);
+  
 
 
   return (
@@ -37,7 +37,7 @@ const Phone = ({
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {useInternationalNumber && items?.hasOwnProperty("number") && (
+        {items?.internationalNumber && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
@@ -119,7 +119,7 @@ const Phone = ({
           </div>
         )}
         
-        {!useInternationalNumber && (
+        {!items?.internationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}
@@ -159,13 +159,13 @@ const Phone = ({
           <div class="flex items-center mt-4">
             <input
               onChange={(e) =>
-                handleFieldChange(items?.id, "internationalNumber", e.target.value)
+                handleFieldChange(items?.id, "internationalNumber", !items?.internationalNumber)
               }
               
-              onClick={() => setUseInternationalNumber(!useInternationalNumber)}
+              onClick={() => handleFieldChange(items?.id, 'internationalNumber', !items?.internationalNumber)}
               id="default-checkbox"
               type="checkbox"
-              value={useInternationalNumber}
+              value={items?.internationalNumber}
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
