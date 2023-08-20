@@ -28,6 +28,8 @@ const RightSidebar = () => {
   } = useContext(userContext);
   // console.log({ userCardData });
   // console.log({ newFeilds });
+  const findFacebook = newFeilds.find(item=> item?.title == "Facebook");
+  console.log({findFacebook});
 
   return (
     <div className="scroll-hide h-[76vh] overflow-y-scroll">
