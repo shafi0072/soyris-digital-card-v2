@@ -48,6 +48,10 @@ const RightSidebar = () => {
         {infos && (
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
+
+
+
+
         {/* <div className="my-3">
           <FieldData userData={userCardData} newFeilds={newFeilds} />
         </div> */}

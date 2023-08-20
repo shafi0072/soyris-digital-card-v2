@@ -4,6 +4,7 @@ import Phone from "./Phone";
 import { Container, Draggable } from "react-smooth-dnd";
 import { useContext } from "react";
 import { baseUrl } from "@/src/config/Server";
+import Inputs from "./Inputs";
 
 const Content2 = () => {
   const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
@@ -49,7 +50,8 @@ const Content2 = () => {
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
               <div className="mb-4">
-                <Phone items={items} handleFieldChange={handleFieldChange} />
+                {/* <Phone items={items} handleFieldChange={handleFieldChange} /> */}
+                <Inputs id={items.id}  items={items}  handleFieldChange={handleFieldChange}/>
               </div>
             </Draggable>
           ))}
