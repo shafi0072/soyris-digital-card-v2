@@ -98,6 +98,7 @@ const {userData} = useContext(userContext)
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
+              defaultValue={items?.number && items?.number}
               onChange={(e) =>
                 handleFieldChange(items?.id, "number", e.target.value)
               }
@@ -127,6 +128,7 @@ const {userData} = useContext(userContext)
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
+              defaultValue={items?.url && items?.url}
               onChange={(e) =>
                 handleFieldChange(items?.id, "url", e.target.value)
               }
@@ -160,7 +162,9 @@ const {userData} = useContext(userContext)
                 handleFieldChange(items?.id, "address", e.target.value)
               }
               placeholder={items?.pleaceholder}
-            ></textarea>
+            >
+              {items?.address}
+            </textarea>
             <label htmlFor="" className="absolute top-1/4 left-2">
               {items?.type === "Address" && addressIcon}
             </label>
@@ -171,15 +175,17 @@ const {userData} = useContext(userContext)
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
-            placeholder={items?.pleaceholder}
-            onChange={(e) =>
-              handleFieldChange(items?.id, "title", e.target.value)
-            }
+            // placeholder={items?.pleaceholder}
+            // defaultValue={items?.title && items?.title}
+            // onChange={(e) =>
+            //   handleFieldChange(items?.id, "title", e.target.value)
+            // }
           >
             <input
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
+              defaultValue={items?.title && items?.title}
               onChange={(e) =>
                 handleFieldChange(items?.id, "title", e.target.value)
               }
@@ -197,6 +203,7 @@ const {userData} = useContext(userContext)
               name={"number"}
               enableAreaCodes={true}
               placeholder={items?.placeholder}
+              defaultValue={items?.number && items?.number}
               onChange={(e) => handleFieldChange(items?.id, "number", e)}
               inputProps={{
                 required: true,
@@ -209,7 +216,7 @@ const {userData} = useContext(userContext)
             <input
               type="text"
               name={"Code"}
-              defaultValue={items?.Code}
+              defaultValue={items?.ext && items?.ext}
               onChange={(e) =>
                 handleFieldChange(items?.id, "ext", e.target.value)
               }
@@ -250,16 +257,18 @@ const {userData} = useContext(userContext)
           <div className="mt-4 relative">
             <select
               name={`chooseLabel`}
+              
               onChange={(e) =>
                 handleFieldChange(items?.id, `chooseLabel`, e.target.value)
               }
               id={`choiceLabel`}
               class="w-full py-2 pl-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg "
-            >
-              <option selected>Choice label</option>
-              <option value="Office">Office</option>
-              <option value="Mobile">Mobile</option>
-              <option value="Fax">Fax</option>
+            > 
+
+              <option selected >Choice label</option>
+              <option value="Office" selected={items?.chooseLabel === "Office"}>Office</option>
+              <option value="Mobile" selected={items?.chooseLabel === "Mobile"}>Mobile</option>
+              <option value="Fax" selected={items?.chooseLabel === "Fax"}>Fax</option>
             </select>
             <label htmlFor="" className="absolute top-3 left-2 color-[#C1C1C1]">
               <svg
@@ -285,6 +294,7 @@ const {userData} = useContext(userContext)
                 onChange={(e) =>
                   handleFieldChange(items?.id, `hideLabelCopy`, hideLabel)
                 }
+                checked={items?.hideLabelCopy}
                 onClick={() => setHideLabel(!hideLabel)}
                 type="checkbox"
                 value={hideLabel}
@@ -307,6 +317,7 @@ const {userData} = useContext(userContext)
                 handleFieldChange(items?.id, "displayUrl", e.target.value)
               }
               type="text"
+              defaultValue={items?.displayUrl}
               placeholder={items?.displayPleaceHolder}
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
             />
@@ -599,6 +610,7 @@ const {userData} = useContext(userContext)
           <textarea
             placeholder="Enter your address"
             className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
+
             onChange={(e) =>
               handleFieldChange(
                 items?.id,
@@ -606,7 +618,9 @@ const {userData} = useContext(userContext)
                 e.target.value
               )
             }
-          ></textarea>
+          >
+            {items?.notes}
+          </textarea>
           <label htmlFor="" className="absolute top-12 left-5">
             {items?.type === "Notes" && <EditNoteOutlinedIcon/>}
           </label>
@@ -617,6 +631,7 @@ const {userData} = useContext(userContext)
           <div className="w-full relative ">
             <input
               name={`date`}
+              defaultValue={items?.date}
               onChange={(e) =>
                 handleFieldChange(
                   items?.id,

@@ -13,6 +13,8 @@ import Vimeo from "./Vimeo";
 import Content from "./Content/Content";
 import Social from "./Social/Social";
 import Image from "./Image";
+import DateView from "./DateView";
+import { useState } from "react";
 
 const RightSidebar = () => {
   const {
@@ -28,6 +30,30 @@ const RightSidebar = () => {
   } = useContext(userContext);
   // console.log({ userCardData });
   // console.log({ newFeilds });
+  const socialHeader = newFeilds?.some(
+    (item) =>
+      item?.type === "Facebook" ||
+      item?.type === "Instagram" ||
+      item?.type === "Twitter" ||
+      item?.type === "LinkedIn" ||
+      item?.type === "Pinterest" ||
+      item?.type === "Tiktok"
+  );
+  const imageTitle = newFeilds?.some(
+    (item) => item?.type === "Image" || item?.type === "Galary"
+  );
+  const videoTitle = newFeilds?.some(
+    (item) =>
+      item?.type === "Youtube" ||
+      item?.type === "Vimeo" ||
+      item?.type === "Wistia"
+  );
+  const otherTitle = newFeilds?.some(
+    (item) =>
+      item?.type === "Pdf" || item?.type === "Notes" || item?.type === "Date"
+  );
+
+  // console.log(shouldShowH2)
 
   return (
     <div className="scroll-hide h-[76vh] overflow-y-scroll">
@@ -82,9 +108,11 @@ const RightSidebar = () => {
         </div>
 
         <div className="my-5">
-          <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-            Social Media
-          </h2>
+          {socialHeader && (
+            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
+              Social Media
+            </h2>
+          )}
           <div className="mt-5  flex gap-2 pt-3">
             {newFeilds?.map((item, index) => (
               <>
@@ -99,26 +127,57 @@ const RightSidebar = () => {
           </div>
         </div>
         <div className="mt-5">
-          {newFeilds?.map((item, index) => (
-            <>
-            {/* image - galary */}
-              {item?.type === "Image" && <Image item={item} />}
-              {item?.type === "Galary" && <GalleryImage item={item} />}
-
-              {/* see me in  action */}
-              {item?.type === "Youtube" && <YouTube item={item} />}
-              {item?.type === "Vimeo" && <YouTube item={item} />}
-              {item?.type === "Wistia" && <YouTube item={item} />}
-
-              {/* {item?.type === "Vimeo" && <Vimeo item={item}/>}
-               */}
-
-               {/* more details  */}
-               {item?.type === "Pdf" && <Pdf item={item}/>}
-               
-               
-            </>
-          ))}
+          {imageTitle && (
+            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
+              My Work
+            </h2>
+          )}
+          <div className="mt-5">
+            {newFeilds?.map((item, index) => (
+              <>
+                {item?.type === "Image" && <Image item={item} />}
+                {item?.type === "Galary" && <GalleryImage item={item} />}
+              </>
+            ))}
+          </div>
+        </div>
+        <div className="mt-5">
+          {videoTitle && (
+            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
+              See me in action
+            </h2>
+          )}
+          <div className="mt-5">
+            {newFeilds?.map((item, index) => (
+              <>
+                {/* see me in  action */}
+                {item?.type === "Youtube" && <YouTube item={item} />}
+                {item?.type === "Vimeo" && <YouTube item={item} />}
+                {item?.type === "Wistia" && <YouTube item={item} />}
+              </>
+            ))}
+          </div>
+        </div>
+        <div className="mt-5">
+          {otherTitle && (
+            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
+              More Details
+            </h2>
+          )}
+          <div className="mt-5">
+            {newFeilds?.map((item, index) => (
+              <>
+                {/* more details  */}
+                {item?.type === "Pdf" && <Pdf item={item} />}
+                {item?.type === "Notes" && (
+                  <div className="my-5">
+                    <p className="italic">{item?.notes}</p>
+                  </div>
+                )}
+                {item?.type === "Date" && <DateView item={item} />}
+              </>
+            ))}
+          </div>
         </div>
 
         {/* <div className="my-3">

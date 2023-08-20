@@ -20,9 +20,7 @@ const Pdf = ({item}) => {
       <div className={`${!item?.pdf ?  'hidden' : 'block mt-5' } `}>
       {item?.pdf  &&(
         <div className="mt-5">
-          <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-            More Details
-          </h2>
+         
           <div className="flex gap-3 items-center">
             <div className="bg-[#EB531C] p-2 rounded-full">
               <PictureAsPdfOutlinedIcon sx={{ color: "#fff" }} />
