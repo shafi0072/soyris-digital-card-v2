@@ -5,6 +5,7 @@ import { Container, Draggable } from "react-smooth-dnd";
 import { useContext } from "react";
 import { baseUrl } from "@/src/config/Server";
 import Inputs from "./Inputs";
+import { compressAndConvertToBase64 } from "@/src/config/base64";
 
 const Content2 = () => {
   const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
@@ -42,6 +43,45 @@ const Content2 = () => {
       })
     );
   };
+  const handleImageChanges = async (id, value) => {
+    const files = value
+    const compressedBase64 = await compressAndConvertToBase64(
+      files,
+      800,
+      600,
+      0.8
+    );
+    setNewFeilds((prevFields) =>
+      prevFields.map((field) => {
+        if (field.id === id) {
+          return { ...field, image: compressedBase64 };
+        }
+        return field;
+      })
+    );
+  };
+
+  const handleGalaryChanges = async (id, newImage) => {
+    const files = newImage
+    const compressedBase64 = await compressAndConvertToBase64(
+      files,
+      800,
+      600,
+      0.8
+    );
+    setNewFeilds((prev) => {
+      return prev.map(item => {
+        if (item.id === id) {
+          // Add the new image to the image array of the specific object
+          return {
+            ...item,
+            image: [...item.image, compressedBase64],
+          };
+        }
+        return item;
+      });
+    })
+  }
   console.log({ newFeilds });
   return (
     <>
@@ -50,7 +90,7 @@ const Content2 = () => {
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
               <div className="mb-4">
-                <Phone items={items} handleFieldChange={handleFieldChange} />
+                <Phone items={items} handleFieldChange={handleFieldChange} handleImageChanges={handleImageChanges} handleGalaryChanges={handleGalaryChanges}/>
                 {/* <Inputs id={items.id}  items={items}  handleFieldChange={handleFieldChange}/> */}
               </div>
             </Draggable>
@@ -75,3 +115,5 @@ const Content2 = () => {
 };
 
 export default Content2;
+
+

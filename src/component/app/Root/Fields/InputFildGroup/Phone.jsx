@@ -11,6 +11,8 @@ import { userContext } from "@/src/Storage/ContextApi";
 const Phone = ({
   items,
   handleFieldChange,
+  handleImageChanges,
+  handleGalaryChanges
 }) => {
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
@@ -260,6 +262,108 @@ const Phone = ({
           </div>
         </div>
       )}
+
+      
+      {items.type === 'Image' && (
+        <div>
+          <label
+            htmlFor="image"
+            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
+          >
+            <span>{items.icon}</span>
+
+            <p className="text-md">Add Media</p>
+          </label>
+          <input
+            type="file"
+            id="image"
+            onChange={(e) => handleImageChanges(items?.id, e.target.files[0])}
+            style={{ display: "none" }}
+          />
+        </div>
+      )}
+      {items.type === 'Galary' && (
+        <div>
+          <label
+            htmlFor="galaryImage"
+            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
+          >
+            <span>{items.icon}</span>
+
+            <p className="text-md">Add Media</p>
+          </label>
+          <input
+            type="file"
+            id="galaryImage"
+            onChange={(e) => handleGalaryChanges(items?.id, e.target.files[0])}
+            style={{ display: "none" }}
+          />
+        </div>
+      )}
+      {
+        items.hasOwnProperty("pdf") && 
+        <div>
+           <label
+            htmlFor="p"
+            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
+          >
+            <span>
+             {items.icon}
+            </span>
+
+            <p className="text-md">Add PDF</p>
+          </label>
+          <input
+            type="file"
+            id="p"
+            style={{ display: "none" }}
+          />
+        </div>
+      }
+      {
+        items?.hasOwnProperty("notes") && 
+        <div>
+          <textarea
+              placeholder="Enter your address"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
+            >
+          
+            </textarea>
+            <label htmlFor="" className="absolute top-12 left-5">
+              {items?.icon}
+            </label>
+        </div>
+      }
+      {
+        items?.hasOwnProperty("date") && 
+        <div className='mb-3'>
+        <div className='w-full relative '>
+            <input 
+             name={`date`}
+            //  defaultValue={items?.date}
+            //  onChange={(e) =>
+            //     handleDateInputChange(
+            //      index,
+            //      `date`,
+            //      e.target.value
+            //    )
+            //  }
+            type="date" placeholder='sype' className='border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 ' />
+
+            <label htmlFor="" className='absolute top-2 left-3'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14.059" height="15.692" viewBox="0 0 14.059 15.692">
+                    <g id="date-range-svgrepo-com" transform="translate(0.5 0.5)">
+                        <path id="Path_37" data-name="Path 37" d="M17.059,8.713V6.265a1.632,1.632,0,0,0-1.632-1.632H5.632A1.632,1.632,0,0,0,4,6.265V8.713m13.059,0v7.346a1.632,1.632,0,0,1-1.632,1.632H5.632A1.632,1.632,0,0,1,4,16.059V8.713m13.059,0H4M7.265,3V6.265M13.795,3V6.265" transform="translate(-4 -3)" fill="none" stroke="#989898" stroke-linecap="round" stroke-width="1" />
+                        <rect id="Rectangle_85" data-name="Rectangle 85" width="2.844" height="2.37" rx="0.5" transform="translate(1.422 7.583)" fill="#989898" />
+                        <rect id="Rectangle_86" data-name="Rectangle 86" width="2.449" height="2.449" rx="0.5" transform="translate(5.305 7.346)" fill="#989898" />
+                        <rect id="Rectangle_87" data-name="Rectangle 87" width="2.37" height="2.37" rx="0.5" transform="translate(9.005 7.583)" fill="#989898" />
+                    </g>
+                </svg>
+
+            </label>
+        </div>
+    </div>
+      }
 
       {/* not phone */}
       {items?.hasOwnProperty("label") && (
