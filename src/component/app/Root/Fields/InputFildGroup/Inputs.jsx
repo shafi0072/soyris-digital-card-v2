@@ -1,46 +1,16 @@
-import React, { useContext } from "react";
+import React from 'react';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
-import { useEffect } from "react";
+
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { baseUrl } from "@/src/config/Server";
-import { userContext } from "@/src/Storage/ContextApi";
-import {
-  addressIcon,
-  dateIcon,
-  discordIcon,
-  emailIcon,
-  facebookIcon,
-  headerIcon,
-  imageIcon,
-  instagramIcon,
-  linkIcon,
-  linkedInIcon,
-  notesIcon,
-  phoneIcon,
-  pinterestIcon,
-  qrIcon,
-  signalIcon,
-  skypeIcon,
-  slackIcon,
-  snapchatIcon,
-  telegramIcon,
-  tiktokIcon,
-  twitterIcon,
-  viberIcon,
-  vimeoIcon,
-  websiteIcon,
-  whatsAppIcon,
-  wistiaIcon,
-  youtubeIcon,
-} from "@/src/component/core/Shared/FieldData/FeildInputIcon";
-const Phone = ({ items, handleFieldChange }) => {
-  const [hideLabel, setHideLabel] = useState(true);
-  const [useInternationalNumber, setUseInternationalNumber] = useState(true);
 
+const Inputs = ({items}) => {
+  console.log(items)
+  const [hideLabel, setHideLabel] = useState(true);
+  const [InternationalNumber, setUseInternationalNumber] = useState(true);
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -53,17 +23,17 @@ const Phone = ({ items, handleFieldChange }) => {
               <KeyboardArrowDownIcon />
             </span>
           </div>
-          {items?.hasOwnProperty("devider") && (
-            <button className="ms-4">{items?.type}</button>
-          )}
-          {!items?.hasOwnProperty("devider") && <h4>{items?.type}</h4>}
+          {items?.hasOwnProperty('devider')&& <button className="ms-4">{items?.type}</button>}
+          {!items?.hasOwnProperty('devider') &&
+            <h4>{items?.type}</h4>
+          }
         </div>
         <div onClick={() => (from ? handleRemoveFields() : "")}>
           <CloseIcon />
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {useInternationalNumber && items?.hasOwnProperty("number") && (
+        {items?.internationalNumber  && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
@@ -79,15 +49,7 @@ const Phone = ({ items, handleFieldChange }) => {
             />
 
             <label htmlFor="" className="absolute top-1/4 left-2">
-              {items?.type === "Phone" && phoneIcon}
-              {items?.type === "WhatsApp" && whatsAppIcon}
-              {items?.type === "Viber" && viberIcon}
-              {items?.type === "Skype" && skypeIcon}
-              {items?.type === "Snapchat" && snapchatIcon}
-              {items?.type === "Signal" && signalIcon}
-              {items?.type === "Telegram" && telegramIcon}
-              {items?.type === "Discord" && discordIcon}
-              {items?.type === "Slack" && slackIcon}
+              {items?.icon}
             </label>
           </div>
         )}
@@ -107,20 +69,7 @@ const Phone = ({ items, handleFieldChange }) => {
               }
             />
             <label htmlFor="" className="absolute top-1/4 left-2">
-              {items?.type === "Website" && websiteIcon}
-              {items?.type === "Email" && emailIcon}
-              {items?.type === "Link" && linkIcon}
-              {items?.type === "Facebook" && facebookIcon}
-              {items?.type === "Instagram" && instagramIcon}
-              {items?.type === "Twitter" && twitterIcon}
-              {items?.type === "LinkedIn" && linkedInIcon}
-              {items?.type === "Pinterest" && pinterestIcon}
-              {items?.type === "Tiktok" && tiktokIcon}
-              {items?.type === "Youtube" && youtubeIcon}
-              {items?.type === "Vimeo" && vimeoIcon}
-              {items?.type === "Wistia" && wistiaIcon}
-              {items?.type === "QR" && qrIcon}
-
+              {items?.icon}
             </label>
           </div>
         )}
@@ -138,7 +87,7 @@ const Phone = ({ items, handleFieldChange }) => {
               placeholder={items?.pleaceholder}
             ></textarea>
             <label htmlFor="" className="absolute top-1/4 left-2">
-              {items?.type === "Address" && addressIcon}
+              {items?.icon}
             </label>
           </div>
         )}
@@ -161,19 +110,21 @@ const Phone = ({ items, handleFieldChange }) => {
               }
             />
             <label htmlFor="" className="absolute top-1/4 left-2">
-              {items?.type === "Header" && headerIcon}
+              {items?.icon}
             </label>
           </div>
         )}
-
-        {!useInternationalNumber && (
+        
+        {!InternationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}
-              name={"number"}
+              name={'number'}
               enableAreaCodes={true}
               placeholder={items?.placeholder}
-              onChange={(e) => handleFieldChange(items?.id, "number", e)}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "number", e)
+              }
               inputProps={{
                 required: true,
               }}
@@ -204,16 +155,13 @@ const Phone = ({ items, handleFieldChange }) => {
           <div class="flex items-center mt-4">
             <input
               onChange={(e) =>
-                handleFieldChange(
-                  items?.id,
-                  "internationalNumber",
-                  e.target.value
-                )
+                handleFieldChange(items?.id, "internationalNumber", e.target.value)
               }
-              onClick={() => setUseInternationalNumber(!useInternationalNumber)}
+              
+              onClick={() => setUseInternationalNumber(!InternationalNumber)}
               id="default-checkbox"
               type="checkbox"
-              value={useInternationalNumber}
+              value={InternationalNumber}
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label
@@ -259,7 +207,10 @@ const Phone = ({ items, handleFieldChange }) => {
               <input
                 name={`hideLabel`}
                 onChange={(e) =>
-                  handleFieldChange(items?.id, `hideLabelCopy`, hideLabel)
+                  handleFieldChange(items?.id,
+                    `hideLabelCopy`,
+                    hideLabel
+                  )
                 }
                 onClick={() => setHideLabel(!hideLabel)}
                 type="checkbox"
@@ -306,78 +257,6 @@ const Phone = ({ items, handleFieldChange }) => {
         </div>
       )}
 
-      {items.hasOwnProperty("image") && (
-        <div>
-          <label
-            htmlFor="profileImage"
-            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
-          >
-            <span>
-              {items?.type === "Image" && imageIcon}
-              {
-                items?.type === "Galary" && imageIcon
-              }
-            </span>
-
-            <p className="text-md">Add Media</p>
-          </label>
-          <input
-            type="file"
-            id="profileImage"
-            // onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-        </div>
-      )}
-      {items.hasOwnProperty("pdf") && (
-        <div>
-          <label
-            htmlFor="p"
-            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
-          >
-            <span>{items?.type === "Pdf" && imageIcon}</span>
-
-            <p className="text-md">Add PDF</p>
-          </label>
-          <input type="file" id="p" style={{ display: "none" }} />
-        </div>
-      )}
-      {items?.hasOwnProperty("notes") && (
-        <div>
-          <textarea
-            placeholder="Enter your address"
-            className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
-          ></textarea>
-          <label htmlFor="" className="absolute top-12 left-5">
-            {items?.type === "Notes" && notesIcon}
-          </label>
-        </div>
-      )}
-      {items?.hasOwnProperty("date") && (
-        <div className="mb-3">
-          <div className="w-full relative ">
-            <input
-              name={`date`}
-              //  defaultValue={items?.date}
-              //  onChange={(e) =>
-              //     handleDateInputChange(
-              //      index,
-              //      `date`,
-              //      e.target.value
-              //    )
-              //  }
-              type="date"
-              placeholder="sype"
-              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
-            />
-
-            <label htmlFor="" className="absolute top-2 left-3">
-           {items?.type === "Date" && dateIcon}
-            </label>
-          </div>
-        </div>
-      )}
-
       {/* not phone */}
       {items?.hasOwnProperty("label") && (
         <div className="my-3">
@@ -414,4 +293,4 @@ const Phone = ({ items, handleFieldChange }) => {
   );
 };
 
-export default Phone;
+export default Inputs;
