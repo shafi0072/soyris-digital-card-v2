@@ -3,11 +3,13 @@ import {
   discordIcon,
   emailIcon,
   facebookIcon,
+  headerIcon,
   instagramIcon,
   linkIcon,
   linkedInIcon,
   phoneIcon,
   pinterestIcon,
+  qrIcon,
   signalIcon,
   skypeIcon,
   slackIcon,
@@ -16,8 +18,11 @@ import {
   tiktokIcon,
   twitterIcon,
   viberIcon,
+  vimeoIcon,
   websiteIcon,
   whatsAppIcon,
+  wistiaIcon,
+  youtubeIcon,
 } from "../component/core/Shared/FieldData/FeildInputIcon";
 
 export const field_data = [
@@ -799,7 +804,7 @@ export const field_data = [
           url: "",
           type: "Youtube",
           pleaceholder: "youtube.com/myvideo/12132a",
-          icon: tiktokIcon,
+          icon: youtubeIcon,
         },
       },
       {
@@ -823,6 +828,12 @@ export const field_data = [
             />
           </svg>
         ),
+        fields: {
+          url: "",
+          type: "Vimeo",
+          pleaceholder: "vimeo.com/myvideo/12132a",
+          icon: vimeoIcon,
+        },
       },
       {
         name: "Wistia",
@@ -840,6 +851,12 @@ export const field_data = [
             />
           </svg>
         ),
+        fields: {
+          url: "",
+          type: "Wistia",
+          pleaceholder: "wistia.com/myvideo/12132a",
+          icon: wistiaIcon,
+        },
       },
     ],
   },
@@ -992,7 +1009,7 @@ export const field_data = [
     title: "QR",
     fields: [
       {
-        name: "URL",
+        name: "QR",
         icon: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1075,6 +1092,12 @@ export const field_data = [
             </g>
           </svg>
         ),
+        fields: {
+          url: "",
+          type: "QR",
+          pleaceholder: "qr.com/myvideo/12132a",
+          icon: qrIcon,
+        },
       },
     ],
   },
@@ -1096,6 +1119,12 @@ export const field_data = [
             />
           </svg>
         ),
+        fields: {
+          title: "",
+          type: "Header",
+          pleaceholder: "Leave a review",
+          icon: headerIcon,
+        },
       },
       {
         name: "Divider",
@@ -1116,6 +1145,10 @@ export const field_data = [
             />
           </svg>
         ),
+        fields: {
+          devider: false,
+          type: "Divider",
+        },
       },
     ],
   },

@@ -51,7 +51,10 @@ const Phone = ({
               <KeyboardArrowDownIcon />
             </span>
           </div>
-          <h4>{items?.type}</h4>
+          {items?.hasOwnProperty('devider')&& <button className="ms-4">{items?.type}</button>}
+          {!items?.hasOwnProperty('devider') &&
+            <h4>{items?.type}</h4>
+          }
         </div>
         <div onClick={() => (from ? handleRemoveFields() : "")}>
           <CloseIcon />
@@ -103,32 +106,53 @@ const Phone = ({
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
-            placeholder={items?.pleaceholder}
-            onChange={(e) =>
-              handleFieldChange(items?.id, "address", e.target.value)
-            }
           >
             <textarea
-              
-             
-              placeholder="Enter your address"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
-            >
-              {items?.location}
-            </textarea>
+              onChange={(e) =>
+                handleFieldChange(items?.id, "address", e.target.value)
+              }
+              placeholder={items?.pleaceholder}
+            ></textarea>
             <label htmlFor="" className="absolute top-1/4 left-2">
               {items?.icon}
             </label>
           </div>
         )}
-
+        {items?.hasOwnProperty("title") && (
+          <div
+            className={`${
+              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+            }  relative`}
+            placeholder={items?.pleaceholder}
+            onChange={(e) =>
+              handleFieldChange(items?.id, "title", e.target.value)
+            }
+          >
+            <input
+              type="text"
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+              placeholder={items?.pleaceholder}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "title", e.target.value)
+              }
+            />
+            <label htmlFor="" className="absolute top-1/4 left-2">
+              {items?.icon}
+            </label>
+          </div>
+        )}
+        
         {!useInternationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}
+              name={'number'}
               enableAreaCodes={true}
               placeholder={items?.placeholder}
-              onChange={(e) => handlePhoneInputChange(index, `Number`, e)}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "number", e)
+              }
               inputProps={{
                 required: true,
               }}
@@ -158,14 +182,10 @@ const Phone = ({
         <>
           <div class="flex items-center mt-4">
             <input
-              name={`internationalNumber`}
               onChange={(e) =>
-                handlePhoneInputChange(
-                  index,
-                  `internationalNumber`,
-                  useInternationalNumber
-                )
+                handleFieldChange(items?.id, "internationalNumber", e.target.value)
               }
+              
               onClick={() => setUseInternationalNumber(!useInternationalNumber)}
               id="default-checkbox"
               type="checkbox"
@@ -181,9 +201,9 @@ const Phone = ({
           </div>
           <div className="mt-4 relative">
             <select
-              name={`choiceLabel`}
+              name={`chooseLabel`}
               onChange={(e) =>
-                handlePhoneInputChange(index, `choiceLabel`, e.target.value)
+                handleFieldChange(items?.id, `chooseLabel`, e.target.value)
               }
               id={`choiceLabel`}
               class="w-full py-2 pl-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg "
@@ -213,11 +233,10 @@ const Phone = ({
           <div className="mt-4">
             <label class="relative inline-flex items-center cursor-pointer">
               <input
-                name={`hideLabel${index + 1}`}
+                name={`hideLabel`}
                 onChange={(e) =>
-                  handlePhoneInputChange(
-                    index,
-                    `hideLabel${index + 1}`,
+                  handleFieldChange(items?.id,
+                    `hideLabelCopy`,
                     hideLabel
                   )
                 }
@@ -267,37 +286,37 @@ const Phone = ({
       )}
 
       {/* not phone */}
-      { items?.hasOwnProperty('label')  && (
-          <div className="my-3">
-            <div className="w-full relative ">
-              <input
-                defaultValue={items?.label}
-                onChange={(e) =>
-                  handleFieldChange(items?.id, "label", e.target.value)
-                }
-                type="text"
-                placeholder={items?.labelPleaceholder}
-                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
-              />
-              <label htmlFor="" className="absolute top-3 left-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14.221"
-                  height="13.431"
-                  viewBox="0 0 14.221 13.431"
-                >
-                  <path
-                    id="text-tool-svgrepo-com"
-                    d="M3,4.79A.79.79,0,0,1,3.79,4H16.431a.79.79,0,0,1,.79.79V6.37a.79.79,0,1,1-1.58,0V5.58H10.9V15.851h1.58a.79.79,0,0,1,0,1.58H7.74a.79.79,0,0,1,0-1.58H9.32V5.58H4.58v.79A.79.79,0,0,1,3,6.37Z"
-                    transform="translate(-3 -4)"
-                    fill="#989898"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </label>
-            </div>
+      {items?.hasOwnProperty("label") && (
+        <div className="my-3">
+          <div className="w-full relative ">
+            <input
+              defaultValue={items?.label}
+              onChange={(e) =>
+                handleFieldChange(items?.id, "label", e.target.value)
+              }
+              type="text"
+              placeholder={items?.labelPleaceholder}
+              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+            />
+            <label htmlFor="" className="absolute top-3 left-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14.221"
+                height="13.431"
+                viewBox="0 0 14.221 13.431"
+              >
+                <path
+                  id="text-tool-svgrepo-com"
+                  d="M3,4.79A.79.79,0,0,1,3.79,4H16.431a.79.79,0,0,1,.79.79V6.37a.79.79,0,1,1-1.58,0V5.58H10.9V15.851h1.58a.79.79,0,0,1,0,1.58H7.74a.79.79,0,0,1,0-1.58H9.32V5.58H4.58v.79A.79.79,0,0,1,3,6.37Z"
+                  transform="translate(-3 -4)"
+                  fill="#989898"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </label>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };
