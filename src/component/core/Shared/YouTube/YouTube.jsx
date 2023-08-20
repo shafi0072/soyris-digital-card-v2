@@ -1,6 +1,6 @@
 import React from "react";
 const YouTube = ({ item}) => {
-  console.log(item)
+  // console.log(item)
   return (
     <>
     <div className={`${!item?.url ?  'hidden' : 'block mt-5' } `}>

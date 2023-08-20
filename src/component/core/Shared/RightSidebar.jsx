@@ -101,9 +101,11 @@ const RightSidebar = () => {
         <div className="mt-5">
           {newFeilds?.map((item, index) => (
             <>
+            {/* image - galary */}
               {item?.type === "Image" && <Image item={item} />}
               {item?.type === "Galary" && <GalleryImage item={item} />}
 
+              {/* see me in  action */}
               {item?.type === "Youtube" && <YouTube item={item} />}
               {item?.type === "Vimeo" && <YouTube item={item} />}
               {item?.type === "Wistia" && <YouTube item={item} />}
@@ -111,8 +113,10 @@ const RightSidebar = () => {
               {/* {item?.type === "Vimeo" && <Vimeo item={item}/>}
                */}
 
-               {/* pdf  */}
-               {item?.type === "PDF" && <Pdf item={item}/>}
+               {/* more details  */}
+               {item?.type === "Pdf" && <Pdf item={item}/>}
+               
+               
             </>
           ))}
         </div>
