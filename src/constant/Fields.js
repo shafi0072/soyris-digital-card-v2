@@ -1100,7 +1100,9 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          url: "",
+          qr: "",
+          align: "center",
+          width: 50,
           type: "QR",
           pleaceholder: "qr.com/myvideo/12132a",
         },
