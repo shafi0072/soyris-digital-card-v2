@@ -9,11 +9,7 @@ import "react-phone-input-2/lib/style.css";
 import { baseUrl } from "@/src/config/Server";
 import { userContext } from "@/src/Storage/ContextApi";
 const Phone = ({
-  index,
-  phoneData,
-  handlePhoneInputChange,
   items,
-  from,
   handleFieldChange,
 }) => {
   const [hideLabel, setHideLabel] = useState(true);
@@ -159,13 +155,7 @@ const Phone = ({
           <div class="flex items-center mt-4">
             <input
               name={`internationalNumber`}
-              onChange={(e) =>
-                handlePhoneInputChange(
-                  index,
-                  `internationalNumber`,
-                  useInternationalNumber
-                )
-              }
+             
               onClick={() => setUseInternationalNumber(!useInternationalNumber)}
               id="default-checkbox"
               type="checkbox"
@@ -213,14 +203,8 @@ const Phone = ({
           <div className="mt-4">
             <label class="relative inline-flex items-center cursor-pointer">
               <input
-                name={`hideLabel${index + 1}`}
-                onChange={(e) =>
-                  handlePhoneInputChange(
-                    index,
-                    `hideLabel${index + 1}`,
-                    hideLabel
-                  )
-                }
+              
+               
                 onClick={() => setHideLabel(!hideLabel)}
                 type="checkbox"
                 value={hideLabel}
@@ -272,9 +256,7 @@ const Phone = ({
             <div className="w-full relative ">
               <input
                 defaultValue={items?.label}
-                onChange={(e) =>
-                  handleFieldChange(items?.id, "label", e.target.value)
-                }
+               
                 type="text"
                 placeholder={items?.labelPleaceholder}
                 className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "

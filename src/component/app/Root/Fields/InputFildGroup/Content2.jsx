@@ -46,7 +46,7 @@ const Content2 = () => {
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
         <Container onDrop={onDrop}>
-          {newFeilds.map((items, index) => (
+          {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
               <div className="mb-4">
                 <Phone items={items} handleFieldChange={handleFieldChange} />
