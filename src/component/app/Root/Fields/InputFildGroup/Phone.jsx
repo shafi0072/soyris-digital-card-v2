@@ -8,6 +8,9 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { baseUrl } from "@/src/config/Server";
 import { userContext } from "@/src/Storage/ContextApi";
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import {
   addressIcon,
   dateIcon,
@@ -37,10 +40,32 @@ import {
   wistiaIcon,
   youtubeIcon,
 } from "@/src/component/core/Shared/FieldData/FeildInputIcon";
-const Phone = ({ items, handleFieldChange }) => {
+import Slider from "@mui/material/Slider";
+const Phone = ({
+  items,
+  handleFieldChange,
+  handleImageChanges,
+  handleGalaryChanges,
+  handlePdfChanges,
+  handleDelete
+}) => {
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
+const {userData} = useContext(userContext)
+  const handleChange = (event, newValue) => {
+    console.log(newValue);
+  };
+  const filename = `${userData?.email?.slice(0,6)}-document.pdf`;
 
+  const downloadPdf = () => {
+    const link = document.createElement('a');
+    link.href = `${items?.pdf}`;
+    link.download = filename;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -58,7 +83,7 @@ const Phone = ({ items, handleFieldChange }) => {
           )}
           {!items?.hasOwnProperty("devider") && <h4>{items?.type}</h4>}
         </div>
-        <div onClick={() => (from ? handleRemoveFields() : "")}>
+        <div onClick={()=>handleDelete(items?.id)}>
           <CloseIcon />
         </div>
       </div>
@@ -120,7 +145,6 @@ const Phone = ({ items, handleFieldChange }) => {
               {items?.type === "Vimeo" && vimeoIcon}
               {items?.type === "Wistia" && wistiaIcon}
               {items?.type === "QR" && qrIcon}
-
             </label>
           </div>
         )}
@@ -306,32 +330,254 @@ const Phone = ({ items, handleFieldChange }) => {
         </div>
       )}
 
-      
-      {items.hasOwnProperty("image") && (
+      {items.type === "Image" && (
         <div>
+          {items?.image && (
+            <div className="my-5">
+              <div>
+                <img
+                  src={items?.image}
+                  className=" w-[200px] h-[100px] object-cover"
+                  alt=""
+                />
+              </div>
+              <div className="mt-3 flex items-center gap-4">
+                <p>Alignment</p>
+                <div className="flex border-4 border-[#D5D8DC] rounded-lg">
+                  <button
+                    className={`p-2 ${
+                      items?.align === "left" && "bg-[#D5D8DC]"
+                    }`}
+                    onClick={() =>
+                      handleFieldChange(items?.id, "align", "left")
+                    }
+                  >
+                    <svg
+                      id="align-left-svgrepo-com_2_"
+                      data-name="align-left-svgrepo-com (2)"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16.824"
+                      height="19.291"
+                      viewBox="0 0 16.824 19.291"
+                    >
+                      <path
+                        id="Path_59"
+                        data-name="Path 59"
+                        d="M7.375,7.618a3.334,3.334,0,0,1,.18-1.57,1.346,1.346,0,0,1,.493-.493,3.334,3.334,0,0,1,1.57-.18h8.075a3.334,3.334,0,0,1,1.57.18,1.346,1.346,0,0,1,.493.493,3.333,3.333,0,0,1,.18,1.57,3.333,3.333,0,0,1-.18,1.57,1.345,1.345,0,0,1-.493.493,3.333,3.333,0,0,1-1.57.18H9.618a3.333,3.333,0,0,1-1.57-.18,1.345,1.345,0,0,1-.493-.493A3.334,3.334,0,0,1,7.375,7.618Z"
+                        transform="translate(-3.113 -2.01)"
+                        fill="#525962"
+                      />
+                      <path
+                        id="Path_60"
+                        data-name="Path 60"
+                        d="M7.375,16.618a3.334,3.334,0,0,1,.18-1.57,1.346,1.346,0,0,1,.493-.493,3.333,3.333,0,0,1,1.57-.18H15a3.333,3.333,0,0,1,1.57.18,1.345,1.345,0,0,1,.493.493,3.333,3.333,0,0,1,.18,1.57,3.333,3.333,0,0,1-.18,1.57,1.345,1.345,0,0,1-.493.493,3.333,3.333,0,0,1-1.57.18H9.618a3.333,3.333,0,0,1-1.57-.18,1.346,1.346,0,0,1-.493-.493A3.334,3.334,0,0,1,7.375,16.618Z"
+                        transform="translate(-3.113 -2.935)"
+                        fill="#525962"
+                      />
+                      <path
+                        id="Path_61"
+                        data-name="Path 61"
+                        d="M3.3,20.916a.673.673,0,0,0,.673-.673V2.3a.673.673,0,0,0-1.346,0V20.243A.673.673,0,0,0,3.3,20.916Z"
+                        transform="translate(-2.625 -1.625)"
+                        fill="#525962"
+                        fill-rule="evenodd"
+                        opacity="0.5"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    className={`p-2 ${
+                      items?.align === "center" && "bg-[#D5D8DC]"
+                    }`}
+                    onClick={() =>
+                      handleFieldChange(items?.id, "align", "center")
+                    }
+                  >
+                    <svg
+                      id="align-horizontal-center-svgrepo-com"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12.562"
+                      height="19.291"
+                      viewBox="0 0 12.562 19.291"
+                    >
+                      <path
+                        id="Path_65"
+                        data-name="Path 65"
+                        d="M13.729,14H9.243a3.333,3.333,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493A3.334,3.334,0,0,0,7,16.243a3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h4.486a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493,3.333,3.333,0,0,0,.18-1.57,3.333,3.333,0,0,0-.18-1.57,1.345,1.345,0,0,0-.493-.493A3.333,3.333,0,0,0,13.729,14Z"
+                        transform="translate(-5.205 -2.56)"
+                        fill="#525962"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_66"
+                        data-name="Path 66"
+                        d="M17.562,7.243a3.333,3.333,0,0,0-.18-1.57,1.346,1.346,0,0,0-.493-.493A3.334,3.334,0,0,0,15.319,5H7.243a3.334,3.334,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493A3.334,3.334,0,0,0,5,7.243a3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.334,3.334,0,0,0,1.57.18h8.075a3.334,3.334,0,0,0,1.57-.18,1.346,1.346,0,0,0,.493-.493A3.333,3.333,0,0,0,17.562,7.243Z"
+                        transform="translate(-5 -1.635)"
+                        fill="#525962"
+                      />
+                      <g
+                        id="Group_26"
+                        data-name="Group 26"
+                        transform="translate(5.608 0)"
+                        opacity="0.5"
+                      >
+                        <path
+                          id="Path_67"
+                          data-name="Path 67"
+                          d="M12.6,4.615V1.923a.673.673,0,1,0-1.346,0V4.615Z"
+                          transform="translate(-11.25 -1.25)"
+                          fill="#525962"
+                        />
+                        <path
+                          id="Path_68"
+                          data-name="Path 68"
+                          d="M11.25,10v3.589H12.6V10Z"
+                          transform="translate(-11.25 -2.149)"
+                          fill="#525962"
+                        />
+                        <path
+                          id="Path_69"
+                          data-name="Path 69"
+                          d="M11.25,19v2.692a.673.673,0,1,0,1.346,0V19Z"
+                          transform="translate(-11.25 -3.074)"
+                          fill="#525962"
+                        />
+                      </g>
+                    </svg>
+                  </button>
+                  <button
+                    className={`p-2 ${
+                      items?.align === "right" && "bg-[#D5D8DC]"
+                    }`}
+                    onClick={() =>
+                      handleFieldChange(items?.id, "align", "right")
+                    }
+                  >
+                    <svg
+                      id="align-right-svgrepo-com"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16.824"
+                      height="19.291"
+                      viewBox="0 0 16.824 19.291"
+                    >
+                      <path
+                        id="Path_62"
+                        data-name="Path 62"
+                        d="M15.187,7.618a3.333,3.333,0,0,0-.18-1.57,1.346,1.346,0,0,0-.493-.493,3.334,3.334,0,0,0-1.57-.18H4.868a3.334,3.334,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493,3.334,3.334,0,0,0-.18,1.57,3.334,3.334,0,0,0,.18,1.57,1.345,1.345,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h8.075a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493A3.333,3.333,0,0,0,15.187,7.618Z"
+                        transform="translate(-2.625 -2.01)"
+                        fill="#525962"
+                      />
+                      <path
+                        id="Path_63"
+                        data-name="Path 63"
+                        d="M15.495,16.618a3.333,3.333,0,0,0-.18-1.57,1.345,1.345,0,0,0-.493-.493,3.333,3.333,0,0,0-1.57-.18H7.868a3.333,3.333,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493,3.334,3.334,0,0,0-.18,1.57,3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h5.384a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493A3.333,3.333,0,0,0,15.495,16.618Z"
+                        transform="translate(-2.933 -2.935)"
+                        fill="#525962"
+                      />
+                      <path
+                        id="Path_64"
+                        data-name="Path 64"
+                        d="M20.548,20.916a.673.673,0,0,1-.673-.673V2.3a.673.673,0,0,1,1.346,0V20.243A.673.673,0,0,1,20.548,20.916Z"
+                        transform="translate(-4.397 -1.625)"
+                        fill="#525962"
+                        fill-rule="evenodd"
+                        opacity="0.5"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-5 flex items-center gap-4">
+                <p>Width</p>
+                <div className="imageWidthSlider">
+                  <Slider
+                    valueLabelDisplay="auto"
+                    min={30}
+                    max={100}
+                    value={items?.width}
+                    sx={{
+                      width: 200,
+                      color: "#D5D8DC",
+                      height: 8,
+                      padding: "5px 0",
+                    }}
+                    onChange={(e) =>
+                      handleFieldChange(
+                        items?.id,
+                        "width",
+                        parseInt(e.target.value)
+                      )
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           <label
-            htmlFor="profileImage"
+            htmlFor="image"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
           >
-            <span>
-              {items?.type === "Image" && imageIcon}
-              {
-                items?.type === "Galary" && imageIcon
-              }
-            </span>
+            <span>{items?.type === "Image" && imageIcon}</span>
 
             <p className="text-md">Add Media</p>
           </label>
           <input
             type="file"
-            id="profileImage"
-            // onChange={handleFileChange}
+            id="image"
+            onChange={(e) => handleImageChanges(items?.id, e.target.files[0])}
+            style={{ display: "none" }}
+          />
+        </div>
+      )}
+      {items.type === "Galary" && (
+        <div>
+          {items?.image?.length > 0 && (
+            <div className="w-full">
+              <div className="flex gap-2 flex-wrap my-4">
+                {items?.image
+                  ?.toReversed()
+                  ?.slice(0, 4)
+                  .map((img, index) => (
+                    <img
+                      key={index}
+                      className="w-[144px] h-[55px]  object-cover"
+                      src={img}
+                    />
+                  ))}
+              </div>
+            </div>
+          )}
+          <label
+            htmlFor="galaryImage"
+            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
+          >
+            <span>{items?.type === "Galary" && imageIcon}</span>
+
+            <p className="text-md">Add Media</p>
+          </label>
+          <input
+            type="file"
+            id="galaryImage"
+            onChange={(e) => handleGalaryChanges(items?.id, e.target.files[0])}
             style={{ display: "none" }}
           />
         </div>
       )}
       {items.hasOwnProperty("pdf") && (
         <div>
+            {items?.pdf  && (
+          <div className=" flex-wrap my-4">
+              <p className="flex gap-4 items-center">
+                {" "}
+                <PictureAsPdfIcon fontSize="large" />{" "}
+                <button title="Click to Download" onClick={downloadPdf}>
+                  <CloudDownloadIcon />
+                </button>{" "}
+              </p>
+          </div>
+            )}
+
           <label
             htmlFor="p"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
@@ -340,7 +586,12 @@ const Phone = ({ items, handleFieldChange }) => {
 
             <p className="text-md">Add PDF</p>
           </label>
-          <input type="file" id="p" style={{ display: "none" }} />
+          <input
+            type="file"
+            id="p"
+            style={{ display: "none" }}
+            onChange={(e) => handlePdfChanges(items?.id, e.target.files[0])}
+          />
         </div>
       )}
       {items?.hasOwnProperty("notes") && (
@@ -348,9 +599,16 @@ const Phone = ({ items, handleFieldChange }) => {
           <textarea
             placeholder="Enter your address"
             className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
+            onChange={(e) =>
+              handleFieldChange(
+                items?.id,
+                "notes",
+                e.target.value
+              )
+            }
           ></textarea>
           <label htmlFor="" className="absolute top-12 left-5">
-            {items?.type === "Notes" && notesIcon}
+            {items?.type === "Notes" && <EditNoteOutlinedIcon/>}
           </label>
         </div>
       )}
@@ -359,21 +617,20 @@ const Phone = ({ items, handleFieldChange }) => {
           <div className="w-full relative ">
             <input
               name={`date`}
-              //  defaultValue={items?.date}
-              //  onChange={(e) =>
-              //     handleDateInputChange(
-              //      index,
-              //      `date`,
-              //      e.target.value
-              //    )
-              //  }
+              onChange={(e) =>
+                handleFieldChange(
+                  items?.id,
+                  "date",
+                  e.target.value
+                )
+              }
               type="date"
               placeholder="sype"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
             />
 
             <label htmlFor="" className="absolute top-2 left-3">
-           {items?.type === "Date" && dateIcon}
+              {items?.type === "Date" && dateIcon}
             </label>
           </div>
         </div>

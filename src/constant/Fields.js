@@ -713,6 +713,9 @@ export const field_data = [
         fields: {
           image:"",
           type: "Image",
+          icon: imageIcon,
+          align:'center',
+          width:50
         },
       },
       {
@@ -771,7 +774,7 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          image:"",
+          image:[],
           type: "Galary",
         },
       },
