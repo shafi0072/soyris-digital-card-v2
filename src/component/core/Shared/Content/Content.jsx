@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const Content = () => {
+const Content = ({item}) => {
     const phoneIcon = (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -303,8 +303,27 @@ const Content = () => {
 
 
     return (
-        <div>
-            
+        <div className='flex gap-3 mt-3 items-center'>
+            <div className='w-[50px] h-[50px] rounded-full flex justify-center items-center ' style={{background:'#EB531C'}}>
+                {item?.type === 'Phone' && phoneIcon}
+                {item?.type === 'Website' && websiteIcon}
+                {item?.type === 'Email' && emailIcon}
+                {item?.type === 'Address' && locationIcon}
+                {item?.type === 'Link' && linkIcon}
+                {item?.type === 'WhatsApp' && whatsapppIcon}
+                {item?.type === 'Viber' && viberIcon}
+                {item?.type === 'Skype' && skypeIcon}
+                {item?.type === 'Snapchat' && snapchatIcon}
+                {item?.type === 'Signal' && signalIcon}
+                {item?.type === 'Telegram' && telegramIcon}
+                {item?.type === 'Discord' && discordIcon}
+                {item?.type === 'Slack' && slackIcon}
+            </div>
+            <div>
+                <p className='w-[230px]'>
+                    {item?.number && item?.number} {item?.url && item?.url} {item?.address && item?.address} <span className='ms-5'> {item?.ext && `ext: ${item?.ext}`} </span> <br /> {item?.chooseLabel&& item?.chooseLabel} {item?.type === 'Link' && item?.label ?  item?.label : ''} 
+                </p>
+            </div>
         </div>
     );
 };

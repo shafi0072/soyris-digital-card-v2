@@ -37,7 +37,12 @@ import {
   wistiaIcon,
   youtubeIcon,
 } from "@/src/component/core/Shared/FieldData/FeildInputIcon";
-const Phone = ({ items, handleFieldChange }) => {
+const Phone = ({
+  items,
+  handleFieldChange,
+  handleImageChanges,
+  handleGalaryChanges
+}) => {
   const [hideLabel, setHideLabel] = useState(true);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
 
@@ -306,10 +311,11 @@ const Phone = ({ items, handleFieldChange }) => {
         </div>
       )}
 
-      {items.hasOwnProperty("image") && (
+      
+      {items.type === 'Image' && (
         <div>
           <label
-            htmlFor="profileImage"
+            htmlFor="image"
             className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
           >
             <span>
@@ -323,8 +329,26 @@ const Phone = ({ items, handleFieldChange }) => {
           </label>
           <input
             type="file"
-            id="profileImage"
-            // onChange={handleFileChange}
+            id="image"
+            onChange={(e) => handleImageChanges(items?.id, e.target.files[0])}
+            style={{ display: "none" }}
+          />
+        </div>
+      )}
+      {items.type === 'Galary' && (
+        <div>
+          <label
+            htmlFor="galaryImage"
+            className="flex items-center gap-2 w-full bg-gray-200 px-3 py-1 rounded-full"
+          >
+            <span>{items.icon}</span>
+
+            <p className="text-md">Add Media</p>
+          </label>
+          <input
+            type="file"
+            id="galaryImage"
+            onChange={(e) => handleGalaryChanges(items?.id, e.target.files[0])}
             style={{ display: "none" }}
           />
         </div>

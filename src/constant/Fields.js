@@ -367,7 +367,6 @@ export const field_data = [
           type: "Signal",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-
         },
       },
       {
@@ -395,7 +394,6 @@ export const field_data = [
           type: "Telegram",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-
         },
       },
       {
@@ -441,7 +439,6 @@ export const field_data = [
           type: "Discord",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-
         },
       },
       {
@@ -468,7 +465,6 @@ export const field_data = [
           type: "Slack",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-
         },
       },
     ],
@@ -566,7 +562,6 @@ export const field_data = [
           url: "",
           type: "Instagram",
           pleaceholder: "instagram.com/username",
-
         },
       },
       {
@@ -589,7 +584,6 @@ export const field_data = [
           url: "",
           type: "Twitter",
           pleaceholder: "twitter.com/username",
-
         },
       },
       {
@@ -711,8 +705,10 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          image:"",
+          image: "",
           type: "Image",
+          align: "center",
+          width: 50,
         },
       },
       {
@@ -771,7 +767,7 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          image:"",
+          image: [],
           type: "Galary",
         },
       },
@@ -895,7 +891,7 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          pdf:"",
+          pdf: "",
           type: "Pdf",
         },
       },
@@ -1007,10 +1003,10 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          date:"",
+          date: "",
           type: "Date",
-          label:"",
-          labelPleaceholder:"label",
+          label: "",
+          labelPleaceholder: "label",
         },
       },
     ],
@@ -1161,5 +1157,3 @@ export const field_data = [
     ],
   },
 ];
-
-
