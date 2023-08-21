@@ -50,7 +50,7 @@ const Content2 = () => {
   const handleFieldChange = (id, fieldName, value) => {
     setNewFeilds((prevFields) =>
       prevFields.map((field) => {
-        if (field.id === id) {
+        if (field?.id === id) {
           return { ...field, [fieldName]: value };
         }
         return field;
@@ -110,7 +110,7 @@ const Content2 = () => {
   }
   console.log({ newFeilds });
   const handleDelete = (idToDelete) => {
-    setNewFeilds(prevState => prevState.filter(item => item.id !== idToDelete));
+    setNewFeilds(prevState => prevState.filter(item => item?.id !== idToDelete));
   };
   return (
     <>
