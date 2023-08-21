@@ -11,10 +11,17 @@ import Moment from "react-moment";
 import Pdf from "./Pdf";
 import Vimeo from "./Vimeo";
 import Content from "./Content/Content";
-import Social from "./Social/Social";
+import Social, { facebookIcon, instagramIcon } from "./Social/Social";
 import Image from "./Image";
 import DateView from "./DateView";
 import { useState } from "react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { FaTiktok } from "react-icons/fa";
+import QrView from "./QrView";
 
 const RightSidebar = () => {
   const {
@@ -80,7 +87,14 @@ const RightSidebar = () => {
 
         <div className="my-5">
           {newFeilds?.map((item, index) => (
-            <div key={index}>
+            <>
+              {item?.type === "Divider" && (
+                <div className="w-full h-[2px] bg-gray-400 mt-3 mb-6"></div>
+              )}
+              {item?.type === "Header" && (
+                <h2 className="text-xl font-semibold mt-6">{item?.title}</h2>
+              )}
+              
               {item?.type === "Phone" && <Content item={item} />}
               {item?.type === "Website" && <Content item={item} />}
               {item?.type === "Email" && <Content item={item} />}
@@ -94,91 +108,76 @@ const RightSidebar = () => {
               {item?.type === "Telegram" && <Content item={item} />}
               {item?.type === "Discord" && <Content item={item} />}
               {item?.type === "Slack" && <Content item={item} />}
+              {/* Social media--------------- */}
+              {item?.type === "Facebook" && (
+                <a
+                  href={item?.url}
+                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2 "
+                >
+                  <FacebookIcon style={{ color: "#fff" }} />{" "}
+                </a>
+              )}
+              {item?.type === "Instagram" && (
+                <a
+                  href={item?.url}
+                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2 "
+                >
+                  <InstagramIcon style={{ color: "#fff" }} />
+                </a>
+              )}
+              {item?.type === "Twitter" && (
+                <a
+                  href={item?.url}
+                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2"
+                >
+                  <TwitterIcon style={{ color: "#fff" }} />
+                </a>
+              )}
+              {item?.type === "LinkedIn" && (
+                <a
+                  href={item?.url}
+                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2"
+                >
+                  <LinkedInIcon style={{ color: "#fff" }} />{" "}
+                </a>
+              )}
+              {item?.type === "Pinterest" && (
+                <a
+                  href={item?.url}
+                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2"
+                >
+                  <PinterestIcon style={{ color: "#fff" }} />
+                </a>
+              )}
+              {item?.type === "Tiktok" && (
+                <a
+                  href={item?.url}
+                  className="bg-[#EB531C] px-3 py-3 rounded-full mr-2"
+                >
+                  <FaTiktok className="inline text-white" />
+                </a>
+              )}
 
-              {(item?.type === "Facebook" || item?.type === "Instagram") && (
+              {/* images */}
+              {item?.type === "Image" && <Image item={item} />}
+              {item?.type === "Galary" && <GalleryImage item={item} />}
+              {/* videos */}
+              {item?.type === "Youtube" && <YouTube item={item} />}
+              {item?.type === "Vimeo" && <YouTube item={item} />}
+              {item?.type === "Wistia" && <YouTube item={item} />}
+              {/* more details  */}
+              {item?.type === "Pdf" && <Pdf item={item} />}
+              {item?.type === "Notes" && (
                 <div className="my-5">
-                  <div className="mt-5  flex gap-2 pt-3">
-                    <div></div>
-                    <div> </div>
-                  </div>
+                  <p className="italic">{item?.notes}</p>
                 </div>
               )}
-            </div>
+              {item?.type === "Date" && <DateView item={item} />}
+              {item?.type === "QR" && <QrView item={item} />}
+            </>
           ))}
         </div>
 
-        <div className="my-5">
-          {socialHeader && (
-            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-              Social Media
-            </h2>
-          )}
-          <div className="mt-5  flex gap-2 pt-3">
-            {newFeilds?.map((item, index) => (
-              <>
-                {item?.type === "Facebook" && <Social item={item} />}
-                {item?.type === "Instagram" && <Social item={item} />}
-                {item?.type === "Twitter" && <Social item={item} />}
-                {item?.type === "LinkedIn" && <Social item={item} />}
-                {item?.type === "Pinterest" && <Social item={item} />}
-                {item?.type === "Tiktok" && <Social item={item} />}
-              </>
-            ))}
-          </div>
-        </div>
-        <div className="mt-5">
-          {imageTitle && (
-            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-              My Work
-            </h2>
-          )}
-          <div className="mt-5">
-            {newFeilds?.map((item, index) => (
-              <>
-                {item?.type === "Image" && <Image item={item} />}
-                {item?.type === "Galary" && <GalleryImage item={item} />}
-              </>
-            ))}
-          </div>
-        </div>
-        <div className="mt-5">
-          {videoTitle && (
-            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-              See me in action
-            </h2>
-          )}
-          <div className="mt-5">
-            {newFeilds?.map((item, index) => (
-              <>
-                {/* see me in  action */}
-                {item?.type === "Youtube" && <YouTube item={item} />}
-                {item?.type === "Vimeo" && <YouTube item={item} />}
-                {item?.type === "Wistia" && <YouTube item={item} />}
-              </>
-            ))}
-          </div>
-        </div>
-        <div className="mt-5">
-          {otherTitle && (
-            <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-              More Details
-            </h2>
-          )}
-          <div className="mt-5">
-            {newFeilds?.map((item, index) => (
-              <>
-                {/* more details  */}
-                {item?.type === "Pdf" && <Pdf item={item} />}
-                {item?.type === "Notes" && (
-                  <div className="my-5">
-                    <p className="italic">{item?.notes}</p>
-                  </div>
-                )}
-                {item?.type === "Date" && <DateView item={item} />}
-              </>
-            ))}
-          </div>
-        </div>
 
         {/* <div className="my-3">
           <FieldData userData={userCardData} newFeilds={newFeilds} />

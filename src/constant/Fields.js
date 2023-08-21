@@ -1153,7 +1153,6 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          devider: false,
           type: "Divider",
         },
       },
