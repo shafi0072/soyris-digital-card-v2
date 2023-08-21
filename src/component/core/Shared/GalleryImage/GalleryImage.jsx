@@ -1,21 +1,20 @@
 import React from "react";
 
-const GalleryImage = ({ newFeilds, userCardData }) => {
-  const saveImage =
-    newFeilds?.fields?.galary?.length > 0
-      ? newFeilds?.fields?.galary
-      : userCardData?.fields?.galary?.length > 0
-      ? userCardData?.fields?.galary
-      : [];
+const GalleryImage = ({ item }) => {
+  console.log(item);
+  // const saveImage =
+  //   newFeilds?.fields?.galary?.length > 0
+  //     ? newFeilds?.fields?.galary
+  //     : userCardData?.fields?.galary?.length > 0
+  //     ? userCardData?.fields?.galary
+  //     : [];
   return (
     <div>
-      {saveImage && (
+      {item?.image?.length > 0 && (
         <>
-          <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-            My Work
-          </h2>
+         
           <div className="grid grid-cols-12 gap-[10px]">
-            {saveImage
+            {item?.image
               ?.toReversed()
               ?.slice(0, 10)
               ?.map((item, index) => (

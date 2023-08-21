@@ -44,7 +44,7 @@ const Snapchat = ({ index, handleSnapChatInputChange, items, from }) => {
         <div className="w-full relative ">
           <input
             name={`number`}
-            // defaultValue={`${items?.snapChatUserName + index + 1}`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleSnapChatInputChange(
                 index,
@@ -78,7 +78,7 @@ const Snapchat = ({ index, handleSnapChatInputChange, items, from }) => {
         <div className="w-full relative ">
           <input
             name={`label`}
-            // defaultValue={`${items?.snapChatNumber + index + 1}`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleSnapChatInputChange(
                 index,

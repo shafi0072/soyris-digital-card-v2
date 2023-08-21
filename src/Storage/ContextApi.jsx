@@ -10,14 +10,16 @@ const ContextApi = ({ children }) => {
     const [logoImage, setLogoImage] = useState(null)
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
-    const [newFeilds, setNewFeilds] = useState({})
+    const [newFeilds, setNewFeilds] = useState([])
     const [qrStyle,setQrStyle] = useState('squares');
     const [foregroundColor, setForegroundColor] = useState('#000000')
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
     const [eyeColor, setEyeColor] = useState("#DC0E74");
     const [selectedLogo,setSelectedLogo] = useState(null)
-    console.log({infos})
+    const [loading,setLoading]= useState(true)
+    // console.log({infos})
     const value = {
+        loading,
         selectedLogo,
         eyeColor,
         backgroundColor,
@@ -42,7 +44,8 @@ const ContextApi = ({ children }) => {
         setForegroundColor,
         setBackgroundColor,
         setEyeColor,
-        setSelectedLogo
+        setSelectedLogo,
+        setLoading
     }
     
     
@@ -54,12 +57,14 @@ const ContextApi = ({ children }) => {
             .catch(err => console.log(err))
     }, [])
     useEffect(() => {
+        setLoading(true)
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/singleCard/${userCardId}`)
             .then(res => res.json())
-            .then(data => {setUserCardData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting)})
+            .then(data => {setUserCardData(data); setNewFeilds(data?.fields); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting); setLoading(false)} )
             .catch(err => console.log(err))
     }, [])
+    console.log(userCardData)
     return (
         <userContext.Provider value={value}>
             {children}

@@ -44,7 +44,7 @@ const Skype = ({ index, handleSkypeInputChange, items, from }) => {
         <div className="w-full relative ">
           <input
             name={`number`}
-            // defaultValue={`${items?.skypeUserName + index + 1}`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleSkypeInputChange(
                 index,
@@ -78,7 +78,7 @@ const Skype = ({ index, handleSkypeInputChange, items, from }) => {
         <div className="w-full relative ">
           <input
             name={`label`}
-            // defaultValue={`${items?.skypeNumber + index + 1}`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleSkypeInputChange(
                 index,

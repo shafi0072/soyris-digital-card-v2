@@ -45,11 +45,17 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
-
+  console.log({feilds})
+  const {loading, userData, userCardData, newFeilds, setNewFeilds } =
+    useContext(userContext);
+    if(loading){
+      return 'Loading...';
+    }
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
   );
+  console.log(phoneData)
   // website
   const [websiteData, setWebsiteData] = useState(
     [...Array(feilds.filter((item) => item === "Website").length)].map(() => "")
@@ -68,10 +74,11 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // image -----------
   const [image, setImage] = useState(
-    [...Array(feilds.filter((item) => item === "image").length)].map(() => {})
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => null)
   );
-  const [align, setAlign] = useState("center");
-  const [imageWidth, setImageWidth] = useState(50);
+  const [align, setAlign] = useState(userCardData?.fields?.image[0]?.alignment || 'center');
+  console.log('align',userCardData?.fields?.image[0]?.alignment);
+  const [imageWidth, setImageWidth] = useState(userCardData?.fields?.image[0]?.width || 50 );
   // gallery ---------
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
@@ -159,11 +166,11 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // Vimeo
   const [vimeoData, setVimeoData] = useState(
-    [...Array(feilds.filter((item) => item === "Vimeo").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "vimeo").length)].map(() => "")
   );
   // Wistia
   const [wistiaData, setWistiaData] = useState(
-    [...Array(feilds.filter((item) => item === "Wistia").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "wistia").length)].map(() => "")
   );
   // pdf
   const [pdfData, setPdfData] = useState(
@@ -194,12 +201,12 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  const { userData, userCardData, newFeilds, setNewFeilds } =
-    useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
+    console.log({index});
     setPhoneData((prevPhoneData) => {
       const newData = [...prevPhoneData];
+     
       newData[index] = {
         ...newData[index],
         [field]: value,
@@ -210,6 +217,7 @@ const Content = ({ feilds, setFeilds }) => {
 
   // website
   const handleWebsiteInputChange = (index, field, value) => {
+    console.log('index',index);
     setWebsiteData((prevWebsiteData) => {
       const newData = [...prevWebsiteData];
       newData[index] = {
@@ -513,6 +521,7 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
+    // console.log({filteredPhoneData})
 
   const websiteArray = Array.isArray(userCardData?.fields?.website)
     ? userCardData.fields.website
@@ -681,6 +690,20 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredYouTubeData = Array.isArray(youtubeData)
     ? youtubeData.filter((item) => item !== undefined)
     : [];
+  // vimeo
+  const vimeoArray = Array.isArray(userCardData?.fields?.vimeo)
+    ? userCardData.fields.vimeo
+    : [];
+  const filteredVimeoData = Array.isArray(vimeoData)
+    ? vimeoData.filter((item) => item !== undefined)
+    : [];
+  // wistia
+  const wistiaArray = Array.isArray(userCardData?.fields?.wistia)
+    ? userCardData.fields.wistia
+    : [];
+  const filteredWistiaData = Array.isArray(wistiaData)
+    ? wistiaData.filter((item) => item !== undefined)
+    : [];
   // image
   const imageArray = Array.isArray(userCardData?.fields?.image)
     ? userCardData.fields.image
@@ -696,20 +719,22 @@ const Content = ({ feilds, setFeilds }) => {
     ? galary.filter((item) => item !== undefined)
     : [];
   // pdf
-  // const pdfArray = Array.isArray(userCardData?.fields?.pdf)
-  //   ? userCardData.fields.pdf
-  //   : [];
-  // const filteredPdfData = Array.isArray(pdf)
-  //   ? pdf.filter((item) => item !== undefined)
-  //   : [];
+  const pdfArray = Array.isArray(userCardData?.fields?.pdf)
+    ? userCardData.fields.pdf
+    : [];
+  const filteredPdfData = Array.isArray(pdf)
+    ? pdf.filter((item) => item !== undefined)
+    : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
+  // console.log(updatedPhoneArray)
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
   const updatedEmailArray = [...emailArray, ...filteredEmailData];
   const updatedAddressArray = [...addressArray, ...filteredAddressData];
   const updatedLinkArray = [...linkArray, ...filteredLinkData];
   const updatedWhatsAppArray = [...whatsAppArray, ...filteredWhatsAppData];
   const updatedViberArray = [...viberArray, ...filteredViberData];
+  // console.log(updatedViberArray);
   const updatedSkypeArray = [...skypeArray, ...filteredSkypeData];
   const updatedSnapchatArray = [...snapchatArray, ...filteredSnapchatData];
   const updatedSignalArray = [...signalArray, ...filteredSignalData];
@@ -731,24 +756,26 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedYouTubeArray = [...youTubeArray, ...filteredYouTubeData];
   const updatedImageArray = [...imageArray, ...filteredImageData];
   const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
-  // const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  const updatedVimeoArray = [...vimeoArray, ...filteredVimeoData];
+  const updatedWistiaArray = [...wistiaArray, ...filteredWistiaData];
 
   useEffect(() => {
     setNewFeilds({
       fields: {
         Phone: updatedPhoneArray,
-        website: updatedWebsiteArray,
-        email: updatedEmailArray,
-        address: updatedAddressArray,
-        link: updatedLinkArray,
-        whatsApp: updatedWhatsAppArray,
-        viber: updatedViberArray,
-        skype: updatedSkypeArray,
-        snapchat: updatedSnapchatArray,
-        signal: updatedSignalArray,
-        telegram: updatedTelegramArray,
-        discord: updatedDiscordArray,
-        slack: updatedSlackArray,
+        website: filteredWebsiteData,
+        email: filteredEmailData,
+        address: filteredAddressData,
+        link: filteredLinkData,
+        whatsApp: filteredWhatsAppData,
+        viber: filteredViberData,
+        skype: filteredSkypeData,
+        snapchat: filteredSnapchatData,
+        signal: filteredSignalData,
+        telegram: filteredTelegramData,
+        discord: filteredDiscordData,
+        slack: filteredSlackData,
         facebook: updatedFacebookArray,
         instagram: updatedInstagramArray,
         twitter: updatedTwitterArray,
@@ -756,12 +783,14 @@ const Content = ({ feilds, setFeilds }) => {
         pinterest: updatedPinterestArray,
         tikTok: updatedTiktokArray,
         notes: updatedNoteArray?.reverse()[0]?.note,
+        vimeo: updatedVimeoArray?.reverse()[0]?.vimeo,
+        wistia: updatedWistiaArray?.reverse()[0]?.data,
         dateData: updatedDateArray,
         QR: updatedQrArray,
         Header: updatedHeaderArray,
         divider: updatedDividerArray,
-        youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
-        image: updatedImageArray,
+        youTube: updatedYouTubeArray[0]?.youtube,
+        image: updatedImageArray?.reverse()[0],
         galary: updatedGalaryArray,
         pdf: pdf,
       },
@@ -798,6 +827,8 @@ const Content = ({ feilds, setFeilds }) => {
     galary,
     pdf,
     linkedinData,
+    align,
+    imageWidth,
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -822,7 +853,7 @@ const Content = ({ feilds, setFeilds }) => {
           signal: updatedSignalArray,
           telegram: updatedTelegramArray,
           discord: updatedDiscordArray,
-          youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
+          youTube: updatedYouTubeArray[0]?.youtube,
           slack: updatedSlackArray,
           facebook: updatedFacebookArray,
           instagram: updatedInstagramArray,
@@ -831,11 +862,13 @@ const Content = ({ feilds, setFeilds }) => {
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
           notes: updatedNoteArray?.reverse()[0]?.note,
+          vimeo: updatedVimeoArray?.toReversed()[0]?.vimeo,
+          wistia: updatedWistiaArray?.reverse()[0]?.data,
           dateData: updatedDateArray,
           QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
-          image: updatedImageArray,
+          image: updatedImageArray?.reverse()[0],
           galary: updatedGalaryArray,
           pdf: pdf,
         },
@@ -862,6 +895,7 @@ const Content = ({ feilds, setFeilds }) => {
                   index={index}
                   handlePhoneInputChange={handlePhoneInputChange}
                   phoneData={phoneData}
+                  setPhoneData={setPhoneData}
                   from={true}
                 />
               </div>
