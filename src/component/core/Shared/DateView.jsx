@@ -1,13 +1,15 @@
+import { userContext } from "@/src/Storage/ContextApi";
 import React from "react";
+import { useContext } from "react";
 import Moment from "react-moment";
 
 const DateView = ({ item }) => {
-  console.log(item);
+  const {color} = useContext(userContext)
   return (
     <div>
       {item?.date && (
         <div className="my-5 flex gap-4 items-center">
-          <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
+          <div    style={{ backgroundColor: color }} className=" w-[40px] h-[40px] flex items-center justify-center rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20.911"

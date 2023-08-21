@@ -1,6 +1,9 @@
+import { userContext } from "@/src/Storage/ContextApi";
 import React from "react";
+import { useContext } from "react";
 
 const Content = ({ item }) => {
+  const {color} = useContext(userContext);
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +305,7 @@ const Content = ({ item }) => {
     <div className="flex gap-3 my-5 items-center">
       <div
         className="w-[50px] h-[50px] rounded-full flex justify-center items-center "
-        style={{ background: "#EB531C" }}
+        style={{ backgroundColor: color }}
       >
         {item?.type === "Phone" && phoneIcon}
 
@@ -321,7 +324,7 @@ const Content = ({ item }) => {
       </div>
       <div>
         <p className="w-[230px]">
-          {item?.type !== "Phone" && item?.number && item?.number}{" "}
+          {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
           {item?.number &&
             item?.internationalNumber &&
