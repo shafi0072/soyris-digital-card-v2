@@ -3,7 +3,7 @@ import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import { userContext } from "@/src/Storage/ContextApi";
 
 const Pdf = ({item}) => {
-  const {userData} = useContext(userContext)
+  const {userData,color} = useContext(userContext)
   const filename = `${userData?.email?.slice(0, 6)}-document.pdf`;
 
   const downloadPdf = () => {
@@ -22,7 +22,7 @@ const Pdf = ({item}) => {
         <div className="mt-5">
          
           <div className="flex gap-3 items-center">
-            <div className="bg-[#EB531C] p-2 rounded-full">
+            <div    style={{ backgroundColor: color }} className=" p-2 rounded-full">
               <PictureAsPdfOutlinedIcon sx={{ color: "#fff" }} />
             </div>
             <button onClick={downloadPdf} title="click to download pdf">

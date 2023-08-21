@@ -35,9 +35,7 @@ const RightSidebar = () => {
     logoImage,
     infos,
   } = useContext(userContext);
-  const [social, setSocial] = useState([]);
-  console.log(social);
-  // console.log({ userCardData });
+  console.log({ userCardData });
   // console.log({ newFeilds });
   const socialHeader = newFeilds?.some(
     (item) =>
@@ -96,7 +94,7 @@ const RightSidebar = () => {
               {item?.type === "Header" && (
                 <h2 className="text-xl font-semibold mt-6">{item?.title}</h2>
               )}
-              
+
               {item?.type === "Phone" && <Content item={item} />}
               {item?.type === "Website" && <Content item={item} />}
               {item?.type === "Email" && <Content item={item} />}
@@ -114,49 +112,55 @@ const RightSidebar = () => {
               {item?.type === "Facebook" && (
                 <a
                   href={item?.url}
-                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2 "
+                  style={{ backgroundColor: color }}
+                  className=" w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <FacebookIcon style={{ color: "#fff" }} />{" "}
                 </a>
               )}
               {item?.type === "Instagram" && (
                 <a
+                style={{ backgroundColor: color }}
                   href={item?.url}
-                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2 "
+                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <InstagramIcon style={{ color: "#fff" }} />
                 </a>
               )}
               {item?.type === "Twitter" && (
                 <a
+                style={{ backgroundColor: color }}
                   href={item?.url}
-                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2"
+                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <TwitterIcon style={{ color: "#fff" }} />
                 </a>
               )}
               {item?.type === "LinkedIn" && (
                 <a
+                style={{ backgroundColor: color }}
                   href={item?.url}
-                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2"
+                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <LinkedInIcon style={{ color: "#fff" }} />{" "}
                 </a>
               )}
               {item?.type === "Pinterest" && (
                 <a
+                style={{ backgroundColor: color }}
                   href={item?.url}
-                  className="bg-[#EB531C] px-2 py-3 rounded-full mr-2"
+                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <PinterestIcon style={{ color: "#fff" }} />
                 </a>
               )}
               {item?.type === "Tiktok" && (
                 <a
+                style={{ backgroundColor: color }}
                   href={item?.url}
-                  className="bg-[#EB531C] px-3 py-3 rounded-full mr-2"
+                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
                 >
-                  <FaTiktok className="inline text-white" />
+                  <FaTiktok className="inline text-white text-xl" />
                 </a>
               )}
 
@@ -179,9 +183,6 @@ const RightSidebar = () => {
             </>
           ))}
         </div>
-
-
-        
       </div>
     </div>
   );
