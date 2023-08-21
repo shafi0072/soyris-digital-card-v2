@@ -6,11 +6,11 @@ import Content from "./InputFildGroup/Content";
 const Fields = () => {
   const [feilds, setFeilds] = useState([]);
   return (
-    <div class="grid grid-cols-3 gap-4">
-      <div class="...">
+    <div className="grid grid-cols-3 gap-4">
+      <div className="...">
         <Sidebar feilds={feilds} setFeilds={setFeilds} />
       </div>
-      <div class="col-span-2 ...">
+      <div className="col-span-2 ...">
         <Content feilds={feilds} setFeilds={setFeilds}/>
       </div>
       

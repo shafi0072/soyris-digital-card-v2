@@ -9,7 +9,7 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 const PDF = ({ userData,pdf, setPdf, items, from }) => {
   const [PdfBase64, setPdfBase64] = useState("");
-console.log({userData});
+// console.log({userData});
 
   const filename = `${userData?.email?.slice(0,6)}-document.pdf`;
 

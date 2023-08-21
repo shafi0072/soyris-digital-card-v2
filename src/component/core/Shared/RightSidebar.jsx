@@ -8,6 +8,7 @@ import YouTube from "./YouTube/YouTube";
 import GalleryImage from "./GalleryImage/GalleryImage";
 import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 import Moment from "react-moment";
+import Pdf from "./Pdf";
 
 const RightSidebar = () => {
   const {
@@ -25,7 +26,7 @@ const RightSidebar = () => {
   console.log({ newFeilds });
 
   return (
-    <div className="scroll-hide max-h-[90vh] overflow-y-scroll">
+    <div className="scroll-hide h-[76vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
         {design === "classic" && (
           <Classic
@@ -521,6 +522,57 @@ const RightSidebar = () => {
               </div>
             </div>
           )}
+        </div>
+        {/* pdf here  */}
+        <Pdf userCardData={userCardData} newFeilds={newFeilds} userData={userData} />
+        {/* notes here */}
+        {userCardData?.fields?.notes && !newFeilds?.fields?.notes && (
+          <div className="my-5">
+            <p className="italic">{userCardData?.fields?.notes[0]}</p>
+          </div>
+        )}
+        
+          
+      
+        { newFeilds?.fields?.notes && (
+          <div className="my-5">
+            <p className="italic">{newFeilds?.fields?.notes}</p>
+          </div>
+        )}
+        {/* date here */}
+        {userCardData?.fields?.dateData[0] &&
+          !newFeilds?.fields?.dateData[0] && (
+            <div className="my-5 flex gap-4 items-center">
+              <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20.911"
+                  height="23.337"
+                  viewBox="0 0 20.911 23.337"
+                >
+                  <path
+                    id="Path_37"
+                    data-name="Path 37"
+                    d="M23.411,11.492V7.853a2.426,2.426,0,0,0-2.426-2.426H6.426A2.426,2.426,0,0,0,4,7.853v3.639m19.411,0V22.411a2.426,2.426,0,0,1-2.426,2.426H6.426A2.426,2.426,0,0,1,4,22.411V11.492m19.411,0H4M8.853,3V7.853M18.558,3V7.853"
+                    transform="translate(-3.25 -2.25)"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p>
+                  <Moment format="DD/MM/YYYY">
+                    {userCardData?.fields?.dateData[0]?.date}
+                  </Moment>
+                </p>
+                <p>{userCardData?.fields?.dateData[0]?.funding}</p>
+              </div>
+            </div>
+          )}
+
         {newFeilds?.fields?.dateData[0] && (
           <div className="my-5 flex gap-4 items-center">
             <div className="bg-[#EB531C] w-[40px] h-[40px] flex items-center justify-center rounded-full">
@@ -559,7 +611,7 @@ const RightSidebar = () => {
           </div>
         )}
       </div>
-    </div>
+   
   );
 };
 

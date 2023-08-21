@@ -80,6 +80,7 @@ const Content = ({ feilds, setFeilds }) => {
   const [pdf, setPdf] = useState(
     [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
   );
+  // console.log(pdf)
 
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
@@ -93,32 +94,32 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // skype
   const [skypeData, setSkypeData] = useState(
-    [...Array(feilds.filter((item) => item === "Skype").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "skype").length)].map(() => "")
   );
   // snapChat
   const [snapChatData, setSnapChatData] = useState(
-    [...Array(feilds.filter((item) => item === "SnapChat").length)].map(
+    [...Array(feilds.filter((item) => item === "snapChat").length)].map(
       () => ""
     )
   );
   // signal
   const [signalData, setSignalData] = useState(
-    [...Array(feilds.filter((item) => item === "Signal").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "signal").length)].map(() => "")
   );
   // telegram------
   const [telegramData, setTelegramData] = useState(
-    [...Array(feilds.filter((item) => item === "Telegram").length)].map(
+    [...Array(feilds.filter((item) => item === "telegram").length)].map(
       () => ""
     )
   );
 
   // discord ----
   const [discordData, setDiscordData] = useState(
-    [...Array(feilds.filter((item) => item === "Discord").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "discord").length)].map(() => "")
   );
   // slack
   const [slackData, setSlackData] = useState(
-    [...Array(feilds.filter((item) => item === "Slack").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "slack").length)].map(() => "")
   );
   // facebook
   const [facebookData, setFacebookData] = useState(
@@ -174,7 +175,9 @@ const Content = ({ feilds, setFeilds }) => {
   );
   // date
   const [dateData, setDataData] = useState(
-    [...Array(feilds.filter((item) => item === "dateData").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "dateData").length)].map(
+      () => ""
+    )
   );
   // qr ---
   const [qrData, setQrData] = useState(
@@ -441,16 +444,16 @@ const Content = ({ feilds, setFeilds }) => {
   };
 
   // pdf
-  const handlePdfInputChange = (index, field, value) => {
-    setPdfData((prevPdfData) => {
-      const newData = [...prevPdfData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
-  };
+  // const handlePdfInputChange = (index, field, value) => {
+  //   setPdfData((prevPdfData) => {
+  //     const newData = [...prevPdfData];
+  //     newData[index] = {
+  //       ...newData[index],
+  //       [field]: value,
+  //     };
+  //     return newData;
+  //   });
+  // };
   const handleNoteInputChange = (index, field, value) => {
     setNoteData((prevNoteData) => {
       const newData = [...prevNoteData];
@@ -476,12 +479,11 @@ const Content = ({ feilds, setFeilds }) => {
   const handleQRInputChange = (index, field, value) => {
     setQrData([
       {
-        width:qrWidth,
+        width: qrWidth,
         alignment: qrAlign,
-        QrCode: value
-      }
-    ])
-      
+        QrCode: value,
+      },
+    ]);
   };
   // header
   const handleHeaderInputChange = (index, field, value) => {
@@ -652,8 +654,8 @@ const Content = ({ feilds, setFeilds }) => {
     ? dateData.filter((item) => item !== undefined)
     : [];
   // qr
-  const qrArray = Array.isArray(userCardData?.fields?.qr)
-    ? userCardData.fields.qr
+  const qrArray = Array.isArray(userCardData?.fields?.QR)
+    ? userCardData.fields.QR
     : [];
   const filteredQrData = Array.isArray(qrData)
     ? qrData.filter((item) => item !== undefined)
@@ -694,12 +696,12 @@ const Content = ({ feilds, setFeilds }) => {
     ? galary.filter((item) => item !== undefined)
     : [];
   // pdf
-  const pdfArray = Array.isArray(userCardData?.fields?.pdf)
-    ? userCardData.fields.pdf
-    : [];
-  const filteredPdfData = Array.isArray(pdf)
-    ? pdf.filter((item) => item !== undefined)
-    : [];
+  // const pdfArray = Array.isArray(userCardData?.fields?.pdf)
+  //   ? userCardData.fields.pdf
+  //   : [];
+  // const filteredPdfData = Array.isArray(pdf)
+  //   ? pdf.filter((item) => item !== undefined)
+  //   : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
@@ -729,7 +731,7 @@ const Content = ({ feilds, setFeilds }) => {
   const updatedYouTubeArray = [...youTubeArray, ...filteredYouTubeData];
   const updatedImageArray = [...imageArray, ...filteredImageData];
   const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
-  const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  // const updatedPdfArray = [...pdfArray, ...filteredPdfData];
 
   useEffect(() => {
     setNewFeilds({
@@ -753,7 +755,7 @@ const Content = ({ feilds, setFeilds }) => {
         linkedIn: updatedLinkedinArray,
         pinterest: updatedPinterestArray,
         tikTok: updatedTiktokArray,
-        notes: updatedNoteArray,
+        notes: updatedNoteArray?.reverse()[0]?.note,
         dateData: updatedDateArray,
         QR: updatedQrArray,
         Header: updatedHeaderArray,
@@ -761,7 +763,7 @@ const Content = ({ feilds, setFeilds }) => {
         youTube: updatedYouTubeArray[0]?.YoutubeUserName1,
         image: updatedImageArray,
         galary: updatedGalaryArray,
-        pdf: updatedPdfArray,
+        pdf: pdf,
       },
     });
   }, [
@@ -777,6 +779,7 @@ const Content = ({ feilds, setFeilds }) => {
     addressData,
     linkData,
     skypeData,
+    snapChatData,
     viberData,
     telegramData,
     signalData,
@@ -786,7 +789,7 @@ const Content = ({ feilds, setFeilds }) => {
     tiktokData,
     youtubeData,
     vimeoData,
-    pdfData,
+    // pdfData,
     wistiaData,
     noteData,
     dateData,
@@ -794,7 +797,7 @@ const Content = ({ feilds, setFeilds }) => {
     image,
     galary,
     pdf,
-    linkedinData
+    linkedinData,
   ]);
 
   const handleFieldsOnSubmit = (e) => {
@@ -827,14 +830,14 @@ const Content = ({ feilds, setFeilds }) => {
           linkedIn: updatedLinkedinArray,
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
-          notes: updatedNoteArray,
+          notes: updatedNoteArray?.reverse()[0]?.note,
           dateData: updatedDateArray,
           QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
           image: updatedImageArray,
           galary: updatedGalaryArray,
-          pdf: updatedPdfArray,
+          pdf: pdf,
         },
       }),
     })
@@ -1154,7 +1157,7 @@ const Content = ({ feilds, setFeilds }) => {
               <div className="mb-2">
                 <PDF
                   items={userCardData?.fields?.pdf}
-                  index={index}
+                  // index={index}
                   pdf={pdf}
                   setPdf={setPdf}
                   from={true}
@@ -1238,13 +1241,13 @@ const Content = ({ feilds, setFeilds }) => {
           {userCardData?.fields?.dateData?.map((items, index) => (
             <Draggable key={items}>
               <div className="mb-2">
-              <Date
-                    index={index}
-                    handleDateInputChange={handleDateInputChange}
-                    dateData={dateData}
-                    items={items}
+                <Date
+                  index={index}
+                  handleDateInputChange={handleDateInputChange}
+                  dateData={dateData}
+                  items={items}
                   from={true}
-                  />
+                />
               </div>
             </Draggable>
           ))}

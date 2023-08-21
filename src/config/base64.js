@@ -3,6 +3,7 @@ export function compressAndConvertToBase64(file, maxWidth, maxHeight, quality) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
+    // kdjkdj
 
     reader.onload = function (event) {
       const img = new Image();

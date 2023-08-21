@@ -87,7 +87,7 @@ const SubNavbar = () => {
          : (
           <ul style={{ display: "flex" }}>
             {sub_Navbar_data?.map((items, index) => (
-              <li
+              <li key={index}
                 className="mx-2 my-2 "
                 onClick={() => {
                   setActive(index);

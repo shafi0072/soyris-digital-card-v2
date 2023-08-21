@@ -21,6 +21,7 @@ const Date = ({index,handleDateInputChange,items,from}) => {
                 <div className='w-full relative '>
                     <input 
                      name={`date`}
+                     defaultValue={items?.date}
                      onChange={(e) =>
                         handleDateInputChange(
                          index,
@@ -47,6 +48,7 @@ const Date = ({index,handleDateInputChange,items,from}) => {
                 <div className='w-full relative '>
                     <input  
                     name={`funding`}
+                    defaultValue={items?.funding}
                     onChange={(e) =>
                        handleDateInputChange(
                         index,
