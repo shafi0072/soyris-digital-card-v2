@@ -335,7 +335,7 @@ const Content = ({ item }) => {
           {item?.url && item?.url} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
           <br /> {item?.chooseLabel && item?.chooseLabel}{" "}
-          {item?.label && item?.label} {item?.displayUrl && item?.displayUrl}
+          {item?.displayUrl && <span className="block">{item?.displayUrl}</span>}{item?.label && item?.label} 
         </p>
       </div>
     </div>
