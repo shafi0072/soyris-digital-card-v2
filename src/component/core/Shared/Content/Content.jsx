@@ -3,7 +3,7 @@ import React from "react";
 import { useContext } from "react";
 
 const Content = ({ item }) => {
-  const {color} = useContext(userContext);
+  const { color } = useContext(userContext);
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -335,7 +335,7 @@ const Content = ({ item }) => {
           {item?.url && item?.url} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
           <br /> {item?.chooseLabel && item?.chooseLabel}{" "}
-          {item?.type === "Link" && item?.label ? item?.label : ""}
+          {item?.label && item?.label} {item?.displayUrl && item?.displayUrl}
         </p>
       </div>
     </div>
