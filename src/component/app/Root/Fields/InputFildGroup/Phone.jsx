@@ -121,6 +121,7 @@ const {userData} = useContext(userContext)
 
         {items?.hasOwnProperty("url") && (
           <div
+          id={items?.id}
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
@@ -134,7 +135,7 @@ const {userData} = useContext(userContext)
                 handleFieldChange(items?.id, "url", e.target.value)
               }
             />
-            <label htmlFor="" className="absolute top-1/4 left-2">
+            <label htmlFor={items?.id} className="absolute top-1/4 left-2">
               {items?.type === "Website" && websiteIcon}
               {items?.type === "Email" && emailIcon}
               {items?.type === "Link" && linkIcon}
@@ -176,11 +177,6 @@ const {userData} = useContext(userContext)
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
-            // placeholder={items?.pleaceholder}
-            // defaultValue={items?.title && items?.title}
-            // onChange={(e) =>
-            //   handleFieldChange(items?.id, "title", e.target.value)
-            // }
           >
             <input
               type="text"
