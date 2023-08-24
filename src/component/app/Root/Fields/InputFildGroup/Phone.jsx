@@ -120,6 +120,7 @@ const {userData} = useContext(userContext)
 
         {items?.hasOwnProperty("url") && (
           <div
+          id={items?.id}
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
@@ -133,7 +134,7 @@ const {userData} = useContext(userContext)
                 handleFieldChange(items?.id, "url", e.target.value)
               }
             />
-            <label htmlFor="" className="absolute top-1/4 left-2">
+            <label htmlFor={items?.id} className="absolute top-1/4 left-2">
               {items?.type === "Website" && websiteIcon}
               {items?.type === "Email" && emailIcon}
               {items?.type === "Link" && linkIcon}
@@ -175,11 +176,6 @@ const {userData} = useContext(userContext)
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
-            // placeholder={items?.pleaceholder}
-            // defaultValue={items?.title && items?.title}
-            // onChange={(e) =>
-            //   handleFieldChange(items?.id, "title", e.target.value)
-            // }
           >
             <input id={items?.type}
               type="text"
@@ -409,9 +405,7 @@ const {userData} = useContext(userContext)
               placeholder={items?.placeholder}
               value={items?.number && items?.number}
               onChange={(e) => handleFieldChange(items?.id, "number", e)}
-              inputProps={{
-                required: true,
-              }}
+             
             />
           </div>
         )}
@@ -448,6 +442,7 @@ const {userData} = useContext(userContext)
               onClick={() => setUseInternationalNumber(!useInternationalNumber)}
               id="default-checkbox"
               type="checkbox"
+              checked={items?.internationalNumber}
               value={useInternationalNumber}
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
