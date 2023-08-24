@@ -117,7 +117,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
                 isValid === "valid" && <CheckIcon sx={{color:"#008000"}}/>
               }
               <label className="block ps-3 mt-3">
-                https://easycard-gr.vercel.app/
+                https://easycard-gr.vercel.app/ {inputValue && inputValue}
               </label>
             </div>
           </div>
