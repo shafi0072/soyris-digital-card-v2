@@ -24,7 +24,7 @@ const ProfileInformation = () => {
         })
             .then(res => res.json())
             .then(data => {
-                toast.success('Sign Up successfully', {
+                toast.success('Profile Information Update SuccessFully', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
