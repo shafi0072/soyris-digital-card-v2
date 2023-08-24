@@ -94,11 +94,11 @@ const {userData} = useContext(userContext)
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
           >
-            <input
+            <input id={items?.type}
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
-              defaultValue={items?.number && items?.number}
+              value={items?.number && items?.number}
               onChange={(e) =>
                 handleFieldChange(items?.id, "number", e.target.value)
               }
@@ -124,11 +124,11 @@ const {userData} = useContext(userContext)
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
           >
-            <input
+            <input id={items?.type}
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
-              defaultValue={items?.url && items?.url}
+              value={items?.url && items?.url}
               onChange={(e) =>
                 handleFieldChange(items?.id, "url", e.target.value)
               }
@@ -181,11 +181,11 @@ const {userData} = useContext(userContext)
             //   handleFieldChange(items?.id, "title", e.target.value)
             // }
           >
-            <input
+            <input id={items?.type}
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
-              defaultValue={items?.title && items?.title}
+              value={items?.title && items?.title}
               onChange={(e) =>
                 handleFieldChange(items?.id, "title", e.target.value)
               }
@@ -206,7 +206,7 @@ const {userData} = useContext(userContext)
               handleFieldChange(items?.id, "qr", e.target.value)
             }
           >
-            <input
+            <input id={items?.type}
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
@@ -406,7 +406,7 @@ const {userData} = useContext(userContext)
               name={"number"}
               enableAreaCodes={true}
               placeholder={items?.placeholder}
-              defaultValue={items?.number && items?.number}
+              value={items?.number && items?.number}
               onChange={(e) => handleFieldChange(items?.id, "number", e)}
               inputProps={{
                 required: true,
@@ -416,10 +416,10 @@ const {userData} = useContext(userContext)
         )}
         {items?.hasOwnProperty("ext") && (
           <div className="relative w-[25%]">
-            <input
+            <input id={items?.type}
               type="text"
               name={"Code"}
-              defaultValue={items?.ext && items?.ext}
+              value={items?.ext && items?.ext}
               onChange={(e) =>
                 handleFieldChange(items?.id, "ext", e.target.value)
               }
@@ -436,7 +436,7 @@ const {userData} = useContext(userContext)
       {items?.type === "Phone" && (
         <>
           <div class="flex items-center mt-4">
-            <input
+            <input id={items?.type}
               onChange={(e) =>
                 handleFieldChange(
                   items?.id,
@@ -492,7 +492,7 @@ const {userData} = useContext(userContext)
           </div>
           <div className="mt-4">
             <label class="relative inline-flex items-center cursor-pointer">
-              <input
+              <input id={items?.type}
                 name={`hideLabel`}
                 onChange={(e) =>
                   handleFieldChange(items?.id, `hideLabelCopy`, hideLabel)
@@ -515,12 +515,12 @@ const {userData} = useContext(userContext)
       {items?.type === "Link" && (
         <div className="my-3">
           <div className="w-full relative ">
-            <input
+            <input id={items?.type}
               onChange={(e) =>
                 handleFieldChange(items?.id, "displayUrl", e.target.value)
               }
               type="text"
-              defaultValue={items?.displayUrl}
+              value={items?.displayUrl && items?.displayUrl}
               placeholder={items?.displayPleaceHolder}
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
             />
@@ -736,7 +736,7 @@ const {userData} = useContext(userContext)
 
             <p className="text-md">Add Media</p>
           </label>
-          <input
+          <input id={items?.type}
             type="file"
             id="image"
             onChange={(e) => handleImageChanges(items?.id, e.target.files[0])}
@@ -770,7 +770,7 @@ const {userData} = useContext(userContext)
 
             <p className="text-md">Add Media</p>
           </label>
-          <input
+          <input id={items?.type}
             type="file"
             id="galaryImage"
             onChange={(e) => handleGalaryChanges(items?.id, e.target.files[0])}
@@ -800,7 +800,7 @@ const {userData} = useContext(userContext)
 
             <p className="text-md">Add PDF</p>
           </label>
-          <input
+          <input id={items?.type}
             type="file"
             id="p"
             style={{ display: "none" }}
@@ -832,9 +832,9 @@ const {userData} = useContext(userContext)
       {items?.hasOwnProperty("date") && (
         <div className="mb-3">
           <div className="w-full relative ">
-            <input
+            <input id={items?.type}
               name={`date`}
-              defaultValue={items?.date}
+              value={items?.date && items?.date}
               onChange={(e) =>
                 handleFieldChange(
                   items?.id,
@@ -858,8 +858,8 @@ const {userData} = useContext(userContext)
       {items?.hasOwnProperty("label") && (
         <div className="my-3">
           <div className="w-full relative ">
-            <input
-              defaultValue={items?.label}
+            <input id={items?.type}
+              value={items?.label && items?.label}
               onChange={(e) =>
                 handleFieldChange(items?.id, "label", e.target.value)
               }
