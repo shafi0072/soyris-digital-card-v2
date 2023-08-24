@@ -17,7 +17,7 @@ const Image = ({ item }) => {
             }
             `}
         >
-          (
+          
           <img
             className="h-[250px] object-cover rounded"
             src={item?.image}
@@ -26,7 +26,7 @@ const Image = ({ item }) => {
               width: `${item?.width}%`,
             }}
           />
-          )
+          
         </div>
       )}
     </>

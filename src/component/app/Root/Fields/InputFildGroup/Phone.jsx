@@ -88,7 +88,7 @@ const {userData} = useContext(userContext)
         </div>
       </div>
       <div className="flex gap-2 justify-between">
-        {useInternationalNumber && items?.hasOwnProperty("number") && (
+        {!items?.internationalNumber && items?.hasOwnProperty("number") && items?.hasOwnProperty("number") && (
           <div
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
@@ -399,12 +399,13 @@ const {userData} = useContext(userContext)
           </div>
         )}
 
-        {!useInternationalNumber && (
+        {items?.internationalNumber && (
           <div className="w-[70%]">
             <PhoneInput
               country={"us"}
               name={"number"}
               enableAreaCodes={true}
+              countryCodeEditable={true}
               placeholder={items?.placeholder}
               value={items?.number && items?.number}
               onChange={(e) => handleFieldChange(items?.id, "number", e)}
@@ -544,7 +545,7 @@ const {userData} = useContext(userContext)
         </div>
       )}
 
-      {items.type === "Image" && (
+      {items?.type === "Image" && (
         <div>
           {items?.image && (
             <div className="my-5">
@@ -744,7 +745,7 @@ const {userData} = useContext(userContext)
           />
         </div>
       )}
-      {items.type === "Galary" && (
+      {items?.type === "Galary" && (
         <div>
           {items?.image?.length > 0 && (
             <div className="w-full">
@@ -778,7 +779,7 @@ const {userData} = useContext(userContext)
           />
         </div>
       )}
-      {items.hasOwnProperty("pdf") && (
+      {items?.hasOwnProperty("pdf") && (
         <div>
             {items?.pdf  && (
           <div className=" flex-wrap my-4">
@@ -808,8 +809,8 @@ const {userData} = useContext(userContext)
           />
         </div>
       )}
-      {items?.hasOwnProperty("notes") && (
-        <div>
+      {items?.type === "Notes" && (
+        <div className="relative">
           <textarea
             placeholder="Enter your address"
             className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
@@ -824,7 +825,7 @@ const {userData} = useContext(userContext)
           >
             {items?.notes}
           </textarea>
-          <label htmlFor="" className="absolute top-12 left-5">
+          <label htmlFor="" className="absolute top-1 left-2">
             {items?.type === "Notes" && <EditNoteOutlinedIcon/>}
           </label>
         </div>
@@ -853,7 +854,6 @@ const {userData} = useContext(userContext)
           </div>
         </div>
       )}
-
       {/* not phone */}
       {items?.hasOwnProperty("label") && (
         <div className="my-3">

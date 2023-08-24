@@ -7,9 +7,10 @@ import { Box } from "@mui/material";
 import { userContext } from "@/src/Storage/ContextApi";
 const Pattern = () => {
   
-  const [customColor, setCustomColor] = useState(false);
+  const [customForegroundFirstColor, setCustomForegroundFirstColor] = useState(false);
+  const [customForegroundSecondColor, setCustomForegroundSecondColor] = useState(false);
   const [customBackgroundColor, setCustomBackgroundColor] = useState(false);
-  const {qrStyle,setQrStyle,foregroundColor,setForegroundColor,backgroundColor,setBackgroundColor}= useContext(userContext);
+  const {qrStyle,setQrStyle,foregroundColor,setForegroundColor,backgroundColor,setBackgroundColor,foregroundSecondColor,setForegroundSecondColor}= useContext(userContext);
 
   const handleQrStyle = (style)=> {
     setQrStyle(style);
@@ -66,14 +67,19 @@ const Pattern = () => {
           <label htmlFor="">Solid</label>
         </div>
         <div className="flex item-center gap-2">
-          <input type="checkbox" name="solid" id="" />
-          <label htmlFor="">Solid</label>
+          <input type="checkbox" name="gradient" id="" />
+          <label htmlFor="">Gradient</label>
         </div>
       </div>
-      {/* color ------------------- */}
+      <select name="" id="" className="my-4 px-2 py-2 bg-[#E6ECF2] rounded-md w-48">
+        <option value="">Vertical</option>
+        <option value="">Horizontal</option>
+      </select>
+      {/* foreground first  color ------------------- */}
+      <h4>Foreground First Color</h4>
       <div className="flex gap-24">
         <div
-          onClick={() => setCustomColor(!customColor)}
+          onClick={() => setCustomForegroundFirstColor(!customForegroundFirstColor)}
           className="flex bg-gray-200 border-2 rounded-lg mt-4 w-32 h-8 cursor-pointer"
         >
           <div
@@ -85,8 +91,29 @@ const Pattern = () => {
           </div>
         </div>
         <div>
-          {customColor && (
+          {customForegroundFirstColor && (
             <ChromePicker color={foregroundColor} onChange={(e) => setForegroundColor(e.hex)} />
+          )}
+        </div>
+      </div>
+      {/* foreground second  color ------------------- */}
+      <h4 className="mt-6">Foreground Second Color</h4>
+      <div className="flex gap-24">
+        <div
+          onClick={() => setCustomForegroundSecondColor(!customForegroundSecondColor)}
+          className="flex bg-gray-200 border-2 rounded-lg mt-4 w-32 h-8 cursor-pointer"
+        >
+          <div
+            className="w-[30px] h-[30px] rounded-l-lg"
+            style={{ background: foregroundSecondColor }}
+          ></div>
+          <div className="px-3">
+            <span className="text-center">{foregroundSecondColor}</span>
+          </div>
+        </div>
+        <div>
+          {customForegroundSecondColor && (
+            <ChromePicker color={foregroundSecondColor} onChange={(e) => setForegroundSecondColor(e.hex)} />
           )}
         </div>
       </div>
