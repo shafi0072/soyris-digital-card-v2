@@ -334,9 +334,8 @@ const Content = ({ item }) => {
             )}-${item?.number.substring(6)}`}
           {item?.url && item?.url} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
-          <br />{" "}
-          {item?.chooseLabel && !item?.hideLabelCopy && item?.chooseLabel}{" "}
-          {item?.type === "Link" && item?.label ? item?.label : ""}
+          <br /> {item?.chooseLabel && item?.chooseLabel}{" "}
+          {item?.label && item?.label} {item?.displayUrl && item?.displayUrl}
         </p>
       </div>
     </div>
