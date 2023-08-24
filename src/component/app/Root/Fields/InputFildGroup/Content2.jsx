@@ -7,6 +7,7 @@ import { baseUrl } from "@/src/config/Server";
 import Inputs from "./Inputs";
 import { compressAndConvertToBase64 } from "@/src/config/base64";
 import { convertPDFToBase64 } from "@/src/config/pdfBase64";
+import { toast } from "react-toastify";
 
 const Content2 = () => {
   const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
@@ -30,7 +31,19 @@ const Content2 = () => {
         })
     })
     .then(res=> res.json())
-    .then(data=> console.log({data}))
+    .then(data=> {
+      toast.success('🦄 Fields are updated successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      console.log({data})
+    })
     .catch(err=> console.log(err.message))
   };
 
