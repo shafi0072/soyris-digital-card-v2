@@ -129,6 +129,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
               Cancel
             </button>
             <button
+              disabled={isValid === "valid" ? false :true}
               onClick={handleUrl}
               className="mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded"
             >

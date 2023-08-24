@@ -12,7 +12,8 @@ const ContextApi = ({ children }) => {
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])
     const [qrStyle,setQrStyle] = useState('squares');
-    const [foregroundColor, setForegroundColor] = useState('#000000')
+    const [foregroundColor, setForegroundColor] = useState('#000000');
+    const [foregroundSecondColor,setForegroundSecondColor] = useState("#000000");
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
     const [eyeColor, setEyeColor] = useState("#DC0E74");
     const [selectedLogo,setSelectedLogo] = useState(null)
@@ -42,6 +43,8 @@ const ContextApi = ({ children }) => {
         setNewFeilds,
         setQrStyle,
         setForegroundColor,
+        foregroundSecondColor,
+        setForegroundSecondColor,
         setBackgroundColor,
         setEyeColor,
         setSelectedLogo,
