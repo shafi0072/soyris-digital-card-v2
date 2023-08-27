@@ -55,7 +55,6 @@ export const field_data = [
           hideLabelCopy: false,
           type: "Phone",
           pleaceholder: "032937890232",
-          icon: phoneIcon,
         },
       },
       {
@@ -80,7 +79,6 @@ export const field_data = [
           type: "Website",
           pleaceholder: "www.yourwebsite.gr",
           labelPleaceholder: "Display URL",
-          icon: websiteIcon,
         },
       },
       {
@@ -110,7 +108,6 @@ export const field_data = [
           type: "Email",
           pleaceholder: "example@email.com",
           labelPleaceholder: "Label",
-          icon: emailIcon,
         },
       },
       {
@@ -146,7 +143,6 @@ export const field_data = [
           type: "Address",
           pleaceholder: "Enter your address",
           labelPleaceholder: "Label",
-          icon: addressIcon,
         },
       },
       {
@@ -232,7 +228,6 @@ export const field_data = [
           type: "WhatsApp",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: whatsAppIcon,
         },
       },
       {
@@ -283,7 +278,6 @@ export const field_data = [
           type: "Viber",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: viberIcon,
         },
       },
       {
@@ -309,7 +303,6 @@ export const field_data = [
           type: "Skype",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: skypeIcon,
         },
       },
       {
@@ -335,7 +328,6 @@ export const field_data = [
           type: "Snapchat",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: snapchatIcon,
         },
       },
       {
@@ -375,7 +367,6 @@ export const field_data = [
           type: "Signal",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: signalIcon,
         },
       },
       {
@@ -403,7 +394,6 @@ export const field_data = [
           type: "Telegram",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: telegramIcon,
         },
       },
       {
@@ -449,7 +439,6 @@ export const field_data = [
           type: "Discord",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: discordIcon,
         },
       },
       {
@@ -476,7 +465,6 @@ export const field_data = [
           type: "Slack",
           pleaceholder: "074384783411",
           labelPleaceholder: "@michael21",
-          icon: slackIcon,
         },
       },
     ],
@@ -511,7 +499,6 @@ export const field_data = [
           url: "",
           type: "Facebook",
           pleaceholder: "facebook.com/username",
-          icon: facebookIcon,
         },
       },
       {
@@ -575,7 +562,6 @@ export const field_data = [
           url: "",
           type: "Instagram",
           pleaceholder: "instagram.com/username",
-          icon: instagramIcon,
         },
       },
       {
@@ -598,7 +584,6 @@ export const field_data = [
           url: "",
           type: "Twitter",
           pleaceholder: "twitter.com/username",
-          icon: twitterIcon,
         },
       },
       {
@@ -622,7 +607,6 @@ export const field_data = [
           url: "",
           type: "LinkedIn",
           pleaceholder: "linkedin.com/in/username",
-          icon: linkedInIcon,
         },
       },
       {
@@ -646,7 +630,6 @@ export const field_data = [
           url: "",
           type: "Pinterest",
           pleaceholder: "pinterest.com/username",
-          icon: pinterestIcon,
         },
       },
       {
@@ -674,7 +657,6 @@ export const field_data = [
           url: "",
           type: "Tiktok",
           pleaceholder: "tiktok.com/@username",
-          icon: tiktokIcon,
         },
       },
     ],
@@ -723,7 +705,7 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          image:"",
+          image: "",
           type: "Image",
           icon: imageIcon,
           align:'center',
@@ -786,9 +768,8 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          image:[],
+          image: [],
           type: "Galary",
-          icon: imageIcon,
         },
       },
     ],
@@ -818,7 +799,6 @@ export const field_data = [
           url: "",
           type: "Youtube",
           pleaceholder: "youtube.com/myvideo/12132a",
-          icon: youtubeIcon,
         },
       },
       {
@@ -846,7 +826,6 @@ export const field_data = [
           url: "",
           type: "Vimeo",
           pleaceholder: "vimeo.com/myvideo/12132a",
-          icon: vimeoIcon,
         },
       },
       {
@@ -869,7 +848,6 @@ export const field_data = [
           url: "",
           type: "Wistia",
           pleaceholder: "wistia.com/myvideo/12132a",
-          icon: wistiaIcon,
         },
       },
     ],
@@ -914,9 +892,8 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          pdf:"",
+          pdf: "",
           type: "Pdf",
-          icon: imageIcon,
         },
       },
       {
@@ -977,7 +954,6 @@ export const field_data = [
           notes: "",
           type: "Notes",
           pleaceholder: "Enter your notes",
-          icon: notesIcon,
         },
       },
       {
@@ -1028,11 +1004,10 @@ export const field_data = [
           </svg>
         ),
         fields: {
-          date:"",
+          date: "",
           type: "Date",
-          label:"",
-          labelPleaceholder:"label",
-          icon: imageIcon,
+          label: "",
+          labelPleaceholder: "label",
         },
       },
     ],
@@ -1128,7 +1103,6 @@ export const field_data = [
           url: "",
           type: "QR",
           pleaceholder: "qr.com/myvideo/12132a",
-          icon: qrIcon,
         },
       },
     ],
@@ -1155,7 +1129,6 @@ export const field_data = [
           title: "",
           type: "Header",
           pleaceholder: "Leave a review",
-          icon: headerIcon,
         },
       },
       {
@@ -1185,6 +1158,3 @@ export const field_data = [
     ],
   },
 ];
-
-
-

@@ -61,7 +61,7 @@ const ContextApi = ({ children }) => {
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/singleCard/${userCardId}`)
             .then(res => res.json())
-            .then(data => {setUserCardData(data); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting); setLoading(false)} )
+            .then(data => {setUserCardData(data); setNewFeilds(data?.fields); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting); setLoading(false)} )
             .catch(err => console.log(err))
     }, [])
     console.log(userCardData)

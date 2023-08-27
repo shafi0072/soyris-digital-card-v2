@@ -12,6 +12,7 @@ import Pdf from "./Pdf";
 import Vimeo from "./Vimeo";
 import Content from "./Content/Content";
 import Social from "./Social/Social";
+import Image from "./Image";
 
 const RightSidebar = () => {
   const {
@@ -27,7 +28,7 @@ const RightSidebar = () => {
   } = useContext(userContext);
   // console.log({ userCardData });
   // console.log({ newFeilds });
-
+ 
   return (
     <div className="scroll-hide h-[76vh] overflow-y-scroll">
       <div className="relative w-[363px] ">
@@ -80,7 +81,8 @@ const RightSidebar = () => {
           ))}
         </div>
 
-        <div className="my-5">
+        { 
+          <div className="my-5">
           <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
             Social Media
           </h2>
@@ -92,10 +94,32 @@ const RightSidebar = () => {
                 {item?.type === "Twitter" && <Social item={item} />}
                 {item?.type === "LinkedIn" && <Social item={item} />}
                 {item?.type === "Pinterest" && <Social item={item} />}
-                {item?.type === "Pinterest" && <Social item={item} />}
+                {item?.type === "Tiktok" && <Social item={item} />}
               </>
             ))}
           </div>
+        </div>}
+        <div className="mt-5">
+          {newFeilds?.map((item, index) => (
+            <>
+            {/* image - galary */}
+              {item?.type === "Image" && <Image item={item} />}
+              {item?.type === "Galary" && <GalleryImage item={item} />}
+
+              {/* see me in  action */}
+              {item?.type === "Youtube" && <YouTube item={item} />}
+              {item?.type === "Vimeo" && <YouTube item={item} />}
+              {item?.type === "Wistia" && <YouTube item={item} />}
+
+              {/* {item?.type === "Vimeo" && <Vimeo item={item}/>}
+               */}
+
+               {/* more details  */}
+               {item?.type === "Pdf" && <Pdf item={item}/>}
+               
+               
+            </>
+          ))}
         </div>
 
         {/* <div className="my-3">
@@ -629,3 +653,4 @@ const RightSidebar = () => {
 };
 
 export default RightSidebar;
+
