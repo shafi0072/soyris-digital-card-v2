@@ -28,7 +28,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   };
 
   // handle change ---------------
-  const permanentUrl = "https://easycard-gr.vercel.app/"; // The permanent URL
+  const permanentUrl = "https://easycards.pro/"; // The permanent URL
   const [inputValue, setInputValue] = useState(settings.url);
 
   console.log({ inputValue });
@@ -117,7 +117,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
                 isValid === "valid" && <CheckIcon sx={{color:"#008000"}}/>
               }
               <label className="block ps-3 mt-3">
-                https://easycard-gr.vercel.app/
+                https://easycards.pro/
               </label>
             </div>
           </div>

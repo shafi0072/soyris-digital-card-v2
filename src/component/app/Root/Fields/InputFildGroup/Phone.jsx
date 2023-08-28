@@ -120,12 +120,12 @@ const {userData} = useContext(userContext)
 
         {items?.hasOwnProperty("url") && (
           <div
-          id={items?.id}
+         
             className={`${
               items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
             }  relative`}
           >
-            <input id={items?.type}
+            <input 
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
@@ -134,7 +134,7 @@ const {userData} = useContext(userContext)
                 handleFieldChange(items?.id, "url", e.target.value)
               }
             />
-            <label htmlFor={items?.id} className="absolute top-1/4 left-2">
+            <label  className="absolute top-1/4 left-2">
               {items?.type === "Website" && websiteIcon}
               {items?.type === "Email" && emailIcon}
               {items?.type === "Link" && linkIcon}
