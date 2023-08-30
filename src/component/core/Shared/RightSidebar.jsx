@@ -4,7 +4,7 @@ import Classic from "./Classic/Classic";
 import Flat from "./Flat/Flat";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FieldData from "./FieldData/FieldData";
-import YouTube from "./YouTube/YouTube";
+import Video from "./YouTube/YouTube";
 import GalleryImage from "./GalleryImage/GalleryImage";
 import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 import Moment from "react-moment";
@@ -23,6 +23,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { FaTiktok } from "react-icons/fa";
 
 import QrView from "./QrView";
+// import dynamic from "next/dynamic";
+// const ReactPlayer = dynamic(()=> import('react-player'),{ssr:false});
 
 const RightSidebar = () => {
   const {
@@ -85,7 +87,7 @@ const RightSidebar = () => {
         {infos && (
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
-
+        <div></div>
         <div className="my-5">
           {newFeilds?.map((item, index) => (
             <>
@@ -121,7 +123,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Instagram" && (
                 <a
-                style={{ backgroundColor: color }}
+                  style={{ backgroundColor: color }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -130,7 +132,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Twitter" && (
                 <a
-                style={{ backgroundColor: color }}
+                  style={{ backgroundColor: color }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -139,7 +141,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "LinkedIn" && (
                 <a
-                style={{ backgroundColor: color }}
+                  style={{ backgroundColor: color }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -148,7 +150,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Pinterest" && (
                 <a
-                style={{ backgroundColor: color }}
+                  style={{ backgroundColor: color }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -157,7 +159,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Tiktok" && (
                 <a
-                style={{ backgroundColor: color }}
+                  style={{ backgroundColor: color }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
                 >
@@ -169,9 +171,9 @@ const RightSidebar = () => {
               {item?.type === "Image" && <Image item={item} />}
               {item?.type === "Galary" && <GalleryImage item={item} />}
               {/* videos */}
-              {item?.type === "Youtube" && <YouTube item={item} />}
-              {item?.type === "Vimeo" && <YouTube item={item} />}
-              {item?.type === "Wistia" && <YouTube item={item} />}
+              {item?.type === "Youtube" && <Video item={item} />}
+              {item?.type === "Vimeo" && <Video item={item} />}
+              {item?.type === "Wistia" && <Video item={item} />}
               {/* more details  */}
               {item?.type === "Pdf" && <Pdf item={item} />}
               {item?.type === "Notes" && (
