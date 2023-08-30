@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 // chart
 import { PureComponent } from "react";
 import {
@@ -24,6 +24,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { userContext } from "@/src/Storage/ContextApi";
+import { baseUrl } from "@/src/config/Server";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,20 +64,12 @@ const LineCharts = ({analyticsData }) => {
   
   // for tab
   const [value, setValue] = React.useState(0);
-
-  const last7DaysAnalytics = analyticsData?.filter((entry) => {
-    const entryDate = new Date(entry.date);
-    const today = new Date();
-    const sevenDaysAgo = new Date(today);
-    sevenDaysAgo.setDate(today.getDate() - 7);
-    return entryDate >= sevenDaysAgo;
-  });
+  const [chartData, setChartData] = useState([])
+  const {userCardData} = useContext(userContext)
   
-  const chartData = last7DaysAnalytics?.map((entry) => ({
-    date: new Date(entry.date), // x-axis: Date
-    value: entry.view // y-axis: Analytics metric (e.g., view)
-  }));
-  console.log({chartData})
+  
+  
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -86,26 +80,15 @@ const LineCharts = ({analyticsData }) => {
     setTime(event.target.value);
   };
 
-  const array =  [
-    {date: 'Tue Aug 27 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 5},
-    {date: 'Tue Aug 27 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
-    {date: 'Tue Aug 27 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
-    {date: 'Tue Aug 28 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
-    {date: 'Tue Aug 29 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
-    {date: 'Tue Aug 29 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
-    {date: 'Tue Aug 29 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1}
-  ]
-  const uniqueArray =  Array.from(new Set(chartData?.map(a => a.date)))
-    .map(date => {
-        return {
-            date,
-            value: array.reduce((accumulator, currentValue) => {
-                return currentValue.date === date ? accumulator + currentValue.value : accumulator;
-            },0)
-        };
-    });
+    useEffect(() => {
+      fetch(`${baseUrl}/cards/anylatics/${userCardData?._id}/monthly`)
+      .then(res => res.json())
+      .then(data => setChartData(data.reverse()))
+      .catch(err => console.log(err))
+    },[userCardData])
 
    
+    console.log({chartData})
   // chart
   const data = [
     {
@@ -220,7 +203,7 @@ const LineCharts = ({analyticsData }) => {
           <LineChart
             width={900}
             height={500}
-            data={uniqueArray}
+            data={chartData}
             margin={{
               top: 20,
               right: 30,
@@ -229,10 +212,10 @@ const LineCharts = ({analyticsData }) => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
+            {/* <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} /> */}
             <YAxis />
             <Tooltip />
-            <Legend />
+            
             <Line
               type="monotone"
               dataKey="value"
@@ -245,7 +228,7 @@ const LineCharts = ({analyticsData }) => {
           <LineChart
             width={900}
             height={500}
-            data={array}
+            data={chartData}
             margin={{
               top: 20,
               right: 30,
@@ -270,7 +253,7 @@ const LineCharts = ({analyticsData }) => {
           <LineChart
             width={900}
             height={500}
-            data={array}
+            data={chartData}
             margin={{
               top: 20,
               right: 30,
