@@ -6,9 +6,7 @@ const YouTube = ({ item}) => {
     <div className={`${!item?.url ?  'hidden' : 'block mt-5' } `}>
       {item?.url && (
         <div className="mt-5">
-         <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-                    See me in action
-                  </h2>
+         
           <iframe
             width="460"
             height="315"

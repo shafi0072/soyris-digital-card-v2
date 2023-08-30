@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 // react date range picker
@@ -15,6 +15,7 @@ const CardViewPieChart = dynamic(() => import("./CardViewPieChart"), {
 });
 import CardViewsTable from "./CardViewsTable";
 import dynamic from "next/dynamic";
+import { userContext } from "@/src/Storage/ContextApi";
 
 const Analytics = () => {
   const [time, setTime] = React.useState("");
@@ -28,6 +29,7 @@ const Analytics = () => {
     endDate: moment().format("MMMM Do, YYYY"),
     key: "selection",
   });
+  const {userCardData} = useContext(userContext)
 
   // console.log(selectedRange)
 
@@ -81,7 +83,7 @@ const Analytics = () => {
 
         {/* Cards ------------------ */}
         <Cards />
-        <LineCharts />
+        <LineCharts analyticsData={userCardData?.anylatics}/>
         <div className="my-16 flex gap-6">
           <div className="w-1/2">
             <CardViewPieChart />

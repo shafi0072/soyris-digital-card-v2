@@ -22,7 +22,7 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
     <div className="border-dotted border-2 border-sky-500 p-5 rounded-lg">
       <div>
         {field_data?.map((items, index) => (
-          <div key={index}>
+          <div key={index} className="cursor-pointer">
             <div
               className="flex justify-between items-center border-b"
               onClick={() => setExpand({ id: index, status: !exapnd?.status })}

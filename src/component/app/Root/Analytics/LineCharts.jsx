@@ -58,10 +58,24 @@ function a11yProps(index) {
   };
 }
 
-const LineCharts = () => {
+const LineCharts = ({analyticsData }) => {
+  
   // for tab
   const [value, setValue] = React.useState(0);
 
+  const last7DaysAnalytics = analyticsData?.filter((entry) => {
+    const entryDate = new Date(entry.date);
+    const today = new Date();
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(today.getDate() - 7);
+    return entryDate >= sevenDaysAgo;
+  });
+  
+  const chartData = last7DaysAnalytics?.map((entry) => ({
+    date: new Date(entry.date), // x-axis: Date
+    value: entry.view // y-axis: Analytics metric (e.g., view)
+  }));
+  console.log({chartData})
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -72,6 +86,26 @@ const LineCharts = () => {
     setTime(event.target.value);
   };
 
+  const array =  [
+    {date: 'Tue Aug 27 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 5},
+    {date: 'Tue Aug 27 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
+    {date: 'Tue Aug 27 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
+    {date: 'Tue Aug 28 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
+    {date: 'Tue Aug 29 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
+    {date: 'Tue Aug 29 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1},
+    {date: 'Tue Aug 29 2023 19:43:05 GMT+0600 (Bangladesh Standard Time)', value: 1}
+  ]
+  const uniqueArray =  Array.from(new Set(chartData?.map(a => a.date)))
+    .map(date => {
+        return {
+            date,
+            value: array.reduce((accumulator, currentValue) => {
+                return currentValue.date === date ? accumulator + currentValue.value : accumulator;
+            },0)
+        };
+    });
+
+   
   // chart
   const data = [
     {
@@ -186,7 +220,7 @@ const LineCharts = () => {
           <LineChart
             width={900}
             height={500}
-            data={data}
+            data={uniqueArray}
             margin={{
               top: 20,
               right: 30,
@@ -195,13 +229,13 @@ const LineCharts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+            <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="value"
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />
@@ -211,7 +245,7 @@ const LineCharts = () => {
           <LineChart
             width={900}
             height={500}
-            data={data}
+            data={array}
             margin={{
               top: 20,
               right: 30,
@@ -220,13 +254,13 @@ const LineCharts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+            <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="date"
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />
@@ -236,7 +270,7 @@ const LineCharts = () => {
           <LineChart
             width={900}
             height={500}
-            data={data}
+            data={array}
             margin={{
               top: 20,
               right: 30,
@@ -245,13 +279,13 @@ const LineCharts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+            <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="date"
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />

@@ -35,7 +35,7 @@ const Design = () => {
         })
             .then(res => res.json())
             .then(data => {
-                toast.success('Sign Up successfully', {
+                toast.success('Desgine Update Success fully', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,

@@ -12,9 +12,7 @@ const GalleryImage = ({ item }) => {
     <div>
       {item?.image?.length > 0 && (
         <>
-          <h2 className="mb-5 pb-2 text-xl   border-b border-[#CBD5E0]">
-            My Work
-          </h2>
+         
           <div className="grid grid-cols-12 gap-[10px]">
             {item?.image
               ?.toReversed()
