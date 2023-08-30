@@ -127,11 +127,7 @@ const Content2 = () => {
         </Container>
       </div>
       <div className="fixed bottom-20 left-[35%]  z-50">
-        <input
-          type="submit"
-          value="Cancel"
-          className="px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500"
-        />
+        
         <input
           type="submit"
           onClick={handleFieldsOnSubmit}

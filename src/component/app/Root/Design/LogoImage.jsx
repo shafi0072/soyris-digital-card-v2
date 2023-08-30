@@ -79,7 +79,7 @@ const LogoImage = () => {
           </span>
         </div>
         <div className=" w-[266px]">
-          <label htmlFor='logoImages' className='flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
+          <label htmlFor='logoImages' className='cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
             <AddIcon sx={{ color: '#0077B5' }} />
             <p className="text-md">Replace Logo</p>
 

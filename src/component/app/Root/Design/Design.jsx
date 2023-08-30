@@ -86,25 +86,25 @@ const Design = () => {
                 <h2 className='text-xl font-bold text-black pb-2 '>Color</h2>
 
                 <div className='flex'>
-                    <div onClick={() => setCustomColor(!customColor)} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2">
+                    <div onClick={() => setCustomColor(!customColor)} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2">
                         <img src="/1fb07539-85c6-49e4-80b3-83e7d03064f8.png" alt="" />
                     </div>
-                    <div onClick={() => setColor('#cccc00')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
+                    <div onClick={() => setColor('#cccc00')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
                         {color === '#cccc00' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#0077B5')} className="rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
+                    <div onClick={() => setColor('#0077B5')} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
                         {color === '#0077B5' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#1A7C16')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
+                    <div onClick={() => setColor('#1A7C16')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
                         {color === '#1A7C16' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#EB531B')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#EB531B] ml-2">
+                    <div onClick={() => setColor('#EB531B')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#EB531B] ml-2">
                         {color === '#EB531B' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#E31BEB')} className="rounded-full text-white text-center pt-[2px]  w-[30px] h-[30px] bg-[#E31BEB] ml-2">
+                    <div onClick={() => setColor('#E31BEB')} className="cursor-pointer rounded-full text-white text-center pt-[2px]  w-[30px] h-[30px] bg-[#E31BEB] ml-2">
                         {color === '#E31BEB' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#1D15F7')} className="rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1D15F7] ml-2">
+                    <div onClick={() => setColor('#1D15F7')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1D15F7] ml-2">
                         {color === '#1D15F7' && <CheckIcon />}
                     </div>
                 </div>
@@ -170,7 +170,7 @@ const Design = () => {
                 <LogoImage />
             </div>
             <div className='my-10'>
-                <button className='px-5 py-1  font-medium text-lg text-black border border-[#0277B5] rounded me-5 cursor-pointer hover:bg-[#0277B5] hover:text-white transition-all duration-500'>Cancel</button>
+                
                 <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
 
 
