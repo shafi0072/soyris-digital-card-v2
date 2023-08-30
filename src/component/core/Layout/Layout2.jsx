@@ -98,7 +98,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const Layout2 = ({ children }) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [expand, setExpand] = React.useState(-1)
   const router = useRouter();
   const styles = {
@@ -121,7 +121,7 @@ const Layout2 = ({ children }) => {
       <CssBaseline />
       <AppBar position="fixed" open={open} >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -132,15 +132,15 @@ const Layout2 = ({ children }) => {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Navbar />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} >
         <DrawerHeader >
-          <IconButton onClick={handleDrawerClose}>
+          {/* <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon  style={{color: 'white'}}/> : <ChevronLeftIcon  style={{color: 'white'}}/>}
-          </IconButton>
+          </IconButton> */}
         </DrawerHeader>
         <Divider />
         <List>

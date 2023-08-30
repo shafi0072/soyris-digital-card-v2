@@ -28,7 +28,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   };
 
   // handle change ---------------
-  const permanentUrl = "https://easycard-gr.vercel.app/"; // The permanent URL
+  const permanentUrl = "https://easycards.pro/"; // The permanent URL
   const [inputValue, setInputValue] = useState(settings.url);
 
   console.log({ inputValue });

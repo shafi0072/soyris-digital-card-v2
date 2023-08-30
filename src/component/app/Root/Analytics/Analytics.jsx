@@ -21,9 +21,7 @@ const Analytics = () => {
   console.log(time);
   // date range ------------------
   const [showCalendar, setShowCalendar] = useState(false);
-  const [selectedRange, setSelectedRange] = useState({
-    // startDate: new Date(),
-    // endDate: new Date(),
+  const [selectedRange, setSelectedRange] = useState({ 
     startDate: moment().format("MMMM Do, YYYY"),
     endDate: moment().format("MMMM Do, YYYY"),
     key: "selection",

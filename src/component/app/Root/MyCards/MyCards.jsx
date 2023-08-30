@@ -31,7 +31,7 @@ const MyCards = () => {
             <div className='flex flex-wrap '>
             {
                 userCard?.map((items, index) => 
-                <div className='w-[300px] ml-4 border rounded-2 p-2' onClick={() => {localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo')}}>
+                <div className=' cursor-pointer w-[300px] ml-4 border rounded-2 p-2' onClick={() => {localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo')}}>
                     <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
                         <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] ' alt="" />
                     </div>
