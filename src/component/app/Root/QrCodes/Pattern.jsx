@@ -48,7 +48,7 @@ const Pattern = () => {
       </p>
       {/* shapes------- */}
       <div className="flex gap-4 ">
-        {shapes.slice(0, 4).map((shape, index) => (
+        {shapes.slice(0, 2).map((shape, index) => (
           <button
             className={`${qrStyle === shape.label ? 'bg-green-400': 'bg-[#e6ecf2]'} flex gap-2 items-center px-4 py-2 rounded`}
             key={index}

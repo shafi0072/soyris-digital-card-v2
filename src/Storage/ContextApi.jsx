@@ -18,8 +18,12 @@ const ContextApi = ({ children }) => {
     const [eyeColor, setEyeColor] = useState("#DC0E74");
     const [selectedLogo,setSelectedLogo] = useState(null)
     const [loading,setLoading]= useState(true)
+    const [outesEyeShape, setOuterEyeShape] = useState(0)
+    const [innerEyeShape, setInnerEyeShape] = useState(0)
     // console.log({infos})
     const value = {
+        innerEyeShape,
+        outesEyeShape,
         loading,
         selectedLogo,
         eyeColor,
@@ -48,7 +52,9 @@ const ContextApi = ({ children }) => {
         setBackgroundColor,
         setEyeColor,
         setSelectedLogo,
-        setLoading
+        setLoading,
+        setOuterEyeShape,
+        setInnerEyeShape
     }
     
     

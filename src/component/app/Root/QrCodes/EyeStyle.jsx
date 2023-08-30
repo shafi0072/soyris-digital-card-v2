@@ -10,8 +10,7 @@ const EyeStyle = () => {
   const [innerCustomColor, setInnerCustomColor] = useState(false);
   const [outerColor, setOuterColor] = useState("#000000");
   const [outerCustomColor, setOutCustomColor] = useState(false);
-  const {eyeColor,setEyeColor} = useContext(userContext);
-
+  const {eyeColor,setEyeColor,outesEyeShape,setOuterEyeShape,innerEyeShape,setInnerEyeShape} = useContext(userContext);
   return (
     <>
       <div className="flex justify-between border-b-2 items-center pb-2 mt-12">
@@ -48,8 +47,9 @@ const EyeStyle = () => {
         <div className="flex gap-4 mt-4 ">
           {shapes.map((shape, index) => (
             <button
-              className="bg-[#E6ECF2] flex gap-2 items-center px-4 py-2 rounded"
+              className={` flex gap-2 items-center px-4 py-2 rounded ${shape?.radius === innerEyeShape ? 'bg-[#0277B5]': 'bg-[#E6ECF2]'}`}
               key={index}
+              onClick={()=>setInnerEyeShape(shape?.radius)}
             >
               {shape.icon}
               {shape.name}
@@ -91,11 +91,11 @@ const EyeStyle = () => {
         <div className="flex gap-4 mt-4 ">
           {shapes.map((shape, index) => (
             <button
-              className="bg-[#E6ECF2] flex gap-2 items-center px-4 py-2 rounded"
-              key={index}
+            className={` flex gap-2 items-center px-4 py-2 rounded ${shape?.radius === outesEyeShape ? 'bg-[#0277B5]': 'bg-[#E6ECF2]'}`}
+              onClick={()=> setOuterEyeShape(shape?.radius)}
             >
               {shape.icon}
-              {shape.name}
+              {shape.name} 
             </button>
           ))}
         </div>
