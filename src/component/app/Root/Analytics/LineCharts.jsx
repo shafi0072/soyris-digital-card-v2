@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 // chart
 import { PureComponent } from "react";
 import {
@@ -24,6 +24,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { userContext } from "@/src/Storage/ContextApi";
+import { baseUrl } from "@/src/config/Server";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,10 +60,16 @@ function a11yProps(index) {
   };
 }
 
-const LineCharts = () => {
+const LineCharts = ({analyticsData }) => {
+  
   // for tab
   const [value, setValue] = React.useState(0);
-
+  const [chartData, setChartData] = useState([])
+  const {userCardData} = useContext(userContext)
+  
+  
+  
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -72,6 +80,15 @@ const LineCharts = () => {
     setTime(event.target.value);
   };
 
+    useEffect(() => {
+      fetch(`${baseUrl}/cards/anylatics/${userCardData?._id}/monthly`)
+      .then(res => res.json())
+      .then(data => setChartData(data.reverse()))
+      .catch(err => console.log(err))
+    },[userCardData])
+
+   
+    console.log({chartData})
   // chart
   const data = [
     {
@@ -186,7 +203,7 @@ const LineCharts = () => {
           <LineChart
             width={900}
             height={500}
-            data={data}
+            data={chartData}
             margin={{
               top: 20,
               right: 30,
@@ -195,13 +212,13 @@ const LineCharts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+            {/* <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} /> */}
             <YAxis />
             <Tooltip />
-            <Legend />
+            
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="value"
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />
@@ -211,7 +228,7 @@ const LineCharts = () => {
           <LineChart
             width={900}
             height={500}
-            data={data}
+            data={chartData}
             margin={{
               top: 20,
               right: 30,
@@ -220,13 +237,13 @@ const LineCharts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+            <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="date"
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />
@@ -236,7 +253,7 @@ const LineCharts = () => {
           <LineChart
             width={900}
             height={500}
-            data={data}
+            data={chartData}
             margin={{
               top: 20,
               right: 30,
@@ -245,13 +262,13 @@ const LineCharts = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+            <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="date"
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />
