@@ -3,17 +3,18 @@ import React from "react";
 import { useContext } from "react";
 import { QRCode } from 'react-qrcode-logo';
 const DottedQRCode = ({ value }) => {
-  const { qrStyle, foregroundColor, backgroundColor, eyeColor, selectedLogo,innerEyeShape,outesEyeShape } = useContext(userContext)
-
+  const { qrStyle, foregroundColor, backgroundColor, outerEyeColor, selectedLogo,innerEyeShape,outesEyeShape,innerEyeColor,qrSize } = useContext(userContext)
+console.log({qrSize});
   // return <QRCode qrStyle={qrStyle} logoImage={selectedLogo} logoPadding={5} value={value} ecLevel={'M'} bgColor={backgroundColor} fgColor={foregroundColor}  eyeColor={eyeColor} />;
 console.log({outesEyeShape});
   return <QRCode {...{
     qrStyle,
-    fgColor: '#000',
+    fgColor:foregroundColor,
     ecLevel: 'M',
-    value: 'gtgfet',
-    bgColor: '#fff',
-    logoImage: 'logo',
+    value: value,
+    size: qrSize ,
+    bgColor:backgroundColor ,
+    logoImage: selectedLogo,
     logoPadding: 0,
     eyeRadius: [ // build eyeRadius manually
       {
@@ -31,16 +32,16 @@ console.log({outesEyeShape});
     ],
     eyeColor: [ // build eyeColor manually
       {
-        outer: '#000000',
-        inner: '#000000'
+        outer: outerEyeColor,
+        inner: innerEyeColor
       },
       {
-        outer: '#000000',
-        inner: '#000000'
+        outer: outerEyeColor,
+        inner: innerEyeColor
       },
       {
-        outer: '#000000',
-        inner: '#000000'
+        outer: outerEyeColor,
+        inner: innerEyeColor
       },
     ]
   }} />

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { baseUrl } from '../config/Server';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
@@ -15,18 +15,22 @@ const ContextApi = ({ children }) => {
     const [foregroundColor, setForegroundColor] = useState('#000000');
     const [foregroundSecondColor,setForegroundSecondColor] = useState("#000000");
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-    const [eyeColor, setEyeColor] = useState("#DC0E74");
+    const [innerEyeColor, setInnerEyeColor] = useState("#DC0E74");
+    const [outerEyeColor, setOuterEyeColor] = useState("#DC0E74");
     const [selectedLogo,setSelectedLogo] = useState(null)
     const [loading,setLoading]= useState(true)
     const [outesEyeShape, setOuterEyeShape] = useState(0)
     const [innerEyeShape, setInnerEyeShape] = useState(0)
+    const [qrSize,setQrSize] = useState(100);
     // console.log({infos})
     const value = {
+        qrSize,
+        outerEyeColor,
         innerEyeShape,
         outesEyeShape,
         loading,
         selectedLogo,
-        eyeColor,
+        innerEyeColor,
         backgroundColor,
         newFeilds,
         color,
@@ -50,11 +54,13 @@ const ContextApi = ({ children }) => {
         foregroundSecondColor,
         setForegroundSecondColor,
         setBackgroundColor,
-        setEyeColor,
+        setInnerEyeColor,
         setSelectedLogo,
         setLoading,
         setOuterEyeShape,
-        setInnerEyeShape
+        setInnerEyeShape,
+        setOuterEyeColor,
+        setQrSize
     }
     
     

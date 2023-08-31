@@ -10,7 +10,7 @@ const EyeStyle = () => {
   const [innerCustomColor, setInnerCustomColor] = useState(false);
   const [outerColor, setOuterColor] = useState("#000000");
   const [outerCustomColor, setOutCustomColor] = useState(false);
-  const {eyeColor,setEyeColor,outesEyeShape,setOuterEyeShape,innerEyeShape,setInnerEyeShape} = useContext(userContext);
+  const {outerEyeColor,setOuterEyeColor,outesEyeShape,setOuterEyeShape,innerEyeShape,setInnerEyeShape,setInnerEyeColor,innerEyeColor} = useContext(userContext);
   return (
     <>
       <div className="flex justify-between border-b-2 items-center pb-2 mt-12">
@@ -66,17 +66,17 @@ const EyeStyle = () => {
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: eyeColor }}
+            style={{ background: innerEyeColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{eyeColor}</span>
+            <span className="text-center">{innerEyeColor}</span>
           </div>
         </div>
         <div>
           {innerCustomColor && (
             <ChromePicker
-              color={eyeColor}
-              onChange={(e) => setEyeColor(e.hex)}
+              color={innerEyeColor}
+              onChange={(e) => setInnerEyeColor(e.hex)}
             />
           )}
         </div>
@@ -109,17 +109,17 @@ const EyeStyle = () => {
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: outerColor }}
+            style={{ background: outerEyeColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{outerColor}</span>
+            <span className="text-center">{outerEyeColor}</span>
           </div>
         </div>
         <div>
           {outerCustomColor && (
             <ChromePicker
               color={outerColor}
-              onChange={(e) => setOuterColor(e.hex)}
+              onChange={(e) => setOuterEyeColor(e.hex)}
             />
           )}
         </div>
