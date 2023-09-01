@@ -35,6 +35,9 @@ const QrCodeCard = () => {
       console.log(err.message);
     }
   }
+  const handleReset=()=>{
+    window.location.reload()
+  }
   return (
     <div className="p-8 w-full bg-[#F7FAFC]">
       <h2 className="text-2xl font-semibold text-center mb-2">PREVIEW</h2>
@@ -51,7 +54,8 @@ const QrCodeCard = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className=" mb-4  mt-4 bg-transparent  text-[#FF0000] font-semibold  py-2 px-7 border border-[#FF0000]  rounded">
+        <button onClick={handleReset}
+        className=" mb-4  mt-4 bg-transparent  text-[#FF0000] font-semibold  py-2 px-7 border border-[#FF0000]  rounded">
           RESET TO DEFAULT
         </button>
       </div>
