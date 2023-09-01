@@ -2,7 +2,7 @@ export const shapes = [
   {
     name: "Square",
     label: "squares",
-    radius: 0,
+    radius: 'square',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@ export const shapes = [
   {
     name: "Dots",
     label: "dots",
-    radius: 50,
+    radius: 'dots',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export const shapes = [
   },
   {
     name: "Round",
-    radius: 6,
+    radius: 'round',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,8 @@ export const shapes = [
   // },
   {
     name: "Flower",
-    radius: [12,12,0,16],
+    // radius: [12,12,0,16],
+    radius: 'flower',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +101,8 @@ export const shapes = [
   },
   {
     name: "Leaf",
-    radius: [50,0,50,0],
+    // radius: [50,0,50,0],
+    radius: 'leaf',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

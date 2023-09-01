@@ -13,6 +13,7 @@ const Pattern = () => {
   const handleQrStyle = (style) => {
     setQrStyle(style);
   }
+  console.log({qrSize});
   // shapes
   return (
     <>
