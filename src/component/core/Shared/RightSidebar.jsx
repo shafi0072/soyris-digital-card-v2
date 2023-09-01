@@ -21,6 +21,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { FaTiktok } from "react-icons/fa";
+
 import QrView from "./QrView";
 // import dynamic from "next/dynamic";
 // const ReactPlayer = dynamic(()=> import('react-player'),{ssr:false});
@@ -191,3 +192,4 @@ const RightSidebar = () => {
 };
 
 export default RightSidebar;
+

@@ -7,7 +7,7 @@ import { userContext } from "@/src/Storage/ContextApi";
 
 const Logo = () => {
     // const [selectedLogo,setSelectedLogo] = useState(null)
-    const {selectedLogo,setSelectedLogo} = useContext(userContext)
+    const {selectedLogo,setSelectedLogo,logoSize,setLogoSize} = useContext(userContext)
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedLogo(URL.createObjectURL(file));
@@ -60,9 +60,12 @@ const Logo = () => {
       <h4 className="my-4">Logo Size</h4>
       <Box width={300}>
           <Slider
-            defaultValue={50}
+            defaultValue={logoSize}
             aria-label="Default"
             valueLabelDisplay="auto"
+            onChange={(e)=> setLogoSize(e.target.value)}
+            min={20}
+            max={30}
           />
         </Box>
     </>

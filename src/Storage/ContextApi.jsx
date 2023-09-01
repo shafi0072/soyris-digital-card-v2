@@ -1,7 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { baseUrl } from '../config/Server';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
+    const [loading, setLoading] = useState(true)
+
     const [userData, setUserData] = useState({})
     const [userCardData, setUserCardData] = useState({})
     const [color, setColor] = useState('#0077B5')
@@ -11,18 +13,28 @@ const ContextApi = ({ children }) => {
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])
-    const [qrStyle,setQrStyle] = useState('squares');
+    const [qrStyle, setQrStyle] = useState('squares');
     const [foregroundColor, setForegroundColor] = useState('#000000');
-    const [foregroundSecondColor,setForegroundSecondColor] = useState("#000000");
+    const [foregroundSecondColor, setForegroundSecondColor] = useState("#000000");
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-    const [eyeColor, setEyeColor] = useState("#DC0E74");
-    const [selectedLogo,setSelectedLogo] = useState(null)
-    const [loading,setLoading]= useState(true)
-    // console.log({infos})
+    const [innerEyeColor, setInnerEyeColor] = useState("#DC0E74");
+    const [outerEyeColor, setOuterEyeColor] = useState("#DC0E74");
+    const [selectedLogo, setSelectedLogo] = useState(null)
+    const [outesEyeShape, setOuterEyeShape] = useState('square')
+    const [innerEyeShape, setInnerEyeShape] = useState('square')
+    const [qrSize, setQrSize] = useState(100);
+    const [logoSize, setLogoSize] = useState(20);
+    console.log(userCardData?.QrCode?.logo );
+
     const value = {
+        logoSize,
+        qrSize,
+        outerEyeColor,
+        innerEyeShape,
+        outesEyeShape,
         loading,
         selectedLogo,
-        eyeColor,
+        innerEyeColor,
         backgroundColor,
         newFeilds,
         color,
@@ -46,17 +58,22 @@ const ContextApi = ({ children }) => {
         foregroundSecondColor,
         setForegroundSecondColor,
         setBackgroundColor,
-        setEyeColor,
+        setInnerEyeColor,
         setSelectedLogo,
-        setLoading
+        setLoading,
+        setOuterEyeShape,
+        setInnerEyeShape,
+        setOuterEyeColor,
+        setQrSize,
+        setLogoSize
     }
-    
-    
+
+
     useEffect(() => {
         const email = localStorage.getItem('email')
         fetch(`${baseUrl}/add-user/user/${email}`)
             .then(res => res.json())
-            .then(data => {setUserData(data)})
+            .then(data => { setUserData(data) })
             .catch(err => console.log(err))
     }, [])
     useEffect(() => {
@@ -64,10 +81,43 @@ const ContextApi = ({ children }) => {
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/singleCard/${userCardId}`)
             .then(res => res.json())
-            .then(data => {setUserCardData(data); setNewFeilds(data?.fields); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting); setLoading(false)} )
+            .then(data => { setUserCardData(data); setNewFeilds(data?.fields); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting); setLoading(false); })
             .catch(err => console.log(err))
     }, [])
-    console.log(userCardData)
+   
+    useEffect(() => {
+        if(userCardData?.QrCode?.pattern){
+            setQrStyle(userCardData?.QrCode?.pattern)
+        }
+        if(userCardData?.QrCode?.fgColor){
+            setForegroundColor(userCardData?.QrCode?.fgColor)
+        }
+        if(userCardData?.QrCode?.bgColor){
+            setBackgroundColor(userCardData?.QrCode?.bgColor)
+        }
+        if(userCardData?.QrCode?.QrSize){
+            setQrSize(parseInt(userCardData?.QrCode?.QrSize))
+        }
+        if(userCardData?.QrCode?.innerEyeStyle){
+            setInnerEyeShape(userCardData?.QrCode?.innerEyeStyle)
+        }
+        if(userCardData?.QrCode?.innerEyeColor){
+            setInnerEyeColor(userCardData?.QrCode?.innerEyeColor)
+        }
+        if(userCardData?.QrCode?.outerEyeStyle){
+            setOuterEyeShape(userCardData?.QrCode?.outerEyeStyle)
+        }
+        if(userCardData?.QrCode?.outerEyeColor){
+            setOuterEyeColor(userCardData?.QrCode?.outerEyeColor)
+        }
+        if(userCardData?.QrCode?.logo){
+            setSelectedLogo(userCardData?.QrCode?.logo)
+        }
+        if(userCardData?.QrCode?.logoSize){
+            setLogoSize(userCardData?.QrCode?.logoSize)
+        }
+    }, [userCardData?.QrCode]);
+    console.log({userCardData});
     return (
         <userContext.Provider value={value}>
             {children}
