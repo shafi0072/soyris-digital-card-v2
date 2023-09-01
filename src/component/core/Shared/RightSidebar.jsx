@@ -66,7 +66,7 @@ const RightSidebar = () => {
   // console.log(shouldShowH2)
 
   return (
-    <div className="scroll-hide h-[76vh] overflow-y-scroll">
+    <div className="scroll-hide h-[76vh] overflow-y-scroll ">
       <div className="relative w-[363px] ">
         {design === "classic" && (
           <Classic

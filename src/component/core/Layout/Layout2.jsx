@@ -212,7 +212,7 @@ style={{color: 'white'}}
           </ListItemButton>
         </div>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
 
         <div className="col-span-11  mt-[5%] ...">
           <SubNavbar />
@@ -220,7 +220,7 @@ style={{color: 'white'}}
             <div className="col-span-8">
               {children}
             </div>
-            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[3%] "} `}>
+            <div className={`bg-[#F7FAFC] pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[3%] "} `}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }

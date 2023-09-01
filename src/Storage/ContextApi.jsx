@@ -24,7 +24,6 @@ const ContextApi = ({ children }) => {
     const [innerEyeShape, setInnerEyeShape] = useState('square')
     const [qrSize, setQrSize] = useState(100);
     const [logoSize, setLogoSize] = useState(20);
-    console.log(userCardData?.QrCode?.logo );
 
     const value = {
         logoSize,
@@ -117,7 +116,6 @@ const ContextApi = ({ children }) => {
             setLogoSize(userCardData?.QrCode?.logoSize)
         }
     }, [userCardData?.QrCode]);
-    console.log({userCardData});
     return (
         <userContext.Provider value={value}>
             {children}

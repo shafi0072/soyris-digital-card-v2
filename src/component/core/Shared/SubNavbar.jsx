@@ -32,7 +32,7 @@ const SubNavbar = () => {
 
   return (
     <>
-      <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5  shadow-md">
+      <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5 ps-5 shadow-md">
         {router.pathname === "/my-cards" ? (
           <div className=" ps-3">
            
