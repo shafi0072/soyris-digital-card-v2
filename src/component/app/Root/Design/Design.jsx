@@ -9,12 +9,13 @@ import { BlockPicker, ChromePicker } from 'react-color';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { baseUrl } from '@/src/config/Server';
 import { toast } from 'react-toastify';
-
+import InputColor from 'react-input-color';
 
 const Design = () => {
+    const [color, setColor] = useState({});
     const [border, setBorder] = useState('clasic');
-     const [ colorName, setColorname] = useState('')
-    const { profileImage, logoImage, userData, color, design, primaryColor,
+    const [colorName, setColorname] = useState('')
+    const { profileImage, logoImage, userData,  design, primaryColor,
         primaryAccent,
         secondaryColor,
         secondaryAccent,
@@ -24,12 +25,13 @@ const Design = () => {
         setSecondaryAccent,
         setDesign, userCardData } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-   
-    const handleColor = color=>{
+
+    const handleColor = color => {
         setPrimaryColor(color);
         setSecondaryColor(color);
         setPrimaryAccent('#fff');
         setSecondaryAccent('#fff');
+        setCustomColor(false)
     }
     const handleDesignSubmit = (e) => {
         const userCardId = localStorage.getItem('cardId')
@@ -103,13 +105,14 @@ const Design = () => {
                 <h2 className='text-xl font-bold text-black pb-2 '>Color</h2>
 
                 <div className='flex'>
-                    <div onClick={() => setCustomColor(!customColor)} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2">
+                    <div onClick={() => setCustomColor(!customColor)} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2 relative ">
                         <img src="/1fb07539-85c6-49e4-80b3-83e7d03064f8.png" alt="" />
+                        {primaryColor !== '#cccc00' && primaryColor !== '#0077B5' && primaryColor !== '#1A7C16' && primaryColor !== '#EB531B' && primaryColor !== '#E31BEB' && primaryColor !== '#1D15F7' &&<CheckIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 '/>}
                     </div>
                     <div onClick={() => handleColor('#cccc00')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
                         {primaryColor === '#cccc00' && <CheckIcon />}
                     </div>
-                    <div onClick={() => {handleColor('#0077B5'); setSecondaryColor('#0077B5')}} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
+                    <div onClick={() => { handleColor('#0077B5'); setSecondaryColor('#0077B5') }} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
                         {primaryColor === '#0077B5' && <CheckIcon />}
                     </div>
                     <div onClick={() => handleColor('#1A7C16')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
@@ -138,13 +141,14 @@ const Design = () => {
                                         <span className='text-center'>{primaryColor}</span>
                                     </div>
                                 </div>
+                                
                             </div>
                             <div className='flex justify-between items-center mt-4'>
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div  onClick={()=> setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div>
+                                    <div onClick={() => setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryAccent}</span>
                                     </div>
@@ -155,7 +159,7 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div onClick={()=> setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div>
+                                    <div onClick={() => setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{secondaryColor}</span>
                                     </div>
@@ -165,7 +169,7 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div onClick={()=> setColorname('secondaryAccent')} className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                <div onClick={() => setColorname('secondaryAccent')} className='flex bg-gray-200 border-2 rounded-lg ml-5'>
                                     <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryAccent }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{secondaryAccent}</span>
@@ -173,10 +177,11 @@ const Design = () => {
                                 </div>
                             </div>
                         </div>
-                        {colorName === 'primaryColor'&& <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} /> }
-                        {colorName === 'primaryAccent'&& <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} /> }
-                        {colorName === 'secondaryColor'&& <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} /> }
-                        {colorName === 'secondaryAccent'&& <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} /> }
+                        
+                        {colorName === 'primaryColor' && <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} />}
+                        {colorName === 'primaryAccent' && <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} />}
+                        {colorName === 'secondaryColor' && <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} />}
+                        {colorName === 'secondaryAccent' && <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} />}
                     </div>
                 }
             </div>

@@ -12,7 +12,7 @@ const ContextApi = ({ children }) => {
     const [secondaryAccent, setSecondaryAccent] = useState('#fff')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('classic')
-    const [logoImage, setLogoImage] = useState(null)
+    const [logoImage, setLogoImage] = useState('')
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])
@@ -128,8 +128,9 @@ const ContextApi = ({ children }) => {
         if(userCardData?.display?.primaryAccent) setPrimaryAccent(userCardData?.display?.primaryAccent)
         if(userCardData?.display?.secondaryColor) setSecondaryColor(userCardData?.display?.secondaryColor)
         if(userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
+        if(userCardData?.display?.Logo) setLogoImage(userCardData?.display?.Logo)
 
-    }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent]);
+    }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent,userCardData?.display?.Logo]);
     return (
         <userContext.Provider value={value}>
             {children}

@@ -9,7 +9,7 @@ const LogoImage = () => {
   const [cropAspectRatio, setCropAspectRatio] = useState(3);
   const { logoImage, setLogoImage } = useContext(userContext)
   const cropperRef2 = useRef(null);
-
+console.log({logoImage});
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
