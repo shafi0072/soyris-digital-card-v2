@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 
 const DeleteCard = () => {
   const { userData,userCardData } = useContext(userContext);
-  console.log(userData._id);
   const router = useRouter();
   // handle delete card
   const handleDeleteCard = () => {

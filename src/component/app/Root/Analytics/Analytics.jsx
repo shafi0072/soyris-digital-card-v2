@@ -19,7 +19,6 @@ import { userContext } from "@/src/Storage/ContextApi";
 
 const Analytics = () => {
   const [time, setTime] = React.useState("");
-  console.log(time);
   // date range ------------------
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedRange, setSelectedRange] = useState({ 

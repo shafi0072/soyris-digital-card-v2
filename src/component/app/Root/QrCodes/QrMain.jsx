@@ -6,7 +6,6 @@ const DottedQRCode = ({ value }) => {
   const { qrStyle, foregroundColor, backgroundColor, outerEyeColor, selectedLogo, innerEyeShape, outesEyeShape, innerEyeColor, qrSize,logoSize } = useContext(userContext)
   console.log({ qrSize });
   // return <QRCode qrStyle={qrStyle} logoImage={selectedLogo} logoPadding={5} value={value} ecLevel={'M'} bgColor={backgroundColor} fgColor={foregroundColor}  eyeColor={eyeColor} />;
-  console.log({ outesEyeShape });
   return <QRCode {...{
     qrStyle,
     fgColor: foregroundColor,

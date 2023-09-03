@@ -88,7 +88,6 @@ const LineCharts = ({analyticsData }) => {
     },[userCardData])
 
    
-    console.log({chartData})
   // chart
   const data = [
     {

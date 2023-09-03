@@ -1,7 +1,6 @@
 import React from "react";
 
 const Image = ({ item }) => {
-  console.log(item);
   return (
     <>
       {item?.image && (

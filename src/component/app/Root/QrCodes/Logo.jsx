@@ -4,13 +4,21 @@ import { useState } from "react";
 import Slider from "@mui/material/Slider";
 import { Box } from "@mui/material";
 import { userContext } from "@/src/Storage/ContextApi";
+import { compressAndConvertToBase64 } from "@/src/config/base64";
 
 const Logo = () => {
-    // const [selectedLogo,setSelectedLogo] = useState(null)
-    const {selectedLogo,setSelectedLogo,logoSize,setLogoSize} = useContext(userContext)
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedLogo(URL.createObjectURL(file));
+  // const [selectedLogo,setSelectedLogo] = useState(null)
+  const { selectedLogo, setSelectedLogo, logoSize, setLogoSize } = useContext(userContext)
+  const handleFileChange = async (e) => {
+    const files = e.target.files[0];
+    const compressedBase64 = await compressAndConvertToBase64(
+      files,
+      130,
+      150,
+      0.8
+    );
+    // console.log(compressedBase64);
+    setSelectedLogo(compressedBase64);
   };
   // console.log({selectedLogo});
   return (
@@ -41,7 +49,7 @@ const Logo = () => {
         </svg>
       </div>
       <div className=" w-[266px] mt-6">
-        {selectedLogo&& <img src={selectedLogo} className=" w-[50px] h-[50px] rounded my-5"/>}
+        {selectedLogo && <img src={selectedLogo} className=" w-[50px] h-[50px] rounded my-5" />}
         <label
           htmlFor="logoImages"
           className="flex  bg-gray-200 px-3 py-2 rounded-full"
@@ -59,15 +67,15 @@ const Logo = () => {
       </div>
       <h4 className="my-4">Logo Size</h4>
       <Box width={300}>
-          <Slider
-            defaultValue={logoSize}
-            aria-label="Default"
-            valueLabelDisplay="auto"
-            onChange={(e)=> setLogoSize(e.target.value)}
-            min={20}
-            max={30}
-          />
-        </Box>
+        <Slider
+          value={logoSize}
+          aria-label="Default"
+          valueLabelDisplay="auto"
+          onChange={(e) => setLogoSize(e.target.value)}
+          min={20}
+          max={50}
+        />
+      </Box>
     </>
   );
 };

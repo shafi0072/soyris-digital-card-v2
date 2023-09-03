@@ -9,7 +9,7 @@ const LogoImage = () => {
   const [cropAspectRatio, setCropAspectRatio] = useState(3);
   const { logoImage, setLogoImage } = useContext(userContext)
   const cropperRef2 = useRef(null);
-
+console.log({logoImage});
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -74,7 +74,7 @@ const LogoImage = () => {
           <span onClick={() => {
             setCroppedImage(null);
             setLogoImage(null); setSelectedImage(null)
-          }} className='absolute -right-3 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full'>
+          }} className='absolute -right-3 -top-2 w-[15px] h-[15px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
             <CloseIcon className='text-white text-[12px]' />
           </span>
         </div>

@@ -6,7 +6,6 @@ import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from '@/src/config/Server'
 const QrCodeCard = () => {
   const { qrStyle, foregroundColor, backgroundColor, outerEyeColor, selectedLogo, innerEyeShape, outesEyeShape, innerEyeColor, qrSize, userCardData,logoSize } = useContext(userContext)
-  console.log({ selectedLogo });
   const handleQr = () => {
     try {
       fetch(`${baseUrl}/cards/profile/QrCode/${userCardData?._id}`, {

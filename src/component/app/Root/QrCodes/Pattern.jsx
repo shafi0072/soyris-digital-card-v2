@@ -13,7 +13,6 @@ const Pattern = () => {
   const handleQrStyle = (style) => {
     setQrStyle(style);
   }
-  console.log({qrSize});
   // shapes
   return (
     <>
@@ -146,7 +145,7 @@ const Pattern = () => {
         <p className="mb-4">Qr Size</p>
         <Box width={300}>
           <Slider
-            defaultValue={qrSize}
+            value={qrSize}
             aria-label="Default"
             valueLabelDisplay="auto"
             onChange={(e) => setQrSize(e?.target?.value)}
