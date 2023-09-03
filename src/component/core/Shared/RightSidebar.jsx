@@ -34,12 +34,13 @@ const RightSidebar = () => {
     setProfileImage,
     userCardData,
     color,
+    primaryColor,
+    primaryAccent,
     design,
     logoImage,
     infos,
   } = useContext(userContext);
   console.log({ userCardData });
-  // console.log({ newFeilds });
   const socialHeader = newFeilds?.some(
     (item) =>
       item?.type === "Facebook" ||
@@ -63,14 +64,13 @@ const RightSidebar = () => {
       item?.type === "Pdf" || item?.type === "Notes" || item?.type === "Date"
   );
 
-  // console.log(shouldShowH2)
 
   return (
     <div className="scroll-hide h-[76vh] overflow-y-scroll ">
       <div className="relative w-[363px] ">
         {design === "classic" && (
           <Classic
-            color={color}
+            color={primaryColor}
             profileImage={profileImage}
             setProfileImage={setProfileImage}
             logoImage={logoImage}
@@ -78,7 +78,7 @@ const RightSidebar = () => {
         )}
         {design === "flat" && (
           <Flat
-            color={color}
+            color={primaryColor}
             profileImage={profileImage}
             setProfileImage={setProfileImage}
             logoImage={logoImage}
@@ -115,51 +115,51 @@ const RightSidebar = () => {
               {item?.type === "Facebook" && (
                 <a
                   href={item?.url}
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: primaryColor }}
                   className=" w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
-                  <FacebookIcon style={{ color: "#fff" }} />{" "}
+                  <FacebookIcon style={{ color: primaryAccent }} />{" "}
                 </a>
               )}
               {item?.type === "Instagram" && (
                 <a
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: primaryColor }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
-                  <InstagramIcon style={{ color: "#fff" }} />
+                  <InstagramIcon style={{ color: primaryAccent }} />
                 </a>
               )}
               {item?.type === "Twitter" && (
                 <a
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: primaryColor }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
-                  <TwitterIcon style={{ color: "#fff" }} />
+                  <TwitterIcon style={{ color: primaryAccent }} />
                 </a>
               )}
               {item?.type === "LinkedIn" && (
                 <a
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: primaryColor }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
-                  <LinkedInIcon style={{ color: "#fff" }} />{" "}
+                  <LinkedInIcon style={{ color: primaryAccent }} />{" "}
                 </a>
               )}
               {item?.type === "Pinterest" && (
                 <a
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: primaryColor }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                 >
-                  <PinterestIcon style={{ color: "#fff" }} />
+                  <PinterestIcon style={{ color: primaryAccent }} />
                 </a>
               )}
               {item?.type === "Tiktok" && (
                 <a
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: primaryColor }}
                   href={item?.url}
                   className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
                 >

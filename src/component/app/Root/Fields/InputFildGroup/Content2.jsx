@@ -108,7 +108,6 @@ const Content2 = () => {
       });
     })
   }
-  console.log({ newFeilds });
   const handleDelete = (idToDelete) => {
     setNewFeilds(prevState => prevState.filter(item => item?.id !== idToDelete));
   };

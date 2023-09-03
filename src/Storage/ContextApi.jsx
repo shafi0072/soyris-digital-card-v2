@@ -6,7 +6,10 @@ const ContextApi = ({ children }) => {
 
     const [userData, setUserData] = useState({})
     const [userCardData, setUserCardData] = useState({})
-    const [color, setColor] = useState('#0077B5')
+    const [primaryColor, setPrimaryColor] = useState('#0077B5')
+    const [primaryAccent, setPrimaryAccent] = useState('#fff')
+    const [secondaryColor, setSecondaryColor] = useState('#0077B5')
+    const [secondaryAccent, setSecondaryAccent] = useState('#fff')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('classic')
     const [logoImage, setLogoImage] = useState(null)
@@ -36,11 +39,17 @@ const ContextApi = ({ children }) => {
         innerEyeColor,
         backgroundColor,
         newFeilds,
-        color,
+        primaryColor,
+        primaryAccent,
+        secondaryColor,
+        secondaryAccent,
         infos,
         foregroundColor,
         qrStyle,
-        setColor,
+        setPrimaryColor,
+        setPrimaryAccent,
+        setSecondaryColor,
+        setSecondaryAccent,
         profileImage,
         logoImage,
         userCardData,
@@ -115,7 +124,12 @@ const ContextApi = ({ children }) => {
         if(userCardData?.QrCode?.logoSize){
             setLogoSize(userCardData?.QrCode?.logoSize)
         }
-    }, [userCardData?.QrCode]);
+        if(userCardData?.display?.primaryColor) setPrimaryColor(userCardData?.display?.primaryColor)
+        if(userCardData?.display?.primaryAccent) setPrimaryAccent(userCardData?.display?.primaryAccent)
+        if(userCardData?.display?.secondaryColor) setSecondaryColor(userCardData?.display?.secondaryColor)
+        if(userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
+
+    }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent]);
     return (
         <userContext.Provider value={value}>
             {children}

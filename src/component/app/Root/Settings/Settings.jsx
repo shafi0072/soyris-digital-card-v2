@@ -18,14 +18,12 @@ const Settings = () => {
   const [url, setUrl] = useState("");
   const { userData,userCardData } = useContext(userContext);
  
-console.log({userCardData});
   
   const handleCardNameOnChange = (event) => {
     const cardName = event.target.value;
     setCardName(cardName);
   };
  
-console.log({userData});
 
  
 

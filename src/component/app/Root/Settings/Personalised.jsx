@@ -7,10 +7,8 @@ import CheckIcon from '@mui/icons-material/Check';
 const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   const inputRef = useRef(null);
   const [isValid,setIsValid] = useState("");
-  console.log(isValid)
 
   const { settings } = useContext(userContext);
-  console.log(settings?.url);
   // function for copy text --------------
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyClick = () => {
@@ -31,7 +29,6 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   const permanentUrl = "https://easycards.pro/"; // The permanent URL
   const [inputValue, setInputValue] = useState(settings.url);
 
-  console.log({ inputValue });
   const handleInputChange = (e) => {
     fetch(`${baseUrl}/cards/settings/${e.target.value}`)
       .then((res) => res.json())

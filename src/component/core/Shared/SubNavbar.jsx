@@ -10,23 +10,6 @@ const SubNavbar = () => {
   const router = useRouter();
 
   const handleCreateCards = () => {
-    // fetch(`${baseUrl}/cards/add-cards`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     email: userData?.email,
-    //     cardUserId: userData?._id,
-    //     design:"classic"
-    //   })
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     localStorage.setItem("cardId", data?._id);
-    //     window.location.assign("/profileInfo");
-    //   })
-    //   .catch((err) => console.log(err));
     router.push('/selectCard');
   };
 

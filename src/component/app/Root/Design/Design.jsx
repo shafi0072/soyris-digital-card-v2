@@ -13,10 +13,24 @@ import { toast } from 'react-toastify';
 
 const Design = () => {
     const [border, setBorder] = useState('clasic');
-    const { profileImage, logoImage, userData, color, setColor, design,
-        setDesign } = useContext(userContext)
+     const [ colorName, setColorname] = useState('')
+    const { profileImage, logoImage, userData, color, design, primaryColor,
+        primaryAccent,
+        secondaryColor,
+        secondaryAccent,
+        setPrimaryColor,
+        setPrimaryAccent,
+        setSecondaryColor,
+        setSecondaryAccent,
+        setDesign, userCardData } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-    
+   
+    const handleColor = color=>{
+        setPrimaryColor(color);
+        setSecondaryColor(color);
+        setPrimaryAccent('#fff');
+        setSecondaryAccent('#fff');
+    }
     const handleDesignSubmit = (e) => {
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/profile/display/${userCardId}`, {
@@ -27,7 +41,10 @@ const Design = () => {
             body: JSON.stringify({
                 display: {
                     design: design,
-                    color: color,
+                    primaryColor,
+                    primaryAccent,
+                    secondaryColor,
+                    secondaryAccent,
                     ProfileImage: `${profileImage}`,
                     Logo: `${logoImage}`
                 }
@@ -48,7 +65,7 @@ const Design = () => {
             })
             .catch(err => console.log({ err }))
     }
-    
+
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
@@ -89,36 +106,36 @@ const Design = () => {
                     <div onClick={() => setCustomColor(!customColor)} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2">
                         <img src="/1fb07539-85c6-49e4-80b3-83e7d03064f8.png" alt="" />
                     </div>
-                    <div onClick={() => setColor('#cccc00')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
-                        {color === '#cccc00' && <CheckIcon />}
+                    <div onClick={() => handleColor('#cccc00')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
+                        {primaryColor === '#cccc00' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#0077B5')} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
-                        {color === '#0077B5' && <CheckIcon />}
+                    <div onClick={() => {handleColor('#0077B5'); setSecondaryColor('#0077B5')}} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
+                        {primaryColor === '#0077B5' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#1A7C16')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
-                        {color === '#1A7C16' && <CheckIcon />}
+                    <div onClick={() => handleColor('#1A7C16')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
+                        {primaryColor === '#1A7C16' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#EB531B')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#EB531B] ml-2">
-                        {color === '#EB531B' && <CheckIcon />}
+                    <div onClick={() => handleColor('#EB531B')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#EB531B] ml-2">
+                        {primaryColor === '#EB531B' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#E31BEB')} className="cursor-pointer rounded-full text-white text-center pt-[2px]  w-[30px] h-[30px] bg-[#E31BEB] ml-2">
-                        {color === '#E31BEB' && <CheckIcon />}
+                    <div onClick={() => handleColor('#E31BEB')} className="cursor-pointer rounded-full text-white text-center pt-[2px]  w-[30px] h-[30px] bg-[#E31BEB] ml-2">
+                        {primaryColor === '#E31BEB' && <CheckIcon />}
                     </div>
-                    <div onClick={() => setColor('#1D15F7')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1D15F7] ml-2">
-                        {color === '#1D15F7' && <CheckIcon />}
+                    <div onClick={() => handleColor('#1D15F7')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1D15F7] ml-2">
+                        {primaryColor === '#1D15F7' && <CheckIcon />}
                     </div>
                 </div>
                 {
                     customColor && <div className='flex justify-between items-center'>
                         <div>
-                            <div className='flex justify-between items-center'>
+                            <div className='flex justify-between items-center my-5'>
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: color }}></div>
+                                    <div onClick={()=> setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}></div>
                                     <div className='px-3'>
-                                        <span className='text-center'>{color}</span>
+                                        <span className='text-center'>{primaryColor}</span>
                                     </div>
                                 </div>
                             </div>
@@ -127,9 +144,9 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: '#fff' }}></div>
+                                    <div  onClick={()=> setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div>
                                     <div className='px-3'>
-                                        <span className='text-center'>{"#fffffffff"}</span>
+                                        <span className='text-center'>{primaryAccent}</span>
                                     </div>
                                 </div>
                             </div>
@@ -138,9 +155,9 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: color }}></div>
+                                    <div onClick={()=> setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div>
                                     <div className='px-3'>
-                                        <span className='text-center'>{color}</span>
+                                        <span className='text-center'>{secondaryColor}</span>
                                     </div>
                                 </div>
                             </div>
@@ -148,15 +165,18 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: '#fff' }}></div>
+                                <div onClick={()=> setColorname('secondaryAccent')} className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryAccent }}></div>
                                     <div className='px-3'>
-                                        <span className='text-center'>{'#fffffffff'}</span>
+                                        <span className='text-center'>{secondaryAccent}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <ChromePicker color={color} onChange={(e) => setColor(e.hex)} />
+                        {colorName === 'primaryColor'&& <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} /> }
+                        {colorName === 'primaryAccent'&& <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} /> }
+                        {colorName === 'secondaryColor'&& <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} /> }
+                        {colorName === 'secondaryAccent'&& <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} /> }
                     </div>
                 }
             </div>
@@ -170,7 +190,7 @@ const Design = () => {
                 <LogoImage />
             </div>
             <div className='my-10'>
-                
+
                 <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
 
 

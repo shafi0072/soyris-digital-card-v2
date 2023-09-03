@@ -16,7 +16,6 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
     fieldss.push({id: newFeilds?.length + 1, ...fields})
     setNewFeilds(fieldss);
   };
-  console.log({newFeilds});
 
   return (
     <div className="border-dotted border-2 border-sky-500 p-5 rounded-lg">
