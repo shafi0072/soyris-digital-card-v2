@@ -74,7 +74,7 @@ console.log({logoImage});
           <span onClick={() => {
             setCroppedImage(null);
             setLogoImage(null); setSelectedImage(null)
-          }} className='absolute -right-3 -top-2 w-[15px] h-[15px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
+          }} className='absolute -right-3 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
             <CloseIcon className='text-white text-[12px]' />
           </span>
         </div>

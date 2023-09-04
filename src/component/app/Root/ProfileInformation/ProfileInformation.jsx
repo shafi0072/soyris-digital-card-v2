@@ -42,8 +42,8 @@ const ProfileInformation = () => {
 
             <div className='mb-10'>
                 <form onSubmit={handleOnSubmit}>
-                    <div className='mb-8 w-[635px]'>
-                        <h2 className='text-xl font-bold text-black pb-2 border-b border-[#CBD5E0]'>Personal</h2>
+                    <div className='mb-8 '>
+                        <h2 className='text-xl font-bold text-black pb-2 border-b border-[#CBD5E0] mr-[20%]'>Personal</h2>
                     </div>
                     <div className='grid grid-cols-2 mb-5'>
                         <div className=''>
@@ -79,8 +79,8 @@ const ProfileInformation = () => {
 
                         </div>
                     </div>
-                    <div className='my-8 w-[635px]'>
-                        <h2 className='text-xl font-bold text-black pb-2 border-b border-[#CBD5E0]'>Affiliation</h2>
+                    <div className='my-8'>
+                        <h2 className='text-xl font-bold text-black pb-2 mr-[20%] border-b border-[#CBD5E0]'>Affiliation</h2>
                     </div>
                     <div className='grid grid-cols-2 mb-5'>
                         <div className=''>

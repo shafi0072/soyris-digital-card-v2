@@ -66,6 +66,7 @@ const {userData} = useContext(userContext)
     link.click();
     document.body.removeChild(link);
   };
+  console.log('in', items);
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">
@@ -436,14 +437,14 @@ const {userData} = useContext(userContext)
                 handleFieldChange(
                   items?.id,
                   "internationalNumber",
-                  e.target.value
+                  !items?.internationalNumber
                 )
               }
-              onClick={() => setUseInternationalNumber(!useInternationalNumber)}
+              // onClick={() => setUseInternationalNumber(!useInternationalNumber)}
               id="default-checkbox"
               type="checkbox"
-              checked={items?.internationalNumber}
-              value={useInternationalNumber}
+              checked={items?.internationalNumber && items?.internationalNumber}
+              // value={useInternationalNumber}
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
             />
             <label

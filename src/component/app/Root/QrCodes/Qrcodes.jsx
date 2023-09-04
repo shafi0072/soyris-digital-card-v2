@@ -2,13 +2,9 @@ import React, { useContext } from "react";
 import Pattern from "./Pattern";
 import EyeStyle from "./EyeStyle";
 import Logo from "./Logo";
-import { userContext } from "@/src/Storage/ContextApi";
 
 const Qrcodes = () => {
-  const  {loading} = useContext(userContext)
-  if(loading) {
-   return 'loading..'
-  }
+  
   return (
     <>
       <div>
