@@ -129,8 +129,10 @@ const ContextApi = ({ children }) => {
         if(userCardData?.display?.secondaryColor) setSecondaryColor(userCardData?.display?.secondaryColor)
         if(userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
         if(userCardData?.display?.Logo) setLogoImage(userCardData?.display?.Logo)
+        if(userCardData?.setting) setSettings(userCardData?.setting)
 
-    }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent,userCardData?.display?.Logo]);
+    }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent,userCardData?.display?.Logo, userCardData?.setting]);
+    
     return (
         <userContext.Provider value={value}>
             {children}
