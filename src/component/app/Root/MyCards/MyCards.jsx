@@ -65,7 +65,7 @@ const MyCards = () => {
                                         alt=""
                                     />
                                     <div className="">
-                                        <div className="absolute  top-[72%]   z-10">
+                                        <div className="absolute  top-[68%]   z-10">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="300"
@@ -80,7 +80,7 @@ const MyCards = () => {
                                                 />
                                             </svg>
                                         </div>
-                                        <div className="absolute bottom-0 left-0">
+                                        <div className="absolute bottom- left-0">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width="96"
