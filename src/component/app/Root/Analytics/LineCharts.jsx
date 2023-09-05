@@ -26,10 +26,12 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
+import ReactECharts from 'echarts-for-react';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
+  
   return (
     <div
       role="tabpanel"
@@ -90,49 +92,38 @@ const LineCharts = ({analyticsData }) => {
    
   // chart
   const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
+    { date: "2023-09-01T00:00:00Z", value: 2 },
+    { date: "2023-09-02T00:00:00Z", value: 4 },
+    { date: "2023-09-03T00:00:00Z", value: 5 },
+    { date: "2023-09-04T00:00:00Z", value: 10 },
+    { date: "2023-09-05T00:00:00Z", value: 0 },
+    { date: "2023-09-06T00:00:00Z", value: 0 },
+    { date: "2023-09-07T00:00:00Z", value: 12 },
+    { date: "2023-09-08T00:00:00Z", value: 7 },
+    { date: "2023-09-09T00:00:00Z", value: 3 },
+    { date: "2023-09-10T00:00:00Z", value: 8 },
+    { date: "2023-09-11T00:00:00Z", value: 6 },
+    { date: "2023-09-12T00:00:00Z", value: 1 },
+    { date: "2023-09-13T00:00:00Z", value: 9 },
+    { date: "2023-09-14T00:00:00Z", value: 5 },
+    { date: "2023-09-15T00:00:00Z", value: 3 },
+    { date: "2023-09-16T00:00:00Z", value: 11 },
+    { date: "2023-09-17T00:00:00Z", value: 4 },
+    { date: "2023-09-18T00:00:00Z", value: 7 },
+    { date: "2023-09-19T00:00:00Z", value: 6 },
+    { date: "2023-09-20T00:00:00Z", value: 2 },
+    { date: "2023-09-21T00:00:00Z", value: 8 },
+    { date: "2023-09-22T00:00:00Z", value: 9 },
+    { date: "2023-09-23T00:00:00Z", value: 4 },
+    { date: "2023-09-24T00:00:00Z", value: 10 },
+    { date: "2023-09-25T00:00:00Z", value: 3 },
+    { date: "2023-09-26T00:00:00Z", value: 6 },
+    { date: "2023-09-27T00:00:00Z", value: 7 },
+    { date: "2023-09-28T00:00:00Z", value: 1 },
+    { date: "2023-09-29T00:00:00Z", value: 5 },
+    { date: "2023-09-30T00:00:00Z", value: 12 },
   ];
+  
 
   class CustomizedLabel extends PureComponent {
     render() {
@@ -174,6 +165,27 @@ const LineCharts = ({analyticsData }) => {
     }
   }
 
+  const chartDatas = chartData.map(item => ({
+    name: item.date,
+    value: [item.date, item.value],
+  }));
+
+  const options = {
+    xAxis: {
+      type: 'time',
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: chartDatas,
+        type: 'line',
+        smooth: true
+      },
+    ],
+  };
+
   return (
     <>
     <div className="mt-16 shadow-lg p-8">
@@ -199,29 +211,7 @@ const LineCharts = ({analyticsData }) => {
         </div>
        <div>
        <CustomTabPanel value={value} index={0}>
-          <LineChart
-            width={900}
-            height={500}
-            data={chartData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 10,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            {/* <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} /> */}
-            <YAxis />
-            <Tooltip />
-            
-            <Line
-              type="monotone"
-              dataKey="value"
-              stroke="#8884d8"
-              label={<CustomizedLabel />}
-            />
-          </LineChart>
+       <ReactECharts option={options} style={{ height: '400px' }} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <LineChart

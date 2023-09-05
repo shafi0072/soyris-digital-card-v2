@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import { userContext } from '@/src/Storage/ContextApi';
@@ -15,7 +15,7 @@ const Design = () => {
     const [color, setColor] = useState({});
     const [border, setBorder] = useState('clasic');
     const [colorName, setColorname] = useState('')
-    const { profileImage, logoImage, userData,  design, primaryColor,
+    const { profileImage, logoImage, userData, design, primaryColor,
         primaryAccent,
         secondaryColor,
         secondaryAccent,
@@ -25,7 +25,8 @@ const Design = () => {
         setSecondaryAccent,
         setDesign, userCardData } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-
+    
+    const colorPicker = useRef()
     const handleColor = color => {
         setPrimaryColor(color);
         setSecondaryColor(color);
@@ -68,6 +69,22 @@ const Design = () => {
             .catch(err => console.log({ err }))
     }
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (colorPicker.current && !colorPicker.current.contains(event.target)) {
+            setColorname('');
+          }
+        };
+    
+        // Add event listener to listen for clicks outside of colorPicker
+        document.addEventListener('mousedown', handleClickOutside);
+    
+        return () => {
+          // Clean up the event listener when the component unmounts
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
+
     return (
         <div>
             <div className='border-b border-[#CBD5E0] pb-8'>
@@ -107,7 +124,7 @@ const Design = () => {
                 <div className='flex'>
                     <div onClick={() => setCustomColor(!customColor)} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2 relative ">
                         <img src="/1fb07539-85c6-49e4-80b3-83e7d03064f8.png" alt="" />
-                        {primaryColor !== '#cccc00' && primaryColor !== '#0077B5' && primaryColor !== '#1A7C16' && primaryColor !== '#EB531B' && primaryColor !== '#E31BEB' && primaryColor !== '#1D15F7' &&<CheckIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 '/>}
+                        {primaryColor !== '#cccc00' && primaryColor !== '#0077B5' && primaryColor !== '#1A7C16' && primaryColor !== '#EB531B' && primaryColor !== '#E31BEB' && primaryColor !== '#1D15F7' && <CheckIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 ' />}
                     </div>
                     <div onClick={() => handleColor('#cccc00')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
                         {primaryColor === '#cccc00' && <CheckIcon />}
@@ -136,12 +153,12 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div onClick={()=> setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}></div>
+                                    <div onClick={() => setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}></div>
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryColor}</span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div className='flex justify-between items-center mt-4'>
                                 <div className=''>
@@ -177,11 +194,13 @@ const Design = () => {
                                 </div>
                             </div>
                         </div>
-                        
-                        {colorName === 'primaryColor' && <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} />}
-                        {colorName === 'primaryAccent' && <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} />}
-                        {colorName === 'secondaryColor' && <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} />}
-                        {colorName === 'secondaryAccent' && <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} />}
+
+                        <div ref={colorPicker}>
+                            {colorName === 'primaryColor' && <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} />}
+                            {colorName === 'primaryAccent' && <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} />}
+                            {colorName === 'secondaryColor' && <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} />}
+                            {colorName === 'secondaryAccent' && <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} />}
+                        </div>
                     </div>
                 }
             </div>
