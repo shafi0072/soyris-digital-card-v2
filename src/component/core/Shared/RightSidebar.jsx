@@ -84,7 +84,8 @@ const RightSidebar = () => {
             logoImage={logoImage}
           />
         )}
-        {infos && (
+       <div className="mx-5">
+       {infos && (
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
         <div></div>
@@ -186,6 +187,7 @@ const RightSidebar = () => {
             </>
           ))}
         </div>
+       </div>
       </div>
     </div>
   );
