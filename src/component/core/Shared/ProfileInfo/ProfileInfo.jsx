@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 const ProfileInfo = ({ infos,color, userData }) => {
+  
     return (
         <div className=''>
-            <h2 className='font-bold text-xl'>
+            <h2 className='font-bold text-xl border-l-2 border-red-700 '>
                 {infos?.prefix ? infos?.prefix + '. ' : userData?.profileInfo?.prefix + '. '} {infos?.first_name ? infos?.first_name : userData?.profileInfo?.first_name} {infos?.last_name ? infos?.last_name : userData?.profileInfo?.last_name} <br />
                 {infos?.suffix ? infos?.suffix : userData?.profileInfo?.suffix} <span className='font-thin text-base '> {infos?.accreditations ? infos?.accreditations : userData?.profileInfo?.accreditations} </span>
             </h2>

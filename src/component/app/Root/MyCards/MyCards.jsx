@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import Spinner from '@/src/component/core/Spinner';
 const MyCards = () => {
     const [userCard, setUserCard] = useState([])
-    
+
     const { userData, isLoading, setIsLoading } = useContext(userContext)
     const [showMessage, setShowMessage] = useState(false);
     const router = useRouter()
@@ -25,7 +25,7 @@ const MyCards = () => {
             })
             .catch(err => { setIsLoading(false) })
     }, [userData])
-
+    console.log({ userCard });
     useEffect(() => {
         // After a specified delay (e.g., 2000 milliseconds), show the message
 
@@ -41,18 +41,79 @@ const MyCards = () => {
     }, []);
 
     return (
-        <div style={{height:'80vh'}}>
-            
+        <div style={{ height: '80vh' }}>
+
             {!isLoading && userCard?.length === 0 && showMessage && (
-                <p className='text-2xl font-semibold' style={{color:'#000000ab'}}>Please Create a Card</p>
+                <p className='text-2xl font-semibold' style={{ color: '#000000ab' }}>Please Create a Card</p>
             )}
             <div className='flex flex-wrap '>
                 {
                     userCard?.map((items, index) =>
                         <div className=' cursor-pointer w-[300px] ml-4  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
-                            <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
-                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] rounded' alt="" />
-                            </div>
+                            {items?.display?.design === "flat" && <div className=' relative w-full h-[300px] '>
+                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] rounded-t-md' alt="" />
+                                <div className='absolute top-[95%] h-5 w-full rounded-b-md bg-[#EB531B]'></div>
+                            </div>}
+                            {items?.display?.design === 'classic' &&
+                                <div
+                                    className=" w-[300px] h-[300px]  relative rounded"
+                                    style={{ background: userData?.display?.color }}
+                                >
+                                   
+                                    <div className="">
+                                        <div className="absolute  top-[72.6%]  z-10">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="300"
+                                                height="88.28"
+                                                viewBox="0 0 381 88.28"
+                                            >
+                                                <path
+                                                    id="wave"
+                                                    d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z"
+                                                    transform="translate(0 0)"
+                                                    fill="#0E66A0"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div className="absolute bottom-[0.1%] left-[0.1%]">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="96"
+                                                height="32.781"
+                                                viewBox="0 0 96 32.781"
+                                            >
+                                                <path
+                                                    id="wave-left"
+                                                    d="M0,35.773V68.554H96l-.032-1.475C63.791,67.267,33.386,56.325,0,35.773Z"
+                                                    transform="translate(0 -35.773)"
+                                                    fill="#fff"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div className="absolute -bottom-[8px] right-0 z-[5]">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="262"
+                                                height="81.75"
+                                                viewBox="0 0 285 81.75"
+                                            >
+                                                <path
+                                                    id="wave-right"
+                                                    d="M300.742,6.114c-30.018-.329-66.667,9.2-121,41.617C136.118,73.767,99.61,86.065,65.025,86.281H65v1.575H350V14.529C334.376,10.055,318.753,6.312,300.742,6.114Z"
+                                                    transform="translate(-65 -6.106)"
+                                                    fill="#fff"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <img
+                                        className="h-full w-full object-cover rounded"
+                                        src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"}
+                                        alt=""
+                                    />
+                                    </div>
+                                </div>
+                            }
                             <h2 className='text-center text-2xl py-5 border-b-2 border-dashed border-red-300'>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>
                             <div className='flex justify-center'>
                                 <ul className='mt-5 flex gap-4'>
