@@ -20,7 +20,7 @@ const SubNavbar = () => {
           <div className=" ps-3">
            
             <button
-              className="bg-[#0077B5] px-4 py-2 flex items-center gap-3 text-white rounded"
+              className="bg-[black] px-4 py-2 mb-2 flex items-center gap-3 text-white rounded"
               onClick={handleCreateCards}
             >
               <span>
