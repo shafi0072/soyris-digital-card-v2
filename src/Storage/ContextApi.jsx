@@ -132,6 +132,7 @@ const ContextApi = ({ children }) => {
         if(userCardData?.setting) setSettings(userCardData?.setting)
 
     }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent,userCardData?.display?.Logo, userCardData?.setting]);
+    
     return (
         <userContext.Provider value={value}>
             {children}
