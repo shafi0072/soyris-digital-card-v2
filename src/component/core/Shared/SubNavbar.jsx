@@ -80,7 +80,7 @@ const SubNavbar = () => {
                 <div
                   className={`${
                     router.pathname === items?.url &&
-                    "bg-[#0277B5]  rounded text-white"
+                    "bg-[black]  rounded text-white"
                   } px-4 py-2 cursor-pointer`}
                 >
                   <p>{items?.title}</p>

@@ -49,9 +49,9 @@ const MyCards = () => {
             <div className='flex flex-wrap '>
                 {
                     userCard?.map((items, index) =>
-                        <div className=' cursor-pointer w-[300px] ml-4 border rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
+                        <div className=' cursor-pointer w-[300px] ml-4  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
                             <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
-                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] ' alt="" />
+                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] rounded' alt="" />
                             </div>
                             <h2 className='text-center text-2xl py-5 border-b-2 border-dashed border-red-300'>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>
                             <div className='flex justify-center'>

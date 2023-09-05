@@ -18,7 +18,7 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
   };
 
   return (
-    <div className="border-dotted border-2 border-sky-500 p-5 rounded-lg">
+    <div className="border-dotted border-2 border-[black] p-5 rounded-lg">
       <div>
         {field_data?.map((items, index) => (
           <div key={index} className="cursor-pointer">
@@ -26,7 +26,7 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
               className="flex justify-between items-center border-b"
               onClick={() => setExpand({ id: index, status: !exapnd?.status })}
             >
-              <h1 className="text-md font-bold" style={{ color: "#0077B5" }}>
+              <h1 className="text-md font-bold" style={{ color: "black" }}>
                 {items?.title} ({items?.fields?.length})
               </h1>
               {exapnd?.id === index ? (

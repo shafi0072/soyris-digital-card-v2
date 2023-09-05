@@ -215,7 +215,7 @@ const Design = () => {
             </div>
             <div className='my-10'>
 
-                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
+                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
 
 
             </div>

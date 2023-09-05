@@ -113,7 +113,7 @@ const Content2 = () => {
   };
   return (
     <>
-      <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
+      <div className="border-dotted border-2 bg-gray-200  border-[black] p-5 rounded-lg">
         <Container onDrop={onDrop}>
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
@@ -125,13 +125,13 @@ const Content2 = () => {
           ))}
         </Container>
       </div>
-      <div className="fixed bottom-20 left-[35%]  z-50">
+      <div className="fixed bottom-0  left-[33%] bg-[white] w-[100%] h-[70px]  z-50">
         
         <input
           type="submit"
           onClick={handleFieldsOnSubmit}
           value="Save"
-          className="px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]"
+          className="px-5 py-1 border border-[black] bg-[black] my-5 ml-2 font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]"
         />
       </div>
     </>
