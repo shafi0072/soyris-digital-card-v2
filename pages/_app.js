@@ -7,6 +7,7 @@ import 'cropperjs/dist/cropper.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
+import LoadingOverlay from 'react-loading-overlay';
 
 export default function App({ Component, pageProps }) {
   
@@ -18,7 +19,8 @@ export default function App({ Component, pageProps }) {
     }
   }, [])
 
-  return <ContextApi>
+  return <>
+  <ContextApi>
     {router?.pathname !== '/auth'&& router?.pathname !== '/profile/[user]'  ? (<Layout>
       <Component {...pageProps} />
     </Layout>) : (<Component {...pageProps} />)}
@@ -37,4 +39,5 @@ export default function App({ Component, pageProps }) {
     {/* Same as */}
     <ToastContainer />
   </ContextApi>
+  </>
 }

@@ -46,7 +46,7 @@ const CardStatus = () => {
             <div className='mt-5 flex items-center'>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input onChange={handleCardStatus} defaultChecked={settings?.cardStatus} onClick={()=>setCardStatus(!cardStatus)} type="checkbox" value="" class="sr-only peer"  />
-                    <div class="w-11 h-6 bg-[#EB531B] rounded-full peer   peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#EB531B]"></div>
+                    <div class="w-11 h-6 bg-[black] rounded-full peer   peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#EB531B]"></div>
                 </label>
                     <span class="ml-3 text-lg font-medium">Active</span>
             </div>

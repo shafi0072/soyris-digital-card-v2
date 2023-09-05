@@ -23,7 +23,7 @@ const Design = () => {
         setPrimaryAccent,
         setSecondaryColor,
         setSecondaryAccent,
-        setDesign, userCardData } = useContext(userContext)
+        setDesign, userCardData, setIsLoading } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
     
     const colorPicker = useRef()
@@ -35,6 +35,7 @@ const Design = () => {
         setCustomColor(false)
     }
     const handleDesignSubmit = (e) => {
+        setIsLoading(true)
         const userCardId = localStorage.getItem('cardId')
         fetch(`${baseUrl}/cards/profile/display/${userCardId}`, {
             method: 'PUT',
@@ -55,6 +56,7 @@ const Design = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setIsLoading(false)
                 toast.success('Desgine Update Success fully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -215,7 +217,7 @@ const Design = () => {
             </div>
             <div className='my-10'>
 
-                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]'>Save</button>
+                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
 
 
             </div>

@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { baseUrl } from '../config/Server';
+import LoadingOverlay from 'react-loading-overlay';
+import { RiseLoader } from 'react-spinners';
+import { useRouter } from 'next/router';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
     const [loading, setLoading] = useState(true)
@@ -27,8 +30,11 @@ const ContextApi = ({ children }) => {
     const [innerEyeShape, setInnerEyeShape] = useState('square')
     const [qrSize, setQrSize] = useState(100);
     const [logoSize, setLogoSize] = useState(20);
+    const [isLoading, setIsLoading] = useState(false)
 
     const value = {
+        isLoading,
+        setIsLoading,
         logoSize,
         qrSize,
         outerEyeColor,
@@ -92,51 +98,77 @@ const ContextApi = ({ children }) => {
             .then(data => { setUserCardData(data); setNewFeilds(data?.fields); setInfo(data?.profileInfo); setProfileImage(data?.display?.ProfileImage); setColor(data?.display?.color); setLogoImage(data?.display?.Logo); setDesign(data?.display?.design); setSettings(data?.setting); setLoading(false); })
             .catch(err => console.log(err))
     }, [])
-   
+
     useEffect(() => {
-        if(userCardData?.QrCode?.pattern){
+        if (userCardData?.QrCode?.pattern) {
             setQrStyle(userCardData?.QrCode?.pattern)
         }
-        if(userCardData?.QrCode?.fgColor){
+        if (userCardData?.QrCode?.fgColor) {
             setForegroundColor(userCardData?.QrCode?.fgColor)
         }
-        if(userCardData?.QrCode?.bgColor){
+        if (userCardData?.QrCode?.bgColor) {
             setBackgroundColor(userCardData?.QrCode?.bgColor)
         }
-        if(userCardData?.QrCode?.QrSize){
+        if (userCardData?.QrCode?.QrSize) {
             setQrSize(parseInt(userCardData?.QrCode?.QrSize))
         }
-        if(userCardData?.QrCode?.innerEyeStyle){
+        if (userCardData?.QrCode?.innerEyeStyle) {
             setInnerEyeShape(userCardData?.QrCode?.innerEyeStyle)
         }
-        if(userCardData?.QrCode?.innerEyeColor){
+        if (userCardData?.QrCode?.innerEyeColor) {
             setInnerEyeColor(userCardData?.QrCode?.innerEyeColor)
         }
-        if(userCardData?.QrCode?.outerEyeStyle){
+        if (userCardData?.QrCode?.outerEyeStyle) {
             setOuterEyeShape(userCardData?.QrCode?.outerEyeStyle)
         }
-        if(userCardData?.QrCode?.outerEyeColor){
+        if (userCardData?.QrCode?.outerEyeColor) {
             setOuterEyeColor(userCardData?.QrCode?.outerEyeColor)
         }
-        if(userCardData?.QrCode?.logo){
+        if (userCardData?.QrCode?.logo) {
             setSelectedLogo(userCardData?.QrCode?.logo)
         }
-        if(userCardData?.QrCode?.logoSize){
+        if (userCardData?.QrCode?.logoSize) {
             setLogoSize(userCardData?.QrCode?.logoSize)
         }
-        if(userCardData?.display?.primaryColor) setPrimaryColor(userCardData?.display?.primaryColor)
-        if(userCardData?.display?.primaryAccent) setPrimaryAccent(userCardData?.display?.primaryAccent)
-        if(userCardData?.display?.secondaryColor) setSecondaryColor(userCardData?.display?.secondaryColor)
-        if(userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
-        if(userCardData?.display?.Logo) setLogoImage(userCardData?.display?.Logo)
-        if(userCardData?.setting) setSettings(userCardData?.setting)
+        if (userCardData?.display?.primaryColor) setPrimaryColor(userCardData?.display?.primaryColor)
+        if (userCardData?.display?.primaryAccent) setPrimaryAccent(userCardData?.display?.primaryAccent)
+        if (userCardData?.display?.secondaryColor) setSecondaryColor(userCardData?.display?.secondaryColor)
+        if (userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
+        if (userCardData?.display?.Logo) setLogoImage(userCardData?.display?.Logo)
+        if (userCardData?.setting) setSettings(userCardData?.setting)
 
-    }, [userCardData?.QrCode, userCardData?.display?.primaryColor,userCardData?.display?.primaryAccent,userCardData?.display?.secondaryColor,userCardData?.display?.secondaryAccent,userCardData?.display?.Logo, userCardData?.setting]);
-    
+    }, [userCardData?.QrCode, userCardData?.display?.primaryColor, userCardData?.display?.primaryAccent, userCardData?.display?.secondaryColor, userCardData?.display?.secondaryAccent, userCardData?.display?.Logo, userCardData?.setting]);
+
+
+    const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setIsLoading(true);
+
+      // Set a 2-second delay before setting isLoading to false
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    };
+
+    // Listen for route changes and trigger loading state
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+    };
+  }, []);
     return (
-        <userContext.Provider value={value}>
-            {children}
-        </userContext.Provider>
+        <LoadingOverlay active={isLoading}
+            spinner={<RiseLoader color='white'/>}
+            text='Loading The Details ...' >
+            <userContext.Provider value={value}>
+                {children}
+            </userContext.Provider>
+        </LoadingOverlay>
+
     );
 };
 

@@ -66,8 +66,8 @@ const RightSidebar = () => {
 
 
   return (
-    <div className="scroll-hide h-[76vh] overflow-y-scroll ">
-      <div className="relative w-[363px] ">
+    <div className="scroll-hide w-[363px] h-[76vh] overflow-y-scroll bg-white">
+      <div className="relative  w-[363px]">
         {design === "classic" && (
           <Classic
             color={primaryColor}
@@ -84,7 +84,8 @@ const RightSidebar = () => {
             logoImage={logoImage}
           />
         )}
-        {infos && (
+       <div className="mx-5">
+       {infos && (
           <ProfileInfo infos={infos} color={color} userData={userData} />
         )}
         <div></div>
@@ -186,6 +187,7 @@ const RightSidebar = () => {
             </>
           ))}
         </div>
+       </div>
       </div>
     </div>
   );

@@ -17,10 +17,10 @@ const SubNavbar = () => {
     <>
       <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5 ps-5 shadow-md">
         {router.pathname === "/my-cards" ? (
-          <div className=" ps-3">
+          <div className=" ps-3 mb-3">
            
             <button
-              className="bg-[#0077B5] px-4 py-2 flex items-center gap-3 text-white rounded"
+              className="bg-[black] px-4 py-2 mb-2 flex items-center gap-3 text-white rounded"
               onClick={handleCreateCards}
             >
               <span>
@@ -80,7 +80,7 @@ const SubNavbar = () => {
                 <div
                   className={`${
                     router.pathname === items?.url &&
-                    "bg-[#0277B5]  rounded text-white"
+                    "bg-[black]  rounded text-white"
                   } px-4 py-2 cursor-pointer`}
                 >
                   <p>{items?.title}</p>

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 
 const ProfileInformation = () => {
-    const { userData, infos, setInfo } = useContext(userContext);
+    const { userData, infos, setInfo, setIsLoading } = useContext(userContext);
 
     const handleFieldsOnChange = (e) => {
         const newData = { ...infos }
@@ -13,8 +13,9 @@ const ProfileInformation = () => {
         setInfo(newData)
     }
     const handleOnSubmit = (e) => {
-        const userCardId = localStorage.getItem('cardId')
         e.preventDefault()
+        const userCardId = localStorage.getItem('cardId')
+        setIsLoading(true)
         fetch(`${baseUrl}/cards/profile/${userCardId}`, {
             method: 'PUT',
             headers: {
@@ -24,6 +25,7 @@ const ProfileInformation = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setIsLoading(false)
                 toast.success('Profile Information Update SuccessFully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -111,9 +113,9 @@ const ProfileInformation = () => {
 
                         <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
                     </div>
-                    <div className='fixed bottom-20 left-[20%] z-50'>
+                    <div className='fixed bottom-0 bg-[white] w-[100%] h-[70px]  z-50'>
                        
-                        <input type="submit" value="Save" className='px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]' />
+                        <input type="submit" value="Save" className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer ' />
                     </div>
                 </form>
             </div>

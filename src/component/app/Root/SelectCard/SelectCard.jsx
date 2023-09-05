@@ -25,7 +25,7 @@ const SelectCard = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div>
+    <div style={{height:'80vh'}}>
       <div className="flex gap-14">
         <div className="w-[300px] cursor-pointer" onClick={() => handleSelectCard("flat")}>
           <div className="bg-[#EB531B] w-full h-[300px] rounded-md">
@@ -151,17 +151,17 @@ const SelectCard = () => {
             </div>
           </div>
         </div>
-        <div className="w-[381px] cursor-pointer" onClick={() => handleSelectCard("classic")}>
+        <div className="w-[300px] cursor-pointer" onClick={() => handleSelectCard("classic")}>
           <div className="w-full  h-[300px]  relative rounded">
             <img
               className="h-full w-full object-cover rounded"
               src="/lady.png"
             />
             <div className="">
-              <div className="absolute  top-[72%]  z-10">
+              <div className="absolute  top-[72.4%]  z-10">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="381"
+                  width="300"
                   height="88.28"
                   viewBox="0 0 381 88.28"
                 >
@@ -191,7 +191,7 @@ const SelectCard = () => {
               <div className="absolute -bottom-[6px] right-0 z-[5]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="285"
+                  width="262"
                   height="81.75"
                   viewBox="0 0 285 81.75"
                 >
