@@ -9,8 +9,9 @@ import Qrcodes from '../../app/Root/QrCodes/Qrcodes';
 
 const index = ({ children }) => {
     const router = useRouter();
+    
     return (
-        <div>
+        <>
             <Navbar />
             <div class="grid grid-cols-12">
 
@@ -20,7 +21,7 @@ const index = ({ children }) => {
                 <div class="col-span-11 ms-[10%] mt-[5%] ...">
                 <SubNavbar/>
                 <div className='grid grid-cols-12 ps-8 pt-5 gap-8'>
-                <div className="col-span-8">
+                <div className="">
                 {children}
                 </div>
                 <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0":"right-[10%]"}`}>
@@ -36,7 +37,7 @@ const index = ({ children }) => {
                 </div>
             </div>
             
-        </div>
+        </>
     );
 };
 

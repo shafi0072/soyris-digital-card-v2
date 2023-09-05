@@ -8,34 +8,112 @@ import { useRouter } from 'next/router';
 import Spinner from '@/src/component/core/Spinner';
 const MyCards = () => {
     const [userCard, setUserCard] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
-    const { userData } = useContext(userContext)
+
+    const { userData, isLoading, setIsLoading } = useContext(userContext)
+    const [showMessage, setShowMessage] = useState(false);
     const router = useRouter()
 
     useEffect(() => {
         setIsLoading(true)
         fetch(`${baseUrl}/cards/cards/${userData?.email}`)
             .then(res => res.json())
-            .then(data => { setUserCard(data); setIsLoading(false) })
+            .then(data => {
+                setUserCard(data);
+                setTimeout(() => {
+                    setIsLoading(false)
+                }, 2000)
+            })
             .catch(err => { setIsLoading(false) })
     }, [userData])
+    console.log({ userCard });
+    useEffect(() => {
+        // After a specified delay (e.g., 2000 milliseconds), show the message
+
+        const delay = setTimeout(() => {
+            if (userCard.length === 0) {
+                setShowMessage(true);
+            }
+        }, 2000);
+
+
+        // Clean up the timeout if the component unmounts or if you don't want to show the message anymore for some reason.
+        return () => clearTimeout(delay);
+    }, []);
 
     return (
-        <>
-            {isLoading && userCard?.length === 0 && <div className='flex flex-wrap'>
-                <Spinner />
-                <Spinner />
+        <div style={{ height: '80vh' }}>
 
-            </div>}
-            {!isLoading && userCard?.length === 0 && <p className='text-xl font-bold text-center'> Please Create a Card</p>}
-            <div className='flex flex-wrap gap-5'>
+            {!isLoading && userCard?.length === 0 && showMessage && (
+                <p className='text-2xl font-semibold' style={{ color: '#000000ab' }}>Please Create a Card</p>
+            )}
+            <div className='flex flex-wrap '>
                 {
                     userCard?.map((items, index) =>
-                        <div className='bg-white cursor-pointer w-[300px] ml-4  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
-                            <div className='z-10 relative w-full h-[300px] rounded-md'>
-                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] rounded-t-lg' alt="" />
-                                <div className='absolute top-[95%] h-4 w-full bg-[#EB531B] z-20 rounded-b-lg'></div>
-                            </div>
+                        <div className=' cursor-pointer w-[300px] ml-4  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
+                            {items?.display?.design === "flat" && <div className=' relative w-full h-[300px] '>
+                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-[95%] rounded-t-md' alt="" />
+                                <div className='absolute top-[95%] h-5 w-full rounded-b-md bg-[#EB531B]'></div>
+                            </div>}
+                            {items?.display?.design === 'classic' &&
+                                <div
+                                    className=" w-[300px] h-[300px]  relative rounded"
+                                    style={{ background: userData?.display?.color }}
+                                >
+                                    <img
+                                        className="h-full w-full object-cover rounded"
+                                        src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"}
+                                        alt=""
+                                    />
+                                    <div className="">
+                                        <div className="absolute  top-[72%]   z-10">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="300"
+                                                height="88.28"
+                                                viewBox="0 0 381 88.28"
+                                            >
+                                                <path
+                                                    id="wave"
+                                                    d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z"
+                                                    transform="translate(0 0)"
+                                                    fill={'red'}
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div className="absolute bottom-0 left-0">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="96"
+                                                height="32.781"
+                                                viewBox="0 0 96 32.781"
+                                            >
+                                                <path
+                                                    id="wave-left"
+                                                    d="M0,35.773V68.554H96l-.032-1.475C63.791,67.267,33.386,56.325,0,35.773Z"
+                                                    transform="translate(0 -35.773)"
+                                                    fill="#fff"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div className="absolute bottom-0 right-0 z-[5]">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="285"
+                                                height="81.75"
+                                                viewBox="0 0 285 81.75"
+                                            >
+                                                <path
+                                                    id="wave-right"
+                                                    d="M300.742,6.114c-30.018-.329-66.667,9.2-121,41.617C136.118,73.767,99.61,86.065,65.025,86.281H65v1.575H350V14.529C334.376,10.055,318.753,6.312,300.742,6.114Z"
+                                                    transform="translate(-65 -6.106)"
+                                                    fill="#fff"
+                                                />
+                                            </svg>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
                             <h2 className='text-center text-2xl py-5 border-b-2 border-dashed border-red-300'>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>
                             <div className='flex justify-center'>
                                 <ul className='mt-5 flex gap-4'>
@@ -86,7 +164,7 @@ const MyCards = () => {
 
 
 
-        </>
+        </div>
 
     );
 };
