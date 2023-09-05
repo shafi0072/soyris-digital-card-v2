@@ -81,7 +81,7 @@ const ProfileImage = () => {
       <div className='flex items-center justify-between'>
         <div className='relative w-[60px] '>
           <img className='w-[50px] h-[50px] rounded-full object-cover' src={profileImage ? profileImage : ''} alt="" />
-          <span className='absolute right-0 -top-2 w-[15px] h-[15px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer' onClick={() => {
+          <span className='absolute right-0 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer' onClick={() => {
             setCroppedImage(null);
             setProfileImage(null); setSelectedImage(null)
           }}>
