@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 
 const ProfileInformation = () => {
-    const { userData, infos, setInfo } = useContext(userContext);
+    const { userData, infos, setInfo, setIsLoading } = useContext(userContext);
 
     const handleFieldsOnChange = (e) => {
         const newData = { ...infos }
@@ -13,8 +13,9 @@ const ProfileInformation = () => {
         setInfo(newData)
     }
     const handleOnSubmit = (e) => {
-        const userCardId = localStorage.getItem('cardId')
         e.preventDefault()
+        const userCardId = localStorage.getItem('cardId')
+        setIsLoading(true)
         fetch(`${baseUrl}/cards/profile/${userCardId}`, {
             method: 'PUT',
             headers: {
@@ -24,6 +25,7 @@ const ProfileInformation = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setIsLoading(false)
                 toast.success('Profile Information Update SuccessFully', {
                     position: "top-right",
                     autoClose: 5000,
