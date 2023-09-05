@@ -8,7 +8,9 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   const inputRef = useRef(null);
   const [isValid,setIsValid] = useState("");
 
-  const { settings } = useContext(userContext);
+  const { settings,userCardData } = useContext(userContext);
+  console.log({userCardData});
+  console.log({settings});
   // function for copy text --------------
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyClick = () => {
