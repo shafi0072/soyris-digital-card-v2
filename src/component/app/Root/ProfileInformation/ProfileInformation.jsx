@@ -5,8 +5,7 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 
 const ProfileInformation = () => {
-    const { userData, infos, setInfo, setIsLoading } = useContext(userContext);
-
+    const {userCardData, userData, infos, setInfo, setIsLoading } = useContext(userContext);
     const handleFieldsOnChange = (e) => {
         const newData = { ...infos }
         newData[e.target.name] = e.target.value
@@ -45,7 +44,7 @@ const ProfileInformation = () => {
             <div className='mb-10'>
                 <form onSubmit={handleOnSubmit}>
                     <div className='mb-8 '>
-                        <h2 className='text-xl font-bold text-black pb-2 border-b border-[#CBD5E0] mr-[20%]'>Personal</h2>
+                        <h2 className={`text-xl font-bold text-black pb-2 border-b border-[#CBD5E0] mr-[20%] `}>Personal</h2>
                     </div>
                     <div className='grid grid-cols-2 mb-5'>
                         <div className=''>

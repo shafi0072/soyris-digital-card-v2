@@ -66,7 +66,7 @@ const RightSidebar = () => {
 
 
   return (
-    <div className="scroll-hide w-[363px] h-[76vh] overflow-y-scroll bg-white">
+    <div className="scroll-hide w-[363px] h-[76vh] overflow-y-scroll bg-white pt-5">
       <div className="relative  w-[363px]">
         {design === "classic" && (
           <Classic
@@ -86,7 +86,7 @@ const RightSidebar = () => {
         )}
        <div className="mx-5">
        {infos && (
-          <ProfileInfo infos={infos} color={color} userData={userData} />
+          <ProfileInfo infos={infos} color={color} userData={userData} design={design} userCardData={userCardData} />
         )}
         <div></div>
         <div className="my-5">

@@ -25,7 +25,7 @@ const Design = () => {
         setSecondaryAccent,
         setDesign, userCardData, setIsLoading } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-    
+
     const colorPicker = useRef()
     const handleColor = color => {
         setPrimaryColor(color);
@@ -73,19 +73,19 @@ const Design = () => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-          if (colorPicker.current && !colorPicker.current.contains(event.target)) {
-            setColorname('');
-          }
+            if (colorPicker.current && !colorPicker.current.contains(event.target)) {
+                setColorname('');
+            }
         };
-    
+
         // Add event listener to listen for clicks outside of colorPicker
         document.addEventListener('mousedown', handleClickOutside);
-    
+
         return () => {
-          // Clean up the event listener when the component unmounts
-          document.removeEventListener('mousedown', handleClickOutside);
+            // Clean up the event listener when the component unmounts
+            document.removeEventListener('mousedown', handleClickOutside);
         };
-      }, []);
+    }, []);
 
     return (
         <div>
@@ -154,8 +154,14 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div onClick={() => setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}></div>
+                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                    {/* <div onClick={() => setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}>    
+                                    </div> */}
+                                    <InputColor
+                                        initialValue={primaryColor}
+                                        onChange={e=> setPrimaryColor(e?.hex)}
+                                        placement="bottom"
+                                    />
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryColor}</span>
                                     </div>
@@ -166,8 +172,13 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div onClick={() => setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div>
+                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                    {/* <div onClick={() => setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div> */}
+                                    <InputColor
+                                        initialValue={primaryAccent}
+                                        onChange={e=> setPrimaryAccent(e?.hex)}
+                                        placement="bottom"
+                                    />
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryAccent}</span>
                                     </div>
@@ -177,8 +188,13 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div onClick={() => setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div>
+                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                    {/* <div onClick={() => setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div> */}
+                                    <InputColor
+                                        initialValue={secondaryColor}
+                                        onChange={e=> setSecondaryColor(e?.hex)}
+                                        placement="bottom"
+                                    />
                                     <div className='px-3'>
                                         <span className='text-center'>{secondaryColor}</span>
                                     </div>
@@ -188,8 +204,13 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div onClick={() => setColorname('secondaryAccent')} className='flex bg-gray-200 border-2 rounded-lg ml-5'>
-                                    <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryAccent }}></div>
+                                <div  className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                    {/* <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryAccent }}></div> */}
+                                    <InputColor
+                                        initialValue={secondaryAccent}
+                                        onChange={e=> setSecondaryAccent(e?.hex)}
+                                        placement="bottom"
+                                    />
                                     <div className='px-3'>
                                         <span className='text-center'>{secondaryAccent}</span>
                                     </div>

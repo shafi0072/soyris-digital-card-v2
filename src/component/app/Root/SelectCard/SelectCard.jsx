@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 const SelectCard = () => {
     const { userData } = useContext(userContext);
-  const handleSelectCard = (desg) => {
+  const handleSelectCard = (desg, image, logo) => {
     fetch(`${baseUrl}/cards/add-cards`, {
       method: "POST",
       headers: {
@@ -15,6 +15,8 @@ const SelectCard = () => {
         email: userData?.email,
         cardUserId: userData?._id,
         design: desg,
+        ProfileImage: image,
+        LogoImage: logo
       }),
     })
       .then((res) => res.json())
@@ -27,7 +29,7 @@ const SelectCard = () => {
   return (
     <div style={{height:'80vh'}}>
       <div className="flex gap-14">
-        <div className="w-[300px] cursor-pointer" onClick={() => handleSelectCard("flat")}>
+        <div className="w-[300px] cursor-pointer" onClick={() => handleSelectCard("flat", "https://suva-trip-exist.s3.amazonaws.com/man.png", "https://suva-trip-exist.s3.amazonaws.com/Image+1.png")}>
           <div className="bg-[#EB531B] w-full h-[300px] rounded-md">
             <img src="/man.jpg" className="w-full h-[95%] " alt="" />
           </div>
@@ -151,7 +153,7 @@ const SelectCard = () => {
             </div>
           </div>
         </div>
-        <div className="w-[300px] cursor-pointer" onClick={() => handleSelectCard("classic")}>
+        <div className="w-[300px] cursor-pointer" onClick={() => handleSelectCard("classic", "https://suva-trip-exist.s3.amazonaws.com/lady.png", "https://suva-trip-exist.s3.amazonaws.com/Image+1.png")}>
           <div className="w-full  h-[300px]  relative rounded">
             <img
               className="h-full w-full object-cover rounded"
