@@ -136,33 +136,33 @@ const ContextApi = ({ children }) => {
         if (userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
         if (userCardData?.display?.Logo) setLogoImage(userCardData?.display?.Logo)
         if (userCardData?.setting) setSettings(userCardData?.setting)
-
-    }, [userCardData?.QrCode, userCardData?.display?.primaryColor, userCardData?.display?.primaryAccent, userCardData?.display?.secondaryColor, userCardData?.display?.secondaryAccent, userCardData?.display?.Logo, userCardData?.setting]);
+        if (userCardData?.display?.design) setDesign(userCardData?.display?.design)
+    }, [userCardData?.QrCode, userCardData?.display?.primaryColor, userCardData?.display?.primaryAccent, userCardData?.display?.secondaryColor, userCardData?.display?.secondaryAccent, userCardData?.display?.Logo, userCardData?.setting, userCardData?.display?.design]);
 
 
     const router = useRouter();
 
-  useEffect(() => {
-    const handleRouteChangeStart = () => {
-      setIsLoading(true);
+    useEffect(() => {
+        const handleRouteChangeStart = () => {
+            setIsLoading(true);
 
-      // Set a 2-second delay before setting isLoading to false
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    };
+            // Set a 2-second delay before setting isLoading to false
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 2000);
+        };
 
-    // Listen for route changes and trigger loading state
-    router.events.on('routeChangeStart', handleRouteChangeStart);
+        // Listen for route changes and trigger loading state
+        router.events.on('routeChangeStart', handleRouteChangeStart);
 
-    // Cleanup the event listener when the component unmounts
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-    };
-  }, []);
+        // Cleanup the event listener when the component unmounts
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChangeStart);
+        };
+    }, []);
     return (
         <LoadingOverlay active={isLoading}
-            spinner={<RiseLoader color='white'/>}
+            spinner={<RiseLoader color='white' />}
             text='Loading The Details ...' >
             <userContext.Provider value={value}>
                 {children}
