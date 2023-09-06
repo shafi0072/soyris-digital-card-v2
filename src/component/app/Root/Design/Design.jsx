@@ -154,7 +154,7 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
                                     {/* <div onClick={() => setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}>    
                                     </div> */}
                                     <InputColor
@@ -172,7 +172,7 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
                                     {/* <div onClick={() => setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div> */}
                                     <InputColor
                                         initialValue={primaryAccent}
@@ -188,7 +188,7 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
                                     {/* <div onClick={() => setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div> */}
                                     <InputColor
                                         initialValue={secondaryColor}
@@ -204,7 +204,7 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div  className='flex bg-gray-200 border-2 rounded-lg ml-5'>
+                                <div  className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
                                     {/* <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryAccent }}></div> */}
                                     <InputColor
                                         initialValue={secondaryAccent}
