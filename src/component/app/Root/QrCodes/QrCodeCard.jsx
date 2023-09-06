@@ -4,6 +4,7 @@ import { QRCode } from 'react-qrcode-logo';
 import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from '@/src/config/Server'
+import Swal from "sweetalert2";
 const QrCodeCard = () => {
   const { qrStyle, foregroundColor, backgroundColor, outerEyeColor, selectedLogo, innerEyeShape, outesEyeShape, innerEyeColor, qrSize, userCardData,logoSize } = useContext(userContext)
   const handleQr = () => {
@@ -29,7 +30,17 @@ const QrCodeCard = () => {
         })
       })
         .then(res => res.json())
-        .then(data => console.log({ data }))
+        .then(data => {
+          if(data?.message){
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Qr Updated Success!!',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+        })
     } catch (err) {
       console.log(err.message);
     }

@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
 
-const ProfileInfo = ({ infos,color, userData }) => {
+const ProfileInfo = ({ infos,color, userData,userCardData, design }) => {
+    console.log({userCardData});
   
     return (
         <div className='mt-3'>
-            <h2 className='font-bold text-xl border-l-2 border-red-700 pl-2'>
+            <h2 className={`font-bold text-xl   ${design === "classic" && 'border-l-2 pl-2'}`} style={{borderColor: userCardData?.display?.primaryColor}}>
                 {infos?.prefix ? infos?.prefix + '. ' : userData?.profileInfo?.prefix + '. '} {infos?.first_name ? infos?.first_name : userData?.profileInfo?.first_name} {infos?.last_name ? infos?.last_name : userData?.profileInfo?.last_name} <br />
                 {infos?.suffix ? infos?.suffix : userData?.profileInfo?.suffix} <span className='font-thin text-base '> {infos?.accreditations ? infos?.accreditations : userData?.profileInfo?.accreditations} </span>
             </h2>
-            <h3 className='font-base text-[18px] border-l-2 border-red-700 pl-2'>
+            <h3 className={`font-base text-[18px] ${design === "classic" && `border-l-2  pl-2`}`}  style={{borderColor: userCardData?.display?.primaryColor}}>
                 {infos?.job_title ? infos?.job_title : userData?.profileInfo?.job_title}
             </h3>
-            <h3 className='font-semibold text-[18px] border-l-2 border-red-700 pl-2' style={{color:color}}>
+            <h3 className={`font-semibold text-[18px] ${design === "classic" && 'border-l-2 pl-2'}`} style={{borderColor: userCardData?.display?.primaryColor, color: userCardData?.display?.primaryColor}}>
                 {infos?.department ? infos?.department : userData?.profileInfo?.department}
             </h3>
-            <h3 className='italic text-[18px] border-l-2 border-red-700 pl-2'>
+            <h3 className={`italic text-[18px] ${design === "classic" && 'border-l-2 pl-2'}`} style={{borderColor: userCardData?.display?.primaryColor}}>
                 {infos?.company ? infos?.company : userData?.profileInfo?.company}
             </h3>
             <p className='italic text-md mt-4'>
