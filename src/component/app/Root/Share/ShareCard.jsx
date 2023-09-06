@@ -53,11 +53,11 @@ const ShareCard = () => {
             pattern="Rounded" // Change this prop to "Dots", "Rounded", or "Diamond"
           />
         </div>
-        <p className="text-[#0277B5] my-6">Scan now</p>
+        <p className="text-[black] my-6">Scan now</p>
        <div className="relative">
        <button
           onClick={handleQrCopy}
-          className="flex gap-3 items-center mb-4 bg-transparent  text-[#0277B5] font-semibold  py-2 px-4 border border-[#0277B5]  rounded"
+          className="flex gap-3 items-center mb-4 bg-transparent  text-[black] font-semibold  py-2 px-4 border border-[black]  rounded"
         >
           <ContentCopyRoundedIcon /> COPY LINK
         </button>
@@ -65,7 +65,7 @@ const ShareCard = () => {
        </div>
         <button
           onClick={handleQrDownload}
-          className="flex gap-3 items-center mb-4 bg-transparent  text-[#0277B5] font-semibold  py-2 px-4 border border-[#0277B5]  rounded"
+          className="flex gap-3 items-center mb-4 bg-transparent  text-[black] font-semibold  py-2 px-4 border border-[black]  rounded"
         >
           <FileDownloadOutlinedIcon /> DOWNLOAD QR CODE
         </button>
