@@ -10,7 +10,7 @@ import { convertPDFToBase64 } from "@/src/config/pdfBase64";
 import { toast } from "react-toastify";
 
 const Content2 = () => {
-  const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
+  const { newFeilds, setNewFeilds,userCardData, setIsLoading } = useContext(userContext);
   const onDrop = (dropResult) => {
     if (!dropResult.removedIndex && !dropResult.addedIndex) return;
 
@@ -21,6 +21,7 @@ const Content2 = () => {
     setNewFeilds(fields);
   };
   const handleFieldsOnSubmit = () => {
+    setIsLoading(true)
     fetch(`${baseUrl}/cards/fields/${userCardData?._id}`,{
         method: 'PUT',
         headers:{
@@ -32,7 +33,8 @@ const Content2 = () => {
     })
     .then(res=> res.json())
     .then(data=> {
-      toast.success('🦄 Fields are updated successfully!', {
+      setIsLoading(false)
+      toast.success('Fields are updated successfully!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -113,7 +115,7 @@ const Content2 = () => {
   };
   return (
     <>
-      <div className="border-dotted border-2 bg-gray-200  border-[black] p-5 rounded-lg">
+      <div className="border-dotted border-2 mb-5 bg-gray-200  border-[black] p-5 rounded-lg">
         <Container onDrop={onDrop}>
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
