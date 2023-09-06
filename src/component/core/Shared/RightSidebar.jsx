@@ -86,7 +86,7 @@ const RightSidebar = () => {
         )}
        <div className="mx-5">
        {infos && (
-          <ProfileInfo infos={infos} color={color} userData={userData} design={design} userCardData={userCardData} />
+          <ProfileInfo infos={infos} color={primaryColor} userData={userData} design={design} userCardData={userCardData} />
         )}
         <div></div>
         <div className="my-5">
