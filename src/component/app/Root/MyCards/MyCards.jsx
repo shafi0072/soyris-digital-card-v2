@@ -51,7 +51,7 @@ const MyCards = () => {
                     userCard?.map((items, index) =>
                         <div className=' cursor-pointer w-[300px] ml-4 mb-5  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
                             {items?.display?.design === "flat" && <div className=' relative w-full h-[300px] '>
-                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full  rounded-t-md' alt="" />
+                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-full rounded-t-md' alt="" />
                                 <div className='absolute top-[95%] h-5 w-full rounded-b-md' style={{borderBottom: `10px solid ${items?.display?.primaryColor}` }}></div>
                             </div>}
                             {items?.display?.design === 'classic' &&
