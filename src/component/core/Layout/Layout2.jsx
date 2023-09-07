@@ -220,7 +220,7 @@ style={{color: 'white'}}
             <div className="col-span-8">
               {children}
             </div>
-            <div className={`bg-[#F7FAFC]  fixed w-[500px] flex justify-center ${router.pathname === '/' ? "right-0" : "right-[2%] "} `}>
+            <div className={`bg-[#F7FAFC]  fixed w-[500px] flex justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-[0%] "} `}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }
