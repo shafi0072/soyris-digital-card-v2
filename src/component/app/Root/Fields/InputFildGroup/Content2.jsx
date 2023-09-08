@@ -133,7 +133,7 @@ const Content2 = () => {
           type="submit"
           onClick={handleFieldsOnSubmit}
           value="Save"
-          className="px-5 py-1 border border-[black] bg-[black] my-5 ml-2 font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]"
+          className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'
         />
       </div>
     </>
