@@ -7,10 +7,10 @@ import CheckIcon from '@mui/icons-material/Check';
 const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   const inputRef = useRef(null);
   const [isValid,setIsValid] = useState("");
-  console.log(isValid)
 
-  const { settings } = useContext(userContext);
-  console.log(settings?.url);
+  const { settings,userCardData } = useContext(userContext);
+  console.log({userCardData});
+  console.log({settings});
   // function for copy text --------------
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyClick = () => {
@@ -31,7 +31,6 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   const permanentUrl = "https://easycards.pro/"; // The permanent URL
   const [inputValue, setInputValue] = useState(settings.url);
 
-  console.log({ inputValue });
   const handleInputChange = (e) => {
     fetch(`${baseUrl}/cards/settings/${e.target.value}`)
       .then((res) => res.json())
@@ -79,7 +78,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
                     d="M19.917,15.833h1.75A2.333,2.333,0,0,0,24,13.5V5.333A2.333,2.333,0,0,0,21.667,3H13.5a2.333,2.333,0,0,0-2.333,2.333v1.75M5.333,11.167H13.5A2.333,2.333,0,0,1,15.833,13.5v8.167A2.333,2.333,0,0,1,13.5,24H5.333A2.333,2.333,0,0,1,3,21.667V13.5A2.333,2.333,0,0,1,5.333,11.167Z"
                     transform="translate(-2 -2)"
                     fill="none"
-                    stroke="#0277b5"
+                    stroke="black"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
@@ -92,7 +91,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
           {/* <button onClick={handleUrl} className='mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded'>EDIT</button> */}
           <button
             onClick={handleEdit}
-            className="mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded"
+            className="mt-4 bg-[black] text-sm text-white px-3 py-1 rounded"
           >
             EDIT
           </button>

@@ -12,7 +12,6 @@ const ProfileImage = () => {
   const { profileImage, setProfileImage } = useContext(userContext)
   const cropperRef = useRef(null);
 
-  console.log({croppedImage})
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -81,8 +80,8 @@ const ProfileImage = () => {
     <div className='mt-8  w-3/4'>
       <div className='flex items-center justify-between'>
         <div className='relative w-[60px] '>
-          <img className='w-[50px] h-[50px] rounded-full object-cover' src={profileImage ? profileImage : ''} alt="" />
-          <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full' onClick={() => {
+          {profileImage?<img className='w-[50px] h-[50px] rounded-full object-cover' src={profileImage ? profileImage : ''} alt="" />: <img className='w-[50px] h-[50px] rounded-full object-cover' src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'/>}
+          <span className='absolute right-0 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer' onClick={() => {
             setCroppedImage(null);
             setProfileImage(null); setSelectedImage(null)
           }}>

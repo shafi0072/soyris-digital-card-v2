@@ -10,7 +10,7 @@ import { convertPDFToBase64 } from "@/src/config/pdfBase64";
 import { toast } from "react-toastify";
 
 const Content2 = () => {
-  const { newFeilds, setNewFeilds,userCardData } = useContext(userContext);
+  const { newFeilds, setNewFeilds,userCardData, setIsLoading } = useContext(userContext);
   const onDrop = (dropResult) => {
     if (!dropResult.removedIndex && !dropResult.addedIndex) return;
 
@@ -21,6 +21,7 @@ const Content2 = () => {
     setNewFeilds(fields);
   };
   const handleFieldsOnSubmit = () => {
+    setIsLoading(true)
     fetch(`${baseUrl}/cards/fields/${userCardData?._id}`,{
         method: 'PUT',
         headers:{
@@ -32,7 +33,8 @@ const Content2 = () => {
     })
     .then(res=> res.json())
     .then(data=> {
-      toast.success('🦄 Fields are updated successfully!', {
+      setIsLoading(false)
+      toast.success('Fields are updated successfully!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -108,13 +110,12 @@ const Content2 = () => {
       });
     })
   }
-  console.log({ newFeilds });
   const handleDelete = (idToDelete) => {
     setNewFeilds(prevState => prevState.filter(item => item?.id !== idToDelete));
   };
   return (
     <>
-      <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
+      <div className="border-dotted border-2 mb-5 bg-gray-200  border-[black] p-5 rounded-lg">
         <Container onDrop={onDrop}>
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
@@ -126,13 +127,13 @@ const Content2 = () => {
           ))}
         </Container>
       </div>
-      <div className="fixed bottom-20 left-[35%]  z-50">
+      <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
         
         <input
           type="submit"
           onClick={handleFieldsOnSubmit}
           value="Save"
-          className="px-5 py-1 border border-[#0277B5] bg-[#0277B5] font-medium text-lg text-white rounded cursor-pointer hover:bg-[#0277B5]"
+          className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'
         />
       </div>
     </>

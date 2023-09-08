@@ -2,6 +2,7 @@ export const shapes = [
   {
     name: "Square",
     label: "squares",
+    radius: 'square',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +22,7 @@ export const shapes = [
   {
     name: "Dots",
     label: "dots",
+    radius: 'dots',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -38,26 +40,27 @@ export const shapes = [
       </svg>
     ),
   },
-  // {
-  //   name: "Round",
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       width="17"
-  //       height="17"
-  //       viewBox="0 0 17 17"
-  //     >
-  //       <rect
-  //         id="Rectangle_16861"
-  //         data-name="Rectangle 16861"
-  //         width="17"
-  //         height="17"
-  //         rx="4"
-  //         fill="#fff"
-  //       />
-  //     </svg>
-  //   ),
-  // },
+  {
+    name: "Round",
+    radius: 'round',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="17"
+        height="17"
+        viewBox="0 0 17 17"
+      >
+        <rect
+          id="Rectangle_16861"
+          data-name="Rectangle 16861"
+          width="17"
+          height="17"
+          rx="4"
+          fill="#fff"
+        />
+      </svg>
+    ),
+  },
   // {
   //   name: "Diamond",
   //   icon: (
@@ -77,38 +80,42 @@ export const shapes = [
   //     </svg>
   //   ),
   // },
-  // {
-  //   name: "Flower",
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       width="17"
-  //       height="17"
-  //       viewBox="0 0 17 17"
-  //     >
-  //       <path
-  //         id="Rectangle_16883"
-  //         data-name="Rectangle 16883"
-  //         d="M5,0h7a5,5,0,0,1,5,5V17a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z"
-  //       />
-  //     </svg>
-  //   ),
-  // },
-  // {
-  //   name: "Leaf",
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       width="16"
-  //       height="16"
-  //       viewBox="0 0 16 16"
-  //     >
-  //       <path
-  //         id="Rectangle_16898"
-  //         data-name="Rectangle 16898"
-  //         d="M0,0H11a5,5,0,0,1,5,5V16a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z"
-  //       />
-  //     </svg>
-  //   ),
-  // },
+  {
+    name: "Flower",
+    // radius: [12,12,0,16],
+    radius: 'flower',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="17"
+        height="17"
+        viewBox="0 0 17 17"
+      >
+        <path
+          id="Rectangle_16883"
+          data-name="Rectangle 16883"
+          d="M5,0h7a5,5,0,0,1,5,5V17a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Leaf",
+    // radius: [50,0,50,0],
+    radius: 'leaf',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          id="Rectangle_16898"
+          data-name="Rectangle 16898"
+          d="M0,0H11a5,5,0,0,1,5,5V16a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z"
+        />
+      </svg>
+    ),
+  },
 ];

@@ -17,9 +17,10 @@ import CardViewsTable from "./CardViewsTable";
 import dynamic from "next/dynamic";
 import { userContext } from "@/src/Storage/ContextApi";
 
+
+
 const Analytics = () => {
   const [time, setTime] = React.useState("");
-  console.log(time);
   // date range ------------------
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedRange, setSelectedRange] = useState({ 
@@ -42,8 +43,45 @@ const Analytics = () => {
   const handleTimeChange = (event) => {
     setTime(event.target.value);
   };
+
+  const data = [
+    { date: "2023-09-01T00:00:00Z", value: 2 },
+    { date: "2023-09-02T00:00:00Z", value: 4 },
+    { date: "2023-09-03T00:00:00Z", value: 5 },
+    { date: "2023-09-04T00:00:00Z", value: 10 },
+    { date: "2023-09-05T00:00:00Z", value: 0 },
+    { date: "2023-09-06T00:00:00Z", value: 0 },
+    { date: "2023-09-07T00:00:00Z", value: 12 },
+    { date: "2023-09-08T00:00:00Z", value: 7 },
+    { date: "2023-09-09T00:00:00Z", value: 3 },
+    { date: "2023-09-10T00:00:00Z", value: 1 },
+    { date: "2023-09-11T00:00:00Z", value: 1 },
+    { date: "2023-09-12T00:00:00Z", value: 12 },
+    { date: "2023-09-13T00:00:00Z", value: 1 },
+    { date: "2023-09-14T00:00:00Z", value: 1 },
+    { date: "2023-09-15T00:00:00Z", value: 3 },
+    { date: "2023-09-16T00:00:00Z", value: 11 },
+    { date: "2023-09-17T00:00:00Z", value: 4 },
+    { date: "2023-09-18T00:00:00Z", value: 7 },
+    { date: "2023-09-19T00:00:00Z", value: 6 },
+    { date: "2023-09-20T00:00:00Z", value: 2 },
+    { date: "2023-09-21T00:00:00Z", value: 8 },
+    { date: "2023-09-22T00:00:00Z", value: 9 },
+    { date: "2023-09-23T00:00:00Z", value: 4 },
+    { date: "2023-09-24T00:00:00Z", value: 10 },
+    { date: "2023-09-25T00:00:00Z", value: 3 },
+    { date: "2023-09-26T00:00:00Z", value: 6 },
+    { date: "2023-09-27T00:00:00Z", value: 7 },
+    { date: "2023-09-28T00:00:00Z", value: 1 },
+    { date: "2023-09-29T00:00:00Z", value: 5 },
+    { date: "2023-09-30T00:00:00Z", value: 12 },
+  ];
+  
+
+  
   return (
     <>
+     
       <div>
         <div className="flex  gap-10 items-center justify-end mt-10">
           <div className="w-[346px] ">

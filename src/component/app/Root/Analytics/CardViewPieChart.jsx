@@ -13,7 +13,6 @@ import {
 
 const CardViewPieChart = () => {
   const { userCardData } = useContext(userContext);
-  console.log(userCardData.anylatics);
 
 
   const deviceViewsMap = {};

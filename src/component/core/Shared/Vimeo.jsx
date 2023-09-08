@@ -1,7 +1,6 @@
 import React from "react";
 
 const Vimeo = ({ item }) => {
-  console.log(item);
   return (
     <>
       <div className={`${!item?.url ? "hidden" : "block mt-5"} `}>
