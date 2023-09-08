@@ -88,7 +88,7 @@ const Design = () => {
     }, []);
 
     return (
-        <div className='h-[95vh] '>
+        <div className='h-[100vh] mb-[15%]'>
             <div className='border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
                 <div className='flex gap-3'>
