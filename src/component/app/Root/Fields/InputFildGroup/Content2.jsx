@@ -115,7 +115,7 @@ const Content2 = () => {
   };
   return (
     <>
-      <div className="border-dotted border-2 mb-5 bg-gray-200  border-[black] p-5 rounded-lg">
+      <div className="border-dotted border-2  mb-[12%]  bg-gray-200  border-[black] p-5 rounded-lg">
         <Container onDrop={onDrop}>
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
             <Draggable key={index}>
