@@ -149,7 +149,7 @@ const ContextApi = ({ children }) => {
             // Set a 2-second delay before setting isLoading to false
             setTimeout(() => {
                 setIsLoading(false);
-            }, 2000);
+            }, 400);
         };
 
         // Listen for route changes and trigger loading state

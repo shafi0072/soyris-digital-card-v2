@@ -237,10 +237,7 @@ const Design = () => {
                 <LogoImage />
             </div>
             <div className='my-10'>
-
                 <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
-
-
             </div>
         </div>
 

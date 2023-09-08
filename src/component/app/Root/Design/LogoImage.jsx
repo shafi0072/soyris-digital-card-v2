@@ -67,7 +67,7 @@ console.log({logoImage});
     zoomOnWheel: false, // Disable zoom on wheel
   };
   return (
-    <div>
+    <div className="mb-[100px]">
       <div className='mt-8 flex items-center justify-between w-3/4'>
         <div className='relative w-[100px] '>
           <img className='w-[100px]   object-cover' src={logoImage && logoImage} alt="" />
