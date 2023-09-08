@@ -16,6 +16,7 @@ const Settings = () => {
   const [isEdit, setEdit] = useState(false);
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
+  console.log(url)
   const { userData,userCardData } = useContext(userContext);
  
   
@@ -98,6 +99,7 @@ const Settings = () => {
       />
       <Personalised
         setUrl={setUrl}
+        url={url}
         handleUrl={handleUrl}
         isEdit={isEdit}
         setEdit={setEdit}

@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube";
 import WistiaPlayer from "./WistiaPlayer";
-var Vimeo = require('react-vimeo');
+var Vimeo = require("react-vimeo");
 const Video = ({ item }) => {
   const youtubeVideoId = extractVideoId(
     item?.type === "Youtube" ? item?.url : ""
@@ -14,6 +14,7 @@ const Video = ({ item }) => {
       autoplay: 0,
     },
   };
+  const vimeoVideoId = item?.url?.split("/")?.reverse()[0];
 
   return (
     <>
@@ -47,7 +48,15 @@ const Video = ({ item }) => {
                   height="360"
                   allowFullScreen
                 /> */}
-                <Vimeo videoId={ item?.url?.split('/')?.reverse()[0] } autoplay={true} height={315} width={460}/>,
+                <iframe
+                  title="Vimeo Video"
+                  src={`https://player.vimeo.com/video/${vimeoVideoId}`}
+                  width="100%" // Set the width to 100%
+                  height="315" // You can adjust the height as needed
+                  frameborder="0"
+                  allowFullScreen
+                ></iframe>
+                {/* <Vimeo className="w-full h-[300px]"   style={{ width: '100%' }} videoId={ item?.url?.split('/')?.reverse()[0] } autoplay={true} height={315} width={460}/>, */}
               </div>
             )}
           </>
@@ -63,8 +72,20 @@ const Video = ({ item }) => {
                   height="360"
                   allowFullScreen
                 /> */}
-                <WistiaPlayer videoId="abcxyz123"
-            wrapper="wistia-player-container-1"/>
+
+                <iframe
+                  title="Wistia Video"
+                  src={`https://fast.wistia.net/embed/iframe/${getWistiaVideoId(
+                    item?.url
+                  )}`}
+                  width="100%" // Set the width to 100%
+                  height="315" // You can adjust the height as needed
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+
+                {/* <WistiaPlayer videoId="abcxyz123"
+            wrapper="wistia-player-container-1"/> */}
               </div>
             )}
           </>
@@ -80,6 +101,9 @@ function extractVideoId(url) {
   return videoIdMatch && videoIdMatch[2].length === 11 ? videoIdMatch[2] : null;
 }
 
+function getWistiaVideoId(url) {
+  const matches = url.match(/wmediaid=([^&]+)/);
+  return matches ? matches[1] : null;
+}
+
 export default Video;
-
-

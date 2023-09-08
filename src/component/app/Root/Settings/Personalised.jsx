@@ -4,7 +4,7 @@ import React, { useContext, useRef, useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 
-const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
+const Personalised = ({ setUrl, handleUrl, isEdit, setEdit,url }) => {
   const inputRef = useRef(null);
   const [isValid,setIsValid] = useState("");
 
@@ -59,7 +59,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
           <div className="mt-5">
             <div className="flex gap-3 items-center">
               <input
-                value={permanentUrl + settings?.url}
+                value={permanentUrl + `${url?url:settings?.url}`}
                 type="text"
                 className="px-2 py-1 shadow-lg rounded w-[306px] text-[17px] font-medium"
                 name="url"
@@ -116,7 +116,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
                 isValid === "valid" && <CheckIcon sx={{color:"#008000"}}/>
               }
               <label className="block ps-3 mt-3">
-                https://easycards.pro/
+                https://easycard-gr.vercel.app/{url?url:inputValue?inputValue:""}
               </label>
             </div>
           </div>
