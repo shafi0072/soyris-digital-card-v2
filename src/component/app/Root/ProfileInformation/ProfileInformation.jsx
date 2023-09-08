@@ -39,7 +39,7 @@ const ProfileInformation = () => {
             .catch(err => console.log(err))
     }
     return (
-        <div className=''>
+        <div className='h-[100vh]'>
 
             <div className='mb-10'>
                 <form onSubmit={handleOnSubmit}>
@@ -112,7 +112,7 @@ const ProfileInformation = () => {
 
                         <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
                     </div>
-                    <div className='fixed bottom-0 bg-[white] w-[100%] h-[70px]  z-50'>
+                    <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
                        
                         <input type="submit" value="Save" className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer ' />
                     </div>

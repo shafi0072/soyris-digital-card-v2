@@ -4,9 +4,11 @@ const ProfileInfo = ({ infos,color, userData,userCardData, design }) => {
     console.log({userCardData});
   
     return (
+        <>
+        {infos &&
         <div className='mt-3'>
-            <h2 className={`font-bold text-xl   ${design === "classic" && 'border-l-2 pl-2'}`} style={{borderColor: color}}>
-                {infos?.prefix ? infos?.prefix + '. ' : userData?.profileInfo?.prefix + '. '} {infos?.first_name ? infos?.first_name : userData?.profileInfo?.first_name} {infos?.last_name ? infos?.last_name : userData?.profileInfo?.last_name} <br />
+            <h2 className={`font-bold text-xl   ${design === "classic" ? 'border-l-2 pl-2': ''}`} style={{borderColor: color}}>
+                {infos?.prefix ? infos?.prefix + '. ' : ''} {infos?.first_name ? infos?.first_name : userData?.profileInfo?.first_name} {infos?.last_name ? infos?.last_name : userData?.profileInfo?.last_name} <br />
                 {infos?.suffix ? infos?.suffix : userData?.profileInfo?.suffix} <span className='font-thin text-base '> {infos?.accreditations ? infos?.accreditations : userData?.profileInfo?.accreditations} </span>
             </h2>
             <h3 className={`font-base text-[18px] ${design === "classic" && `border-l-2  pl-2`}`}  style={{borderColor: color}}>
@@ -46,10 +48,11 @@ const ProfileInfo = ({ infos,color, userData,userCardData, design }) => {
                     </g>
                 </svg>
                 Goes by {userData?.profileInfo?.preferred_name} {userData?.profileInfo?.pronouns && `(${userData?.profileInfo?.pronouns})`}
-            </h4>) : (<>s</>)
+            </h4>) : (<></>)
             }
 
-        </div>
+        </div>}
+        </>
     );
 };
 

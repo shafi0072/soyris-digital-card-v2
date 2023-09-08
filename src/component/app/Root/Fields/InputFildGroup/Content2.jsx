@@ -127,7 +127,7 @@ const Content2 = () => {
           ))}
         </Container>
       </div>
-      <div className="fixed bottom-0  left-[33%] bg-[white] w-[100%] h-[70px]  z-50">
+      <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
         
         <input
           type="submit"

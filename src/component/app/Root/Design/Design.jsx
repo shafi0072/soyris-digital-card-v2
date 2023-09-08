@@ -88,7 +88,7 @@ const Design = () => {
     }, []);
 
     return (
-        <div>
+        <div className='h-[100vh]'>
             <div className='border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
                 <div className='flex gap-3'>
@@ -236,9 +236,9 @@ const Design = () => {
                 <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
                 <LogoImage />
             </div>
-            <div className='my-10'>
+            <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
 
-                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
+                <button onClick={handleDesignSubmit} className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
 
 
             </div>
