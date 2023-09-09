@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
 import Content2 from "./InputFildGroup/Content2";
@@ -7,14 +7,16 @@ import { userContext } from "@/src/Storage/ContextApi";
 
 const Fields = () => {
   const {newFeilds,setNewFeilds} = useContext(userContext)
-
+  
+ 
   return (
     <div className="grid grid-cols-3 gap-4 h-[100vh] ">
       <div className="...">
-        <Sidebar newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
+        <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
       </div>
       <div className="col-span-2 ...">
-        <Content2 newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
+        <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
+        <div  ref={targetRef}></div>
       </div>
       
     </div>

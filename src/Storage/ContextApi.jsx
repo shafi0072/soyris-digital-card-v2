@@ -15,7 +15,7 @@ const ContextApi = ({ children }) => {
     const [secondaryAccent, setSecondaryAccent] = useState('#fff')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('')
-    const [logoImage, setLogoImage] = useState('')
+    const [logoImage, setLogoImage] = useState(null)
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])

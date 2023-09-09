@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 
-const Sidebar = ({ newFeilds, setNewFeilds }) => {
+const Sidebar = ({ newFeilds, setNewFeilds ,scrollTobottom}) => {
   const { color } = useContext(userContext);
   // const myref = useRef('down')
   // console.log('myref', myref?.current);
@@ -17,6 +17,7 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
     let fieldss = [...newFeilds];
     fieldss.push({ id: newFeilds?.length + 1, ...fields })
     setNewFeilds(fieldss);
+    scrollTobottom()
   };
 
   return (

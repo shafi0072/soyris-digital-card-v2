@@ -84,7 +84,7 @@ const {userData} = useContext(userContext)
           )}
           {!items?.hasOwnProperty("devider") && <h4>{items?.type}</h4>}
         </div>
-        <div onClick={()=>handleDelete(items?.id)}>
+        <div className="cursor-pointer" onClick={()=>handleDelete(items?.id)}>
           <CloseIcon />
         </div>
       </div>

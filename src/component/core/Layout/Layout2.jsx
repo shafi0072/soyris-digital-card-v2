@@ -212,7 +212,7 @@ style={{color: 'white'}}
           </ListItemButton>
         </div>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 0}}>
 
         <div className="col-span-11  mt-[5%] ...">
           <SubNavbar />

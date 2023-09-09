@@ -9,7 +9,7 @@ import { compressAndConvertToBase64 } from "@/src/config/base64";
 import { convertPDFToBase64 } from "@/src/config/pdfBase64";
 import { toast } from "react-toastify";
 
-const Content2 = () => {
+const Content2 = ({targetRef}) => {
   const { newFeilds, setNewFeilds,userCardData, setIsLoading } = useContext(userContext);
   const onDrop = (dropResult) => {
     if (!dropResult.removedIndex && !dropResult.addedIndex) return;
@@ -114,7 +114,7 @@ const Content2 = () => {
     setNewFeilds(prevState => prevState.filter(item => item?.id !== idToDelete));
   };
   return (
-    <>
+    <div >
       <div className="border-dotted border-2  mb-[12%]  bg-gray-200  border-[black] p-5 rounded-lg">
         <Container onDrop={onDrop}>
           {newFeilds?.length > 0 && newFeilds?.map((items, index) => (
@@ -126,7 +126,9 @@ const Content2 = () => {
             </Draggable>
           ))}
         </Container>
+        
       </div>
+      
       <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
         
         <input
@@ -136,7 +138,7 @@ const Content2 = () => {
           className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'
         />
       </div>
-    </>
+    </div>
   );
 };
 

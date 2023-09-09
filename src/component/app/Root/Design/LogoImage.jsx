@@ -69,19 +69,22 @@ console.log({logoImage});
   return (
     <div>
       <div className='mt-8 flex items-center justify-between w-3/4'>
-        <div className='relative w-[100px] '>
-          <img className='w-[100px]   object-cover' src={logoImage && logoImage} alt="" />
+      {logoImage  &&<div className='relative w-[100px] '>
+          <>
+            <img className='w-[100px]   object-cover' src={logoImage && logoImage} alt="" />
           <span onClick={() => {
             setCroppedImage(null);
             setLogoImage(null); setSelectedImage(null)
           }} className='absolute -right-3 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
             <CloseIcon className='text-white text-[12px]' />
           </span>
+          </>
         </div>
+          }
         <div className=" w-[266px]">
           <label htmlFor='logoImages' className='cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
             <AddIcon sx={{ color: '#0077B5' }} />
-            <p className="text-md">Replace Logo</p>
+            <p className="text-md"> {logoImage? 'Replace Logo' : 'Add Logo'} </p>
 
           </label>
           <input type="file" id='logoImages' accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
@@ -95,7 +98,7 @@ console.log({logoImage});
           <Cropper
             ref={cropperRef2}
             src={selectedImage}
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: '100%', width: '100%'  }}
             {...cropperOptions}
           />
 
