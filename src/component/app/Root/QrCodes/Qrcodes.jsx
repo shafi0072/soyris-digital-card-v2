@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Pattern from "./Pattern";
 import EyeStyle from "./EyeStyle";
 import Logo from "./Logo";
 
 const Qrcodes = () => {
+  
   return (
     <>
       <div>

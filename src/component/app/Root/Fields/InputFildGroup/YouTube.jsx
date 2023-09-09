@@ -44,12 +44,12 @@ const YouTube = ({ index, handleYoutubeInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`YoutubeUserName${index + 1}`}
+            name={`youtube`}
             defaultValue={items}
             onChange={(e) =>
               handleYoutubeInputChange(
                 index,
-                `YoutubeUserName${index + 1}`,
+                `youtube`,
                 e.target.value
               )
             }

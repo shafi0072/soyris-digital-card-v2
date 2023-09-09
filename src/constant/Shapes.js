@@ -1,6 +1,8 @@
 export const shapes = [
   {
     name: "Square",
+    label: "squares",
+    radius: 'square',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,6 +21,8 @@ export const shapes = [
   },
   {
     name: "Dots",
+    label: "dots",
+    radius: 'dots',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +42,7 @@ export const shapes = [
   },
   {
     name: "Round",
+    radius: 'round',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -56,27 +61,29 @@ export const shapes = [
       </svg>
     ),
   },
-  {
-    name: "Diamond",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="19.799"
-        height="19.799"
-        viewBox="0 0 19.799 19.799"
-      >
-        <rect
-          id="Rectangle_16861"
-          data-name="Rectangle 16861"
-          width="14"
-          height="14"
-          transform="translate(9.899) rotate(45)"
-        />
-      </svg>
-    ),
-  },
+  // {
+  //   name: "Diamond",
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       width="19.799"
+  //       height="19.799"
+  //       viewBox="0 0 19.799 19.799"
+  //     >
+  //       <rect
+  //         id="Rectangle_16861"
+  //         data-name="Rectangle 16861"
+  //         width="14"
+  //         height="14"
+  //         transform="translate(9.899) rotate(45)"
+  //       />
+  //     </svg>
+  //   ),
+  // },
   {
     name: "Flower",
+    // radius: [12,12,0,16],
+    radius: 'flower',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -94,6 +101,8 @@ export const shapes = [
   },
   {
     name: "Leaf",
+    // radius: [50,0,50,0],
+    radius: 'leaf',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

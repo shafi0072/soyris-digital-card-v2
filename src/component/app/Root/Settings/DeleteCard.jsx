@@ -6,8 +6,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
 const DeleteCard = () => {
-  const { userData } = useContext(userContext);
-  console.log(userData._id);
+  const { userData,userCardData } = useContext(userContext);
   const router = useRouter();
   // handle delete card
   const handleDeleteCard = () => {
@@ -21,25 +20,19 @@ const DeleteCard = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${baseUrl}/add-user/deleteProfile/${userData?._id}`, {
+        fetch(`${baseUrl}/cards/delete/${userCardData?._id}`,{
           method: "DELETE",
-          headers: { "content-type": "application/json" },
-          body: "",
+          headers: {
+            'Content-Type': "application/json"
+          }
         })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("email");
-            if (data.message === "user Deleted") {
-              Swal.fire("Deleted!", "User Deleted Successfully.", "success")
-              .then(data=>window.location.assign('/'))
-
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        .then(res=>res.json())
+        .then(data=>{
+          window.location.assign('/my-cards')
+        })
+        .catch(err=>{
+          console.log(err.message);
+        })
       }
     });
   };

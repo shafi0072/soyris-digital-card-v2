@@ -69,7 +69,7 @@ const Gallery = ({ galary, setGalary, items, from }) => {
         <div className="w-full">
           <div className="flex gap-2 flex-wrap my-4">
             {saveImage?.toReversed()?.slice(0,4).map((img, index) => (
-              <img className="w-[144px] h-[55px]  object-cover" src={img} />
+              <img key={index} className="w-[144px] h-[55px]  object-cover" src={img} />
             ))}
           </div>
           <label

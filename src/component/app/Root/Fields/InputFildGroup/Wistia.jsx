@@ -43,12 +43,12 @@ const Wistia = ({ index, handleWistiaInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`WistiaUserName${index + 1}`}
-            defaultValue={`${items?.WistiaUserName + index + 1}`}
+            name={`data`}
+            defaultValue={items||''}
             onChange={(e) =>
               handleWistiaInputChange(
                 index,
-                `WistiaUserName${index + 1}`,
+                `data`,
                 e.target.value
               )
             }

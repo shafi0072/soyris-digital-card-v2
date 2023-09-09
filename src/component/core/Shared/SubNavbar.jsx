@@ -10,34 +10,17 @@ const SubNavbar = () => {
   const router = useRouter();
 
   const handleCreateCards = () => {
-    // fetch(`${baseUrl}/cards/add-cards`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     email: userData?.email,
-    //     cardUserId: userData?._id,
-    //     design:"classic"
-    //   })
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     localStorage.setItem("cardId", data?._id);
-    //     window.location.assign("/profileInfo");
-    //   })
-    //   .catch((err) => console.log(err));
     router.push('/selectCard');
   };
 
   return (
     <>
-      <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5  shadow-md">
+      <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5 ps-5 shadow-md">
         {router.pathname === "/my-cards" ? (
-          <div className=" ps-3">
+          <div className=" ps-3 mb-3">
            
             <button
-              className="bg-[#0077B5] px-4 py-2 flex items-center gap-3 text-white rounded"
+              className="bg-[black] px-4 py-2 mb-2 flex items-center gap-3 text-white rounded"
               onClick={handleCreateCards}
             >
               <span>
@@ -87,7 +70,7 @@ const SubNavbar = () => {
          : (
           <ul style={{ display: "flex" }}>
             {sub_Navbar_data?.map((items, index) => (
-              <li
+              <li key={index}
                 className="mx-2 my-2 "
                 onClick={() => {
                   setActive(index);
@@ -97,7 +80,7 @@ const SubNavbar = () => {
                 <div
                   className={`${
                     router.pathname === items?.url &&
-                    "bg-[#0277B5]  rounded text-white"
+                    "bg-[black]  rounded text-white"
                   } px-4 py-2 cursor-pointer`}
                 >
                   <p>{items?.title}</p>

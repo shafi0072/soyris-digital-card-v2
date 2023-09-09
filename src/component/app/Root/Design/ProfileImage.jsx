@@ -12,7 +12,6 @@ const ProfileImage = () => {
   const { profileImage, setProfileImage } = useContext(userContext)
   const cropperRef = useRef(null);
 
-  console.log({croppedImage})
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -23,11 +22,11 @@ const ProfileImage = () => {
       // Server-side rendering, do nothing
       return null;
     }
-    
+
     if (!cropperRef.current || typeof cropperRef.current.cropper.getCroppedCanvas() === 'undefined') {
       return;
     }
-  
+
     const croppedCanvas = cropperRef.current.cropper.getCroppedCanvas({
       minWidth: 200,
       minHeight: 200,
@@ -35,7 +34,7 @@ const ProfileImage = () => {
       maxHeight: 800,
       fillColor: '#fff',
     });
-  
+
     // Convert canvas to blob with compressed image data
     croppedCanvas.toBlob(
       (blob) => {
@@ -54,7 +53,7 @@ const ProfileImage = () => {
       0.8 // Adjust the compression quality as needed
     );
   };
-  
+
   // ...
   // console.log({profileImage});
 
@@ -80,19 +79,19 @@ const ProfileImage = () => {
   return (
     <div className='mt-8  w-3/4'>
       <div className='flex items-center justify-between'>
-        <div className='relative w-[60px] '>
+        {profileImage && <div className='relative w-[60px] '>
           <img className='w-[50px] h-[50px] rounded-full object-cover' src={profileImage ? profileImage : ''} alt="" />
-          <span className='absolute right-0 -top-2 w-4 h-4 text-center leading-[10px] bg-[#0F66A0] rounded-full' onClick={() => {
+          <span className='absolute right-0 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer' onClick={() => {
             setCroppedImage(null);
             setProfileImage(null); setSelectedImage(null)
           }}>
             <CloseIcon className='text-white text-[12px]' />
           </span>
-        </div>
+        </div>}
         <div className=" w-[266px]">
-          <label htmlFor='profileImage' className='flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
+          <label htmlFor='profileImage' className='cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
             <AddIcon sx={{ color: '#0077B5' }} />
-            <p className="text-md">Add Photo or a Video</p>
+            <p className="text-md"> {profileImage ? 'Replace Profile Photo' : 'Add Profile Photo'} </p>
 
           </label>
           <input type="file" id='profileImage' accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />

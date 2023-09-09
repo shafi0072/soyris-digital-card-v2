@@ -2,12 +2,15 @@ import React from "react";
 import { shapes } from "@/src/constant/Shapes";
 import { useState } from "react";
 import { ChromePicker } from "react-color";
+import { useContext } from "react";
+import { userContext } from "@/src/Storage/ContextApi";
 
 const EyeStyle = () => {
   const [innerColor, setInnerColor] = useState("#DC0E74");
   const [innerCustomColor, setInnerCustomColor] = useState(false);
   const [outerColor, setOuterColor] = useState("#000000");
   const [outerCustomColor, setOutCustomColor] = useState(false);
+  const {outerEyeColor,setOuterEyeColor,outesEyeShape,setOuterEyeShape,innerEyeShape,setInnerEyeShape,setInnerEyeColor,innerEyeColor} = useContext(userContext);
   return (
     <>
       <div className="flex justify-between border-b-2 items-center pb-2 mt-12">
@@ -44,8 +47,9 @@ const EyeStyle = () => {
         <div className="flex gap-4 mt-4 ">
           {shapes.map((shape, index) => (
             <button
-              className="bg-[#E6ECF2] flex gap-2 items-center px-4 py-2 rounded"
+              className={` flex gap-2 items-center px-4 py-2 rounded ${shape?.radius === innerEyeShape ? 'bg-[#0277B5]': 'bg-[#E6ECF2]'}`}
               key={index}
+              onClick={()=>setInnerEyeShape(shape?.radius)}
             >
               {shape.icon}
               {shape.name}
@@ -62,17 +66,17 @@ const EyeStyle = () => {
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: innerColor }}
+            style={{ background: innerEyeColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{innerColor}</span>
+            <span className="text-center">{innerEyeColor}</span>
           </div>
         </div>
         <div>
           {innerCustomColor && (
             <ChromePicker
-              color={innerColor}
-              onChange={(e) => setInnerColor(e.hex)}
+              color={innerEyeColor}
+              onChange={(e) => setInnerEyeColor(e.hex)}
             />
           )}
         </div>
@@ -87,11 +91,11 @@ const EyeStyle = () => {
         <div className="flex gap-4 mt-4 ">
           {shapes.map((shape, index) => (
             <button
-              className="bg-[#E6ECF2] flex gap-2 items-center px-4 py-2 rounded"
-              key={index}
+            className={` flex gap-2 items-center px-4 py-2 rounded ${shape?.radius === outesEyeShape ? 'bg-[#0277B5]': 'bg-[#E6ECF2]'}`}
+              onClick={()=> setOuterEyeShape(shape?.radius)}
             >
               {shape.icon}
-              {shape.name}
+              {shape.name} 
             </button>
           ))}
         </div>
@@ -105,17 +109,17 @@ const EyeStyle = () => {
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: outerColor }}
+            style={{ background: outerEyeColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{outerColor}</span>
+            <span className="text-center">{outerEyeColor}</span>
           </div>
         </div>
         <div>
           {outerCustomColor && (
             <ChromePicker
               color={outerColor}
-              onChange={(e) => setOuterColor(e.hex)}
+              onChange={(e) => setOuterEyeColor(e.hex)}
             />
           )}
         </div>

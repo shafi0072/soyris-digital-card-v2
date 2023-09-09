@@ -43,12 +43,12 @@ const Discord = ({ index, handleDiscordInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`discordUserName${index + 1}`}
-            defaultValue={`${items?.discordUserName + index + 1}`}
+            name={`number`}
+            defaultValue={items?.number}
             onChange={(e) =>
               handleDiscordInputChange(
                 index,
-                `discordUserName${index + 1}`,
+                `number`,
                 e.target.value
               )
             }
@@ -97,12 +97,12 @@ const Discord = ({ index, handleDiscordInputChange, items, from }) => {
       <div className="mb-3">
         <div className="w-full relative ">
           <input
-            name={`discordNumber${index + 1}`}
-            defaultValue={`${items?.discordNumber + index + 1}`}
+            name={`label`}
+            defaultValue={items?.label}
             onChange={(e) =>
               handleDiscordInputChange(
                 index,
-                `discordNumber${index + 1}`,
+                `label`,
                 e.target.value
               )
             }

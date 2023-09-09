@@ -98,7 +98,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const Layout2 = ({ children }) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [expand, setExpand] = React.useState(-1)
   const router = useRouter();
   const styles = {
@@ -121,7 +121,7 @@ const Layout2 = ({ children }) => {
       <CssBaseline />
       <AppBar position="fixed" open={open} >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -132,15 +132,15 @@ const Layout2 = ({ children }) => {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Navbar />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} >
         <DrawerHeader >
-          <IconButton onClick={handleDrawerClose}>
+          {/* <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon  style={{color: 'white'}}/> : <ChevronLeftIcon  style={{color: 'white'}}/>}
-          </IconButton>
+          </IconButton> */}
         </DrawerHeader>
         <Divider />
         <List>
@@ -212,15 +212,15 @@ style={{color: 'white'}}
           </ListItemButton>
         </div>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 0}}>
 
-        <div class="col-span-11  mt-[5%] ...">
+        <div className="col-span-11  mt-[5%] ...">
           <SubNavbar />
-          <div className='grid grid-cols-12 ps-8 pt-5 gap-8'>
+          <div className='grid grid-cols-12 ps-8 pt-[6%] gap-8'>
             <div className="col-span-8">
               {children}
             </div>
-            <div className={` pl-5 fixed ${router.pathname === '/' ? "right-0" : "right-[10%]"}`}>
+            <div className={`bg-[#F7FAFC]  fixed w-[500px] flex justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-[0%] "} `}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }

@@ -1,11 +1,16 @@
 import { userContext } from "@/src/Storage/ContextApi";
+import { baseUrl } from "@/src/config/Server";
 import React, { useContext, useRef, useState } from "react";
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 
-const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
+const Personalised = ({ setUrl, handleUrl, isEdit, setEdit,url }) => {
   const inputRef = useRef(null);
-  
-  const { settings } = useContext(userContext);
-  console.log(settings?.url);
+  const [isValid,setIsValid] = useState("");
+
+  const { settings,userCardData } = useContext(userContext);
+  console.log({userCardData});
+  console.log({settings});
   // function for copy text --------------
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyClick = () => {
@@ -23,15 +28,24 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
   };
 
   // handle change ---------------
-  const permanentUrl = "https://easycard.pro/profile/"; // The permanent URL
+  const permanentUrl = "https://easycards.pro/"; // The permanent URL
   const [inputValue, setInputValue] = useState(settings.url);
 
-  console.log({ inputValue });
   const handleInputChange = (e) => {
-    const parts = e.target.value;
-    setUrl(parts);
-    const inputValue = e.target.value;
-    setInputValue(inputValue);
+    fetch(`${baseUrl}/cards/settings/${e.target.value}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "User Name Already Exist") {
+            setIsValid("not valid")
+        } else {
+          const parts = e.target.value;
+          setUrl(parts);
+          const inputValue = e.target.value;
+          setInputValue(inputValue);
+          setIsValid("valid")
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -45,9 +59,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
           <div className="mt-5">
             <div className="flex gap-3 items-center">
               <input
-                
-                value={permanentUrl + inputValue}
-               
+                value={permanentUrl + `${url?url:settings?.url}`}
                 type="text"
                 className="px-2 py-1 shadow-lg rounded w-[306px] text-[17px] font-medium"
                 name="url"
@@ -66,7 +78,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
                     d="M19.917,15.833h1.75A2.333,2.333,0,0,0,24,13.5V5.333A2.333,2.333,0,0,0,21.667,3H13.5a2.333,2.333,0,0,0-2.333,2.333v1.75M5.333,11.167H13.5A2.333,2.333,0,0,1,15.833,13.5v8.167A2.333,2.333,0,0,1,13.5,24H5.333A2.333,2.333,0,0,1,3,21.667V13.5A2.333,2.333,0,0,1,5.333,11.167Z"
                     transform="translate(-2 -2)"
                     fill="none"
-                    stroke="#0277b5"
+                    stroke="black"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
@@ -79,7 +91,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
           {/* <button onClick={handleUrl} className='mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded'>EDIT</button> */}
           <button
             onClick={handleEdit}
-            className="mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded"
+            className="mt-4 bg-[black] text-sm text-white px-3 py-1 rounded"
           >
             EDIT
           </button>
@@ -97,23 +109,31 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit }) => {
                 name="url"
                 id=""
               />
-              <label className="block ps-3 mt-3">https://easycard-gr.vercel.app/</label>
-              
+              {
+                isValid === "not valid" && <CloseIcon sx={{color:"#FF0000"}}></CloseIcon>
+              }
+              {
+                isValid === "valid" && <CheckIcon sx={{color:"#008000"}}/>
+              }
+              <label className="block ps-3 mt-3">
+                https://easycard-gr.vercel.app/{url?url:inputValue?inputValue:""}
+              </label>
             </div>
           </div>
           <div className="flex gap-2">
-          <button
-            onClick={handleEdit}
-            className="mt-4 border border-[#0277B5] text-sm  px-3 py-1 rounded"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleUrl}
-            className="mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded"
-          >
-            Save
-          </button>
+            <button
+              onClick={handleEdit}
+              className="mt-4 border border-[#0277B5] text-sm  px-3 py-1 rounded"
+            >
+              Cancel
+            </button>
+            <button
+              disabled={isValid === "valid" ? false :true}
+              onClick={handleUrl}
+              className="mt-4 bg-[#0277B5] text-sm text-white px-3 py-1 rounded"
+            >
+              Save
+            </button>
           </div>
         </>
       )}

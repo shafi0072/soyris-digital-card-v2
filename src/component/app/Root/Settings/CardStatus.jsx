@@ -6,19 +6,19 @@ import Swal from 'sweetalert2';
 
 const CardStatus = () => {
     const {settings} = useContext(userContext)
-    const [cardStatus,setCardStatus] = useState(false);
-    const {userData} = useContext(userContext);
+    const [cardStatus,setCardStatus] = useState(settings?.cardStatus);
+    const {userData,userCardData} = useContext(userContext);
 
     // handle card status
     const handleCardStatus = ()=>{
         var raw = JSON.stringify({
             setting: {
               cardName: settings.cardName,
-              cardStatus: cardStatus,
+              cardStatus: !cardStatus,
               url: settings.url,
             },
           });
-        fetch(`${baseUrl}/add-user/profile/setting/${userData._id}`, {
+        fetch(`${baseUrl}/cards/profile/setting/${userCardData?._id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: raw,
@@ -46,7 +46,7 @@ const CardStatus = () => {
             <div className='mt-5 flex items-center'>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input onChange={handleCardStatus} defaultChecked={settings?.cardStatus} onClick={()=>setCardStatus(!cardStatus)} type="checkbox" value="" class="sr-only peer"  />
-                    <div class="w-11 h-6 bg-[#EB531B] rounded-full peer   peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#EB531B]"></div>
+                    <div class="w-11 h-6 bg-[black] rounded-full peer   peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#EB531B]"></div>
                 </label>
                     <span class="ml-3 text-lg font-medium">Active</span>
             </div>

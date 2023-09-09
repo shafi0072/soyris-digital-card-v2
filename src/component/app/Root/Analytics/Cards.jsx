@@ -1,9 +1,8 @@
 import { userContext } from "@/src/Storage/ContextApi";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const Cards = () => {
   const { userCardData } = useContext(userContext);
-  console.log(userCardData.anylatics);
   const cardViews = "increase";
   const contactSaved = "increase";
   const uniqueUsers = "decrease";
@@ -13,7 +12,6 @@ const Cards = () => {
     }
     return total;
   }, 0);
-  // console.log(totalViews);
 
   const uniqueIPs = new Set();
 
@@ -21,16 +19,16 @@ const Cards = () => {
     uniqueIPs.add(obj.ip);
   });
 
-  const totalUniqueIPs = uniqueIPs.size;
 
-  // console.log("Total Unique IPs:", totalUniqueIPs);
+  const totalUniqueIPs = uniqueIPs.size;
+  
 
   return (
     <div className="flex justify-between gap-4 mt-12 mb-8">
       <div className="flex gap-6 justify-between items-center bg-white shadow-lg rounded py-3 px-5 ">
         <div>
           <h3 className="text-xl  mb-3">Card Views</h3>
-          <p className="mb-2">{totalViews?totalViews:"0"}</p>
+          <p className="mb-2">{totalViews ? totalViews : "0"}</p>
           <p>
             {" "}
             <span
@@ -206,7 +204,7 @@ const Cards = () => {
       <div className="flex gap-6 justify-between items-center bg-white shadow-lg rounded py-3 px-5 ">
         <div>
           <h3 className="text-xl  mb-3">Unique Users</h3>
-          <p className="mb-2">{totalUniqueIPs?totalUniqueIPs:"0"}</p>
+          <p className="mb-2">{totalUniqueIPs ? totalUniqueIPs : "0"}</p>
           <p>
             {" "}
             <span
