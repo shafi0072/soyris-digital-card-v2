@@ -7,8 +7,23 @@ import { userContext } from "@/src/Storage/ContextApi";
 
 const Fields = () => {
   const {newFeilds,setNewFeilds} = useContext(userContext)
-  
- 
+  const targetRef = useRef(null);
+  // const scrollTobottom = () => {
+  //   if (targetRef.current) {
+  //     targetRef.current.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
+  const scrollTobottom = () => {
+    if (targetRef.current) {
+      const scrollHeight = targetRef.current.scrollHeight;
+      targetRef.current.scrollTo({
+        top: scrollHeight,
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'nearest',
+      });
+    }
+  };
   return (
     <div className="grid grid-cols-3 gap-4 h-[100vh] ">
       <div className="...">
