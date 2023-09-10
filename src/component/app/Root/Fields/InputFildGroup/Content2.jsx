@@ -125,14 +125,14 @@ const Content2 = () => {
     if (rightSideRef.current) {
       rightSideRef.current.scrollTop = rightSideRef.current.scrollHeight;
     }
-  }, [newFeilds]);
+  }, [newFeilds.length]);
 
   return (
     <>
       <div
         ref={rightSideRef}
         style={{ overflowY: "auto", maxHeight: "70vh" }}
-        className="right-side scroll-hide border-dotted border-2 mb-5 bg-gray-200  border-[black] p-5 rounded-lg"
+        className="right-side scroll-hide  mb-5 bg-gray-200   p-5 rounded-lg"
       >
         <Container onDrop={onDrop}>
           {newFeilds?.length > 0 &&

@@ -26,8 +26,8 @@ const LogoImage = () => {
     const croppedCanvas = cropperRef2.current.cropper.getCroppedCanvas({
       minWidth: 200,
       minHeight: 200,
-      maxWidth: 800,
-      maxHeight: 800,
+      maxWidth: 400,
+      maxHeight: 200,
       fillColor: "#fff",
     });
 
@@ -49,23 +49,14 @@ const LogoImage = () => {
     );
   };
 
-  const handleAspectRatioChange = (e) => {
-    setCropAspectRatio(parseFloat(e.target.value));
-  };
-
-  const handleCropBoxDataChange = (e) => {
-    const { width, height } = e.detail;
-    setCropAspectRatio(width / height);
-  };
-
   const cropperOptions = {
-    aspectRatio: cropAspectRatio,
-    guides: true,
-    dragMode: "crop",
+    // aspectRatio: cropAspectRatio,
+    // guides: true,
+    // dragMode: "crop",
     cropBoxResizable: true,
-    cropBoxMovable: true,
-    cropBoxData: { width: 200, height: 200 }, // Initial crop area size
-    crop: handleCropBoxDataChange, // To update the aspect ratio when crop area is resized
+    // cropBoxMovable: true,
+     cropBoxData: { width: 200, height: 200 }, // Initial crop area size
+    // crop: handleCropBoxDataChange, // To update the aspect ratio when crop area is resized
     zoomOnWheel: false, // Disable zoom on wheel
   };
   return (
@@ -73,7 +64,7 @@ const LogoImage = () => {
       <div className='mt-8 flex items-center justify-between w-3/4'>
       {logoImage  &&<div className='relative w-[100px] '>
           <>
-            <img className='w-[100px]   object-cover' src={logoImage && logoImage} alt="" />
+            <img className='w-[100px]  rounded-full   object-cover'  src={logoImage && logoImage} alt="" />
           <span onClick={() => {
             setCroppedImage(null);
             setLogoImage(null); setSelectedImage(null)
