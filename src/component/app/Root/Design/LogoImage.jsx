@@ -53,9 +53,9 @@ const LogoImage = () => {
     // aspectRatio: cropAspectRatio,
     // guides: true,
     // dragMode: "crop",
-    // cropBoxResizable: true,
+    cropBoxResizable: true,
     // cropBoxMovable: true,
-    // cropBoxData: { width: 200, height: 200 }, // Initial crop area size
+     cropBoxData: { width: 200, height: 200 }, // Initial crop area size
     // crop: handleCropBoxDataChange, // To update the aspect ratio when crop area is resized
     zoomOnWheel: false, // Disable zoom on wheel
   };
@@ -64,7 +64,7 @@ const LogoImage = () => {
       <div className='mt-8 flex items-center justify-between w-3/4'>
       {logoImage  &&<div className='relative w-[100px] '>
           <>
-            <img className='w-[100px]   object-cover' src={logoImage && logoImage} alt="" />
+            <img className='w-[100px]  rounded-full   object-cover'  src={logoImage && logoImage} alt="" />
           <span onClick={() => {
             setCroppedImage(null);
             setLogoImage(null); setSelectedImage(null)
