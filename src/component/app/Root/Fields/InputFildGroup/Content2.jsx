@@ -125,7 +125,7 @@ const Content2 = () => {
     if (rightSideRef.current) {
       rightSideRef.current.scrollTop = rightSideRef.current.scrollHeight;
     }
-  }, [newFeilds]);
+  }, [newFeilds.length]);
 
   return (
     <>
