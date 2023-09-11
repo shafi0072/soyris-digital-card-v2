@@ -27,6 +27,8 @@ import RightSidebar from '../Shared/RightSidebar';
 import SubNavbar from '../Shared/SubNavbar';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
+// google analytics
+import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -232,6 +234,7 @@ style={{color: 'white'}}
           </div>
         </div>
       </Box>
+      <Analytics/>
     </Box>
   );
 
