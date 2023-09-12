@@ -154,15 +154,6 @@ const MyCards = () => {
                                             </svg>
 
 
-<<<<<<< HEAD
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>)
-            }
-           </div>
-=======
                                         </button>
                                     </li>
                                 </ul>
@@ -170,7 +161,6 @@ const MyCards = () => {
                         </div>)
                 }
             </div>
->>>>>>> 36e332bdfcdbd9a294b4a98b9fece7297184480c
 
 
 
