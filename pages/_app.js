@@ -7,7 +7,6 @@ import 'cropperjs/dist/cropper.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import LoadingOverlay from 'react-loading-overlay';
 
 export default function App({ Component, pageProps }) {
   
