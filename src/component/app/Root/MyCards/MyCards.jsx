@@ -1,8 +1,21 @@
-import React from 'react';
+import { userContext } from '@/src/Storage/ContextApi';
+import { baseUrl } from '@/src/config/Server';
+import React, { useContext, useEffect, useState } from 'react';
 const MyCards = () => {
+    const {userData} = useContext(userContext)
+    const [cards, setCards] = useState([])
+
+    useEffect(() => {
+        fetch(`${baseUrl}/cards/cards/abc@gmail.com`)
+        .then(res => res.json())
+        .then(data => setCards(data))
+        .catch(err => console.log(err))
+    },[])
     return (
         <>
-            <div className='w-[300px] '>
+           <div className='flex'>
+           {
+                cards?.map((items, index) => <div className='w-[300px] ml-5'>
                 <div className='bg-[#EB531B] w-full h-[300px] rounded-md'>
                     <img src="/man.jpg" className='w-full h-[95%] ' alt="" />
                 </div>
@@ -50,7 +63,9 @@ const MyCards = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>)
+            }
+           </div>
 
             {/* <div className='flex gap-14'>
             <div className='w-[300px] '>
