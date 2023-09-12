@@ -1,14 +1,18 @@
-import React from "react";
-import { useState } from "react";
-import { ChromePicker } from "react-color";
+import { userContext } from "@/src/Storage/ContextApi";
 import { shapes } from "@/src/constant/Shapes";
-import Slider from "@mui/material/Slider";
 import { Box } from "@mui/material";
+import Slider from "@mui/material/Slider";
+import { useContext, useState } from "react";
+import { ChromePicker } from "react-color";
 const Pattern = () => {
-  const [color, setColor] = useState("#000000");
-  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-  const [customColor, setCustomColor] = useState(false);
+
+  const [customForegroundFirstColor, setCustomForegroundFirstColor] = useState(false);
+  const [customForegroundSecondColor, setCustomForegroundSecondColor] = useState(false);
   const [customBackgroundColor, setCustomBackgroundColor] = useState(false);
+  const { qrStyle, setQrStyle, foregroundColor, setForegroundColor, backgroundColor, setBackgroundColor, foregroundSecondColor, setForegroundSecondColor, qrSize, setQrSize } = useContext(userContext);
+  const handleQrStyle = (style) => {
+    setQrStyle(style);
+  }
   // shapes
   return (
     <>
@@ -42,10 +46,11 @@ const Pattern = () => {
       </p>
       {/* shapes------- */}
       <div className="flex gap-4 ">
-        {shapes.slice(0, 4).map((shape, index) => (
+        {shapes.slice(0, 2).map((shape, index) => (
           <button
-            className="bg-[#E6ECF2] flex gap-2 items-center px-4 py-2 rounded"
+            className={`${qrStyle === shape.label ? 'bg-green-400' : 'bg-[#e6ecf2]'} flex gap-2 items-center px-4 py-2 rounded`}
             key={index}
+            onClick={() => handleQrStyle(shape.label)}
           >
             {shape.icon}
             {shape.name}
@@ -53,37 +58,63 @@ const Pattern = () => {
         ))}
       </div>
       {/* checkbox ----------------- */}
-      <p className="mt-6">Foreground Color Type</p>
+      {/* <p className="mt-6">Foreground Color Type</p>
       <div className="flex gap-6 mt-3">
         <div className="flex item-center gap-2">
           <input type="checkbox" name="solid" id="" />
           <label htmlFor="">Solid</label>
         </div>
         <div className="flex item-center gap-2">
-          <input type="checkbox" name="solid" id="" />
-          <label htmlFor="">Solid</label>
+          <input type="checkbox" name="gradient" id="" />
+          <label htmlFor="">Gradient</label>
         </div>
-      </div>
-      {/* color ------------------- */}
+      </div> */}
+      {/* <select name="" id="" className="my-4 px-2 py-2 bg-[#E6ECF2] rounded-md w-48">
+        <option value="">Vertical</option>
+        <option value="">Horizontal</option>
+      </select> */}
+      {/* foreground   color ------------------- */}
+      <h4 className="mt-5">Foreground  Color</h4>
       <div className="flex gap-24">
         <div
-          onClick={() => setCustomColor(!customColor)}
+          onClick={() => setCustomForegroundFirstColor(!customForegroundFirstColor)}
           className="flex bg-gray-200 border-2 rounded-lg mt-4 w-32 h-8 cursor-pointer"
         >
           <div
             className="w-[30px] h-[30px] rounded-l-lg"
-            style={{ background: color }}
+            style={{ background: foregroundColor }}
           ></div>
           <div className="px-3">
-            <span className="text-center">{color}</span>
+            <span className="text-center">{foregroundColor}</span>
           </div>
         </div>
         <div>
-          {customColor && (
-            <ChromePicker color={color} onChange={(e) => setColor(e.hex)} />
+          {customForegroundFirstColor && (
+            <ChromePicker color={foregroundColor} onChange={(e) => setForegroundColor(e.hex)} />
           )}
         </div>
       </div>
+      {/* foreground second  color ------------------- */}
+      {/* <h4 className="mt-6">Foreground Second Color</h4>
+      <div className="flex gap-24">
+        <div
+          onClick={() => setCustomForegroundSecondColor(!customForegroundSecondColor)}
+          className="flex bg-gray-200 border-2 rounded-lg mt-4 w-32 h-8 cursor-pointer"
+        >
+          <div
+            className="w-[30px] h-[30px] rounded-l-lg"
+            style={{ background: foregroundSecondColor }}
+          ></div>
+          <div className="px-3">
+            <span className="text-center">{foregroundSecondColor}</span>
+          </div>
+        </div>
+        <div>
+          {customForegroundSecondColor && (
+            <ChromePicker color={foregroundSecondColor} onChange={(e) => setForegroundSecondColor(e.hex)} />
+          )}
+        </div>
+      </div> */}
 
       {/* background color */}
       <h2 className="mt-6">Background Color</h2>
@@ -111,12 +142,15 @@ const Pattern = () => {
       </div>
       {/* background color tranparancy */}
       <div className="mt-6">
-        <p className="mb-4">Background Color Transparency</p>
+        <p className="mb-4">Qr Size</p>
         <Box width={300}>
           <Slider
-            defaultValue={50}
+            value={qrSize}
             aria-label="Default"
             valueLabelDisplay="auto"
+            onChange={(e) => setQrSize(e?.target?.value)}
+            min={50}
+            max={200}
           />
         </Box>
       </div>

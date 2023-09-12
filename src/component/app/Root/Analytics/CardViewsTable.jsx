@@ -88,7 +88,7 @@ const CardViewsTable = () => {
                 ))}
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody className="text-black bg-white">
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
@@ -116,6 +116,7 @@ const CardViewsTable = () => {
           </Table>
         </TableContainer>
         <TablePagination
+          className="bg-white text-black"
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={rows.length}

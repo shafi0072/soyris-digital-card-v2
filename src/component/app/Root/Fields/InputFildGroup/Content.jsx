@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import Phone from "./Phone";
 import Website from "./Website";
@@ -32,11 +32,30 @@ import QR from "./QR";
 import Divider from "./Divider";
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
-const Content = ({ feilds }) => {
+import { Container, Draggable } from "react-smooth-dnd";
+import { toast } from "react-toastify";
+
+const Content = ({ feilds, setFeilds }) => {
+  const onDrop = (dropResult) => {
+    if (!dropResult.removedIndex && !dropResult.addedIndex) return;
+
+    const newFields = [...feilds];
+    const [removed] = newFields.splice(dropResult.removedIndex, 1);
+    newFields.splice(dropResult.addedIndex, 0, removed);
+
+    setFeilds(newFields);
+  };
+  console.log({feilds})
+  const {loading, userData, userCardData, newFeilds, setNewFeilds } =
+    useContext(userContext);
+    if(loading){
+      return 'Loading...';
+    }
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
   );
+  console.log(phoneData)
   // website
   const [websiteData, setWebsiteData] = useState(
     [...Array(feilds.filter((item) => item === "Website").length)].map(() => "")
@@ -53,6 +72,23 @@ const Content = ({ feilds }) => {
   const [linkData, setLinkData] = useState(
     [...Array(feilds.filter((item) => item === "Link").length)].map(() => "")
   );
+  // image -----------
+  const [image, setImage] = useState(
+    [...Array(feilds.filter((item) => item === "image").length)].map(() => null)
+  );
+  const [align, setAlign] = useState(userCardData?.fields?.image[0]?.alignment || 'center');
+  console.log('align',userCardData?.fields?.image[0]?.alignment);
+  const [imageWidth, setImageWidth] = useState(userCardData?.fields?.image[0]?.width || 50 );
+  // gallery ---------
+  const [galary, setGalary] = useState(
+    [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
+  );
+  // pdf ---------
+  const [pdf, setPdf] = useState(
+    [...Array(feilds.filter((item) => item === "pdf").length)].map(() => "")
+  );
+  // console.log(pdf)
+
   // what's app
   const [whatsAppData, setWhatsAppData] = useState(
     [...Array(feilds.filter((item) => item === "WhatsApp").length)].map(
@@ -65,32 +101,32 @@ const Content = ({ feilds }) => {
   );
   // skype
   const [skypeData, setSkypeData] = useState(
-    [...Array(feilds.filter((item) => item === "Skype").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "skype").length)].map(() => "")
   );
   // snapChat
   const [snapChatData, setSnapChatData] = useState(
-    [...Array(feilds.filter((item) => item === "SnapChat").length)].map(
+    [...Array(feilds.filter((item) => item === "snapChat").length)].map(
       () => ""
     )
   );
   // signal
   const [signalData, setSignalData] = useState(
-    [...Array(feilds.filter((item) => item === "Signal").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "signal").length)].map(() => "")
   );
   // telegram------
   const [telegramData, setTelegramData] = useState(
-    [...Array(feilds.filter((item) => item === "Telegram").length)].map(
+    [...Array(feilds.filter((item) => item === "telegram").length)].map(
       () => ""
     )
   );
 
   // discord ----
   const [discordData, setDiscordData] = useState(
-    [...Array(feilds.filter((item) => item === "Discord").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "discord").length)].map(() => "")
   );
   // slack
   const [slackData, setSlackData] = useState(
-    [...Array(feilds.filter((item) => item === "Slack").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "slack").length)].map(() => "")
   );
   // facebook
   const [facebookData, setFacebookData] = useState(
@@ -130,28 +166,32 @@ const Content = ({ feilds }) => {
   );
   // Vimeo
   const [vimeoData, setVimeoData] = useState(
-    [...Array(feilds.filter((item) => item === "Vimeo").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "vimeo").length)].map(() => "")
   );
   // Wistia
   const [wistiaData, setWistiaData] = useState(
-    [...Array(feilds.filter((item) => item === "Wistia").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "wistia").length)].map(() => "")
   );
   // pdf
   const [pdfData, setPdfData] = useState(
     [...Array(feilds.filter((item) => item === "Pdf").length)].map(() => "")
   );
-  // note
+  // notes
   const [noteData, setNoteData] = useState(
     [...Array(feilds.filter((item) => item === "Note").length)].map(() => "")
   );
   // date
   const [dateData, setDataData] = useState(
-    [...Array(feilds.filter((item) => item === "Date").length)].map(() => "")
+    [...Array(feilds.filter((item) => item === "dateData").length)].map(
+      () => ""
+    )
   );
   // qr ---
   const [qrData, setQrData] = useState(
     [...Array(feilds.filter((item) => item === "Qr").length)].map(() => "")
   );
+  const [qrAlign, setQrAlign] = useState("center");
+  const [qrWidth, setQrWidth] = useState(50);
   // header
   const [headerData, setHeaderData] = useState(
     [...Array(feilds.filter((item) => item === "Header").length)].map(() => "")
@@ -161,40 +201,12 @@ const Content = ({ feilds }) => {
     [...Array(feilds.filter((item) => item === "Driver").length)].map(() => "")
   );
 
-  // console.log({ phoneData });
-  //   console.log("website", websiteData);
-  //   console.log("address", addressData);
-  //   console.log("email", emailData);
-  //   console.log("link", linkData);
-  //   console.log("whatsApp", whatsAppData);
-  //   console.log("Viber", viberData);
-  //   console.log("Skype", skypeData);
-  //   console.log("SnapChat", snapChatData);
-  //   console.log("signal", signalData);
-  //   console.log("telegram", telegramData);
-  //   console.log("discord", discordData);
-  //   console.log("slack", slackData);
-  //   console.log("facebook", facebookData);
-  //   console.log("instagram", instagramData);
-  //   console.log("twitter", twitterData);
-  //   console.log("linkedin", linkedinData);
-  //   console.log("pinterest", pinterestData);
-  //   console.log("tiktok", tiktokData);
-  //   console.log("youtube", youtubeData);
-  //   console.log("vimeo", vimeoData);
-  //   console.log("wistia", wistiaData);
-  //   console.log("pdf", pdfData);
-  //   console.log("note", noteData);
-  //   console.log("date", dateData);
-  //   console.log("qr", qrData);
-  //   console.log("Header", headerData);
-  //   console.log("driver", divider);
-
-  const { userData } = useContext(userContext);
   // phone
   const handlePhoneInputChange = (index, field, value) => {
+    console.log({index});
     setPhoneData((prevPhoneData) => {
       const newData = [...prevPhoneData];
+     
       newData[index] = {
         ...newData[index],
         [field]: value,
@@ -202,8 +214,10 @@ const Content = ({ feilds }) => {
       return newData;
     });
   };
+
   // website
   const handleWebsiteInputChange = (index, field, value) => {
+    console.log('index',index);
     setWebsiteData((prevWebsiteData) => {
       const newData = [...prevWebsiteData];
       newData[index] = {
@@ -413,6 +427,7 @@ const Content = ({ feilds }) => {
       return newData;
     });
   };
+
   // vimeo
   const handleVimeoInputChange = (index, field, value) => {
     setVimeoData((prevVimeoData) => {
@@ -437,16 +452,16 @@ const Content = ({ feilds }) => {
   };
 
   // pdf
-  const handlePdfInputChange = (index, field, value) => {
-    setPdfData((prevPdfData) => {
-      const newData = [...prevPdfData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
-  };
+  // const handlePdfInputChange = (index, field, value) => {
+  //   setPdfData((prevPdfData) => {
+  //     const newData = [...prevPdfData];
+  //     newData[index] = {
+  //       ...newData[index],
+  //       [field]: value,
+  //     };
+  //     return newData;
+  //   });
+  // };
   const handleNoteInputChange = (index, field, value) => {
     setNoteData((prevNoteData) => {
       const newData = [...prevNoteData];
@@ -470,14 +485,13 @@ const Content = ({ feilds }) => {
   };
   // qr
   const handleQRInputChange = (index, field, value) => {
-    setQrData((prevQrData) => {
-      const newData = [...prevQrData];
-      newData[index] = {
-        ...newData[index],
-        [field]: value,
-      };
-      return newData;
-    });
+    setQrData([
+      {
+        width: qrWidth,
+        alignment: qrAlign,
+        QrCode: value,
+      },
+    ]);
   };
   // header
   const handleHeaderInputChange = (index, field, value) => {
@@ -501,181 +515,226 @@ const Content = ({ feilds }) => {
     });
   };
 
-  // console.log(userData)
-
-  const phoneArray = Array.isArray(userData?.fields?.Phone)
-    ? userData.fields.Phone
+  const phoneArray = Array.isArray(userCardData?.fields?.Phone)
+    ? userCardData.fields.Phone
     : [];
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
+    // console.log({filteredPhoneData})
 
-  const websiteArray = Array.isArray(userData?.fields?.website)
-    ? userData.fields.website
+  const websiteArray = Array.isArray(userCardData?.fields?.website)
+    ? userCardData.fields.website
     : [];
   const filteredWebsiteData = Array.isArray(websiteData)
     ? websiteData.filter((item) => item !== undefined)
     : [];
   // email
-  const emailArray = Array.isArray(userData?.fields?.email)
-    ? userData.fields.email
+  const emailArray = Array.isArray(userCardData?.fields?.email)
+    ? userCardData.fields.email
     : [];
   const filteredEmailData = Array.isArray(emailData)
     ? emailData.filter((item) => item !== undefined)
     : [];
   // address
-  const addressArray = Array.isArray(userData?.fields?.address)
-    ? userData.fields.address
+  const addressArray = Array.isArray(userCardData?.fields?.address)
+    ? userCardData.fields.address
     : [];
   const filteredAddressData = Array.isArray(addressData)
     ? addressData.filter((item) => item !== undefined)
     : [];
   // link
-  const linkArray = Array.isArray(userData?.fields?.link)
-    ? userData.fields.link
+  const linkArray = Array.isArray(userCardData?.fields?.link)
+    ? userCardData.fields.link
     : [];
   const filteredLinkData = Array.isArray(linkData)
     ? linkData.filter((item) => item !== undefined)
     : [];
   // whatsapp
-  const whatsAppArray = Array.isArray(userData?.fields?.whatsApp)
-    ? userData.fields.whatsApp
+  const whatsAppArray = Array.isArray(userCardData?.fields?.whatsApp)
+    ? userCardData.fields.whatsApp
     : [];
   const filteredWhatsAppData = Array.isArray(whatsAppData)
     ? whatsAppData.filter((item) => item !== undefined)
     : [];
   // viber
-  const viberArray = Array.isArray(userData?.fields?.viber)
-    ? userData.fields.viber
+  const viberArray = Array.isArray(userCardData?.fields?.viber)
+    ? userCardData.fields.viber
     : [];
   const filteredViberData = Array.isArray(viberData)
     ? viberData.filter((item) => item !== undefined)
     : [];
   // skype
-  const skypeArray = Array.isArray(userData?.fields?.skype)
-    ? userData.fields.skype
+  const skypeArray = Array.isArray(userCardData?.fields?.skype)
+    ? userCardData.fields.skype
     : [];
   const filteredSkypeData = Array.isArray(skypeData)
     ? skypeData.filter((item) => item !== undefined)
     : [];
   // snapchat
-  const snapchatArray = Array.isArray(userData?.fields?.snapchat)
-    ? userData.fields.snapchat
+  const snapchatArray = Array.isArray(userCardData?.fields?.snapchat)
+    ? userCardData.fields.snapchat
     : [];
   const filteredSnapchatData = Array.isArray(snapChatData)
     ? snapChatData.filter((item) => item !== undefined)
     : [];
   // signal
-  const signalArray = Array.isArray(userData?.fields?.signal)
-    ? userData.fields.signal
+  const signalArray = Array.isArray(userCardData?.fields?.signal)
+    ? userCardData.fields.signal
     : [];
   const filteredSignalData = Array.isArray(signalData)
     ? signalData.filter((item) => item !== undefined)
     : [];
   // telegram
-  const telegramArray = Array.isArray(userData?.fields?.telegram)
-    ? userData.fields.telegram
+  const telegramArray = Array.isArray(userCardData?.fields?.telegram)
+    ? userCardData.fields.telegram
     : [];
   const filteredTelegramData = Array.isArray(telegramData)
     ? telegramData.filter((item) => item !== undefined)
     : [];
   // discord
-  const discordArray = Array.isArray(userData?.fields?.discord)
-    ? userData.fields.discord
+  const discordArray = Array.isArray(userCardData?.fields?.discord)
+    ? userCardData.fields.discord
     : [];
   const filteredDiscordData = Array.isArray(discordData)
     ? discordData.filter((item) => item !== undefined)
     : [];
   // slack
-  const slackArray = Array.isArray(userData?.fields?.slack)
-    ? userData.fields.slack
+  const slackArray = Array.isArray(userCardData?.fields?.slack)
+    ? userCardData.fields.slack
     : [];
   const filteredSlackData = Array.isArray(slackData)
     ? slackData.filter((item) => item !== undefined)
     : [];
   // facebook
-  const facebookArray = Array.isArray(userData?.fields?.facebook)
-    ? userData.fields.facebook
+  const facebookArray = Array.isArray(userCardData?.fields?.facebook)
+    ? userCardData.fields.facebook
     : [];
   const filteredFacebookData = Array.isArray(facebookData)
     ? facebookData.filter((item) => item !== undefined)
     : [];
   // instagram
-  const instagramArray = Array.isArray(userData?.fields?.instagram)
-    ? userData.fields.instagram
+  const instagramArray = Array.isArray(userCardData?.fields?.instagram)
+    ? userCardData.fields.instagram
     : [];
   const filteredInstagramData = Array.isArray(instagramData)
     ? instagramData.filter((item) => item !== undefined)
     : [];
   // twitter
-  const twitterArray = Array.isArray(userData?.fields?.twitter)
-    ? userData.fields.twitter
+  const twitterArray = Array.isArray(userCardData?.fields?.twitter)
+    ? userCardData.fields.twitter
     : [];
   const filteredTwitterData = Array.isArray(twitterData)
     ? twitterData.filter((item) => item !== undefined)
     : [];
   // linkedin
-  const linkedinArray = Array.isArray(userData?.fields?.linkedIn)
-    ? userData.fields.linkedIn
+  const linkedinArray = Array.isArray(userCardData?.fields?.linkedIn)
+    ? userCardData.fields.linkedIn
     : [];
   const filteredLinkedinData = Array.isArray(linkedinData)
     ? linkedinData.filter((item) => item !== undefined)
     : [];
   // pinterest
-  const pinterestArray = Array.isArray(userData?.fields?.pinterest)
-    ? userData.fields.pinterest
+  const pinterestArray = Array.isArray(userCardData?.fields?.pinterest)
+    ? userCardData.fields.pinterest
     : [];
   const filteredPinterestData = Array.isArray(pinterestData)
     ? pinterestData.filter((item) => item !== undefined)
     : [];
   // tiktok
-  const tiktokArray = Array.isArray(userData?.fields?.tikTok)
-    ? userData.fields.tikTok
+  const tiktokArray = Array.isArray(userCardData?.fields?.tikTok)
+    ? userCardData.fields.tikTok
     : [];
   const filteredTiktokData = Array.isArray(tiktokData)
     ? tiktokData.filter((item) => item !== undefined)
     : [];
   // note
-  const noteArray = Array.isArray(userData?.fields?.note)
-    ? userData.fields.note
+  const noteArray = Array.isArray(userCardData?.fields?.notes)
+    ? userCardData.fields.notes
     : [];
   const filteredNoteData = Array.isArray(noteData)
     ? noteData.filter((item) => item !== undefined)
     : [];
   // data
-  const dateArray = Array.isArray(userData?.fields?.date)
-    ? userData.fields.date
+  const dateArray = Array.isArray(userCardData?.fields?.dateData)
+    ? userCardData.fields.dateData
     : [];
   const filteredDateData = Array.isArray(dateData)
     ? dateData.filter((item) => item !== undefined)
     : [];
   // qr
-  const qrArray = Array.isArray(userData?.fields?.qr) ? userData.fields.qr : [];
+  const qrArray = Array.isArray(userCardData?.fields?.QR)
+    ? userCardData.fields.QR
+    : [];
   const filteredQrData = Array.isArray(qrData)
     ? qrData.filter((item) => item !== undefined)
     : [];
   // header
-  const HeaderArray = Array.isArray(userData?.fields?.Header)
-    ? userData.fields.Header
+  const HeaderArray = Array.isArray(userCardData?.fields?.Header)
+    ? userCardData.fields.Header
     : [];
   const filteredHeaderData = Array.isArray(headerData)
     ? headerData.filter((item) => item !== undefined)
     : [];
   // divider
-  const dividerArray = Array.isArray(userData?.fields?.divider)
-    ? userData.fields.divider
+  const dividerArray = Array.isArray(userCardData?.fields?.divider)
+    ? userCardData.fields.divider
     : [];
   const filteredDividerData = Array.isArray(dividerData)
     ? dividerData.filter((item) => item !== undefined)
     : [];
+  // youTube
+  const youTubeArray = Array.isArray(userCardData?.fields?.youTube)
+    ? userCardData.fields.youTube
+    : [];
+  const filteredYouTubeData = Array.isArray(youtubeData)
+    ? youtubeData.filter((item) => item !== undefined)
+    : [];
+  // vimeo
+  const vimeoArray = Array.isArray(userCardData?.fields?.vimeo)
+    ? userCardData.fields.vimeo
+    : [];
+  const filteredVimeoData = Array.isArray(vimeoData)
+    ? vimeoData.filter((item) => item !== undefined)
+    : [];
+  // wistia
+  const wistiaArray = Array.isArray(userCardData?.fields?.wistia)
+    ? userCardData.fields.wistia
+    : [];
+  const filteredWistiaData = Array.isArray(wistiaData)
+    ? wistiaData.filter((item) => item !== undefined)
+    : [];
+  // image
+  const imageArray = Array.isArray(userCardData?.fields?.image)
+    ? userCardData.fields.image
+    : [];
+  const filteredImageData = Array.isArray(image)
+    ? image.filter((item) => item !== undefined)
+    : [];
+  // image
+  const galleryArray = Array.isArray(userCardData?.fields?.galary)
+    ? userCardData.fields.galary
+    : [];
+  const filteredgalleryData = Array.isArray(galary)
+    ? galary.filter((item) => item !== undefined)
+    : [];
+  // pdf
+  const pdfArray = Array.isArray(userCardData?.fields?.pdf)
+    ? userCardData.fields.pdf
+    : [];
+  const filteredPdfData = Array.isArray(pdf)
+    ? pdf.filter((item) => item !== undefined)
+    : [];
 
   const updatedPhoneArray = [...phoneArray, ...filteredPhoneData];
+  // console.log(updatedPhoneArray)
   const updatedWebsiteArray = [...websiteArray, ...filteredWebsiteData];
   const updatedEmailArray = [...emailArray, ...filteredEmailData];
   const updatedAddressArray = [...addressArray, ...filteredAddressData];
   const updatedLinkArray = [...linkArray, ...filteredLinkData];
   const updatedWhatsAppArray = [...whatsAppArray, ...filteredWhatsAppData];
   const updatedViberArray = [...viberArray, ...filteredViberData];
+  // console.log(updatedViberArray);
   const updatedSkypeArray = [...skypeArray, ...filteredSkypeData];
   const updatedSnapchatArray = [...snapchatArray, ...filteredSnapchatData];
   const updatedSignalArray = [...signalArray, ...filteredSignalData];
@@ -694,10 +753,88 @@ const Content = ({ feilds }) => {
   const updatedQrArray = [...qrArray, ...filteredQrData];
   const updatedHeaderArray = [...HeaderArray, ...filteredHeaderData];
   const updatedDividerArray = [...dividerArray, ...filteredDividerData];
+  const updatedYouTubeArray = [...youTubeArray, ...filteredYouTubeData];
+  const updatedImageArray = [...imageArray, ...filteredImageData];
+  const updatedGalaryArray = [...galleryArray, ...filteredgalleryData];
+  const updatedPdfArray = [...pdfArray, ...filteredPdfData];
+  const updatedVimeoArray = [...vimeoArray, ...filteredVimeoData];
+  const updatedWistiaArray = [...wistiaArray, ...filteredWistiaData];
+
+  useEffect(() => {
+    setNewFeilds({
+      fields: {
+        Phone: updatedPhoneArray,
+        website: filteredWebsiteData,
+        email: filteredEmailData,
+        address: filteredAddressData,
+        link: filteredLinkData,
+        whatsApp: filteredWhatsAppData,
+        viber: filteredViberData,
+        skype: filteredSkypeData,
+        snapchat: filteredSnapchatData,
+        signal: filteredSignalData,
+        telegram: filteredTelegramData,
+        discord: filteredDiscordData,
+        slack: filteredSlackData,
+        facebook: updatedFacebookArray,
+        instagram: updatedInstagramArray,
+        twitter: updatedTwitterArray,
+        linkedIn: updatedLinkedinArray,
+        pinterest: updatedPinterestArray,
+        tikTok: updatedTiktokArray,
+        notes: updatedNoteArray?.reverse()[0]?.note,
+        vimeo: updatedVimeoArray?.reverse()[0]?.vimeo,
+        wistia: updatedWistiaArray?.reverse()[0]?.data,
+        dateData: updatedDateArray,
+        QR: updatedQrArray,
+        Header: updatedHeaderArray,
+        divider: updatedDividerArray,
+        youTube: updatedYouTubeArray[0]?.youtube,
+        image: updatedImageArray?.reverse()[0],
+        galary: updatedGalaryArray,
+        pdf: pdf,
+      },
+    });
+  }, [
+    phoneData,
+    emailData,
+    dividerData,
+    instagramData,
+    pinterestData,
+    twitterData,
+    qrData,
+    websiteData,
+    whatsAppData,
+    addressData,
+    linkData,
+    skypeData,
+    snapChatData,
+    viberData,
+    telegramData,
+    signalData,
+    discordData,
+    slackData,
+    facebookData,
+    tiktokData,
+    youtubeData,
+    vimeoData,
+    // pdfData,
+    wistiaData,
+    noteData,
+    dateData,
+    headerData,
+    image,
+    galary,
+    pdf,
+    linkedinData,
+    align,
+    imageWidth,
+  ]);
 
   const handleFieldsOnSubmit = (e) => {
+    const userCardId = localStorage.getItem("cardId");
     e.preventDefault();
-    fetch(`${baseUrl}/add-user/profile/fields/${userData?._id}`, {
+    fetch(`${baseUrl}/cards/profile/fields/${userCardId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -716,6 +853,7 @@ const Content = ({ feilds }) => {
           signal: updatedSignalArray,
           telegram: updatedTelegramArray,
           discord: updatedDiscordArray,
+          youTube: updatedYouTubeArray[0]?.youtube,
           slack: updatedSlackArray,
           facebook: updatedFacebookArray,
           instagram: updatedInstagramArray,
@@ -723,286 +861,708 @@ const Content = ({ feilds }) => {
           linkedIn: updatedLinkedinArray,
           pinterest: updatedPinterestArray,
           tikTok: updatedTiktokArray,
-          note: updatedNoteArray,
-          date: updatedDateArray,
-          qr: updatedQrArray,
+          notes: updatedNoteArray?.reverse()[0]?.note,
+          vimeo: updatedVimeoArray?.toReversed()[0]?.vimeo,
+          wistia: updatedWistiaArray?.reverse()[0]?.data,
+          dateData: updatedDateArray,
+          QR: updatedQrArray,
           Header: updatedHeaderArray,
           divider: updatedDividerArray,
+          image: updatedImageArray?.reverse()[0],
+          galary: updatedGalaryArray,
+          pdf: pdf,
         },
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Profile information updated successfully") {
+          toast.success(data?.message);
+          window.location.reload();
+        }
+      });
   };
 
   return (
     <>
       <div className="border-dotted border-2 bg-gray-200  border-sky-500 p-5 rounded-lg">
-        {feilds?.map((items, index) => (
-          <>
-            {items === "Phone" && (
+        <Container onDrop={onDrop}>
+          {userCardData?.fields?.Phone?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Phone
+                  items={items}
                   index={index}
                   handlePhoneInputChange={handlePhoneInputChange}
                   phoneData={phoneData}
+                  setPhoneData={setPhoneData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Website" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.website?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Website
+                  items={items}
                   index={index}
                   handleWebsiteInputChange={handleWebsiteInputChange}
                   websiteData={websiteData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Address" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.address?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Address
+                  items={items}
                   index={index}
                   handleAddressInputChange={handleAddressInputChange}
                   addressData={addressData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Email" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.email?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Email
+                  items={items}
                   index={index}
                   handleEmailInputChange={handleEmailInputChange}
                   emailData={emailData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Link" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.link?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Link
+                  items={items}
                   index={index}
                   handleLinkInputChange={handleLinkInputChange}
                   linkData={linkData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Header" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.header?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Header
+                  items={items}
                   index={index}
                   handleHeaderInputChange={handleHeaderInputChange}
                   headerData={headerData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "WhatsApp" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.whatsApp?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <WhatsApp
+                  items={items}
                   index={index}
                   handleWhatsAppInputChange={handleWhatsAppInputChange}
                   whatsAppData={whatsAppData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Viber" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.viber?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Viber
+                  items={items}
                   index={index}
                   handleViberInputChange={handleViberInputChange}
                   viberData={viberData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Skype" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.skype?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Skype
+                  items={items}
                   index={index}
                   handleSkypeInputChange={handleSkypeInputChange}
                   skypeData={skypeData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Snapchat" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.snapchat?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Snapchat
+                  items={items}
                   index={index}
                   handleSnapChatInputChange={handleSnapChatInputChange}
                   snapChatData={snapChatData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Signal" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.signal?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Signal
+                  items={items}
                   index={index}
                   handleSignalInputChange={handleSignalInputChange}
                   signalData={signalData}
                 />
               </div>
-            )}
-            {items === "Telegram" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.telegram?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Telegram
+                  items={items}
                   index={index}
                   handleTelegramInputChange={handleTelegramInputChange}
                   telegramData={telegramData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Discord" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.discord?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Discord
+                  items={items}
                   index={index}
                   handleDiscordInputChange={handleDiscordInputChange}
                   discordData={discordData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Slack" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.slack?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Slack
+                  items={items}
                   index={index}
                   handleSlackInputChange={handleSlackInputChange}
                   slackData={slackData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Facebook" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.facebook?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Facebook
+                  items={items}
                   index={index}
                   handleFacebookInputChange={handleFacebookInputChange}
                   facebookData={facebookData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Instagram" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.instagram?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Instagram
+                  items={items}
                   index={index}
                   handleInstagramInputChange={handleInstagramInputChange}
                   instagramData={instagramData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Twitter" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.twitter?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Twitter
+                  items={items}
                   index={index}
                   handleTwitterInputChange={handleTwitterInputChange}
                   twitterData={twitterData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "LinkedIn" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.linkedIn?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <LinkedIn
+                  items={items}
                   index={index}
                   handleLinkedinInputChange={handleLinkedinInputChange}
                   linkedinData={linkedinData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Pinterest" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.pinterest?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Pinterest
+                  items={items}
                   index={index}
                   handlePinterestInputChange={handlePinterestInputChange}
                   pinterestData={pinterestData}
+                  from={true}
                 />
               </div>
-            )}
-
-            {items === "Tiktok" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.tikTok?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <TikTok
+                  items={items}
                   index={index}
                   handleTiktokInputChange={handleTiktokInputChange}
                   tiktokData={tiktokData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Image" && (
-              <div className="mb-2">
-                <Image />
-              </div>
-            )}
-            {items === "Gallery" && (
-              <div className="mb-2">
-                <Gallery />
-              </div>
-            )}
-            {items === "Youtube" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.youTube?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <YouTube
+                  items={items}
                   index={index}
                   handleYoutubeInputChange={handleYoutubeInputChange}
                   youtubeData={youtubeData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Vimeo" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.vimeo?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Vimeo
+                  items={items}
                   index={index}
                   handleVimeoInputChange={handleVimeoInputChange}
                   vimeoData={vimeoData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Wistia" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.wistia?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Wistia
+                  items={items}
                   index={index}
                   handleWistiaInputChange={handleWistiaInputChange}
                   wistiaData={wistiaData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "PDF" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.pdf?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
                 <PDF
-                  index={index}
-                  handlePdfInputChange={handlePdfInputChange}
-                  pdfData={pdfData}
+                  items={userCardData?.fields?.pdf}
+                  // index={index}
+                  pdf={pdf}
+                  setPdf={setPdf}
+                  from={true}
+                  userData={userData}
                 />
               </div>
-            )}
-            {items === "Notes" && (
+            </Draggable>
+          )}
+
+          {userCardData?.fields?.notes?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Notes
+                  items={items}
                   index={index}
                   handleNoteInputChange={handleNoteInputChange}
                   noteData={noteData}
+                  from={true}
                 />
               </div>
-            )}
-            {items === "Date" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.image?.length > 0 && (
+            <Draggable>
               <div className="mb-2">
-                <Date
-                  index={index}
-                  handleDateInputChange={handleDateInputChange}
-                  dateData={dateData}
+                <Image
+                  setImage={setImage}
+                  image={image}
+                  items={userCardData?.fields?.image}
+                  from={true}
+                  align={align}
+                  setAlign={setAlign}
+                  imageWidth={imageWidth}
+                  setImageWidth={setImageWidth}
                 />
               </div>
-            )}
-            {items === "URL" && (
+            </Draggable>
+          )}
+          {userCardData?.fields?.galary?.length > 0 && (
+            <Draggable>
+              <div className="mb-2">
+                <Gallery
+                  setGalary={setGalary}
+                  galary={galary}
+                  items={userCardData?.fields?.galary[0]}
+                  from={true}
+                />
+              </div>
+            </Draggable>
+          )}
+          {userCardData?.fields?.QR?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <QR
                   index={index}
                   handleQRInputChange={handleQRInputChange}
                   qrData={qrData}
+                  items={items}
+                  from={true}
+                  qrAlign={qrAlign}
+                  setQrAlign={setQrAlign}
+                  qrWidth={qrWidth}
+                  setQrWidth={setQrWidth}
                 />
               </div>
-            )}
-            {items === "Divider" && (
+            </Draggable>
+          ))}
+          {userCardData?.fields?.divider?.map((items, index) => (
+            <Draggable key={items}>
               <div className="mb-2">
                 <Divider
                   index={index}
                   handleDriverInputChange={handleDriverInputChange}
                   driverData={driverData}
+                  items={items}
+                  from={true}
                 />
               </div>
-            )}
-          </>
-        ))}
+            </Draggable>
+          ))}
+          {userCardData?.fields?.dateData?.map((items, index) => (
+            <Draggable key={items}>
+              <div className="mb-2">
+                <Date
+                  index={index}
+                  handleDateInputChange={handleDateInputChange}
+                  dateData={dateData}
+                  items={items}
+                  from={true}
+                />
+              </div>
+            </Draggable>
+          ))}
+        </Container>
+
+        <Container onDrop={onDrop}>
+          {feilds.map((items, index) => (
+            <Draggable key={items}>
+              {items === "Phone" && (
+                <div className="mb-2">
+                  <Phone
+                    index={index}
+                    handlePhoneInputChange={handlePhoneInputChange}
+                    phoneData={phoneData}
+                  />
+                </div>
+              )}
+              {items === "Website" && (
+                <div className="mb-2">
+                  <Website
+                    index={index}
+                    handleWebsiteInputChange={handleWebsiteInputChange}
+                    websiteData={websiteData}
+                  />
+                </div>
+              )}
+              {items === "Address" && (
+                <div className="mb-2">
+                  <Address
+                    index={index}
+                    handleAddressInputChange={handleAddressInputChange}
+                    addressData={addressData}
+                  />
+                </div>
+              )}
+              {items === "Email" && (
+                <div className="mb-2">
+                  <Email
+                    index={index}
+                    handleEmailInputChange={handleEmailInputChange}
+                    emailData={emailData}
+                  />
+                </div>
+              )}
+              {items === "Link" && (
+                <div className="mb-2">
+                  <Link
+                    index={index}
+                    handleLinkInputChange={handleLinkInputChange}
+                    linkData={linkData}
+                  />
+                </div>
+              )}
+              {items === "Header" && (
+                <div className="mb-2">
+                  <Header
+                    index={index}
+                    handleHeaderInputChange={handleHeaderInputChange}
+                    headerData={headerData}
+                  />
+                </div>
+              )}
+              {items === "WhatsApp" && (
+                <div className="mb-2">
+                  <WhatsApp
+                    index={index}
+                    handleWhatsAppInputChange={handleWhatsAppInputChange}
+                    whatsAppData={whatsAppData}
+                  />
+                </div>
+              )}
+              {items === "Viber" && (
+                <div className="mb-2">
+                  <Viber
+                    index={index}
+                    handleViberInputChange={handleViberInputChange}
+                    viberData={viberData}
+                  />
+                </div>
+              )}
+              {items === "Skype" && (
+                <div className="mb-2">
+                  <Skype
+                    index={index}
+                    handleSkypeInputChange={handleSkypeInputChange}
+                    skypeData={skypeData}
+                  />
+                </div>
+              )}
+              {items === "Snapchat" && (
+                <div className="mb-2">
+                  <Snapchat
+                    index={index}
+                    handleSnapChatInputChange={handleSnapChatInputChange}
+                    snapChatData={snapChatData}
+                  />
+                </div>
+              )}
+              {items === "Signal" && (
+                <div className="mb-2">
+                  <Signal
+                    index={index}
+                    handleSignalInputChange={handleSignalInputChange}
+                    signalData={signalData}
+                  />
+                </div>
+              )}
+              {items === "Telegram" && (
+                <div className="mb-2">
+                  <Telegram
+                    index={index}
+                    handleTelegramInputChange={handleTelegramInputChange}
+                    telegramData={telegramData}
+                  />
+                </div>
+              )}
+              {items === "Discord" && (
+                <div className="mb-2">
+                  <Discord
+                    index={index}
+                    handleDiscordInputChange={handleDiscordInputChange}
+                    discordData={discordData}
+                  />
+                </div>
+              )}
+              {items === "Slack" && (
+                <div className="mb-2">
+                  <Slack
+                    index={index}
+                    handleSlackInputChange={handleSlackInputChange}
+                    slackData={slackData}
+                  />
+                </div>
+              )}
+              {items === "Facebook" && (
+                <div className="mb-2">
+                  <Facebook
+                    index={index}
+                    handleFacebookInputChange={handleFacebookInputChange}
+                    facebookData={facebookData}
+                  />
+                </div>
+              )}
+              {items === "Instagram" && (
+                <div className="mb-2">
+                  <Instagram
+                    index={index}
+                    handleInstagramInputChange={handleInstagramInputChange}
+                    instagramData={instagramData}
+                  />
+                </div>
+              )}
+              {items === "Twitter" && (
+                <div className="mb-2">
+                  <Twitter
+                    index={index}
+                    handleTwitterInputChange={handleTwitterInputChange}
+                    twitterData={twitterData}
+                  />
+                </div>
+              )}
+              {items === "LinkedIn" && (
+                <div className="mb-2">
+                  <LinkedIn
+                    index={index}
+                    handleLinkedinInputChange={handleLinkedinInputChange}
+                    linkedinData={linkedinData}
+                  />
+                </div>
+              )}
+              {items === "Pinterest" && (
+                <div className="mb-2">
+                  <Pinterest
+                    index={index}
+                    handlePinterestInputChange={handlePinterestInputChange}
+                    pinterestData={pinterestData}
+                  />
+                </div>
+              )}
+
+              {items === "Tiktok" && (
+                <div className="mb-2">
+                  <TikTok
+                    index={index}
+                    handleTiktokInputChange={handleTiktokInputChange}
+                    tiktokData={tiktokData}
+                  />
+                </div>
+              )}
+              {items === "Image" && (
+                <div className="mb-2">
+                  <Image
+                    setImage={setImage}
+                    image={image}
+                    align={align}
+                    setAlign={setAlign}
+                    imageWidth={imageWidth}
+                    setImageWidth={setImageWidth}
+                  />
+                </div>
+              )}
+              {items === "Gallery" && (
+                <div className="mb-2">
+                  <Gallery setGalary={setGalary} galary={galary} />
+                </div>
+              )}
+              {items === "Youtube" && (
+                <div className="mb-2">
+                  <YouTube
+                    index={index}
+                    handleYoutubeInputChange={handleYoutubeInputChange}
+                    youtubeData={youtubeData}
+                  />
+                </div>
+              )}
+              {items === "Vimeo" && (
+                <div className="mb-2">
+                  <Vimeo
+                    index={index}
+                    handleVimeoInputChange={handleVimeoInputChange}
+                    vimeoData={vimeoData}
+                  />
+                </div>
+              )}
+              {items === "Wistia" && (
+                <div className="mb-2">
+                  <Wistia
+                    index={index}
+                    handleWistiaInputChange={handleWistiaInputChange}
+                    wistiaData={wistiaData}
+                  />
+                </div>
+              )}
+              {items === "PDF" && (
+                <div className="mb-2">
+                  <PDF pdf={pdf} setPdf={setPdf} userData={userData} />
+                </div>
+              )}
+              {items === "Notes" && (
+                <div className="mb-2">
+                  <Notes
+                    index={index}
+                    handleNoteInputChange={handleNoteInputChange}
+                    noteData={noteData}
+                  />
+                </div>
+              )}
+              {items === "Date" && (
+                <div className="mb-2">
+                  <Date
+                    index={index}
+                    handleDateInputChange={handleDateInputChange}
+                    dateData={dateData}
+                  />
+                </div>
+              )}
+              {items === "URL" && (
+                <div className="mb-2">
+                  <QR
+                    index={index}
+                    handleQRInputChange={handleQRInputChange}
+                    qrData={qrData}
+                    qrAlign={qrAlign}
+                    setQrAlign={setQrAlign}
+                    qrWidth={qrWidth}
+                    setQrWidth={setQrWidth}
+                  />
+                </div>
+              )}
+              {items === "Divider" && (
+                <div className="mb-2">
+                  <Divider
+                    index={index}
+                    handleDriverInputChange={handleDriverInputChange}
+                    driverData={driverData}
+                  />
+                </div>
+              )}
+            </Draggable>
+          ))}
+        </Container>
       </div>
       <div className="fixed bottom-20 left-[35%]  z-50">
         <input
