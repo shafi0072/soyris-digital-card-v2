@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { baseUrl } from '../config/Server';
+import LoadingOverlay from 'react-loading-overlay';
+import { RiseLoader } from 'react-spinners';
 import { useRouter } from 'next/router';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
@@ -140,13 +142,32 @@ const ContextApi = ({ children }) => {
 
     const router = useRouter();
 
-   
+    useEffect(() => {
+        const handleRouteChangeStart = () => {
+            setIsLoading(true);
+
+            // Set a 2-second delay before setting isLoading to false
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 0);
+        };
+
+        // Listen for route changes and trigger loading state
+        router.events.on('routeChangeStart', handleRouteChangeStart);
+
+        // Cleanup the event listener when the component unmounts
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChangeStart);
+        };
+    }, []);
     return (
-        <>
+        <LoadingOverlay active={isLoading}
+            spinner={<RiseLoader color='white' />}
+            text='Loading The Details ...' >
             <userContext.Provider value={value}>
                 {children}
             </userContext.Provider>
-        </>
+        </LoadingOverlay>
 
     );
 };
