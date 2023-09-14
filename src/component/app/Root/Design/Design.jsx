@@ -161,6 +161,8 @@ const Design = () => {
                                         type="color"
                                         value={primaryColor}
                                         onChange={(e) => setPrimaryColor(e.target.value)}
+                                        className='cursor-pointer'
+
                                     />
                                     <br />
                                     <InputColor
@@ -187,6 +189,8 @@ const Design = () => {
                                         type="color"
                                         value={primaryAccent}
                                         onChange={(e) => setPrimaryAccent(e.target.value)}
+                                        className='cursor-pointer'
+
                                     />
                                     <br />
                                     <InputColor
@@ -211,6 +215,8 @@ const Design = () => {
                                         type="color"
                                         value={secondaryColor}
                                         onChange={(e) => setSecondaryColor(e.target.value)}
+                                        className='cursor-pointer'
+
                                     />
                                     <br />
                                     <InputColor
@@ -235,6 +241,7 @@ const Design = () => {
                                         type="color"
                                         value={secondaryAccent}
                                         onChange={(e) => setSecondaryAccent(e.target.value)}
+                                        className='cursor-pointer'
                                     />
                                     <br />
                                     <InputColor
