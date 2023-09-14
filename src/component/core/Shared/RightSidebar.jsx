@@ -23,6 +23,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { FaTiktok } from "react-icons/fa";
 
 import QrView from "./QrView";
+import Website from "./Content/Website";
+import Link from "./Content/Link";
 // import dynamic from "next/dynamic";
 // const ReactPlayer = dynamic(()=> import('react-player'),{ssr:false});
 
@@ -100,10 +102,10 @@ const RightSidebar = () => {
               )}
 
               {item?.type === "Phone" && <Content item={item} />}
-              {item?.type === "Website" && <Content item={item} />}
+              {item?.type === "Website" && <Website item={item} />}
               {item?.type === "Email" && <Content item={item} />}
               {item?.type === "Address" && <Content item={item} />}
-              {item?.type === "Link" && <Content item={item} />}
+              {item?.type === "Link" && <Link item={item} />}
               {item?.type === "WhatsApp" && <Content item={item} />}
               {item?.type === "Viber" && <Content item={item} />}
               {item?.type === "Skype" && <Content item={item} />}
