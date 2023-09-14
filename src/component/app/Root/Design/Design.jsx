@@ -160,7 +160,9 @@ const Design = () => {
                                     <InputColor
                                         initialValue={primaryColor}
                                         onChange={e=> setPrimaryColor(e?.hex)}
+                                        
                                         placement="bottom"
+                                        
                                     />
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryColor}</span>
@@ -173,7 +175,7 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-                                    {/* <div onClick={() => setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div> */}
+                                    
                                     <InputColor
                                         initialValue={primaryAccent}
                                         onChange={e=> setPrimaryAccent(e?.hex)}
@@ -218,12 +220,12 @@ const Design = () => {
                             </div>
                         </div>
 
-                        <div ref={colorPicker}>
+                        {/* <div ref={colorPicker}>
                             {colorName === 'primaryColor' && <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} />}
                             {colorName === 'primaryAccent' && <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} />}
                             {colorName === 'secondaryColor' && <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} />}
                             {colorName === 'secondaryAccent' && <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} />}
-                        </div>
+                        </div> */}
                     </div>
                 }
             </div>
