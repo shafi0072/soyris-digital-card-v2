@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Flat = ({ color, profileImage, logoImage }) => {
-  console.log({logoImage});
+  // console.log({logoImage});
   return (
     <div className='bg-white mx-4' >
       <div className=' w-[100%]  relative border-b-[12px] rounded-md ' style={{borderColor: color}}>
