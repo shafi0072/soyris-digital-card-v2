@@ -1,6 +1,6 @@
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import EmailIcon from "@mui/icons-material/Email";
@@ -8,21 +8,32 @@ import WebAssetOutlinedIcon from "@mui/icons-material/WebAssetOutlined";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { decodeJwt } from "@/src/config/jwtDecoder";
 
 const SelectCard = () => {
   const { userData } = useContext(userContext);
+
+  
+  
+
   const handleSelectCard = (desg, image, logo) => {
+    
+    const accessTokenDecode = decodeJwt()
+    const words = accessTokenDecode?.name.split(' ');
+    console.log(words);
     fetch(`${baseUrl}/cards/add-cards`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        firstName: words?.length > 2 ? words[0] + " " + words[1] : words[0],
+        lastName: words[words?.length - 1],
+        primaryColor: '#0077B5',
         email: userData?.email,
         cardUserId: userData?._id,
         design: desg,
         ProfileImage: image,
-        LogoImage: logo,
       }),
     })
       .then((res) => res.json())
