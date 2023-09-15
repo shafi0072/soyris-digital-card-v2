@@ -118,6 +118,16 @@ console.log({primaryAccent});
                         <span className='absolute bottom-2 left-0 right-0 text-center text-[#2C2C2C]'>Flat</span>
 
                     </button>
+                    <button className={`${design === 'pro' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setDesign('pro')}>
+                        <span  style={{transform:"rotate(180deg)"}} className='absolute  left-2 bottom-12'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="73.031" height="35.449" viewBox="0 0 73.031 35.449">
+                                <path id="Rectangle_24" data-name="Rectangle 24" d="M13,0H60.031a13,13,0,0,1,13,13V35.449a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V13A13,13,0,0,1,13,0Z" fill="#0f66a0" />
+                            </svg>
+                        </span>
+
+                        <span className='absolute bottom-2 left-0 right-0 text-center text-[#2C2C2C]'>Pro</span>
+
+                    </button>
                 </div>
             </div>
             <div className='mt-8 border-b border-[#CBD5E0] pb-8'>
