@@ -24,7 +24,7 @@ const Classic = ({ color, profileImage, logoImage }) => {
                         </svg>
                     </div>
                     {profileImage ?<img className='h-[327px] w-[100%] object-cover rounded-2xl' src={profileImage ? profileImage : ""} alt="" />: <div className='w-[100%]  h-[331px]'  style={{background:'#fff'}}></div>}
-                    {logoImage !== null && logoImage !== 'null' && <img className='absolute bottom-0 right-0 z-50 w-[100px] h-[50px]' src={logoImage} alt="" />}
+                    {logoImage !== null && logoImage !== 'null' && logoImage &&  <img className='absolute bottom-0 right-0 z-50 w-[100px] h-[50px]' src={logoImage} alt="" />}
                 </div>
             </div>
         </div>

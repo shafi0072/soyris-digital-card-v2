@@ -182,8 +182,6 @@ console.log({primaryAccent});
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-
-
                                 <input
                                         id="secondaryColor"
                                         type="color"
