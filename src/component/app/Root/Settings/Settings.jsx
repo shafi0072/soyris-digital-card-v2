@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CardName from "./CardName";
 import Personalised from "./Personalised";
 import CardStatus from "./CardStatus";
-import DuplicateCard from "./DuplicateCard";
+import DuplicateCard from "./DuplicateCard/DuplicateCard";
 import DeleteCard from "./DeleteCard";
 import { baseUrl } from "@/src/config/Server";
 import { data } from "autoprefixer";
