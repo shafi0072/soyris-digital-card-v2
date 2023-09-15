@@ -154,14 +154,14 @@ console.log({primaryAccent});
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px]  rounded-lg ml-5'>
 
                                     <input
                                        
                                         type="color"
                                         value={primaryColor}
                                         onChange={(e) => setPrimaryColor(e.target.value)}
-                                        className='cursor-pointer'
+                                        className='cursor-pointer border-none'
 
                                     />
                                     <br />
@@ -181,13 +181,13 @@ console.log({primaryAccent});
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px] rounded-lg ml-5'>
                                 <input
                                         id="secondaryColor"
                                         type="color"
                                         value={primaryAccent}
                                         onChange={(e) => setPrimaryAccent(e.target.value)}
-                                        className='cursor-pointer'
+                                        className='cursor-pointer border-none'
 
                                     />
                                     <br />
@@ -205,7 +205,7 @@ console.log({primaryAccent});
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px]  rounded-lg ml-5'>
 
 
                                     <input
@@ -232,14 +232,14 @@ console.log({primaryAccent});
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
+                                <div className='flex bg-gray-200 w-[150px]  rounded-lg ml-5'>
 
                                     <input
                                         id="secondaryAccent"
                                         type="color"
                                         value={secondaryAccent}
                                         onChange={(e) => setSecondaryAccent(e.target.value)}
-                                        className='cursor-pointer'
+                                        className='cursor-pointer border-none'
                                     />
                                     <br />
                                     <InputColor

@@ -7,10 +7,10 @@ const ProfileInfo = ({ infos,color, userData,userCardData, design }) => {
         <>
         {infos &&
         <div className='mt-3'>
-            <h2 className={`font-bold text-xl   ${design === "classic" ? 'border-l-2 pl-2': ''}`} style={{borderColor: color}}>
+            { infos?.prefix || infos?.first_name || infos?.last_name || infos?.suffix ||infos?.accreditations &&<h2 className={`font-bold text-xl   ${design === "classic" ? 'border-l-2 pl-2': ''}`} style={{borderColor: color}}>
                 {infos?.prefix ? infos?.prefix + '. ' : ''} {infos?.first_name ? infos?.first_name : userData?.profileInfo?.first_name} {infos?.last_name ? infos?.last_name : userData?.profileInfo?.last_name} <br />
                 {infos?.suffix ? infos?.suffix : userData?.profileInfo?.suffix} <span className='font-thin text-base '> {infos?.accreditations ? infos?.accreditations : userData?.profileInfo?.accreditations} </span>
-            </h2>
+            </h2>}
             <h3 className={`font-base text-[18px] ${design === "classic" && `border-l-2  pl-2`}`}  style={{borderColor: color}}>
                 {infos?.job_title ? infos?.job_title : userData?.profileInfo?.job_title}
             </h3>
