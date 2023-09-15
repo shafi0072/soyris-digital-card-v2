@@ -59,6 +59,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit,url }) => {
           <div className="mt-5">
             <div className="flex gap-3 items-center">
               <input
+              ref={inputRef}
                 value={permanentUrl + `${url?url:settings?.url}`}
                 type="text"
                 className="px-2 py-1 shadow-lg rounded w-[306px] text-[17px] font-medium"

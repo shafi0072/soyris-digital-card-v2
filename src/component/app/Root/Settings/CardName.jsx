@@ -23,7 +23,7 @@ const CardName = ({handleCardNameOnChange,handleCardName}) => {
           />
           <input
             onClick={handleCardName}
-            className="bg-[black] text-white px-3 py-1 rounded text-sm"
+            className="bg-[black] text-white px-3 py-1 rounded text-sm cursor-pointer"
             type="submit"
             value="SAVE"
           />

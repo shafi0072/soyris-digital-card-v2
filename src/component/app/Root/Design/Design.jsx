@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import InputColor from 'react-input-color';
 
 const Design = () => {
-    const [color, setColor] = useState({});
+    // const [color, setColor] = useState({});
     const [border, setBorder] = useState('clasic');
     const [colorName, setColorname] = useState('')
     const { profileImage, logoImage, userData, design, primaryColor,
@@ -25,7 +25,7 @@ const Design = () => {
         setSecondaryAccent,
         setDesign, userCardData, setIsLoading } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-
+console.log({primaryAccent});
     const colorPicker = useRef()
     const handleColor = color => {
         setPrimaryColor(color);
@@ -157,7 +157,7 @@ const Design = () => {
                                 <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
 
                                     <input
-                                        id="primaryColor"
+                                       
                                         type="color"
                                         value={primaryColor}
                                         onChange={(e) => setPrimaryColor(e.target.value)}
@@ -182,10 +182,8 @@ const Design = () => {
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
                                 <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-
-
-                                    <input
-                                        id="primaryAccent"
+                                <input
+                                        id="secondaryColor"
                                         type="color"
                                         value={primaryAccent}
                                         onChange={(e) => setPrimaryAccent(e.target.value)}
