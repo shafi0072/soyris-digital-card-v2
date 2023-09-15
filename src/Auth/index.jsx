@@ -26,7 +26,6 @@ const index = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log({ user: result.user?.displayName });
-        debugger
         fetch(`${baseUrl}/add-user/auth`, {
           method: "POST",
           headers: {
