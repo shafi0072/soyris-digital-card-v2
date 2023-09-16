@@ -8,8 +8,8 @@ const Video = ({ item }) => {
   );
 
   const opts = {
-    height: "315",
-    width: "460",
+    // height: "200",
+    width: "100%",
     playerVars: {
       autoplay: 0,
     },
