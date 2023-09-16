@@ -42,7 +42,7 @@ const RightSidebar = () => {
     logoImage,
     infos,
   } = useContext(userContext);
-  console.log({ userCardData });
+  console.log({ newFeilds });
   const socialHeader = newFeilds?.some(
     (item) =>
       item?.type === "Facebook" ||
@@ -86,10 +86,16 @@ const RightSidebar = () => {
             logoImage={logoImage}
           />
         )}
-       <div className="mx-5">
+        {
+          design === "pro" && <div className='bg-white mx-4 '>
+            <img className="rounded-t-lg" src={profileImage} alt="" />
+          </div>
+        }
+       <div className="mx-4">
        {infos && (
-          <ProfileInfo infos={infos} color={primaryColor} userData={userData} design={design} userCardData={userCardData} />
+          <ProfileInfo infos={infos} color={primaryColor} userData={userData} design={design} userCardData={userCardData} logoImage={logoImage} />
         )}
+
         <div></div>
         <div className="my-5">
           {newFeilds?.map((item, index) => (
