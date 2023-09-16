@@ -62,7 +62,7 @@ const LogoImage = () => {
   return (
     <div>
       <div className='mt-8 flex items-center justify-between w-3/4'>
-      {logoImage !== 'null' && logoImage !== null &&<div className='relative w-[100px] '>
+      {logoImage !== 'null' && logoImage !== null && logoImage &&<div className='relative w-[100px] '>
           <>
             <img className='w-[100px]  rounded-full   object-cover'  src={logoImage && logoImage} alt="" />
           <span onClick={() => {
