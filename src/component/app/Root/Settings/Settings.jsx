@@ -16,8 +16,8 @@ const Settings = () => {
   const [isEdit, setEdit] = useState(false);
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
-  console.log(url)
   const { userData,userCardData } = useContext(userContext);
+  // console.log({userCardData})
  
   
   const handleCardNameOnChange = (event) => {
