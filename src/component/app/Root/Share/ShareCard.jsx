@@ -13,7 +13,7 @@ const ShareCard = () => {
   
   // handle qr copy
   const handleQrCopy = () => {
-    navigator.clipboard.writeText(`https://easycard-gr.vercel.app/${settings?.url}`).then(() => {
+    navigator.clipboard.writeText(`https://easycards.pro/${settings?.url}`).then(() => {
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
