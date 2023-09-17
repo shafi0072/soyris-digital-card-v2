@@ -2,9 +2,9 @@ import { userContext } from "@/src/Storage/ContextApi";
 import React from "react";
 import { useContext } from "react";
 
-const Content = ({ item ,design}) => {
-  const {primaryColor ,primaryAccent } = useContext(userContext);
-  console.log(item?.url)
+const Content = ({ item, design }) => {
+  const { primaryColor, primaryAccent } = useContext(userContext);
+  console.log(item?.url);
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -305,7 +305,9 @@ const Content = ({ item ,design}) => {
   return (
     <div className="flex gap-3 my-5 items-center">
       <div
-        className="w-[50px] h-[50px] rounded-full flex justify-center items-center "
+        className={`${
+          design === "pro" ? "w-[42px] h-[42px]" : "w-[50px] h-[50px]"
+        } rounded-full flex justify-center items-center`}
         style={{ backgroundColor: primaryColor }}
       >
         {item?.type === "Phone" && phoneIcon}
@@ -324,7 +326,11 @@ const Content = ({ item ,design}) => {
         {item?.type === "Slack" && slackIcon}
       </div>
       <div>
-        <p className="w-[230px]">
+        <p
+          className={`${
+            design === "pro" ? "roboto text-[18px]" : "text-[16px]"
+          } w-[230px] `}
+        >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
           {item?.number &&
@@ -335,8 +341,20 @@ const Content = ({ item ,design}) => {
             )}-${item?.number.substring(6)}`}
           {item?.url && item?.url} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
-          <br /> {item?.chooseLabel && !item?.hideLabelCopy  && <span className={`${design === "pro" && "text-[14px]"}`}>{item?.chooseLabel}</span>}{" "}
-          {item?.displayUrl && <span className="block">{item?.displayUrl}</span>}{item?.label && <span className={`${design === "pro" && "text-[14px]"}`}>{item?.label}</span>} 
+          <br />{" "}
+          {item?.chooseLabel && !item?.hideLabelCopy && (
+            <span className={`${design === "pro" && "text-[14px]"}`}>
+              {item?.chooseLabel}
+            </span>
+          )}{" "}
+          {item?.displayUrl && (
+            <span className="block">{item?.displayUrl}</span>
+          )}
+          {item?.label && (
+            <span className={`${design === "pro" && "text-[14px] roboto"}`}>
+              {item?.label}
+            </span>
+          )}
         </p>
       </div>
     </div>

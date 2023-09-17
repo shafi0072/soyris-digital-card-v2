@@ -1,7 +1,7 @@
 import { userContext } from '@/src/Storage/ContextApi';
 import React, { useContext } from 'react';
 
-const Link = ({ item }) => {
+const Link = ({ item,design }) => {
     console.log({ item });
 
     const { primaryColor, primaryAccent } = useContext(userContext);
@@ -28,15 +28,15 @@ const Link = ({ item }) => {
     return (
         <div className="flex gap-3 my-5 items-center">
             <div
-                className="w-[50px] h-[50px] rounded-full flex justify-center items-center "
+                 className={`${design === "pro" ? "w-[42px] h-[42px]":"w-[50px] h-[50px]"}  rounded-full flex justify-center items-center `}
                 style={{ backgroundColor: primaryColor }}
             >
                 {item?.type === "Link" && linkIcon}
 
             </div>
             <div>
-                <a href={item?.url}> {item?.displayUrl}  </a> <br />
-                <p>
+                <a className={`${design === "pro" && "text-[18px] roboto"}`} href={item?.url}> {item?.displayUrl}  </a> <br />
+                <p className={`${design === "pro" && "text-[14px] roboto"}`}>
                     {item?.label}
                 </p>
             </div>
