@@ -29,7 +29,7 @@ const SelectCard = () => {
       body: JSON.stringify({
         firstName: words?.length > 2 ? words[0] + " " + words[1] : words[0],
         lastName: words[words?.length - 1],
-        primaryColor: '#0077B5',
+        primaryColor: '#0053a2',
         email: userData?.email,
         cardUserId: userData?._id,
         design: desg,
