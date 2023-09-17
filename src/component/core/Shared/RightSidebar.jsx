@@ -87,11 +87,11 @@ const RightSidebar = () => {
           />
         )}
         {
-          design === "pro" && <div className='bg-white mx-4 '>
-            <img className="rounded-t-lg" src={profileImage} alt="" />
+          design === "pro" && <div className='bg-white mx-6 '>
+            <img className="rounded-t-lg h-[400px]" src={profileImage} alt="" />
           </div>
         }
-       <div className="mx-4">
+       <div className="mx-6">
        {infos && (
           <ProfileInfo infos={infos} color={primaryColor} userData={userData} design={design} userCardData={userCardData} logoImage={logoImage} />
         )}
@@ -104,28 +104,28 @@ const RightSidebar = () => {
                 <div className="w-full h-[2px] bg-gray-400 mt-3 mb-6"></div>
               )}
               {item?.type === "Header" && (
-                <h2 className="text-xl font-semibold mt-6">{item?.title}</h2>
+                <h2 className="text-[22px] font-semibold mt-6 mb-2">{item?.title}</h2>
               )}
 
-              {item?.type === "Phone" && <Content item={item} />}
-              {item?.type === "Website" && <Website item={item} />}
-              {item?.type === "Email" && <Content item={item} />}
-              {item?.type === "Address" && <Content item={item} />}
-              {item?.type === "Link" && <Link item={item} />}
-              {item?.type === "WhatsApp" && <Content item={item} />}
-              {item?.type === "Viber" && <Content item={item} />}
-              {item?.type === "Skype" && <Content item={item} />}
-              {item?.type === "Snapchat" && <Content item={item} />}
-              {item?.type === "Signal" && <Content item={item} />}
-              {item?.type === "Telegram" && <Content item={item} />}
-              {item?.type === "Discord" && <Content item={item} />}
-              {item?.type === "Slack" && <Content item={item} />}
+              {item?.type === "Phone" && <Content item={item} design={design} />}
+              {item?.type === "Website" && <Website item={item}  design={design}/>}
+              {item?.type === "Email" && <Content item={item} design={design} />}
+              {item?.type === "Address" && <Content item={item} design={design} />}
+              {item?.type === "Link" && <Link item={item}  design={design}/>}
+              {item?.type === "WhatsApp" && <Content item={item} design={design} />}
+              {item?.type === "Viber" && <Content item={item} design={design} />}
+              {item?.type === "Skype" && <Content item={item} design={design} />}
+              {item?.type === "Snapchat" && <Content item={item} design={design} />}
+              {item?.type === "Signal" && <Content item={item} design={design} />}
+              {item?.type === "Telegram" && <Content item={item} design={design} />}
+              {item?.type === "Discord" && <Content item={item} design={design} />}
+              {item?.type === "Slack" && <Content item={item} design={design} />}
               {/* Social media--------------- */}
               {item?.type === "Facebook" && (
                 <a
                   href={item?.url}
                   style={{ backgroundColor: primaryColor }}
-                  className=" w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                  className=" w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <FacebookIcon style={{ color: primaryAccent }} />{" "}
                 </a>
@@ -134,7 +134,7 @@ const RightSidebar = () => {
                 <a
                   style={{ backgroundColor: primaryColor }}
                   href={item?.url}
-                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                  className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <InstagramIcon style={{ color: primaryAccent }} />
                 </a>
@@ -143,7 +143,7 @@ const RightSidebar = () => {
                 <a
                   style={{ backgroundColor: primaryColor }}
                   href={item?.url}
-                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                  className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <TwitterIcon style={{ color: primaryAccent }} />
                 </a>
@@ -152,7 +152,7 @@ const RightSidebar = () => {
                 <a
                   style={{ backgroundColor: primaryColor }}
                   href={item?.url}
-                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                  className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <LinkedInIcon style={{ color: primaryAccent }} />{" "}
                 </a>
@@ -161,7 +161,7 @@ const RightSidebar = () => {
                 <a
                   style={{ backgroundColor: primaryColor }}
                   href={item?.url}
-                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                  className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <PinterestIcon style={{ color: primaryAccent }} />
                 </a>
@@ -170,7 +170,7 @@ const RightSidebar = () => {
                 <a
                   style={{ backgroundColor: primaryColor }}
                   href={item?.url}
-                  className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
+                  className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2 "
                 >
                   <FaTiktok className="inline text-white text-xl" />
                 </a>

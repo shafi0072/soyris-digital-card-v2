@@ -2,8 +2,9 @@ import { userContext } from "@/src/Storage/ContextApi";
 import React from "react";
 import { useContext } from "react";
 
-const Content = ({ item }) => {
+const Content = ({ item ,design}) => {
   const {primaryColor ,primaryAccent } = useContext(userContext);
+  console.log(item?.url)
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -334,8 +335,8 @@ const Content = ({ item }) => {
             )}-${item?.number.substring(6)}`}
           {item?.url && item?.url} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
-          <br /> {item?.chooseLabel && !item?.hideLabelCopy  && item?.chooseLabel}{" "}
-          {item?.displayUrl && <span className="block">{item?.displayUrl}</span>}{item?.label && item?.label} 
+          <br /> {item?.chooseLabel && !item?.hideLabelCopy  && <span className={`${design === "pro" && "text-[14px]"}`}>{item?.chooseLabel}</span>}{" "}
+          {item?.displayUrl && <span className="block">{item?.displayUrl}</span>}{item?.label && <span className={`${design === "pro" && "text-[14px]"}`}>{item?.label}</span>} 
         </p>
       </div>
     </div>
