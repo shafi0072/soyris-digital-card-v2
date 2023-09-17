@@ -2,7 +2,7 @@ import { userContext } from '@/src/Storage/ContextApi';
 import React from 'react';
 import { useContext } from 'react';
 
-const Website = ({ item }) => {
+const Website = ({ item,design }) => {
     const { primaryColor, primaryAccent } = useContext(userContext);
     const websiteIcon = (
         <svg
@@ -22,13 +22,13 @@ const Website = ({ item }) => {
     return (
         <div className="flex gap-3 my-5 items-center">
             <div
-                className="w-[50px] h-[50px] rounded-full flex justify-center items-center "
+                 className={`${design === "pro" ? "w-[42px] h-[42px]":"w-[50px] h-[50px]"}  rounded-full flex justify-center items-center `}
                 style={{ backgroundColor: primaryColor }}
             >
                 {item?.type === "Website" && websiteIcon}
             </div>
             <div>
-                <a href={item?.url}> {item?.label} </a> <br /> 
+                <a className={`${design === "pro" && "text-[18px] roboto"}`} href={item?.url}> {item?.label} </a> <br /> 
                 {/* <p>{}</p> */}
             </div>
         </div>

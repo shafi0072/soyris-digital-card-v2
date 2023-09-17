@@ -66,7 +66,6 @@ const RightSidebar = () => {
       item?.type === "Pdf" || item?.type === "Notes" || item?.type === "Date"
   );
 
-
   return (
     <div className="scroll-hide w-[363px] h-[80vh] overflow-y-scroll bg-white pt-5">
       <div className="relative  w-[363px]">
