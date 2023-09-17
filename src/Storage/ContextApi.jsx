@@ -20,15 +20,15 @@ const ContextApi = ({ children }) => {
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])
     const [qrStyle, setQrStyle] = useState('squares');
-    const [foregroundColor, setForegroundColor] = useState('#000000');
+    const [foregroundColor, setForegroundColor] = useState('#0053a2');
     const [foregroundSecondColor, setForegroundSecondColor] = useState("#000000");
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-    const [innerEyeColor, setInnerEyeColor] = useState("#DC0E74");
-    const [outerEyeColor, setOuterEyeColor] = useState("#DC0E74");
+    const [innerEyeColor, setInnerEyeColor] = useState("#D40808");
+    const [outerEyeColor, setOuterEyeColor] = useState("#0053a2");
     const [selectedLogo, setSelectedLogo] = useState(null)
     const [outesEyeShape, setOuterEyeShape] = useState('square')
     const [innerEyeShape, setInnerEyeShape] = useState('square')
-    const [qrSize, setQrSize] = useState(100);
+    const [qrSize, setQrSize] = useState(160);
     const [logoSize, setLogoSize] = useState(20);
     const [isLoading, setIsLoading] = useState(false)
 
