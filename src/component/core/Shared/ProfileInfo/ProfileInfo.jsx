@@ -36,7 +36,7 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
                 </span>
               </h2>
               <h3
-                className={`font-base text-[18px] ${
+                className={`font-base  text-[18px] ${
                   design === "classic" && `border-l-2  pl-2`
                 }`}
                 style={{ borderColor: color }}
@@ -202,11 +202,11 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
           ) : (
             <div>
                 <div
-              className="text-center py-4 text-white w-full"
+              className="text-center py-5 text-white w-full"
               style={{ backgroundColor: color }}
             >
               <h2
-                className={`font-bold text-2xl   ${
+                className={`font-semibold text-[27px]   ${
                   design === "classic" ? "border-l-2 pl-2" : ""
                 }`}
                 style={{ borderColor: color }}
@@ -222,7 +222,7 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
                 {infos?.suffix
                   ? infos?.suffix
                   : userData?.profileInfo?.suffix}{" "}
-               <span className="font-thin text-base ">
+               <span className="font-semibold text-[18px] text-base ">
                   {" "}
                   {infos?.accreditations
                     ? (`(${infos?.accreditations})`)
@@ -230,27 +230,23 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
                 </span>
               </h2>
               <h3
-                className={`font-base text-[18px] ${
-                  design === "classic" && `border-l-2  pl-2`
-                }`}
+                className={`font-base mt-[10px] text-[18px] `}
                 style={{ borderColor: color }}
               >
                 {infos?.job_title
                   ? infos?.job_title
                   : userData?.profileInfo?.job_title}
               </h3>
-              {/* <h3
-                className={`font-semibold text-[18px] `}
-                style={{ borderColor: color, color: color }}
+              <h3
+                className={` text-[16px] `}
+                style={{ borderColor: color }}
               >
                 {infos?.department
                   ? infos?.department
                   : userData?.profileInfo?.department}
-              </h3> */}
+              </h3>
               <h3
-                className={`italic text-[18px] ${
-                  design === "classic" && "border-l-2 pl-2"
-                }`}
+                className={`italic text-[18px] `}
                 style={{ borderColor: color }}
               >
                 {infos?.company
@@ -259,7 +255,7 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
               </h3>
               
             </div>
-            <div className="flex items-center justify-center py-6">
+            <div className=" my-6 mx-8">
                 <img  src={logoImage} alt="" />
             </div>
             <p className="italic text-md mt-4">
