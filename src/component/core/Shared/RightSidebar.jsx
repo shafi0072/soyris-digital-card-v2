@@ -189,7 +189,7 @@ const RightSidebar = () => {
                   <p className="italic">{item?.notes}</p>
                 </div>
               )}
-              {item?.type === "Date" && <DateView item={item} />}
+              {item?.type === "Date" && <DateView design={design} item={item} />}
               {item?.type === "QR" && <QrView item={item} />}
             </>
           ))}
