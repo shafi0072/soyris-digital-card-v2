@@ -136,13 +136,13 @@ const Design = () => {
                 <div className='flex'>
                     <div onClick={() => setCustomColor(!customColor)} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] mr-2 relative ">
                         <img src="/1fb07539-85c6-49e4-80b3-83e7d03064f8.png" alt="" />
-                        {primaryColor !== '#cccc00' && primaryColor !== '#0077B5' && primaryColor !== '#1A7C16' && primaryColor !== '#EB531B' && primaryColor !== '#E31BEB' && primaryColor !== '#1D15F7' && <CheckIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 ' />}
+                        {primaryColor !== '#cccc00' && primaryColor !== '#0053a2' && primaryColor !== '#1A7C16' && primaryColor !== '#EB531B' && primaryColor !== '#E31BEB' && primaryColor !== '#1D15F7' && <CheckIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 ' />}
                     </div>
                     <div onClick={() => handleColor('#cccc00')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#cccc00] ml-2">
                         {primaryColor === '#cccc00' && <CheckIcon />}
                     </div>
-                    <div onClick={() => { handleColor('#0077B5'); setSecondaryColor('#0077B5') }} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0077B5] ml-2">
-                        {primaryColor === '#0077B5' && <CheckIcon />}
+                    <div onClick={() => { handleColor('#0053a2'); setSecondaryColor('#0053a2') }} className="cursor-pointer rounded-full text-white text-center pt-[2px] borde w-[30px] h-[30px] bg-[#0053a2] ml-2">
+                        {primaryColor === '#0053a2' && <CheckIcon />}
                     </div>
                     <div onClick={() => handleColor('#1A7C16')} className="cursor-pointer rounded-full text-white text-center pt-[2px] w-[30px] h-[30px] bg-[#1A7C16] ml-2">
                         {primaryColor === '#1A7C16' && <CheckIcon />}

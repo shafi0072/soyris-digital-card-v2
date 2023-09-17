@@ -54,7 +54,7 @@ const Logo = () => {
           htmlFor="logoImages"
           className="flex  bg-gray-200 px-3 py-2 rounded-full"
         >
-          <AddIcon sx={{ color: "#0077B5" }} />
+          <AddIcon sx={{ color: "#0053a2" }} />
           <p className="text-md">Add a logo</p>
         </label>
         <input
