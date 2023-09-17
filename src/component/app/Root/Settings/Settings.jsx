@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CardName from "./CardName";
 import Personalised from "./Personalised";
 import CardStatus from "./CardStatus";
-import DuplicateCard from "./DuplicateCard";
+import DuplicateCard from "./DuplicateCard/DuplicateCard";
 import DeleteCard from "./DeleteCard";
 import { baseUrl } from "@/src/config/Server";
 import { data } from "autoprefixer";
@@ -17,6 +17,7 @@ const Settings = () => {
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
   const { userData,userCardData } = useContext(userContext);
+  // console.log({userCardData})
  
   
   const handleCardNameOnChange = (event) => {
@@ -98,6 +99,7 @@ const Settings = () => {
       />
       <Personalised
         setUrl={setUrl}
+        url={url}
         handleUrl={handleUrl}
         isEdit={isEdit}
         setEdit={setEdit}

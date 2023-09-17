@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import InputColor from 'react-input-color';
 
 const Design = () => {
-    const [color, setColor] = useState({});
+    // const [color, setColor] = useState({});
     const [border, setBorder] = useState('clasic');
     const [colorName, setColorname] = useState('')
     const { profileImage, logoImage, userData, design, primaryColor,
@@ -25,7 +25,7 @@ const Design = () => {
         setSecondaryAccent,
         setDesign, userCardData, setIsLoading } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
-
+    console.log({ primaryAccent });
     const colorPicker = useRef()
     const handleColor = color => {
         setPrimaryColor(color);
@@ -88,7 +88,7 @@ const Design = () => {
     }, []);
 
     return (
-        <div>
+        <div className='h-[100vh] overflow-y-scroll mb-20 scroll-hide'>
             <div className='border-b border-[#CBD5E0] pb-8'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Design</h2>
                 <div className='flex gap-3'>
@@ -116,6 +116,16 @@ const Design = () => {
                         </span>
 
                         <span className='absolute bottom-2 left-0 right-0 text-center text-[#2C2C2C]'>Flat</span>
+
+                    </button>
+                    <button className={`${design === 'pro' && 'border border-[#0F66A0]'} p-2  relative w-[90px] h-[120px] shadow-md`} onClick={() => setDesign('pro')}>
+                        <span style={{ transform: "rotate(180deg)" }} className='absolute  left-2 bottom-12'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="73.031" height="35.449" viewBox="0 0 73.031 35.449">
+                                <path id="Rectangle_24" data-name="Rectangle 24" d="M13,0H60.031a13,13,0,0,1,13,13V35.449a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V13A13,13,0,0,1,13,0Z" fill="#0f66a0" />
+                            </svg>
+                        </span>
+
+                        <span className='absolute bottom-2 left-0 right-0 text-center text-[#2C2C2C]'>Pro</span>
 
                     </button>
                 </div>
@@ -154,14 +164,23 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-                                    {/* <div onClick={() => setColorname('primaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryColor }}>    
-                                    </div> */}
-                                    <InputColor
-                                        initialValue={primaryColor}
-                                        onChange={e=> setPrimaryColor(e?.hex)}
-                                        placement="bottom"
+                                <div className='flex bg-gray-200 w-[150px]  rounded-lg ml-5'>
+
+                                    <input
+
+                                        type="color"
+                                        value={primaryColor}
+                                        onChange={(e) => setPrimaryColor(e.target.value)}
+                                        className='cursor-pointer border-none'
+
                                     />
+                                    <br />
+                                    <InputColor
+                                        style={{ display: "none" }}
+                                        initialValue={primaryColor}
+                                        onChange={e => setPrimaryColor(e?.hex)}
+                                    />
+
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryColor}</span>
                                     </div>
@@ -172,12 +191,20 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Primary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-                                    {/* <div onClick={() => setColorname('primaryAccent')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: primaryAccent }}></div> */}
+                                <div className='flex bg-gray-200 w-[150px] rounded-lg ml-5'>
+                                    <input
+                                        id="secondaryColor"
+                                        type="color"
+                                        value={primaryAccent}
+                                        onChange={(e) => setPrimaryAccent(e.target.value)}
+                                        className='cursor-pointer border-none'
+
+                                    />
+                                    <br />
                                     <InputColor
+                                        style={{ display: "none" }}
                                         initialValue={primaryAccent}
-                                        onChange={e=> setPrimaryAccent(e?.hex)}
-                                        placement="bottom"
+                                        onChange={e => setPrimaryAccent(e?.hex)}
                                     />
                                     <div className='px-3'>
                                         <span className='text-center'>{primaryAccent}</span>
@@ -188,13 +215,24 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Color <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-                                    {/* <div onClick={() => setColorname('secondaryColor')} className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryColor }}></div> */}
-                                    <InputColor
-                                        initialValue={secondaryColor}
-                                        onChange={e=> setSecondaryColor(e?.hex)}
-                                        placement="bottom"
+                                <div className='flex bg-gray-200 w-[150px]  rounded-lg ml-5'>
+
+
+                                    <input
+                                        id="secondaryColor"
+                                        type="color"
+                                        value={secondaryColor}
+                                        onChange={(e) => setSecondaryColor(e.target.value)}
+                                        className='cursor-pointer'
+
                                     />
+                                    <br />
+                                    <InputColor
+                                        style={{ display: "none" }}
+                                        initialValue={secondaryColor}
+                                        onChange={e => setSecondaryColor(e?.hex)}
+                                    />
+
                                     <div className='px-3'>
                                         <span className='text-center'>{secondaryColor}</span>
                                     </div>
@@ -204,25 +242,26 @@ const Design = () => {
                                 <div className=''>
                                     <h1 className="text-md font-semibold">Secondary Accent <InfoOutlinedIcon /></h1>
                                 </div>
-                                <div  className='flex bg-gray-200 w-[150px] border-2 rounded-lg ml-5'>
-                                    {/* <div className='w-[30px] h-[30px] rounded-l-lg' style={{ background: secondaryAccent }}></div> */}
+                                <div className='flex bg-gray-200 w-[150px]  rounded-lg ml-5'>
+
+                                    <input
+                                        id="secondaryAccent"
+                                        type="color"
+                                        value={secondaryAccent}
+                                        onChange={(e) => setSecondaryAccent(e.target.value)}
+                                        className='cursor-pointer border-none'
+                                    />
+                                    <br />
                                     <InputColor
+                                        style={{ display: "none" }}
                                         initialValue={secondaryAccent}
-                                        onChange={e=> setSecondaryAccent(e?.hex)}
-                                        placement="bottom"
+                                        onChange={e => setSecondaryAccent(e?.hex)}
                                     />
                                     <div className='px-3'>
                                         <span className='text-center'>{secondaryAccent}</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div ref={colorPicker}>
-                            {colorName === 'primaryColor' && <ChromePicker color={primaryColor} onChange={(e) => setPrimaryColor(e.hex)} />}
-                            {colorName === 'primaryAccent' && <ChromePicker color={primaryAccent} onChange={(e) => setPrimaryAccent(e.hex)} />}
-                            {colorName === 'secondaryColor' && <ChromePicker color={secondaryColor} onChange={(e) => setSecondaryColor(e.hex)} />}
-                            {colorName === 'secondaryAccent' && <ChromePicker color={secondaryAccent} onChange={(e) => setSecondaryAccent(e.hex)} />}
                         </div>
                     </div>
                 }
@@ -236,8 +275,11 @@ const Design = () => {
                 <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
                 <LogoImage />
             </div>
-            <div className='my-10'>
-                <button onClick={handleDesignSubmit} className='px-5 py-1 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
+            <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20' style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
+
+                <button onClick={handleDesignSubmit} className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
+
+
             </div>
         </div>
 

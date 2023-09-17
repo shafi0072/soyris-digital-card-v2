@@ -13,7 +13,7 @@ const ShareCard = () => {
   
   // handle qr copy
   const handleQrCopy = () => {
-    navigator.clipboard.writeText(`https://easycard-gr.vercel.app/${settings?.url}`).then(() => {
+    navigator.clipboard.writeText(`https://easycards.pro/${settings?.url}`).then(() => {
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
@@ -46,7 +46,7 @@ const ShareCard = () => {
         <div>
           <DottedQRCode
             // value={`https://${typeof window !== undefined && window.location.hostname}/${userData.userName}`}
-            value={`https://easycard-gr.vercel.app/${settings?.url}`}
+            value={`https://easycards.pro/${settings?.url}`}
             size={300}
             level="M"
             includeMargin

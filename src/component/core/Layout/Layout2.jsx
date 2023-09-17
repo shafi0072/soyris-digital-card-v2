@@ -27,6 +27,8 @@ import RightSidebar from '../Shared/RightSidebar';
 import SubNavbar from '../Shared/SubNavbar';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
+// google analytics
+import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -212,7 +214,7 @@ style={{color: 'white'}}
           </ListItemButton>
         </div>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 0}}>
 
         <div className="col-span-11  mt-[5%] ...">
           <SubNavbar />
@@ -220,7 +222,7 @@ style={{color: 'white'}}
             <div className="col-span-8">
               {children}
             </div>
-            <div className={`bg-[#F7FAFC]  fixed w-[500px] flex justify-center ${router.pathname === '/' ? "right-0" : "right-[2%] "} `}>
+            <div className={`bg-[#F7FAFC]  fixed w-[500px] flex justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-[0%] "} `}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }
@@ -232,6 +234,7 @@ style={{color: 'white'}}
           </div>
         </div>
       </Box>
+      <Analytics/>
     </Box>
   );
 

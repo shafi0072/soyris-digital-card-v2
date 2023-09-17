@@ -16,7 +16,7 @@ const QrView = ({ item }) => {
             : "justify-end"
         }`}
       >
-        <DottedQRCode value={item?.url} />
+        <DottedQRCode value={item?.qr} />
       </div>
     </div>
   );

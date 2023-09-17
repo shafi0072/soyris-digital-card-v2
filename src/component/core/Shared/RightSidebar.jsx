@@ -23,6 +23,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { FaTiktok } from "react-icons/fa";
 
 import QrView from "./QrView";
+import Website from "./Content/Website";
+import Link from "./Content/Link";
 // import dynamic from "next/dynamic";
 // const ReactPlayer = dynamic(()=> import('react-player'),{ssr:false});
 
@@ -40,7 +42,7 @@ const RightSidebar = () => {
     logoImage,
     infos,
   } = useContext(userContext);
-  console.log({ userCardData });
+  console.log({ newFeilds });
   const socialHeader = newFeilds?.some(
     (item) =>
       item?.type === "Facebook" ||
@@ -66,7 +68,7 @@ const RightSidebar = () => {
 
 
   return (
-    <div className="scroll-hide w-[363px] h-[76vh] overflow-y-scroll bg-white pt-5">
+    <div className="scroll-hide w-[363px] h-[80vh] overflow-y-scroll bg-white pt-5">
       <div className="relative  w-[363px]">
         {design === "classic" && (
           <Classic
@@ -84,10 +86,16 @@ const RightSidebar = () => {
             logoImage={logoImage}
           />
         )}
-       <div className="mx-5">
+        {
+          design === "pro" && <div className='bg-white mx-4 '>
+            <img className="rounded-t-lg" src={profileImage} alt="" />
+          </div>
+        }
+       <div className="mx-4">
        {infos && (
-          <ProfileInfo infos={infos} color={color} userData={userData} design={design} userCardData={userCardData} />
+          <ProfileInfo infos={infos} color={primaryColor} userData={userData} design={design} userCardData={userCardData} logoImage={logoImage} />
         )}
+
         <div></div>
         <div className="my-5">
           {newFeilds?.map((item, index) => (
@@ -100,10 +108,10 @@ const RightSidebar = () => {
               )}
 
               {item?.type === "Phone" && <Content item={item} />}
-              {item?.type === "Website" && <Content item={item} />}
+              {item?.type === "Website" && <Website item={item} />}
               {item?.type === "Email" && <Content item={item} />}
               {item?.type === "Address" && <Content item={item} />}
-              {item?.type === "Link" && <Content item={item} />}
+              {item?.type === "Link" && <Link item={item} />}
               {item?.type === "WhatsApp" && <Content item={item} />}
               {item?.type === "Viber" && <Content item={item} />}
               {item?.type === "Skype" && <Content item={item} />}

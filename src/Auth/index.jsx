@@ -25,7 +25,7 @@ const index = () => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log({ user: result.user });
+        console.log({ user: result.user?.displayName });
         fetch(`${baseUrl}/add-user/auth`, {
           method: "POST",
           headers: {

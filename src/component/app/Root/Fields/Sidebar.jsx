@@ -1,11 +1,13 @@
 import { userContext } from "@/src/Storage/ContextApi";
 import { field_data } from "@/src/constant/Fields";
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 
-const Sidebar = ({ newFeilds, setNewFeilds }) => {
+const Sidebar = ({ newFeilds, setNewFeilds ,scrollTobottom}) => {
   const { color } = useContext(userContext);
+  // const myref = useRef('down')
+  // console.log('myref', myref?.current);
   const [exapnd, setExpand] = useState({
     id: 0,
     status: false,
@@ -13,8 +15,9 @@ const Sidebar = ({ newFeilds, setNewFeilds }) => {
 
   const handleFieldSelect = (e, fields) => {
     let fieldss = [...newFeilds];
-    fieldss.push({id: newFeilds?.length + 1, ...fields})
+    fieldss.push({ id: newFeilds?.length + 1, ...fields })
     setNewFeilds(fieldss);
+    scrollTobottom()
   };
 
   return (

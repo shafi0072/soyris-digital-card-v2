@@ -10,11 +10,11 @@ const ContextApi = ({ children }) => {
     const [userData, setUserData] = useState({})
     const [userCardData, setUserCardData] = useState({})
     const [primaryColor, setPrimaryColor] = useState('#0077B5')
-    const [primaryAccent, setPrimaryAccent] = useState('#fff')
+    const [primaryAccent, setPrimaryAccent] = useState('#ffffff')
     const [secondaryColor, setSecondaryColor] = useState('#0077B5')
-    const [secondaryAccent, setSecondaryAccent] = useState('#fff')
+    const [secondaryAccent, setSecondaryAccent] = useState('#ffffff')
     const [profileImage, setProfileImage] = useState(null)
-    const [design, setDesign] = useState('classic')
+    const [design, setDesign] = useState('')
     const [logoImage, setLogoImage] = useState('')
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
@@ -149,7 +149,7 @@ const ContextApi = ({ children }) => {
             // Set a 2-second delay before setting isLoading to false
             setTimeout(() => {
                 setIsLoading(false);
-            }, 400);
+            }, 0);
         };
 
         // Listen for route changes and trigger loading state
@@ -161,13 +161,11 @@ const ContextApi = ({ children }) => {
         };
     }, []);
     return (
-        <LoadingOverlay active={isLoading}
-            spinner={<RiseLoader color='white' />}
-            text='Loading The Details ...' >
+        <>
             <userContext.Provider value={value}>
                 {children}
             </userContext.Provider>
-        </LoadingOverlay>
+        </>
 
     );
 };
