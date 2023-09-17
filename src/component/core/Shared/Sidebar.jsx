@@ -13,7 +13,7 @@ const hnadleLogout= ()=>{
 }
 
   return (
-    <div className='bg-[#0077B5] w-[100%] min-h-screen pl-2 '>
+    <div className='bg-[#0053a2] w-[100%] min-h-screen pl-2 '>
       <ul>
         {
           nav_data?.map((items, index) => <li className='mb-8' onClick={() => setExpand(index)}>

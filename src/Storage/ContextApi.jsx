@@ -9,9 +9,9 @@ const ContextApi = ({ children }) => {
 
     const [userData, setUserData] = useState({})
     const [userCardData, setUserCardData] = useState({})
-    const [primaryColor, setPrimaryColor] = useState('#0077B5')
+    const [primaryColor, setPrimaryColor] = useState('#0053a2')
     const [primaryAccent, setPrimaryAccent] = useState('#ffffff')
-    const [secondaryColor, setSecondaryColor] = useState('#0077B5')
+    const [secondaryColor, setSecondaryColor] = useState('#0053a2')
     const [secondaryAccent, setSecondaryAccent] = useState('#ffffff')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('')
@@ -161,13 +161,11 @@ const ContextApi = ({ children }) => {
         };
     }, []);
     return (
-        <LoadingOverlay active={isLoading}
-            spinner={<RiseLoader color='white' />}
-            text='Loading The Details ...' >
+        <>
             <userContext.Provider value={value}>
                 {children}
             </userContext.Provider>
-        </LoadingOverlay>
+        </>
 
     );
 };
