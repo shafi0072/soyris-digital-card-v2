@@ -32,6 +32,7 @@ const index = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            fullName: result.user.displayName,
             userName: result?.user?.displayName.replace(/\s+/g, '').toLowerCase(),
             email: result?.user?.email,
           }),
@@ -74,6 +75,7 @@ const index = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            fullName:signUpData?.fullName,
             userName: signUpData?.fullName.replace(/\s+/g, '').toLowerCase(),
             email: signUpData?.email,
           }),
