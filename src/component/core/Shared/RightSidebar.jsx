@@ -127,7 +127,7 @@ const RightSidebar = () => {
               {item?.type === "Facebook" && (
                 <a
                   href={item?.url}
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: '#1877f2' }}
                   className=" w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
                   <FacebookIcon style={{ color: primaryAccent }} />{" "}
@@ -135,7 +135,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Instagram" && (
                 <a
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: "#c32aa3" }}
                   href={item?.url}
                   className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -144,7 +144,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Twitter" && (
                 <a
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: "#1da1f2" }}
                   href={item?.url}
                   className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -153,7 +153,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "LinkedIn" && (
                 <a
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: "#0a66c2"}}
                   href={item?.url}
                   className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -162,7 +162,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Pinterest" && (
                 <a
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: "#bd081c" }}
                   href={item?.url}
                   className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                 >
@@ -171,7 +171,7 @@ const RightSidebar = () => {
               )}
               {item?.type === "Tiktok" && (
                 <a
-                  style={{ backgroundColor: primaryColor }}
+                  style={{ backgroundColor: "#010101" }}
                   href={item?.url}
                   className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2 "
                 >
@@ -193,7 +193,7 @@ const RightSidebar = () => {
                   <p className="italic">{item?.notes}</p>
                 </div>
               )}
-              {item?.type === "Date" && <DateView item={item} />}
+              {item?.type === "Date" && <DateView design={design} item={item} />}
               {item?.type === "QR" && <QrView item={item} />}
             </>
           ))}

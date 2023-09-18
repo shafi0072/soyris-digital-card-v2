@@ -29,7 +29,7 @@ const SelectCard = () => {
       body: JSON.stringify({
         firstName: words?.length > 2 ? words[0] + " " + words[1] : words[0],
         lastName: words[words?.length - 1],
-        primaryColor: '#0077B5',
+        primaryColor: '#0053a2',
         email: userData?.email,
         cardUserId: userData?._id,
         design: desg,
@@ -47,7 +47,7 @@ const SelectCard = () => {
     <div style={{ height: "80vh" }}>
       <div className="flex gap-14">
         <div
-          className="w-[300px] cursor-pointer"
+          className="w-[300px] cursor-pointer shadow-lg"
           onClick={() =>
             handleSelectCard(
               "flat",
@@ -180,7 +180,7 @@ const SelectCard = () => {
           </div>
         </div>
         <div
-          className="w-[300px] cursor-pointer"
+          className="w-[300px] cursor-pointer shadow-lg"
           onClick={() =>
             handleSelectCard(
               "classic",
@@ -382,7 +382,7 @@ const SelectCard = () => {
           </div>
         </div>
         <div
-          className="w-[300px] cursor-pointer"
+          className="w-[300px] cursor-pointer shadow-lg"
           onClick={() =>
             handleSelectCard(
               "pro",
@@ -407,13 +407,13 @@ const SelectCard = () => {
               <h4 className="italic text-[#EB531B] text-lg">Marketing</h4>
               <h4 className="italic  text-lg">Engine Media</h4>
             </div>
-            <div className="mx-auto w-3/4 my-4">
+            <div className="mx-auto w-3/4 my-4 ">
               <img
                 src="https://suva-trip-exist.s3.amazonaws.com/Image+1.png"
                 alt=""
               />
             </div>
-            <div>
+            <div className="px-2">
               <p className="my-3 italic">
                 I lead product across teams for Nike and I ski in my free time.{" "}
               </p>
@@ -478,7 +478,7 @@ const SelectCard = () => {
                 <span>Goes by Mike (He/Him)</span>
               </p>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 px-2">
               <div className="flex gap-2 items-center">
                 <div className="bg-[#0053A2] p-2.5 rounded-full  ">
                   <PhoneAndroidIcon className="text-white" />
@@ -553,7 +553,7 @@ const SelectCard = () => {
                 </div>
               </div>
             </div> */}
-            <div className="bg-[#0053A2] text-white mt-5 flex justify-center rounded">
+            <div className="bg-[#0053A2] text-white mt-5 flex justify-center rounded mx-2">
               <button className="flex items-center gap-3 py-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

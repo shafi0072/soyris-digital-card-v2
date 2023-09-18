@@ -9,26 +9,26 @@ const ContextApi = ({ children }) => {
 
     const [userData, setUserData] = useState({})
     const [userCardData, setUserCardData] = useState({})
-    const [primaryColor, setPrimaryColor] = useState('#0077B5')
-    const [primaryAccent, setPrimaryAccent] = useState('#fff')
-    const [secondaryColor, setSecondaryColor] = useState('#0077B5')
-    const [secondaryAccent, setSecondaryAccent] = useState('#fff')
+    const [primaryColor, setPrimaryColor] = useState('#0053a2')
+    const [primaryAccent, setPrimaryAccent] = useState('#ffffff')
+    const [secondaryColor, setSecondaryColor] = useState('#0053a2')
+    const [secondaryAccent, setSecondaryAccent] = useState('#ffffff')
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('')
     const [logoImage, setLogoImage] = useState('')
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])
-    const [qrStyle, setQrStyle] = useState('squares');
-    const [foregroundColor, setForegroundColor] = useState('#000000');
+    const [qrStyle, setQrStyle] = useState('dots');
+    const [foregroundColor, setForegroundColor] = useState('#0053a2');
     const [foregroundSecondColor, setForegroundSecondColor] = useState("#000000");
     const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-    const [innerEyeColor, setInnerEyeColor] = useState("#DC0E74");
-    const [outerEyeColor, setOuterEyeColor] = useState("#DC0E74");
+    const [innerEyeColor, setInnerEyeColor] = useState("#D40808");
+    const [outerEyeColor, setOuterEyeColor] = useState("#0053a2");
     const [selectedLogo, setSelectedLogo] = useState(null)
-    const [outesEyeShape, setOuterEyeShape] = useState('square')
-    const [innerEyeShape, setInnerEyeShape] = useState('square')
-    const [qrSize, setQrSize] = useState(100);
+    const [outesEyeShape, setOuterEyeShape] = useState('dots')
+    const [innerEyeShape, setInnerEyeShape] = useState('round')
+    const [qrSize, setQrSize] = useState(160);
     const [logoSize, setLogoSize] = useState(20);
     const [isLoading, setIsLoading] = useState(false)
 
@@ -161,13 +161,11 @@ const ContextApi = ({ children }) => {
         };
     }, []);
     return (
-        <LoadingOverlay active={isLoading}
-            spinner={<RiseLoader color='white' />}
-            text='Loading The Details ...' >
+        <>
             <userContext.Provider value={value}>
                 {children}
             </userContext.Provider>
-        </LoadingOverlay>
+        </>
 
     );
 };

@@ -11,12 +11,16 @@ const ProfileImage = () => {
   const { profileImage, setProfileImage } = useContext(userContext);
   const cropperRef = useRef(null);
 
-  const handleFileChange = async(e) => {
+  const handleFileChange = (e) => {
+    setCroppedImage(null);
+    setProfileImage(null);
+    setSelectedImage(null);
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
   };
 
   const handleCrop = () => {
+   
     if (typeof window === "undefined") {
       // Server-side rendering, do nothing
       return null;
@@ -93,7 +97,7 @@ const ProfileImage = () => {
             htmlFor="profileImage"
             className="cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full"
           >
-            <AddIcon sx={{ color: "#0077B5" }} />
+            <AddIcon sx={{ color: "#0053a2" }} />
             <p className="text-md">
               {" "}
               {profileImage

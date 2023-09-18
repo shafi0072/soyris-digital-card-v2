@@ -3,7 +3,7 @@ import React from "react";
 import { useContext } from "react";
 import Moment from "react-moment";
 
-const DateView = ({ item }) => {
+const DateView = ({ item, design }) => {
   const {color,primaryColor,primaryAccent} = useContext(userContext)
   return (
     <div>
@@ -29,12 +29,12 @@ const DateView = ({ item }) => {
             </svg>
           </div>
           <div>
-            <p>
+            <p className={design === 'pro' && 'text-[18px] roboto'}>
               <Moment format="DD/MM/YYYY">
                 {item?.date}
               </Moment>
             </p>
-            <p>{item?.label}</p>
+            <p className={design === 'pro' && 'text-[14px] roboto'}>{item?.label}</p>
           </div>
         </div>
       )}

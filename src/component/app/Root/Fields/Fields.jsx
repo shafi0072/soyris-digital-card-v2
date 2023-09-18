@@ -29,7 +29,7 @@ const Fields = () => {
       <div className="...">
         <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
       </div>
-      <div className="col-span-2 ...">
+      <div className="col-span-2  ...">
         <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
         <div  ref={targetRef}></div>
       </div>
