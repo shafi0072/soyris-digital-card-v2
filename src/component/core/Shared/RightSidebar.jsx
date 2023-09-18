@@ -87,7 +87,11 @@ const RightSidebar = () => {
         )}
         {
           design === "pro" && <div className='bg-white mx-6 '>
-            <img className="rounded-t-lg h-[400px]" src={profileImage} alt="" />
+            {
+              <div className=' w-[100%] h-[400px]  rounded-md ' style={{borderColor: color}}>
+              {profileImage ? <img className=' object-cover rounded-t-2xl h-full w-full' src={profileImage ? profileImage : ""} alt="" />: <div className='w-[100%]  h-full'  style={{background:"#fff"}}></div>}
+            </div>
+            }
           </div>
         }
        <div className="mx-6">
@@ -189,7 +193,7 @@ const RightSidebar = () => {
                   <p className="italic">{item?.notes}</p>
                 </div>
               )}
-              {item?.type === "Date" && <DateView item={item} />}
+              {item?.type === "Date" && <DateView design={design} item={item} />}
               {item?.type === "QR" && <QrView item={item} />}
             </>
           ))}

@@ -126,7 +126,7 @@ const Content2 = () => {
       rightSideRef.current.scrollTop = rightSideRef.current.scrollHeight;
     }
   }, [newFeilds.length]);
-
+console.log({newFeilds});
   return (
     <>
       <div
