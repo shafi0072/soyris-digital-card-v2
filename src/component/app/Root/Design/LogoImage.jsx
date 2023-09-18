@@ -6,7 +6,7 @@ import { userContext } from "@/src/Storage/ContextApi";
 const LogoImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
-  const [cropAspectRatio, setCropAspectRatio] = useState(3);
+  const [cropAspectRatio, setCropAspectRatio] = useState(1);
   const { logoImage, setLogoImage } = useContext(userContext);
   const cropperRef2 = useRef(null);
   // console.log({ logoImage });
