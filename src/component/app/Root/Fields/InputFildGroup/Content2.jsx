@@ -126,7 +126,6 @@ const Content2 = () => {
       rightSideRef.current.scrollTop = rightSideRef.current.scrollHeight;
     }
   }, [newFeilds.length]);
-console.log({newFeilds});
   return (
     <>
       <div
@@ -134,10 +133,10 @@ console.log({newFeilds});
         style={{ overflowY: "auto", maxHeight: "70vh" }}
         className="right-side scroll-hide  mb-5 bg-gray-200   p-5 rounded-lg"
       >
-        <Container onDrop={onDrop}>
+        <Container onDrop={onDrop} >
           {newFeilds?.length > 0 &&
             newFeilds?.map((items, index) => (
-              <Draggable key={index}>
+              <Draggable key={index} >
                 <div className="mb-4">
                   <Phone
                     items={items}
