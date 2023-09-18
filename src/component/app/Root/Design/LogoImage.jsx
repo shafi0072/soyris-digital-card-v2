@@ -11,6 +11,9 @@ const LogoImage = () => {
   const cropperRef2 = useRef(null);
   // console.log({ logoImage });
   const handleFileChange = (e) => {
+    setCroppedImage(null);
+    setLogoImage(null); 
+    setSelectedImage(null)
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
   };
@@ -55,29 +58,29 @@ const LogoImage = () => {
     // dragMode: "crop",
     cropBoxResizable: true,
     // cropBoxMovable: true,
-     cropBoxData: { width: 200, height: 200 }, // Initial crop area size
+    cropBoxData: { width: 200, height: 200 }, // Initial crop area size
     // crop: handleCropBoxDataChange, // To update the aspect ratio when crop area is resized
     zoomOnWheel: false, // Disable zoom on wheel
   };
   return (
     <div className="mb-[100px]">
       <div className='mt-8 flex items-center justify-between w-3/4'>
-      {logoImage !== 'null' && logoImage !== null && logoImage &&<div className='relative w-[100px] '>
+        {logoImage !== 'null' && logoImage !== null && logoImage && <div className='relative w-[100px] '>
           <>
-            <img className='w-[100px]  rounded-full   object-cover'  src={logoImage && logoImage} alt="" />
-          <span onClick={() => {
-            setCroppedImage(null);
-            setLogoImage(null); setSelectedImage(null)
-          }} className='absolute -right-3 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
-            <CloseIcon className='text-white text-[12px]' />
-          </span>
+            <img className='w-[100px]  rounded-full   object-cover' src={logoImage && logoImage} alt="" />
+            <span onClick={() => {
+              setCroppedImage(null);
+              setLogoImage(null); setSelectedImage(null)
+            }} className='absolute -right-3 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
+              <CloseIcon className='text-white text-[12px]' />
+            </span>
           </>
         </div>
-          }
+        }
         <div className=" w-[266px]">
           <label htmlFor='logoImages' className='cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
             <AddIcon sx={{ color: '#0053a2' }} />
-            <p className="text-md"> {logoImage? 'Replace Logo' : 'Add Logo'} </p>
+            <p className="text-md"> {logoImage ? 'Replace Logo' : 'Add Logo'} </p>
 
           </label>
           <input
@@ -94,7 +97,7 @@ const LogoImage = () => {
           <Cropper
             ref={cropperRef2}
             src={selectedImage}
-            style={{ height: '100%', width: '100%'  }}
+            style={{ height: '100%', width: '100%' }}
             {...cropperOptions}
           />
 

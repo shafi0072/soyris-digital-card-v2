@@ -12,11 +12,15 @@ const ProfileImage = () => {
   const cropperRef = useRef(null);
 
   const handleFileChange = (e) => {
+    setCroppedImage(null);
+    setProfileImage(null);
+    setSelectedImage(null);
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
   };
 
   const handleCrop = () => {
+   
     if (typeof window === "undefined") {
       // Server-side rendering, do nothing
       return null;

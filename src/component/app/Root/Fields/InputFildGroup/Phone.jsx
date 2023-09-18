@@ -205,6 +205,7 @@ const {userData} = useContext(userContext)
           >
             <input id={items?.type}
               type="text"
+              value={items?.qr}
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
               onChange={(e) =>
