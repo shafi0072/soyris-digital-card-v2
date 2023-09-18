@@ -52,14 +52,14 @@ const MyCards = () => {
                         <div className=' cursor-pointer w-[300px] ml-4 mb-5  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
                             {items?.display?.design === "flat" && <div className=' relative w-full h-[300px] '>
                                 <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-full rounded-t-md' alt="" />
-                                <div className='absolute top-[95%] h-5 w-full rounded-b-md' style={{borderBottom: `10px solid ${items?.display?.primaryColor}` }}></div>
+                                <div className='absolute top-[95%] h-5 w-full rounded-b-md' style={{ borderBottom: `10px solid ${items?.display?.primaryColor}` }}></div>
                             </div>}
                             {items?.display?.design === 'classic' &&
                                 <div
                                     className=" w-[300px] h-[300px]  relative rounded"
-                                   
+
                                 >
-                                   
+
                                     <div className="">
                                         <div className="absolute  top-[72.6%]  z-10">
                                             <svg
@@ -107,20 +107,20 @@ const MyCards = () => {
                                             </svg>
                                         </div>
                                         <img
-                                        className="h-[300px] w-full object-cover rounded"
-                                        src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"}
-                                        alt=""
-                                    />
+                                            className="h-[300px] w-full object-cover rounded"
+                                            src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"}
+                                            alt=""
+                                        />
                                     </div>
                                 </div>
                             }
                             {items?.display?.design === 'pro' &&
-                                
+
                                 <div>
-                                    <img className="h-[300px] w-full object-cover rounded" src={items?.display?.ProfileImage? items?.display?.ProfileImage :"/man.jpg"} alt="" />
+                                    <img className="h-[300px] w-full object-cover rounded" src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} alt="" />
                                 </div>
                             }
-                            <h2 className={`${items?.display?.design === "pro" && `bg-[${items?.display?.primaryColor}] text-white`} text-center text-2xl py-5 border-b-2 border-dashed`} style={{borderColor:items?.display?.primaryColor}}>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>
+                            <h2 className={` text-center text-2xl py-5 border-b-2 border-dashed`} style={{ borderColor: items?.display?.primaryColor, background: items?.display?.design === 'pro' ? items?.display?.primaryColor : 'transparent', color:items?.display?.design === 'pro' ? 'white' : 'black'  }}>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>
                             <div className='flex justify-center'>
                                 <ul className='mt-5 flex gap-4'>
                                     <li>
