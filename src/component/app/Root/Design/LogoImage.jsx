@@ -53,7 +53,7 @@ const LogoImage = () => {
   };
 
   const cropperOptions = {
-    // aspectRatio: cropAspectRatio,
+    aspectRatio: cropAspectRatio,
     // guides: true,
     // dragMode: "crop",
     cropBoxResizable: true,
@@ -80,7 +80,7 @@ const LogoImage = () => {
         <div className=" w-[266px]">
           <label htmlFor='logoImages' className='cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full'>
             <AddIcon sx={{ color: '#0053a2' }} />
-            <p className="text-md"> {logoImage ? 'Replace Logo' : 'Add Logo'} </p>
+            <p className="text-md"> { logoImage !==null && logoImage !== 'null' && logoImage ? 'Replace Logo' : 'Add Logo'} </p>
 
           </label>
           <input
