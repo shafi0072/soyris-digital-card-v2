@@ -22,13 +22,13 @@ const Website = ({ item,design }) => {
     return (
         <div className="flex gap-3 my-5 items-center">
             <div
-                 className={`${design === "pro" ? "w-[42px] h-[42px]":"w-[50px] h-[50px]"}  rounded-full flex justify-center items-center `}
+                 className={`${design === "pro" ? "w-[42px] h-[42px]":"w-[50px] h-[50px]"}  rounded-full flex justify-center items-center`}
                 style={{ backgroundColor: primaryColor }}
             >
-                {item?.type === "Website" && websiteIcon}
+                {item?.type === "Website" && websiteIcon} 
             </div>
             <div>
-                <a className={`${design === "pro" && "text-[18px] roboto"}`} href={item?.url}> {item?.label} </a> <br /> 
+                <a className={`${design === "pro" && "text-[18px] roboto"} w-[230px]`}     style={{ overflowWrap: 'break-word' }} href={item?.url}> {item?.label} </a> <br /> 
                 {/* <p>{}</p> */}
             </div>
         </div>

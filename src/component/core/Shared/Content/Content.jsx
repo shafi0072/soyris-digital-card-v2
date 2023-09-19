@@ -330,6 +330,7 @@ const Content = ({ item, design }) => {
           className={`${
             design === "pro" ? "roboto text-[18px]" : "text-[16px]"
           } w-[230px] `}
+          style={{ overflowWrap: 'break-word' }}
         >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
