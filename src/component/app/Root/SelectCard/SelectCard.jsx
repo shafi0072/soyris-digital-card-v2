@@ -12,14 +12,14 @@ import { decodeJwt } from "@/src/config/jwtDecoder";
 
 const SelectCard = () => {
   const { userData } = useContext(userContext);
-
+  console.log({userData})
   
   
 
   const handleSelectCard = (desg, image, logo) => {
-    
+  
     const accessTokenDecode = decodeJwt()
-    const words = accessTokenDecode?.name.split(' ');
+    const words = userData?.fullName?.split(' ');
     console.log(words);
     fetch(`${baseUrl}/cards/add-cards`, {
       method: "POST",
@@ -27,7 +27,7 @@ const SelectCard = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName: words?.length > 2 ? words[0] + " " + words[1] : words[0],
+        firstName: words?.length > 2 ? words[0] + " " + words[1]  : words[0],
         lastName: words[words?.length - 1],
         primaryColor: '#0053a2',
         email: userData?.email,

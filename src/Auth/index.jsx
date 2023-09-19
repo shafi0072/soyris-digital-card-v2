@@ -32,6 +32,7 @@ const index = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            fullName: result.user.displayName,
             userName: result?.user?.displayName.replace(/\s+/g, '').toLowerCase(),
             email: result?.user?.email,
           }),
@@ -74,6 +75,7 @@ const index = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            fullName:signUpData?.fullName + " " + signUpData?.lastName,
             userName: signUpData?.fullName.replace(/\s+/g, '').toLowerCase(),
             email: signUpData?.email,
           }),
@@ -264,19 +266,22 @@ const index = () => {
                     type="text"
                     name="fullName"
                     id="fullName"
+                    required
                     placeholder="John Doe"
                     className="w-full px-3 py-2 border rounded-md "
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm">
+                  <label htmlFor="lastName" className="block text-sm">
                     Last Name
                   </label>
                   <input
                     type="text"
-                    name="fullName"
-                    id="fullName"
+                    name="lastName"
+                    onChange={handleSignUpOnChange}
+                    id="lastName"
                     placeholder="John Doe"
+                    required
                     className="w-full px-3 py-2 border rounded-md "
                   />
                 </div>
@@ -289,6 +294,7 @@ const index = () => {
                     type="email"
                     name="email"
                     id="email"
+                    required
                     placeholder="leroy@jenkins.com"
                     className="w-full px-3 py-2 border rounded-md "
                   />
@@ -304,6 +310,7 @@ const index = () => {
                     onChange={handleSignUpOnChange}
                     name="password"
                     id="password"
+                    required
                     placeholder="*****"
                     className="w-full px-3 py-2 border rounded-md"
                   />
@@ -320,6 +327,7 @@ const index = () => {
                     name="password"
                     id="password"
                     placeholder="*****"
+                    required
                     className="w-full px-3 py-2 border rounded-md"
                   />
                 </div>
@@ -327,6 +335,7 @@ const index = () => {
                   <input
                     id="default-checkbox"
                     type="checkbox"
+                    required
                     value=""
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
