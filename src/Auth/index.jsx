@@ -75,7 +75,7 @@ const index = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            fullName:signUpData?.fullName,
+            fullName:signUpData?.fullName + " " + signUpData?.lastName,
             userName: signUpData?.fullName.replace(/\s+/g, '').toLowerCase(),
             email: signUpData?.email,
           }),
@@ -272,13 +272,14 @@ const index = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm">
+                  <label htmlFor="lastName" className="block text-sm">
                     Last Name
                   </label>
                   <input
                     type="text"
-                    name="fullName"
-                    id="fullName"
+                    name="lastName"
+                    onChange={handleSignUpOnChange}
+                    id="lastName"
                     placeholder="John Doe"
                     required
                     className="w-full px-3 py-2 border rounded-md "

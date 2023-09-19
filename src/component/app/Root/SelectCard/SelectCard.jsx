@@ -27,7 +27,7 @@ const SelectCard = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName: words?.length > 2 ? words[0] + " " + words[1] : words[0],
+        firstName: words?.length > 2 ? words[0] + " " + words[1]  : words[0],
         lastName: words[words?.length - 1],
         primaryColor: '#0053a2',
         email: userData?.email,
