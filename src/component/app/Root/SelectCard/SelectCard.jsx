@@ -14,7 +14,6 @@ const SelectCard = () => {
   const { userData } = useContext(userContext);
   console.log({userData})
   
-  
 
   const handleSelectCard = (desg, image, logo) => {
   

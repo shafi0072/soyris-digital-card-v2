@@ -154,7 +154,7 @@ const Content2 = () => {
         
       </div>
       <div
-        className="fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[15%]  z-20"
+        className="fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[18.7%] 2xl:ps-[15%]  z-20"
         style={{ boxShadow: " 0px -4px  10px lightgray" }}
       >
         <input

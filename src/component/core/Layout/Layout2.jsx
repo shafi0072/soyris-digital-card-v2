@@ -111,7 +111,7 @@ const Layout2 = ({ children }) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  const hnadleLogout= ()=>{
+  const hnadleLogout = () => {
     localStorage.clear();
     window.location.reload();
   }
@@ -148,13 +148,13 @@ const Layout2 = ({ children }) => {
         <List>
           {nav_data.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }} onClick={() => setExpand(index)}>
-              <ListItemButton 
+              <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                style={{ textAlign: 'left' , color: 'white' }}
+                style={{ textAlign: 'left', color: 'white' }}
               >
                 <ListItemIcon
                   sx={{
@@ -177,10 +177,10 @@ const Layout2 = ({ children }) => {
                       justifyContent: open ? 'initial' : 'center',
                       px: 2.5,
                     }}
-style={{color: 'white'}}
+                    style={{ color: 'white' }}
                   >
 
-                    <ListItemText primary={subItem?.title} sx={{ opacity: open ? 1 : 0 }} style={{color: 'white'}} />
+                    <ListItemText primary={subItem?.title} sx={{ opacity: open ? 1 : 0 }} style={{ color: 'white' }} />
 
                   </ListItemButton>
                 </ListItem>)
@@ -198,7 +198,7 @@ style={{color: 'white'}}
               px: 2.5,
             }}
             style={{ textAlign: 'left' }}
-            onClick={hnadleLogout} 
+            onClick={hnadleLogout}
           >
             <ListItemIcon
               sx={{
@@ -207,22 +207,27 @@ style={{color: 'white'}}
                 justifyContent: 'center',
               }}
             >
-              <ExitToAppIcon style={{color: 'white'}} />
+              <ExitToAppIcon style={{ color: 'white' }} />
             </ListItemIcon>
-            <ListItemText primary='Sign Out' sx={{ opacity: open ? 1 : 0 }}  style={{color: 'white'}}/>
+            <ListItemText primary='Sign Out' sx={{ opacity: open ? 1 : 0 }} style={{ color: 'white' }} />
 
           </ListItemButton>
         </div>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 0}}>
+      <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
 
-        <div className="col-span-11  mt-[5%] ...">
+        <div className="col-span-12  mt-[5%] ...">
           <SubNavbar />
-          <div className='grid grid-cols-12 ps-8 pt-[6%] gap-8'>
-            <div className="col-span-8">
+          <div className='grid grid-cols-12 ps-8 pt-[8%] 2xl:pt-[6%] gap-8'>
+            {router.pathname === '/my-cards' ? (<div className="col-span-10 2xl:col-span-12">
               {children}
-            </div>
-            <div className={`bg-[#F7FAFC]  fixed w-[500px] flex justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-[0%] "} `}>
+              
+            </div>): (<div className="col-span-7 2xl:col-span-8">
+              {children}
+            </div>)
+            }
+            
+            <div className={`bg-[#F7FAFC]  fixed w-[400px] 2xl:w-[500px] flex justify-end 2xl:justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-3 2xl:right-[0%] "} `}>
               {
                 (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
               }
@@ -234,7 +239,7 @@ style={{color: 'white'}}
           </div>
         </div>
       </Box>
-      <Analytics/>
+      <Analytics />
     </Box>
   );
 
