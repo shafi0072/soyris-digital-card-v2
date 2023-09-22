@@ -18,12 +18,8 @@ const SelectCard = () => {
   const handleSelectCard = (desg, image, logo) => {
   
     const accessTokenDecode = decodeJwt()
-<<<<<<< HEAD
-    const words = accessTokenDecode?.name.split(' ');
-=======
     const words = userData?.fullName?.split(' ');
     console.log(words);
->>>>>>> 03b2d4f1cde454d7efef0d41c0a7a1ebf928130e
     fetch(`${baseUrl}/cards/add-cards`, {
       method: "POST",
       headers: {
