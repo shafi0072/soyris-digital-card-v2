@@ -14,7 +14,6 @@ const SelectCard = () => {
   const { userData } = useContext(userContext);
   console.log({userData})
   
-  
 
   const handleSelectCard = (desg, image, logo) => {
   
@@ -386,14 +385,15 @@ const SelectCard = () => {
           onClick={() =>
             handleSelectCard(
               "pro",
-              "https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=ahypUC_KTc95VOsBkzLFZiCQ0VJwewfrSV43BOrLETM=",
-              "https://suva-trip-exist.s3.amazonaws.com/Image+1.png"
+              // "https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=ahypUC_KTc95VOsBkzLFZiCQ0VJwewfrSV43BOrLETM=",
+              // "https://suva-trip-exist.s3.amazonaws.com/Image+1.png"
+              "https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg"
             )
           }
         >
           <div className="w-full h-[240px] rounded-md">
             <img
-              src="https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=ahypUC_KTc95VOsBkzLFZiCQ0VJwewfrSV43BOrLETM="
+              src="https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg"
               className="w-full h-full rounded-t-lg "
               alt=""
             />
