@@ -25,11 +25,11 @@ const Fields = () => {
     }
   };
   return (
-    <div className="grid grid-cols-4 2xl:grid-cols-3 gap-4 h-[100vh] ">
+    <div className="grid grid-cols-4 2xl:grid-cols-3 gap-4 2xl:gap-8 h-[100vh] ">
       <div className="col-span-2  2xl:col-span-1 ...">
         <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
       </div>
-      <div className=" w-[400px]">
+      <div className=" w-[400px] 2xl:w-[700px] ">
         <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
         <div  ref={targetRef}></div>
       </div>
