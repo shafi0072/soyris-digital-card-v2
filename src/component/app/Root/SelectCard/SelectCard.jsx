@@ -393,7 +393,7 @@ const SelectCard = () => {
         >
           <div className="w-full h-[240px] rounded-md">
             <img
-              src="https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=ahypUC_KTc95VOsBkzLFZiCQ0VJwewfrSV43BOrLETM="
+              src="https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg"
               className="w-full h-full rounded-t-lg "
               alt=""
             />
