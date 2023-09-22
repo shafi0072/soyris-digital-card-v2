@@ -95,7 +95,8 @@ const ProfileImage = () => {
         <div className=" w-[266px]">
           <label
             htmlFor="profileImage"
-            className="cursor-pointer flex ml-[10%] bg-gray-200 px-3 py-1 rounded-full"
+            className="cursor-pointer flex  bg-gray-200 px-3 py-1 rounded-full"
+            style={{marginLeft: profileImage ? '10%': 0}}
           >
             <AddIcon sx={{ color: "#0053a2" }} />
             <p className="text-md">

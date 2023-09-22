@@ -66,7 +66,6 @@ const {userData} = useContext(userContext)
     link.click();
     document.body.removeChild(link);
   };
-  console.log('in', items);
   return (
     <div className="bg-white px-4 py-2 rounded-lg">
       <div className="flex items-center justify-between">

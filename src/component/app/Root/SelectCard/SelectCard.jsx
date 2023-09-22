@@ -14,13 +14,11 @@ const SelectCard = () => {
   const { userData } = useContext(userContext);
 
   
-  
 
   const handleSelectCard = (desg, image, logo) => {
     
     const accessTokenDecode = decodeJwt()
     const words = accessTokenDecode?.name.split(' ');
-    console.log(words);
     fetch(`${baseUrl}/cards/add-cards`, {
       method: "POST",
       headers: {
