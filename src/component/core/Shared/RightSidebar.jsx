@@ -67,7 +67,7 @@ const RightSidebar = () => {
   );
 
   return (
-    <div className="scroll-hide w-[363px] h-[80vh] overflow-y-scroll bg-white pt-5">
+    <div className="scroll-hide w-[363px] h-[90vh] 2xl:h-[80vh] overflow-y-scroll bg-white pt-5 ">
       <div className="relative  w-[363px]">
         {design === "classic" && (
           <Classic

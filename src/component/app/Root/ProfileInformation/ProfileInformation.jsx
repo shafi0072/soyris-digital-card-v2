@@ -44,16 +44,16 @@ const ProfileInformation = () => {
             <div className='mb-10'>
                 <form onSubmit={handleOnSubmit}>
                     <div className='mb-8 '>
-                        <h2 className={`text-xl font-bold text-black pb-2 border-b border-[#CBD5E0] mr-[20%] `}>Personal</h2>
+                        <h2 className={`text-xl font-bold text-black pb-2 border-b border-[#CBD5E0]  `}>Personal</h2>
                     </div>
-                    <div className='grid grid-cols-2 mb-5'>
+                    <div className='grid grid-cols-2 mb-5 '>
                         <div className=''>
                             <label htmlFor="first_name" className='block mb-2'>First Name</label>
-                            <input defaultValue={infos?.first_name} onChange={handleFieldsOnChange} type="text" className='w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='first_name' id='first_name' />
+                            <input defaultValue={infos?.first_name} onChange={handleFieldsOnChange} type="text" className=' w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='first_name' id='first_name' />
                         </div>
                         <div className=''>
                             <label htmlFor="last_name" className='block mb-2'>Last Name</label>
-                            <input defaultValue={infos?.last_name} onChange={handleFieldsOnChange} type="text" className='w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='last_name' id='last_name' />
+                            <input defaultValue={infos?.last_name} onChange={handleFieldsOnChange} type="text" className=' w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='last_name' id='last_name' />
 
                         </div>
                     </div>
@@ -81,7 +81,7 @@ const ProfileInformation = () => {
                         </div>
                     </div>
                     <div className='my-8'>
-                        <h2 className='text-xl font-bold text-black pb-2 mr-[20%] border-b border-[#CBD5E0]'>Affiliation</h2>
+                        <h2 className='text-xl font-bold text-black pb-2  border-b border-[#CBD5E0]'>Affiliation</h2>
                     </div>
                     <div className='grid grid-cols-2 mb-5'>
                         <div className=''>
@@ -110,9 +110,9 @@ const ProfileInformation = () => {
                     <div className="mb-8">
                         <label for="introduction" class="block mb-2 text-sm font-medium text-gray-900 ">Introduction</label>
 
-                        <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
+                        <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block  w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
                     </div>
-                    <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[18.7%] 2xl:ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
+                    <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[270px] 2xl:ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
                        
                         <input type="submit" value="Save" className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer ' />
                     </div>

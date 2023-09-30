@@ -29,7 +29,7 @@ const Fields = () => {
       <div className="col-span-2  2xl:col-span-1 ...">
         <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
       </div>
-      <div className=" w-[400px] 2xl:w-[700px] ">
+      <div className=" w-[500px] 2xl:w-[700px] ">
         <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
         <div  ref={targetRef}></div>
       </div>
