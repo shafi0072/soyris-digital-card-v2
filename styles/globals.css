@@ -19,5 +19,16 @@
 .MuiPaper-root:first-child {
   background: black !important;
 }
-
+.text-render ul {
+  list-style: circle;
+}
+.text-render ol {
+  list-style: decimal;
+}
+.text-render h1 {
+  font-size: 32px;
+}
+.text-render h2 {
+  font-size: 24px;
+}
 /* kdjfkjd */
