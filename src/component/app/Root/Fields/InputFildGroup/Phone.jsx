@@ -829,9 +829,9 @@ const Phone = ({
         </div>
       )}
       {items?.type === "Text" && (
-        <div className="relative">
+        <div className="relative h-[260px]">
 
-          <ReactQuill theme="snow" value={items?.text} onChange={e=> handleFieldChange(
+          <ReactQuill theme="snow" value={items?.text} style={{height:'200px'}} onChange={e=> handleFieldChange(
                 items?.id,
                 "text",
                 e
