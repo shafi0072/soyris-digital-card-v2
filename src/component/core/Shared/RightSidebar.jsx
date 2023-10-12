@@ -90,7 +90,7 @@ const RightSidebar = () => {
           design === "pro" && <div className='bg-white mx-6 '>
             {
               <div className=' w-[100%] h-[400px]  rounded-md ' style={{borderColor: color}}>
-              {profileImage ? <img className=' object-cover rounded-t-2xl h-full w-full' src={profileImage ? profileImage : ""} alt="" />: <div className='w-[100%]  h-full'  style={{background:"#fff"}}></div>}
+              { <img className=' object-cover rounded-t-2xl h-full w-full' src={profileImage && profileImage!== 'null' ? profileImage : "./profile-image.png"} alt="" />}
             </div>
             }
           </div>

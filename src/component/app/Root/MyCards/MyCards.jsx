@@ -51,8 +51,8 @@ const MyCards = () => {
                     userCard?.map((items, index) =>
                         <div className=' cursor-pointer w-[300px] ml-4 mb-5  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
                             {items?.display?.design === "flat" && <div className=' relative w-full h-[300px] '>
-                                <img src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-full rounded-t-md' alt="" />
-                                <div className='absolute top-[95%] h-5 w-full rounded-b-md' style={{ borderBottom: `10px solid ${items?.display?.primaryColor}` }}></div>
+                                <img src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-full rounded-t-md' alt="" />
+                                <div className='absolute top-[90%] h-10 w-full' style={{ borderBottom: `20px solid ${items?.display?.primaryColor}` }}></div>
                             </div>}
                             {items?.display?.design === 'classic' &&
                                 <div
@@ -108,7 +108,7 @@ const MyCards = () => {
                                         </div>
                                         <img
                                             className="h-[300px] w-full object-cover rounded"
-                                            src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"}
+                                            src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' ? items?.display?.ProfileImage : "/man.jpg"}
                                             alt=""
                                         />
                                     </div>
@@ -117,7 +117,7 @@ const MyCards = () => {
                             {items?.display?.design === 'pro' &&
 
                                 <div>
-                                    <img className="h-[300px] w-full object-cover rounded" src={items?.display?.ProfileImage ? items?.display?.ProfileImage : "/man.jpg"} alt="" />
+                                    <img className="h-[300px] w-full object-cover rounded" src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' ? items?.display?.ProfileImage : "/man.jpg"} alt="" />
                                 </div>
                             }
                             <h2 className={` text-center text-2xl py-5 border-b-2 border-dashed`} style={{ borderColor: items?.display?.primaryColor, background: items?.display?.design === 'pro' ? items?.display?.primaryColor : 'transparent', color:items?.display?.design === 'pro' ? 'white' : 'black'  }}>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>

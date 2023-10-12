@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage }) => {
   console.log({ userCardData });
 
-    console.log("6666",infos?.accreditations,"999",userData?.profileInfo?.accreditations)
 
   return (
     <>
@@ -13,7 +12,7 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
             <div className="mt-3">
               <h2
                 className={`font-bold text-xl   ${
-                  design === "classic" ? "border-l-2 pl-2" : ""
+                  design === "classic" ? "border-l-2 pl-2" : "p-2 border-[3px]  border-dotted"
                 }`}
                 style={{ borderColor: color }}
               >
