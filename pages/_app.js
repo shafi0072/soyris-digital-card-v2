@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
+
 export default function App({ Component, pageProps }) {
   
   const router = useRouter()

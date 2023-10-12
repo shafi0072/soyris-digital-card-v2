@@ -29,7 +29,10 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import QrCodeCard from '../../app/Root/QrCodes/QrCodeCard';
 // google analytics
 import { Analytics } from '@vercel/analytics/react';
-
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { SwipeableDrawer } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const drawerWidth = 240;
@@ -99,6 +102,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const Layout2 = ({ children }) => {
+  const [rightSideOpen, setRightSideOpen] = useState(false)
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [expand, setExpand] = React.useState(-1)
@@ -115,15 +119,28 @@ const Layout2 = ({ children }) => {
     localStorage.clear();
     window.location.reload();
   }
+  useEffect(() => {
+    const width = window.innerWidth;
+    if (width < 1536) {
+      setOpen(true);
+    } else {
+      setOpen(true)
+    }
+    console.log({ width });
+  }, [])
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const toggleDrawer = () => {
+    setRightSideOpen(!rightSideOpen);
+  }
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} >
         <Toolbar>
           {/* <IconButton
+            className=' 2xl:hidden'
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -140,8 +157,8 @@ const Layout2 = ({ children }) => {
       </AppBar>
       <Drawer variant="permanent" open={open} >
         <DrawerHeader >
-          {/* <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon  style={{color: 'white'}}/> : <ChevronLeftIcon  style={{color: 'white'}}/>}
+          {/* <IconButton onClick={handleDrawerClose} className=' 2xl:hidden'>
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={{ color: 'white' }} /> : <ChevronLeftIcon style={{ color: 'white' }} />}
           </IconButton> */}
         </DrawerHeader>
         <Divider />
@@ -217,19 +234,21 @@ const Layout2 = ({ children }) => {
       <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
 
         <div className="col-span-12  mt-[5%] ...">
-          <SubNavbar />
-          <div className='grid grid-cols-12 ps-8 pt-[8%] 2xl:pt-[6%] gap-8'>
+          <SubNavbar toggleDrawer={toggleDrawer} />
+          <div className='grid grid-cols-12 ps-8 pt-[15%] xl:pt-[8%] 2xl:pt-[6%] gap-8'>
             {router.pathname === '/my-cards' ? (<div className="col-span-10 2xl:col-span-12">
               {children}
-              
-            </div>): (<div className="col-span-7 2xl:col-span-8">
+
+            </div>) : (<div className="col-span-11 xl:col-span-8">
               {children}
             </div>)
             }
-            
+
             <div className={`bg-[#F7FAFC]  fixed w-[400px] 2xl:w-[500px] flex justify-end 2xl:justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-3 2xl:right-[0%] "} `}>
               {
-                (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <RightSidebar />
+                (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <div className='hidden xl:block'>
+                  <RightSidebar />
+                </div>
               }
               {
                 router.pathname === '/qrcodes' && <QrCodeCard />
@@ -237,6 +256,18 @@ const Layout2 = ({ children }) => {
 
             </div>
           </div>
+          <SwipeableDrawer
+            anchor={'right'}
+            open={rightSideOpen}
+            onClose={toggleDrawer}
+            width={500}
+          // sx={{backgroundColor:'white'}}
+          >
+            <div className='w-[400px] mt-[50px] relative'>
+              <CloseIcon className='absolute right-2 top-[20px] cursor-pointer' onClick={toggleDrawer}/>
+              <RightSidebar />
+            </div>
+          </SwipeableDrawer>
         </div>
       </Box>
       <Analytics />

@@ -26,6 +26,7 @@ import {
   wistiaIcon,
   youtubeIcon,
 } from "../component/core/Shared/FieldData/FeildInputIcon";
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 export const field_data = [
   {
@@ -176,6 +177,21 @@ export const field_data = [
           displayUrl: "",
           label: "",
           type: "Link",
+          pleaceholder: "custom-url.com",
+          displayPleaceHolder: "Display URL",
+          labelPleaceholder: "Label",
+          icon: linkIcon,
+        },
+      },
+      {
+        name: "Text",
+        icon: (
+          <TextSnippetIcon fontSize="large"/>
+        ),
+        fields: {
+          text: "",
+          displayUrl: "",
+          type: "Text",
           pleaceholder: "custom-url.com",
           displayPleaceHolder: "Display URL",
           labelPleaceholder: "Label",

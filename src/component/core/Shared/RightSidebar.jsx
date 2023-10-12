@@ -25,6 +25,7 @@ import { FaTiktok } from "react-icons/fa";
 import QrView from "./QrView";
 import Website from "./Content/Website";
 import Link from "./Content/Link";
+import Text from "./Text";
 // import dynamic from "next/dynamic";
 // const ReactPlayer = dynamic(()=> import('react-player'),{ssr:false});
 
@@ -67,7 +68,7 @@ const RightSidebar = () => {
   );
 
   return (
-    <div className="scroll-hide w-[363px] h-[80vh] overflow-y-scroll bg-white pt-5">
+    <div className="scroll-hide w-[363px] h-[90vh] 2xl:h-[80vh] overflow-y-scroll bg-white pt-5 ">
       <div className="relative  w-[363px]">
         {design === "classic" && (
           <Classic
@@ -123,6 +124,7 @@ const RightSidebar = () => {
               {item?.type === "Telegram" && <Content item={item} design={design} />}
               {item?.type === "Discord" && <Content item={item} design={design} />}
               {item?.type === "Slack" && <Content item={item} design={design} />}
+              {item?.type === "Text" && <Text item={item} design={design} />}
               {/* Social media--------------- */}
               {item?.type === "Facebook" && (
                 <a

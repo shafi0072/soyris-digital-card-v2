@@ -1,10 +1,12 @@
 import { userContext } from "@/src/Storage/ContextApi";
 import { baseUrl } from "@/src/config/Server";
 import { sub_Navbar_data } from "@/src/constant/SubNavbar";
+import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
-const SubNavbar = () => {
+const SubNavbar = ( {toggleDrawer}) => {
   const [active, setActive] = useState(0);
   const { userData } = useContext(userContext);
   const router = useRouter();
@@ -15,7 +17,7 @@ const SubNavbar = () => {
 
   return (
     <>
-      <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5 ps-5 shadow-md">
+      <div className="fixed z-50 top-[7%] w-[100%] bg-white border-b pt-5 ps-5 shadow-md ">
         {router.pathname === "/my-cards" ? (
           <div className=" ps-3 mb-3">
            
@@ -68,7 +70,8 @@ const SubNavbar = () => {
           </div>
         )
          : (
-          <ul style={{ display: "flex" }}>
+          <div className="flex items-center">
+            <ul style={{ display: "flex" }}>
             {sub_Navbar_data?.map((items, index) => (
               <li key={index}
                 className="mx-2 my-2 "
@@ -88,6 +91,10 @@ const SubNavbar = () => {
               </li>
             ))}
           </ul>
+          <div className=" bg-sky-600 px-2 py-1 rounded-md  xl:hidden"><button className=" " onClick={toggleDrawer}>
+            <RemoveRedEyeOutlinedIcon sx={{color:'white'}}/>
+          </button></div>
+          </div>
         )}
       </div>
     </>

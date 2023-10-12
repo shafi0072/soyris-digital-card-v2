@@ -4,7 +4,7 @@ const Flat = ({ color, profileImage, logoImage }) => {
   // console.log({logoImage});
   return (
     <div className='bg-white mx-4' >
-      <div className=' w-[100%]  relative border-b-[12px] rounded-md ' style={{borderColor: color}}>
+      <div className=' w-[100%]  relative border-b-[20px]  ' style={{borderColor: color}}>
         {profileImage ? <img className=' object-cover rounded-t-2xl' src={profileImage ? profileImage : ""} alt="" />: <div className='w-[100%]  h-[300px]'  style={{background:color}}></div>}
       </div>
       <div className='w-[100%] flex justify-center mt-5'>

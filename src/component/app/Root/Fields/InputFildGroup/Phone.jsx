@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import dynamic from 'next/dynamic';
+import React, { useContext, useMemo } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,6 +12,15 @@ import { userContext } from "@/src/Storage/ContextApi";
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
+// import { Editor } from 'react-draft-wysiwyg';
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false, // This ensures the component is only loaded on the client-side.
+});
+// import { Slate, Editable, withReact } from 'slate-react';
+// import { createEditor } from 'slate';
+
+
+import 'react-quill/dist/quill.snow.css';
 import {
   addressIcon,
   dateIcon,
@@ -49,13 +59,16 @@ const Phone = ({
   handlePdfChanges,
   handleDelete
 }) => {
+  
   const [hideLabel, setHideLabel] = useState(true);
+  const [textValue, setTextValue] = useState('');
+  console.log({ items });
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
-const {userData} = useContext(userContext)
+  const { userData } = useContext(userContext)
   const handleChange = (event, newValue) => {
     console.log(newValue);
   };
-  const filename = `${userData?.email?.slice(0,6)}-document.pdf`;
+  const filename = `${userData?.email?.slice(0, 6)}-document.pdf`;
 
   const downloadPdf = () => {
     const link = document.createElement('a');
@@ -83,16 +96,15 @@ const {userData} = useContext(userContext)
           )}
           {!items?.hasOwnProperty("devider") && <h4>{items?.type}</h4>}
         </div>
-        <div className="cursor-pointer" onClick={()=>handleDelete(items?.id)}>
+        <div className="cursor-pointer" onClick={() => handleDelete(items?.id)}>
           <CloseIcon />
         </div>
       </div>
       <div className="flex gap-2 justify-between">
         {!items?.internationalNumber && items?.hasOwnProperty("number") && items?.hasOwnProperty("number") && (
           <div
-            className={`${
-              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-            }  relative`}
+            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+              }  relative`}
           >
             <input id={items?.type}
               type="text"
@@ -120,12 +132,11 @@ const {userData} = useContext(userContext)
 
         {items?.hasOwnProperty("url") && (
           <div
-         
-            className={`${
-              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-            }  relative`}
+
+            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+              }  relative`}
           >
-            <input 
+            <input
               type="text"
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
               placeholder={items?.pleaceholder}
@@ -134,7 +145,7 @@ const {userData} = useContext(userContext)
                 handleFieldChange(items?.id, "url", e.target.value)
               }
             />
-            <label  className="absolute top-1/4 left-2">
+            <label className="absolute top-1/4 left-2">
               {items?.type === "Website" && websiteIcon}
               {items?.type === "Email" && emailIcon}
               {items?.type === "Link" && linkIcon}
@@ -153,9 +164,8 @@ const {userData} = useContext(userContext)
         )}
         {items?.hasOwnProperty("address") && (
           <div
-            className={`${
-              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-            }  relative`}
+            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+              }  relative`}
           >
             <textarea
               className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1"
@@ -173,9 +183,8 @@ const {userData} = useContext(userContext)
         )}
         {items?.hasOwnProperty("title") && (
           <div
-            className={`${
-              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-            }  relative`}
+            className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+              }  relative`}
           >
             <input id={items?.type}
               type="text"
@@ -193,206 +202,202 @@ const {userData} = useContext(userContext)
         )}
         {items?.hasOwnProperty("qr") && (
           <div className="w-full">
-          <div
-            className={`${
-              items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
-            }  relative`}
-            placeholder={items?.pleaceholder}
-            onChange={(e) =>
-              handleFieldChange(items?.id, "qr", e.target.value)
-            }
-          >
-            <input id={items?.type}
-              type="text"
-              value={items?.qr}
-              className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+            <div
+              className={`${items?.hasOwnProperty("ext") ? "w-[70%]" : "w-[100%]"
+                }  relative`}
               placeholder={items?.pleaceholder}
               onChange={(e) =>
                 handleFieldChange(items?.id, "qr", e.target.value)
               }
-            />
-            <label htmlFor="" className="absolute top-1/4 left-2">
-              {items?.type === "QR" && qrIcon}
-            </label>
+            >
+              <input id={items?.type}
+                type="text"
+                value={items?.qr}
+                className="border w-full border-[#C1C1C1] rounded-xl ps-8 pr-1 py-1 "
+                placeholder={items?.pleaceholder}
+                onChange={(e) =>
+                  handleFieldChange(items?.id, "qr", e.target.value)
+                }
+              />
+              <label htmlFor="" className="absolute top-1/4 left-2">
+                {items?.type === "QR" && qrIcon}
+              </label>
 
-            
-          </div>
-          {items?.type === 'QR' && (
-            <div className="my-5">
-              
-              <div className="mt-3 flex items-center gap-4">
-                <p>Alignment</p>
-                <div className="flex border-4 border-[#D5D8DC] rounded-lg">
-                  <button
-                    className={`p-2 ${
-                      items?.align === "left" && "bg-[#D5D8DC]"
-                    }`}
-                    onClick={() =>
-                      handleFieldChange(items?.id, "align", "left")
-                    }
-                  >
-                    <svg
-                      id="align-left-svgrepo-com_2_"
-                      data-name="align-left-svgrepo-com (2)"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16.824"
-                      height="19.291"
-                      viewBox="0 0 16.824 19.291"
+
+            </div>
+            {items?.type === 'QR' && (
+              <div className="my-5">
+
+                <div className="mt-3 flex items-center gap-4">
+                  <p>Alignment</p>
+                  <div className="flex border-4 border-[#D5D8DC] rounded-lg">
+                    <button
+                      className={`p-2 ${items?.align === "left" && "bg-[#D5D8DC]"
+                        }`}
+                      onClick={() =>
+                        handleFieldChange(items?.id, "align", "left")
+                      }
                     >
-                      <path
-                        id="Path_59"
-                        data-name="Path 59"
-                        d="M7.375,7.618a3.334,3.334,0,0,1,.18-1.57,1.346,1.346,0,0,1,.493-.493,3.334,3.334,0,0,1,1.57-.18h8.075a3.334,3.334,0,0,1,1.57.18,1.346,1.346,0,0,1,.493.493,3.333,3.333,0,0,1,.18,1.57,3.333,3.333,0,0,1-.18,1.57,1.345,1.345,0,0,1-.493.493,3.333,3.333,0,0,1-1.57.18H9.618a3.333,3.333,0,0,1-1.57-.18,1.345,1.345,0,0,1-.493-.493A3.334,3.334,0,0,1,7.375,7.618Z"
-                        transform="translate(-3.113 -2.01)"
-                        fill="#525962"
-                      />
-                      <path
-                        id="Path_60"
-                        data-name="Path 60"
-                        d="M7.375,16.618a3.334,3.334,0,0,1,.18-1.57,1.346,1.346,0,0,1,.493-.493,3.333,3.333,0,0,1,1.57-.18H15a3.333,3.333,0,0,1,1.57.18,1.345,1.345,0,0,1,.493.493,3.333,3.333,0,0,1,.18,1.57,3.333,3.333,0,0,1-.18,1.57,1.345,1.345,0,0,1-.493.493,3.333,3.333,0,0,1-1.57.18H9.618a3.333,3.333,0,0,1-1.57-.18,1.346,1.346,0,0,1-.493-.493A3.334,3.334,0,0,1,7.375,16.618Z"
-                        transform="translate(-3.113 -2.935)"
-                        fill="#525962"
-                      />
-                      <path
-                        id="Path_61"
-                        data-name="Path 61"
-                        d="M3.3,20.916a.673.673,0,0,0,.673-.673V2.3a.673.673,0,0,0-1.346,0V20.243A.673.673,0,0,0,3.3,20.916Z"
-                        transform="translate(-2.625 -1.625)"
-                        fill="#525962"
-                        fill-rule="evenodd"
-                        opacity="0.5"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    className={`p-2 ${
-                      items?.align === "center" && "bg-[#D5D8DC]"
-                    }`}
-                    onClick={() =>
-                      handleFieldChange(items?.id, "align", "center")
-                    }
-                  >
-                    <svg
-                      id="align-horizontal-center-svgrepo-com"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12.562"
-                      height="19.291"
-                      viewBox="0 0 12.562 19.291"
-                    >
-                      <path
-                        id="Path_65"
-                        data-name="Path 65"
-                        d="M13.729,14H9.243a3.333,3.333,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493A3.334,3.334,0,0,0,7,16.243a3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h4.486a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493,3.333,3.333,0,0,0,.18-1.57,3.333,3.333,0,0,0-.18-1.57,1.345,1.345,0,0,0-.493-.493A3.333,3.333,0,0,0,13.729,14Z"
-                        transform="translate(-5.205 -2.56)"
-                        fill="#525962"
-                        fill-rule="evenodd"
-                      />
-                      <path
-                        id="Path_66"
-                        data-name="Path 66"
-                        d="M17.562,7.243a3.333,3.333,0,0,0-.18-1.57,1.346,1.346,0,0,0-.493-.493A3.334,3.334,0,0,0,15.319,5H7.243a3.334,3.334,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493A3.334,3.334,0,0,0,5,7.243a3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.334,3.334,0,0,0,1.57.18h8.075a3.334,3.334,0,0,0,1.57-.18,1.346,1.346,0,0,0,.493-.493A3.333,3.333,0,0,0,17.562,7.243Z"
-                        transform="translate(-5 -1.635)"
-                        fill="#525962"
-                      />
-                      <g
-                        id="Group_26"
-                        data-name="Group 26"
-                        transform="translate(5.608 0)"
-                        opacity="0.5"
+                      <svg
+                        id="align-left-svgrepo-com_2_"
+                        data-name="align-left-svgrepo-com (2)"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16.824"
+                        height="19.291"
+                        viewBox="0 0 16.824 19.291"
                       >
                         <path
-                          id="Path_67"
-                          data-name="Path 67"
-                          d="M12.6,4.615V1.923a.673.673,0,1,0-1.346,0V4.615Z"
-                          transform="translate(-11.25 -1.25)"
+                          id="Path_59"
+                          data-name="Path 59"
+                          d="M7.375,7.618a3.334,3.334,0,0,1,.18-1.57,1.346,1.346,0,0,1,.493-.493,3.334,3.334,0,0,1,1.57-.18h8.075a3.334,3.334,0,0,1,1.57.18,1.346,1.346,0,0,1,.493.493,3.333,3.333,0,0,1,.18,1.57,3.333,3.333,0,0,1-.18,1.57,1.345,1.345,0,0,1-.493.493,3.333,3.333,0,0,1-1.57.18H9.618a3.333,3.333,0,0,1-1.57-.18,1.345,1.345,0,0,1-.493-.493A3.334,3.334,0,0,1,7.375,7.618Z"
+                          transform="translate(-3.113 -2.01)"
                           fill="#525962"
                         />
                         <path
-                          id="Path_68"
-                          data-name="Path 68"
-                          d="M11.25,10v3.589H12.6V10Z"
-                          transform="translate(-11.25 -2.149)"
+                          id="Path_60"
+                          data-name="Path 60"
+                          d="M7.375,16.618a3.334,3.334,0,0,1,.18-1.57,1.346,1.346,0,0,1,.493-.493,3.333,3.333,0,0,1,1.57-.18H15a3.333,3.333,0,0,1,1.57.18,1.345,1.345,0,0,1,.493.493,3.333,3.333,0,0,1,.18,1.57,3.333,3.333,0,0,1-.18,1.57,1.345,1.345,0,0,1-.493.493,3.333,3.333,0,0,1-1.57.18H9.618a3.333,3.333,0,0,1-1.57-.18,1.346,1.346,0,0,1-.493-.493A3.334,3.334,0,0,1,7.375,16.618Z"
+                          transform="translate(-3.113 -2.935)"
                           fill="#525962"
                         />
                         <path
-                          id="Path_69"
-                          data-name="Path 69"
-                          d="M11.25,19v2.692a.673.673,0,1,0,1.346,0V19Z"
-                          transform="translate(-11.25 -3.074)"
+                          id="Path_61"
+                          data-name="Path 61"
+                          d="M3.3,20.916a.673.673,0,0,0,.673-.673V2.3a.673.673,0,0,0-1.346,0V20.243A.673.673,0,0,0,3.3,20.916Z"
+                          transform="translate(-2.625 -1.625)"
                           fill="#525962"
+                          fill-rule="evenodd"
+                          opacity="0.5"
                         />
-                      </g>
-                    </svg>
-                  </button>
-                  <button
-                    className={`p-2 ${
-                      items?.align === "right" && "bg-[#D5D8DC]"
-                    }`}
-                    onClick={() =>
-                      handleFieldChange(items?.id, "align", "right")
-                    }
-                  >
-                    <svg
-                      id="align-right-svgrepo-com"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16.824"
-                      height="19.291"
-                      viewBox="0 0 16.824 19.291"
+                      </svg>
+                    </button>
+                    <button
+                      className={`p-2 ${items?.align === "center" && "bg-[#D5D8DC]"
+                        }`}
+                      onClick={() =>
+                        handleFieldChange(items?.id, "align", "center")
+                      }
                     >
-                      <path
-                        id="Path_62"
-                        data-name="Path 62"
-                        d="M15.187,7.618a3.333,3.333,0,0,0-.18-1.57,1.346,1.346,0,0,0-.493-.493,3.334,3.334,0,0,0-1.57-.18H4.868a3.334,3.334,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493,3.334,3.334,0,0,0-.18,1.57,3.334,3.334,0,0,0,.18,1.57,1.345,1.345,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h8.075a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493A3.333,3.333,0,0,0,15.187,7.618Z"
-                        transform="translate(-2.625 -2.01)"
-                        fill="#525962"
-                      />
-                      <path
-                        id="Path_63"
-                        data-name="Path 63"
-                        d="M15.495,16.618a3.333,3.333,0,0,0-.18-1.57,1.345,1.345,0,0,0-.493-.493,3.333,3.333,0,0,0-1.57-.18H7.868a3.333,3.333,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493,3.334,3.334,0,0,0-.18,1.57,3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h5.384a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493A3.333,3.333,0,0,0,15.495,16.618Z"
-                        transform="translate(-2.933 -2.935)"
-                        fill="#525962"
-                      />
-                      <path
-                        id="Path_64"
-                        data-name="Path 64"
-                        d="M20.548,20.916a.673.673,0,0,1-.673-.673V2.3a.673.673,0,0,1,1.346,0V20.243A.673.673,0,0,1,20.548,20.916Z"
-                        transform="translate(-4.397 -1.625)"
-                        fill="#525962"
-                        fill-rule="evenodd"
-                        opacity="0.5"
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        id="align-horizontal-center-svgrepo-com"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12.562"
+                        height="19.291"
+                        viewBox="0 0 12.562 19.291"
+                      >
+                        <path
+                          id="Path_65"
+                          data-name="Path 65"
+                          d="M13.729,14H9.243a3.333,3.333,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493A3.334,3.334,0,0,0,7,16.243a3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h4.486a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493,3.333,3.333,0,0,0,.18-1.57,3.333,3.333,0,0,0-.18-1.57,1.345,1.345,0,0,0-.493-.493A3.333,3.333,0,0,0,13.729,14Z"
+                          transform="translate(-5.205 -2.56)"
+                          fill="#525962"
+                          fill-rule="evenodd"
+                        />
+                        <path
+                          id="Path_66"
+                          data-name="Path 66"
+                          d="M17.562,7.243a3.333,3.333,0,0,0-.18-1.57,1.346,1.346,0,0,0-.493-.493A3.334,3.334,0,0,0,15.319,5H7.243a3.334,3.334,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493A3.334,3.334,0,0,0,5,7.243a3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.334,3.334,0,0,0,1.57.18h8.075a3.334,3.334,0,0,0,1.57-.18,1.346,1.346,0,0,0,.493-.493A3.333,3.333,0,0,0,17.562,7.243Z"
+                          transform="translate(-5 -1.635)"
+                          fill="#525962"
+                        />
+                        <g
+                          id="Group_26"
+                          data-name="Group 26"
+                          transform="translate(5.608 0)"
+                          opacity="0.5"
+                        >
+                          <path
+                            id="Path_67"
+                            data-name="Path 67"
+                            d="M12.6,4.615V1.923a.673.673,0,1,0-1.346,0V4.615Z"
+                            transform="translate(-11.25 -1.25)"
+                            fill="#525962"
+                          />
+                          <path
+                            id="Path_68"
+                            data-name="Path 68"
+                            d="M11.25,10v3.589H12.6V10Z"
+                            transform="translate(-11.25 -2.149)"
+                            fill="#525962"
+                          />
+                          <path
+                            id="Path_69"
+                            data-name="Path 69"
+                            d="M11.25,19v2.692a.673.673,0,1,0,1.346,0V19Z"
+                            transform="translate(-11.25 -3.074)"
+                            fill="#525962"
+                          />
+                        </g>
+                      </svg>
+                    </button>
+                    <button
+                      className={`p-2 ${items?.align === "right" && "bg-[#D5D8DC]"
+                        }`}
+                      onClick={() =>
+                        handleFieldChange(items?.id, "align", "right")
+                      }
+                    >
+                      <svg
+                        id="align-right-svgrepo-com"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16.824"
+                        height="19.291"
+                        viewBox="0 0 16.824 19.291"
+                      >
+                        <path
+                          id="Path_62"
+                          data-name="Path 62"
+                          d="M15.187,7.618a3.333,3.333,0,0,0-.18-1.57,1.346,1.346,0,0,0-.493-.493,3.334,3.334,0,0,0-1.57-.18H4.868a3.334,3.334,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493,3.334,3.334,0,0,0-.18,1.57,3.334,3.334,0,0,0,.18,1.57,1.345,1.345,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h8.075a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493A3.333,3.333,0,0,0,15.187,7.618Z"
+                          transform="translate(-2.625 -2.01)"
+                          fill="#525962"
+                        />
+                        <path
+                          id="Path_63"
+                          data-name="Path 63"
+                          d="M15.495,16.618a3.333,3.333,0,0,0-.18-1.57,1.345,1.345,0,0,0-.493-.493,3.333,3.333,0,0,0-1.57-.18H7.868a3.333,3.333,0,0,0-1.57.18,1.346,1.346,0,0,0-.493.493,3.334,3.334,0,0,0-.18,1.57,3.334,3.334,0,0,0,.18,1.57,1.346,1.346,0,0,0,.493.493,3.333,3.333,0,0,0,1.57.18h5.384a3.333,3.333,0,0,0,1.57-.18,1.345,1.345,0,0,0,.493-.493A3.333,3.333,0,0,0,15.495,16.618Z"
+                          transform="translate(-2.933 -2.935)"
+                          fill="#525962"
+                        />
+                        <path
+                          id="Path_64"
+                          data-name="Path 64"
+                          d="M20.548,20.916a.673.673,0,0,1-.673-.673V2.3a.673.673,0,0,1,1.346,0V20.243A.673.673,0,0,1,20.548,20.916Z"
+                          transform="translate(-4.397 -1.625)"
+                          fill="#525962"
+                          fill-rule="evenodd"
+                          opacity="0.5"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-5 flex items-center gap-4">
-                <p>Width</p>
-                <div className="imageWidthSlider">
-                  <Slider
-                    valueLabelDisplay="auto"
-                    min={30}
-                    max={100}
-                    value={items?.width}
-                    sx={{
-                      width: 200,
-                      color: "#D5D8DC",
-                      height: 8,
-                      padding: "5px 0",
-                    }}
-                    onChange={(e) =>
-                      handleFieldChange(
-                        items?.id,
-                        "width",
-                        parseInt(e.target.value)
-                      )
-                    }
-                  />
+                <div className="mt-5 flex items-center gap-4">
+                  <p>Width</p>
+                  <div className="imageWidthSlider">
+                    <Slider
+                      valueLabelDisplay="auto"
+                      min={30}
+                      max={100}
+                      value={items?.width}
+                      sx={{
+                        width: 200,
+                        color: "#D5D8DC",
+                        height: 8,
+                        padding: "5px 0",
+                      }}
+                      onChange={(e) =>
+                        handleFieldChange(
+                          items?.id,
+                          "width",
+                          parseInt(e.target.value)
+                        )
+                      }
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
           </div>
         )}
 
@@ -406,7 +411,7 @@ const {userData} = useContext(userContext)
               placeholder={items?.placeholder}
               value={items?.number && items?.number}
               onChange={(e) => handleFieldChange(items?.id, "number", e)}
-             
+
             />
           </div>
         )}
@@ -457,13 +462,13 @@ const {userData} = useContext(userContext)
           <div className="mt-4 relative">
             <select
               name={`chooseLabel`}
-              
+
               onChange={(e) =>
                 handleFieldChange(items?.id, `chooseLabel`, e.target.value)
               }
               id={`choiceLabel`}
               class="w-full py-2 pl-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg "
-            > 
+            >
 
               <option selected >Choice label</option>
               <option value="Office" selected={items?.chooseLabel === "Office"}>Office</option>
@@ -556,9 +561,8 @@ const {userData} = useContext(userContext)
                 <p>Alignment</p>
                 <div className="flex border-4 border-[#D5D8DC] rounded-lg">
                   <button
-                    className={`p-2 ${
-                      items?.align === "left" && "bg-[#D5D8DC]"
-                    }`}
+                    className={`p-2 ${items?.align === "left" && "bg-[#D5D8DC]"
+                      }`}
                     onClick={() =>
                       handleFieldChange(items?.id, "align", "left")
                     }
@@ -597,9 +601,8 @@ const {userData} = useContext(userContext)
                     </svg>
                   </button>
                   <button
-                    className={`p-2 ${
-                      items?.align === "center" && "bg-[#D5D8DC]"
-                    }`}
+                    className={`p-2 ${items?.align === "center" && "bg-[#D5D8DC]"
+                      }`}
                     onClick={() =>
                       handleFieldChange(items?.id, "align", "center")
                     }
@@ -657,9 +660,8 @@ const {userData} = useContext(userContext)
                     </svg>
                   </button>
                   <button
-                    className={`p-2 ${
-                      items?.align === "right" && "bg-[#D5D8DC]"
-                    }`}
+                    className={`p-2 ${items?.align === "right" && "bg-[#D5D8DC]"
+                      }`}
                     onClick={() =>
                       handleFieldChange(items?.id, "align", "right")
                     }
@@ -777,8 +779,8 @@ const {userData} = useContext(userContext)
       )}
       {items?.hasOwnProperty("pdf") && (
         <div>
-            {items?.pdf  && (
-          <div className=" flex-wrap my-4">
+          {items?.pdf && (
+            <div className=" flex-wrap my-4">
               <p className="flex gap-4 items-center">
                 {" "}
                 <PictureAsPdfIcon fontSize="large" />{" "}
@@ -786,8 +788,8 @@ const {userData} = useContext(userContext)
                   <CloudDownloadIcon />
                 </button>{" "}
               </p>
-          </div>
-            )}
+            </div>
+          )}
 
           <label
             htmlFor="p"
@@ -822,8 +824,19 @@ const {userData} = useContext(userContext)
             {items?.notes}
           </textarea>
           <label htmlFor="" className="absolute top-1 left-2">
-            {items?.type === "Notes" && <EditNoteOutlinedIcon/>}
+            {items?.type === "Notes" && <EditNoteOutlinedIcon />}
           </label>
+        </div>
+      )}
+      {items?.type === "Text" && (
+        <div className="relative h-[260px]">
+
+          <ReactQuill theme="snow" value={items?.text} style={{height:'200px'}} onChange={e=> handleFieldChange(
+                items?.id,
+                "text",
+                e
+              )} />
+          
         </div>
       )}
       {items?.hasOwnProperty("date") && (
