@@ -12,7 +12,7 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design,logoImage })
             <div className="mt-3">
               <h2
                 className={`font-bold text-xl   ${
-                  design === "classic" ? "border-l-2 pl-2" : "p-2 border-[3px]  border-dotted"
+                  design === "classic" ? "border-l-2 pl-2" : "p-2 border-l-[3px] md:border-[3px]  border-dotted"
                 }`}
                 style={{ borderColor: color }}
               >

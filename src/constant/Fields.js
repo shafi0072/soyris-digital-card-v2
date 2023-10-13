@@ -910,6 +910,8 @@ export const field_data = [
         fields: {
           pdf: "",
           type: "Pdf",
+          label:'',
+          labelPleaceholder: 'Display Text'
         },
       },
       {
