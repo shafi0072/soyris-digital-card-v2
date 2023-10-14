@@ -35,6 +35,7 @@ const ContextApi = ({ children }) => {
     const value = {
         isLoading,
         setIsLoading,
+        setSettings,
         logoSize,
         qrSize,
         outerEyeColor,
