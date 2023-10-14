@@ -8,8 +8,8 @@ const Pdf = ({item}) => {
 
   const downloadPdf = () => {
     const link = document.createElement("a");
-    link.href = `${item?.pdf}`;
-    link.download = filename;
+    link.href = `${item?.pdf.file}`;
+    link.download = item?.pdf.name;
     link.target = "_blank";
     document.body.appendChild(link);
     link.click();
@@ -17,7 +17,7 @@ const Pdf = ({item}) => {
   };
   return (
     <>
-      <div className={`${!item?.pdf ?  'hidden' : 'block mt-5' } `}>
+      <div className={`${!item?.pdf ?  'hidden' : 'block mt-5' } `} onClick={downloadPdf}>
       {item?.pdf  &&(
         <div className="mt-5">
          
@@ -25,7 +25,7 @@ const Pdf = ({item}) => {
             <div    style={{ backgroundColor: primaryColor }} className=" p-2 rounded-full">
               <PictureAsPdfOutlinedIcon sx={{ color: primaryAccent }} />
             </div>
-            <button onClick={downloadPdf} title="click to download pdf">
+            <button  title="click to download pdf">
               {" "}
               <h2 className="text-xl">{item?.label}</h2>
             </button>
