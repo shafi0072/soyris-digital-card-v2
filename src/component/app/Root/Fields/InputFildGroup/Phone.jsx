@@ -72,8 +72,8 @@ const Phone = ({
 
   const downloadPdf = () => {
     const link = document.createElement('a');
-    link.href = `${items?.pdf}`;
-    link.download = filename;
+    link.href = `${items?.pdf?.file}`;
+    link.download = items?.pdf?.name;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();

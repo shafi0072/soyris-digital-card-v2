@@ -85,7 +85,7 @@ const Content2 = () => {
     setNewFeilds((prevFields) =>
       prevFields.map((field) => {
         if (field.id === id) {
-          return { ...field, pdf: compressedBase64 };
+          return { ...field, pdf: {name: value?.name, file: compressedBase64} };
         }
         return field;
       })
