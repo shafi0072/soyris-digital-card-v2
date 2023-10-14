@@ -8,7 +8,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit,url }) => {
   const inputRef = useRef(null);
   const [isValid,setIsValid] = useState("");
 
-  const { settings,userCardData } = useContext(userContext);
+  const { settings,userCardData, setSettings } = useContext(userContext);
   console.log({userCardData});
   console.log({settings});
   // function for copy text --------------
@@ -32,6 +32,7 @@ const Personalised = ({ setUrl, handleUrl, isEdit, setEdit,url }) => {
   const [inputValue, setInputValue] = useState(settings.url);
 
   const handleInputChange = (e) => {
+    
     fetch(`${baseUrl}/cards/settings/${e.target.value}`)
       .then((res) => res.json())
       .then((data) => {
