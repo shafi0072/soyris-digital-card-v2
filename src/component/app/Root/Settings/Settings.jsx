@@ -13,6 +13,7 @@ import { useEffect } from "react";
 
 const Settings = () => {
   const { settings } = useContext(userContext);
+  console.log({settings})
   const [isEdit, setEdit] = useState(false);
   const [cardName, setCardName] = useState("");
   const [url, setUrl] = useState("");
@@ -64,6 +65,7 @@ const Settings = () => {
     var raw = JSON.stringify({
       setting: {
         url: url,
+        priviousUrl:[...settings?.priviousUrl, settings?.url],
         cardName: settings.cardName,
         cardStatus: settings.cardStatus,
       },
