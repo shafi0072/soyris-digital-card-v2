@@ -51,22 +51,26 @@ import {
   youtubeIcon,
 } from "@/src/component/core/Shared/FieldData/FeildInputIcon";
 import Slider from "@mui/material/Slider";
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 const Phone = ({
   items,
   handleFieldChange,
   handleImageChanges,
   handleGalaryChanges,
   handlePdfChanges,
-  handleDelete
+  handleDelete,
+  uploadPdf,
+  setUploadPdf
 }) => {
-  
+  const [progress, setProgress] = React.useState(0);
   const [hideLabel, setHideLabel] = useState(true);
   const [textValue, setTextValue] = useState('');
-  console.log({ items });
+  // console.log('hfyrh', uploadPdf.files);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const { userData } = useContext(userContext)
   const handleChange = (event, newValue) => {
-    console.log(newValue);
+    // console.log(newValue);
   };
   const filename = `${userData?.email?.slice(0, 6)}-document.pdf`;
 
@@ -79,8 +83,28 @@ const Phone = ({
     link.click();
     document.body.removeChild(link);
   };
+  const handlePdfDelete = () => {
+    setUploadPdf({});
+    // handleFieldChange(items?.id, "label", '')
+  }
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          return 0;
+        }
+        const diff = Math.random() * 10;
+        return Math.min(oldProgress + diff, 100);
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
-    <div className="bg-white px-4 py-2 rounded-lg">
+    <div className="bg-white px-4 py-2 rounded-lg relative">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 mb">
           <div className="flex flex-col">
@@ -777,9 +801,9 @@ const Phone = ({
           />
         </div>
       )}
-      {items?.hasOwnProperty("pdf") && (
+      {items?.hasOwnProperty("pdf") && !uploadPdf?.files && (
         <div>
-          {items?.pdf && (
+          {/* {items?.pdf && (
             <div className=" flex-wrap my-4">
               <p className="flex gap-4 items-center">
                 {" "}
@@ -789,7 +813,7 @@ const Phone = ({
                 </button>{" "}
               </p>
             </div>
-          )}
+          )} */}
 
           <label
             htmlFor="p"
@@ -802,6 +826,7 @@ const Phone = ({
           <input id={items?.type}
             type="file"
             id="p"
+            accept='.pdf'
             style={{ display: "none" }}
             onChange={(e) => handlePdfChanges(items?.id, e.target.files[0])}
           />
@@ -831,12 +856,12 @@ const Phone = ({
       {items?.type === "Text" && (
         <div className="relative h-[260px]">
 
-          <ReactQuill theme="snow" value={items?.text} style={{height:'200px'}} onChange={e=> handleFieldChange(
-                items?.id,
-                "text",
-                e
-              )} />
-          
+          <ReactQuill theme="snow" value={items?.text} style={{ height: '200px' }} onChange={e => handleFieldChange(
+            items?.id,
+            "text",
+            e
+          )} />
+
         </div>
       )}
       {items?.hasOwnProperty("date") && (
@@ -895,6 +920,25 @@ const Phone = ({
           </div>
         </div>
       )}
+      {
+        (items?.type === 'Pdf' && uploadPdf?.files) && <div>
+          <div className='my-5 flex justify-between '>
+            <div className='flex items-center gap-2'>
+              <div className='w-[60px] h-[60px] bg-blue-600 rounded-full flex items-center justify-center'><img src="/pdf-iocn.png" width={30} height={30} alt="" /></div>
+              <p>
+                {uploadPdf?.files?.name}
+              </p>
+            </div>
+            <div className='flex items-end gap-3'>
+              <button className='py-1 px-3 bg-blue-600 rounded-md text-white'>OK</button>
+              <button className='py-1 px-3 bg-gray-600 rounded-md text-white' onClick={handlePdfDelete}>Calcel</button>
+            </div>
+          </div>
+          <Box sx={{ width: '100%', position: 'absolute', bottom:0, left:0 }} >
+            <LinearProgress variant="determinate" value={progress} />
+          </Box>
+        </div>
+      }
     </div>
   );
 };

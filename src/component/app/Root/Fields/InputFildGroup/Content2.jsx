@@ -1,5 +1,5 @@
 import { userContext } from "@/src/Storage/ContextApi";
-import React from "react";
+import React, { useState } from "react";
 import Phone from "./Phone";
 import { Container, Draggable } from "react-smooth-dnd";
 import { useContext } from "react";
@@ -12,6 +12,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 const Content2 = () => {
+  const [uploadPdf,setUploadPdf]= useState({})
   const { newFeilds, setNewFeilds, userCardData, setIsLoading } =
     useContext(userContext);
   const onDrop = (dropResult) => {
@@ -81,17 +82,20 @@ const Content2 = () => {
   };
   const handlePdfChanges = async (id, value) => {
     const files = value;
-    const compressedBase64 = await convertPDFToBase64(files);
-    setNewFeilds((prevFields) =>
-      prevFields.map((field) => {
-        if (field.id === id) {
-          return { ...field, pdf: compressedBase64 };
-        }
-        return field;
-      })
-    );
+    // const compressedBase64 = await convertPDFToBase64(files);
+    // setNewFeilds((prevFields) =>
+    //   prevFields.map((field) => {
+    //     if (field.id === id) {
+    //       return { ...field, pdf: compressedBase64 };
+    //     }
+    //     return field;
+    //   })
+    // );
+    setUploadPdf({
+      id,
+      files
+    })
   };
-
   const handleGalaryChanges = async (id, newImage) => {
     const files = newImage;
     const compressedBase64 = await compressAndConvertToBase64(
@@ -145,6 +149,8 @@ const Content2 = () => {
                     handleGalaryChanges={handleGalaryChanges}
                     handlePdfChanges={handlePdfChanges}
                     handleDelete={handleDelete}
+                    uploadPdf={uploadPdf}
+                    setUploadPdf={setUploadPdf}
                   />
                   {/* <Inputs id={items.id}  items={items}  handleFieldChange={handleFieldChange}/> */}
                 </div>
