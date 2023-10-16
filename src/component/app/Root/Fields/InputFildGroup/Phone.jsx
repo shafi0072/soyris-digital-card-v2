@@ -899,23 +899,21 @@ const Phone = ({
         </div>
       )}
       {
-        (items?.type === 'Pdf') && <div>
-          <div className='my-5 flex justify-between '>
-            {
-              uploadPdf?.file && <div className='flex items-center gap-2'>
+        (items?.type === 'Pdf' && uploadPdf.name) && <div>
+          <div className={uploadPdf.file && progress === 0 ? 'my-5 flex justify-between' : 'my-5 flex justify-between opacity-50'}>
+            <div className='flex items-center gap-2'>
               <div className='w-[60px] h-[60px] bg-blue-600 rounded-full flex items-center justify-center'><img src="/pdf-iocn.png" width={30} height={30} alt="" /></div>
               <p>
                 {uploadPdf?.name}
               </p>
             </div>
-            }
+            
             
           </div>
-          {
-            progress && <Box sx={{ width: '100%', position: 'absolute', bottom:0, left:0 }} >
+          <Box sx={{ width: '100%', position: 'absolute', bottom:0, left:0, display: progress === 0 && 'none' }} >
             <LinearProgress variant="determinate" value={progress} />
           </Box>
-          }
+          
         </div>
       }
     </div>
