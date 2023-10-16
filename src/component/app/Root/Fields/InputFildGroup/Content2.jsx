@@ -13,6 +13,7 @@ import { useEffect } from "react";
 const Content2 = () => {
   const [progress, setProgress] = React.useState(0);
   const [uploadPdf,setUploadPdf]= useState({})
+  const [savedisable, setSaveDisable] = useState(false)
   const { newFeilds, setNewFeilds, userCardData, setIsLoading } =
     useContext(userContext);
   const onDrop = (dropResult) => {
@@ -82,6 +83,11 @@ const Content2 = () => {
   };
   const handlePdfChanges =  (id, value) => {
     setProgress(50);
+    setSaveDisable(true)
+    setUploadPdf({
+      name:value?.name,
+      file:""
+    })
     const files = value;
     const formData= new FormData();
     formData.append('files', files);
@@ -94,11 +100,13 @@ const Content2 = () => {
     .then(data=> {
       setProgress(100);
       setUploadPdf({
+        id:id,
         name:value?.name,
         file: data?.cdnUrls[0]
       })
       setTimeout(()=>{
         setProgress(0);
+        setSaveDisable(false)
       },1000)
     })
     .catch(err=>{
@@ -141,6 +149,18 @@ const Content2 = () => {
       rightSideRef.current.scrollTop = rightSideRef.current.scrollHeight;
     }
   }, [newFeilds.length]);
+  useEffect(() => {
+    if(uploadPdf?.name && uploadPdf?.file){
+      setNewFeilds((prevFields) =>
+      prevFields.map((field) => {
+        if (field?.id === uploadPdf?.id) {
+          return { ...field, pdf: uploadPdf };
+        }
+        return field;
+      })
+    );
+    }
+  },[uploadPdf])
   return (
     <>
       <div
@@ -180,7 +200,8 @@ const Content2 = () => {
           type="submit"
           onClick={handleFieldsOnSubmit}
           value="Save"
-          className="px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]"
+          disabled={savedisable}
+          className={!savedisable ?  " px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]" : " px-5 py-1 my-4 border border-[#535353] bg-[#535353] font-medium text-lg text-white rounded"}
         />
       </div>
     </>
