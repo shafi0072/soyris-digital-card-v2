@@ -61,12 +61,14 @@ const Phone = ({
   handlePdfChanges,
   handleDelete,
   uploadPdf,
-  setUploadPdf
+  setUploadPdf,
+  progress,
+  setProgress
 }) => {
-  const [progress, setProgress] = React.useState(0);
+  
   const [hideLabel, setHideLabel] = useState(true);
   const [textValue, setTextValue] = useState('');
-  // console.log('hfyrh', uploadPdf.files);
+  console.log('hfyrh', uploadPdf.file);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const { userData } = useContext(userContext)
   const handleChange = (event, newValue) => {
@@ -87,21 +89,7 @@ const Phone = ({
     setUploadPdf({});
     // handleFieldChange(items?.id, "label", '')
   }
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  
 
   return (
     <div className="bg-white px-4 py-2 rounded-lg relative">
@@ -801,19 +789,9 @@ const Phone = ({
           />
         </div>
       )}
-      {items?.hasOwnProperty("pdf") && !uploadPdf?.files && (
+      {items?.hasOwnProperty("pdf") && !uploadPdf?.file && (
         <div>
-          {/* {items?.pdf && (
-            <div className=" flex-wrap my-4">
-              <p className="flex gap-4 items-center">
-                {" "}
-                <PictureAsPdfIcon fontSize="large" />{" "}
-                <button title="Click to Download" onClick={downloadPdf}>
-                  <CloudDownloadIcon />
-                </button>{" "}
-              </p>
-            </div>
-          )} */}
+          
 
           <label
             htmlFor="p"
@@ -828,7 +806,7 @@ const Phone = ({
             id="p"
             accept='.pdf'
             style={{ display: "none" }}
-            onChange={(e) => handlePdfChanges(items?.id, e.target.files[0])}
+            onChange={(e) => {setProgress(50); handlePdfChanges(items?.id, e.target.files[0])}}
           />
         </div>
       )}
@@ -921,18 +899,15 @@ const Phone = ({
         </div>
       )}
       {
-        (items?.type === 'Pdf' && uploadPdf?.files) && <div>
+        (items?.type === 'Pdf') && <div>
           <div className='my-5 flex justify-between '>
             <div className='flex items-center gap-2'>
               <div className='w-[60px] h-[60px] bg-blue-600 rounded-full flex items-center justify-center'><img src="/pdf-iocn.png" width={30} height={30} alt="" /></div>
               <p>
-                {uploadPdf?.files?.name}
+                {uploadPdf?.name}
               </p>
             </div>
-            <div className='flex items-end gap-3'>
-              <button className='py-1 px-3 bg-blue-600 rounded-md text-white'>OK</button>
-              <button className='py-1 px-3 bg-gray-600 rounded-md text-white' onClick={handlePdfDelete}>Calcel</button>
-            </div>
+            
           </div>
           <Box sx={{ width: '100%', position: 'absolute', bottom:0, left:0 }} >
             <LinearProgress variant="determinate" value={progress} />

@@ -10,8 +10,8 @@ import { convertPDFToBase64 } from "@/src/config/pdfBase64";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 import { useEffect } from "react";
-
 const Content2 = () => {
+  const [progress, setProgress] = React.useState(0);
   const [uploadPdf,setUploadPdf]= useState({})
   const { newFeilds, setNewFeilds, userCardData, setIsLoading } =
     useContext(userContext);
@@ -80,21 +80,32 @@ const Content2 = () => {
       })
     );
   };
-  const handlePdfChanges = async (id, value) => {
+  const handlePdfChanges =  (id, value) => {
+    setProgress(50);
     const files = value;
-    // const compressedBase64 = await convertPDFToBase64(files);
-    // setNewFeilds((prevFields) =>
-    //   prevFields.map((field) => {
-    //     if (field.id === id) {
-    //       return { ...field, pdf: compressedBase64 };
-    //     }
-    //     return field;
-    //   })
-    // );
-    setUploadPdf({
-      id,
-      files
+    const formData= new FormData();
+    formData.append('files', files);
+     fetch(`${baseUrl}/image/upload`,{
+      method: 'POST',
+     
+      body: formData
     })
+    .then(res=> res.json())
+    .then(data=> {
+      setProgress(100);
+      setUploadPdf({
+        name:value?.name,
+        file: data?.cdnUrls[0]
+      })
+      setTimeout(()=>{
+        setProgress(0);
+      },1000)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+    
+    
   };
   const handleGalaryChanges = async (id, newImage) => {
     const files = newImage;
@@ -151,6 +162,8 @@ const Content2 = () => {
                     handleDelete={handleDelete}
                     uploadPdf={uploadPdf}
                     setUploadPdf={setUploadPdf}
+                    setProgress={setProgress}
+                    progress={progress}
                   />
                   {/* <Inputs id={items.id}  items={items}  handleFieldChange={handleFieldChange}/> */}
                 </div>
