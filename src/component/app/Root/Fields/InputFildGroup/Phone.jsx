@@ -51,22 +51,28 @@ import {
   youtubeIcon,
 } from "@/src/component/core/Shared/FieldData/FeildInputIcon";
 import Slider from "@mui/material/Slider";
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 const Phone = ({
   items,
   handleFieldChange,
   handleImageChanges,
   handleGalaryChanges,
   handlePdfChanges,
-  handleDelete
+  handleDelete,
+  uploadPdf,
+  setUploadPdf,
+  progress,
+  setProgress
 }) => {
   
   const [hideLabel, setHideLabel] = useState(true);
   const [textValue, setTextValue] = useState('');
-  console.log({ items });
+  console.log('hfyrh', uploadPdf.file);
   const [useInternationalNumber, setUseInternationalNumber] = useState(true);
   const { userData } = useContext(userContext)
   const handleChange = (event, newValue) => {
-    console.log(newValue);
+    // console.log(newValue);
   };
   const filename = `${userData?.email?.slice(0, 6)}-document.pdf`;
 
@@ -79,8 +85,14 @@ const Phone = ({
     link.click();
     document.body.removeChild(link);
   };
+  const handlePdfDelete = () => {
+    setUploadPdf({});
+    // handleFieldChange(items?.id, "label", '')
+  }
+  
+
   return (
-    <div className="bg-white px-4 py-2 rounded-lg">
+    <div className="bg-white px-4 py-2 rounded-lg relative">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 mb">
           <div className="flex flex-col">
@@ -777,19 +789,9 @@ const Phone = ({
           />
         </div>
       )}
-      {items?.hasOwnProperty("pdf") && (
+      {items?.hasOwnProperty("pdf") && !uploadPdf?.file && (
         <div>
-          {items?.pdf && (
-            <div className=" flex-wrap my-4">
-              <p className="flex gap-4 items-center">
-                {" "}
-                <PictureAsPdfIcon fontSize="large" />{" "}
-                <button title="Click to Download" onClick={downloadPdf}>
-                  <CloudDownloadIcon />
-                </button>{" "}
-              </p>
-            </div>
-          )}
+          
 
           <label
             htmlFor="p"
@@ -802,8 +804,9 @@ const Phone = ({
           <input id={items?.type}
             type="file"
             id="p"
+            accept='.pdf'
             style={{ display: "none" }}
-            onChange={(e) => handlePdfChanges(items?.id, e.target.files[0])}
+            onChange={(e) => {setProgress(50); handlePdfChanges(items?.id, e.target.files[0])}}
           />
         </div>
       )}
@@ -831,12 +834,12 @@ const Phone = ({
       {items?.type === "Text" && (
         <div className="relative h-[260px]">
 
-          <ReactQuill theme="snow" value={items?.text} style={{height:'200px'}} onChange={e=> handleFieldChange(
-                items?.id,
-                "text",
-                e
-              )} />
-          
+          <ReactQuill theme="snow" value={items?.text} style={{ height: '200px' }} onChange={e => handleFieldChange(
+            items?.id,
+            "text",
+            e
+          )} />
+
         </div>
       )}
       {items?.hasOwnProperty("date") && (
@@ -895,6 +898,24 @@ const Phone = ({
           </div>
         </div>
       )}
+      {
+        (items?.type === 'Pdf' && uploadPdf.name) && <div>
+          <div className={uploadPdf.file && progress === 0 ? 'my-5 flex justify-between' : 'my-5 flex justify-between opacity-50'}>
+            <div className='flex items-center gap-2'>
+              <div className='w-[60px] h-[60px] bg-blue-600 rounded-full flex items-center justify-center'><img src="/pdf-iocn.png" width={30} height={30} alt="" /></div>
+              <p>
+                {uploadPdf?.name}
+              </p>
+            </div>
+            
+            
+          </div>
+          <Box sx={{ width: '100%', position: 'absolute', bottom:0, left:0, display: progress === 0 && 'none' }} >
+            <LinearProgress variant="determinate" value={progress} />
+          </Box>
+          
+        </div>
+      }
     </div>
   );
 };

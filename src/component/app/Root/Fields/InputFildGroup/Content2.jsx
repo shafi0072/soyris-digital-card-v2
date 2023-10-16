@@ -1,5 +1,5 @@
 import { userContext } from "@/src/Storage/ContextApi";
-import React from "react";
+import React, { useState } from "react";
 import Phone from "./Phone";
 import { Container, Draggable } from "react-smooth-dnd";
 import { useContext } from "react";
@@ -10,8 +10,10 @@ import { convertPDFToBase64 } from "@/src/config/pdfBase64";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 import { useEffect } from "react";
-
 const Content2 = () => {
+  const [progress, setProgress] = React.useState(0);
+  const [uploadPdf,setUploadPdf]= useState({})
+  const [savedisable, setSaveDisable] = useState(false)
   const { newFeilds, setNewFeilds, userCardData, setIsLoading } =
     useContext(userContext);
   const onDrop = (dropResult) => {
@@ -79,19 +81,40 @@ const Content2 = () => {
       })
     );
   };
-  const handlePdfChanges = async (id, value) => {
+  const handlePdfChanges =  (id, value) => {
+    setProgress(50);
+    setSaveDisable(true)
+    setUploadPdf({
+      name:value?.name,
+      file:""
+    })
     const files = value;
-    const compressedBase64 = await convertPDFToBase64(files);
-    setNewFeilds((prevFields) =>
-      prevFields.map((field) => {
-        if (field.id === id) {
-          return { ...field, pdf: {name: value?.name, file: compressedBase64} };
-        }
-        return field;
+    const formData= new FormData();
+    formData.append('files', files);
+     fetch(`${baseUrl}/image/upload`,{
+      method: 'POST',
+     
+      body: formData
+    })
+    .then(res=> res.json())
+    .then(data=> {
+      setProgress(100);
+      setUploadPdf({
+        id:id,
+        name:value?.name,
+        file: data?.cdnUrls[0]
       })
-    );
+      setTimeout(()=>{
+        setProgress(0);
+        setSaveDisable(false)
+      },1000)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+    
+    
   };
-
   const handleGalaryChanges = async (id, newImage) => {
     const files = newImage;
     const compressedBase64 = await compressAndConvertToBase64(
@@ -126,6 +149,18 @@ const Content2 = () => {
       rightSideRef.current.scrollTop = rightSideRef.current.scrollHeight;
     }
   }, [newFeilds.length]);
+  useEffect(() => {
+    if(uploadPdf?.name && uploadPdf?.file){
+      setNewFeilds((prevFields) =>
+      prevFields.map((field) => {
+        if (field?.id === uploadPdf?.id) {
+          return { ...field, pdf: uploadPdf };
+        }
+        return field;
+      })
+    );
+    }
+  },[uploadPdf])
   return (
     <>
       <div
@@ -145,6 +180,10 @@ const Content2 = () => {
                     handleGalaryChanges={handleGalaryChanges}
                     handlePdfChanges={handlePdfChanges}
                     handleDelete={handleDelete}
+                    uploadPdf={uploadPdf}
+                    setUploadPdf={setUploadPdf}
+                    setProgress={setProgress}
+                    progress={progress}
                   />
                   {/* <Inputs id={items.id}  items={items}  handleFieldChange={handleFieldChange}/> */}
                 </div>
@@ -161,7 +200,8 @@ const Content2 = () => {
           type="submit"
           onClick={handleFieldsOnSubmit}
           value="Save"
-          className="px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]"
+          disabled={savedisable}
+          className={!savedisable ?  " px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]" : " px-5 py-1 my-4 border border-[#535353] bg-[#535353] font-medium text-lg text-white rounded"}
         />
       </div>
     </>

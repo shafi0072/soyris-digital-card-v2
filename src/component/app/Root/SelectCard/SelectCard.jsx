@@ -19,7 +19,8 @@ const SelectCard = () => {
   
     const accessTokenDecode = decodeJwt()
     const words = userData?.fullName?.split(' ');
-    console.log(words);
+    console.log({words});
+    
     fetch(`${baseUrl}/cards/add-cards`, {
       method: "POST",
       headers: {
