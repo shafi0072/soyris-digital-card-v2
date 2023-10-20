@@ -110,7 +110,20 @@ const Content2 = () => {
       },1000)
     })
     .catch(err=>{
+      setProgress(0)
+      toast.error("Fields is to large maximum limit 3mb!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setUploadPdf({})
       console.log(err);
+      
     })
     
     
