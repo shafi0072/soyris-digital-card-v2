@@ -52,7 +52,7 @@ export const field_data = [
           number: "",
           ext: "",
           internationalNumber: false,
-          chooseLabel: "Office",
+          chooseLabel: "Mobile",
           hideLabelCopy: false,
           type: "Phone",
           pleaceholder: "032937890232",

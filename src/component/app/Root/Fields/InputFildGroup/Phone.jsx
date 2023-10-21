@@ -483,9 +483,10 @@ const Phone = ({
             >
 
               <option selected >Choice label</option>
-              <option value="Office" selected={items?.chooseLabel === "Office"}>Office</option>
+              <option value="Work" selected={items?.chooseLabel === "Work"}>Work</option>
               <option value="Mobile" selected={items?.chooseLabel === "Mobile"}>Mobile</option>
               <option value="Fax" selected={items?.chooseLabel === "Fax"}>Fax</option>
+              <option value="Other" selected={items?.chooseLabel === "Other"}>Other</option>
             </select>
             <label htmlFor="" className="absolute top-3 left-2 color-[#C1C1C1]">
               <svg
