@@ -239,14 +239,14 @@ const Layout2 = ({ children }) => {
             {router.pathname === '/my-cards' ? (<div className="col-span-10 2xl:col-span-12">
               {children}
 
-            </div>) : (<div className="col-span-11 xl:col-span-8">
+            </div>) : (<div className="col-span-11 2xl:col-span-8">
               {children}
             </div>)
             }
 
-            <div className={`bg-[#F7FAFC]  fixed w-[400px] 2xl:w-[500px] flex justify-end 2xl:justify-center z-50 ${router.pathname === '/' ? "right-0" : "right-3 2xl:right-[0%] "} `}>
+            <div className={`bg-[#F7FAFC]  fixed w-[400px] 3xl:w-[500px] flex justify-end 3xl:justify-center  ${router.pathname === '/' ? "right-0" : "right-3 3xl:right-[0%] "} `}>
               {
-                (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <div className='hidden xl:block'>
+                (router.pathname === '/profileInfo' || router.pathname === "/design" || router.pathname === "/fields") && <div className='hidden 2xl:block'>
                   <RightSidebar />
                 </div>
               }

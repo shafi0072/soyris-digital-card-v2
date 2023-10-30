@@ -91,7 +91,7 @@ const SubNavbar = ( {toggleDrawer}) => {
               </li>
             ))}
           </ul>
-          <div className=" bg-sky-600 px-2 py-1 rounded-md  xl:hidden"><button className=" " onClick={toggleDrawer}>
+          <div className=" bg-sky-600 px-2 py-1 rounded-md  2xl:hidden"><button className=" " onClick={toggleDrawer}>
             <RemoveRedEyeOutlinedIcon sx={{color:'white'}}/>
           </button></div>
           </div>

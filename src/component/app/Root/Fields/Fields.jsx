@@ -25,16 +25,26 @@ const Fields = () => {
     }
   };
   return (
-    <div className="grid grid-cols-4 2xl:grid-cols-3 gap-4 2xl:gap-8 h-[100vh] ">
-      <div className="col-span-2  2xl:col-span-1 ...">
-        <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
-      </div>
-      <div className=" w-[500px] 2xl:w-[700px] ">
-        <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
-        <div  ref={targetRef}></div>
-      </div>
+    // <div className="grid grid-cols-4  3xl:grid-cols-3 gap-4 3xl:gap-8 h-[100vh] ">
+    //   <div className="col-span-1.5  3xl:col-span-1 ...">
+    //     <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
+    //   </div>
+    //   <div className=" w-[500px]  xl:w-[600px] 3xl:w-[700px]">
+    //     <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
+    //     <div  ref={targetRef}></div>
+    //   </div>
       
+    // </div>
+    <div className=" flex  gap-x-4 h-[100vh] ">
+    <div className="w-4/12 ...">
+      <Sidebar scrollTobottom={scrollTobottom} newFeilds={newFeilds} setNewFeilds={setNewFeilds} />
     </div>
+    <div className=" w-[500px]  xl:w-[600px] 3xl:w-[800px]">
+      <Content2 targetRef={targetRef} newFeilds={newFeilds} setNewFeilds={setNewFeilds}/>
+      <div  ref={targetRef}></div>
+    </div>
+    
+  </div>
   );
 };
 
