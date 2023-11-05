@@ -1,30 +1,32 @@
 import { userContext } from '@/src/Storage/ContextApi';
 import { baseUrl } from '@/src/config/Server';
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
-
+import CircularProgress from '@mui/material/CircularProgress';
 const ProfileInformation = () => {
-    const {userCardData, userData, infos, setInfo, setIsLoading } = useContext(userContext);
+    const [submitLoading, setSubmitLoading] = useState(false)
+    const { userCardData, userData, infos, setInfo, setIsLoading, loading } = useContext(userContext);
     const handleFieldsOnChange = (e) => {
         const newData = { ...infos }
         newData[e.target.name] = e.target.value
         setInfo(newData)
     }
+
     const handleOnSubmit = (e) => {
         e.preventDefault()
         const userCardId = localStorage.getItem('cardId')
-        setIsLoading(true)
+        setSubmitLoading(true)
         fetch(`${baseUrl}/cards/profile/${userCardId}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({profileInfo: { ...infos }})
+            body: JSON.stringify({ profileInfo: { ...infos } })
         })
             .then(res => res.json())
             .then(data => {
-                setIsLoading(false)
+                setSubmitLoading(false)
                 toast.success('Profile Information Update SuccessFully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -36,7 +38,10 @@ const ProfileInformation = () => {
                     theme: "light",
                 });
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setSubmitLoading(false);
+                console.log(err)
+            })
     }
     return (
         <div className='h-[100vh]'>
@@ -103,7 +108,7 @@ const ProfileInformation = () => {
                         </div>
                         <div className=''>
                             <label htmlFor="company" className='block mb-2'>Company</label>
-                            <input defaultValue={infos?.company}  onChange={handleFieldsOnChange} type="text" className='w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='company' id='company' />
+                            <input defaultValue={infos?.company} onChange={handleFieldsOnChange} type="text" className='w-[300px] py-1 shadow-md rounded px-2 border border-[#CBD5E0]' name='company' id='company' />
 
                         </div>
                     </div>
@@ -112,9 +117,17 @@ const ProfileInformation = () => {
 
                         <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block  w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
                     </div>
-                    <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[270px] 2xl:ps-[15%]  z-20' style={{boxShadow: ' 0px -4px  10px lightgray'}}>
-                       
-                        <input type="submit" value="Save" className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer ' />
+                    <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[270px] 2xl:ps-[15%]  z-20' style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
+
+                        {/* <input type="submit" value="Save" className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer ' /> */}
+
+                        <button type='submit' disabled={submitLoading} className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer '>
+                            {
+                                submitLoading ? <CircularProgress style={{ width: '25px', height: '25px' }} /> : 'Save'
+                            }
+
+
+                        </button>
                     </div>
                 </form>
             </div>

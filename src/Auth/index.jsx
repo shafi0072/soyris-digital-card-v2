@@ -10,8 +10,10 @@ import auth from "@/src/config/firebase";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { baseUrl } from "../config/Server";
+import Link from "next/link";
 const index = () => {
   const provider = new GoogleAuthProvider();
+  
   const router = useRouter();
   const [signUp, setSignUp] = useState(false);
   const [signUpData, setSignUpData] = useState({
@@ -203,13 +205,13 @@ const index = () => {
                     <label htmlFor="password" className="text-sm">
                       Password
                     </label>
-                    <a
+                    <Link
                       rel="noopener noreferrer"
-                      href="#"
+                      href="/auth/forgotten"
                       className="text-xs hover:underline text-blue-00"
                     >
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                   <input
                     type="password"
