@@ -34,7 +34,6 @@ import { useState } from 'react';
 import { SwipeableDrawer } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -104,7 +103,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const Layout2 = ({ children }) => {
   const [rightSideOpen, setRightSideOpen] = useState(false)
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [openDrawar, setOpenDrawar] = useState(false)
   const [expand, setExpand] = React.useState(-1)
   const router = useRouter();
   const styles = {
@@ -115,35 +115,50 @@ const Layout2 = ({ children }) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  const handleOpenDrwarClick = () => {
+    setOpenDrawar(!openDrawar);
+  }
   const hnadleLogout = () => {
     localStorage.clear();
     window.location.reload();
   }
-  useEffect(() => {
-    const width = window.innerWidth;
-    if (width < 1536) {
-      setOpen(true);
-    } else {
-      setOpen(true)
-    }
-    console.log({ width });
-  }, [])
+  // useEffect(() => {
+  //   const width = window.innerWidth;
+  //   if (width < 1536) {
+  //     setOpen(true);
+  //   } else {
+  //     setOpen(true)
+  //   }
+  //   console.log({ width });
+  // }, [])
   const handleDrawerClose = () => {
     setOpen(false);
   };
   const toggleDrawer = () => {
     setRightSideOpen(!rightSideOpen);
   }
+  const handleOPenDrawar = () => {
+    setOpen(true)
+  }
+  const handleCloseDrawar = () => {
+    if (!openDrawar) {
+      setOpen(false);
+    } else {
+      setOpen(true)
+    }
+  }
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} >
+      <AppBar position="fixed" open={open || openDrawar} >
         <Toolbar>
-          {/* <IconButton
-            className=' 2xl:hidden'
+          <IconButton
+            className=' '
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={handleOpenDrwarClick}
+            onMouseEnter={handleOPenDrawar}
+            // onMouseOut={handleCloseDrawar}
             edge="start"
             sx={{
               marginRight: 5,
@@ -151,15 +166,15 @@ const Layout2 = ({ children }) => {
             }}
           >
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
           <Navbar />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} >
+      <Drawer onMouseEnter={handleOPenDrawar} onMouseOut={handleCloseDrawar} variant="permanent" open={open || openDrawar} >
         <DrawerHeader >
-          {/* <IconButton onClick={handleDrawerClose} className=' 2xl:hidden'>
-            {theme.direction === 'rtl' ? <ChevronRightIcon style={{ color: 'white' }} /> : <ChevronLeftIcon style={{ color: 'white' }} />}
-          </IconButton> */}
+          <IconButton  onClick={handleOpenDrwarClick} className=' '>
+          <MenuIcon  sx={{color: 'white'}}/>
+          </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
@@ -264,7 +279,7 @@ const Layout2 = ({ children }) => {
           // sx={{backgroundColor:'white'}}
           >
             <div className='w-[400px] mt-[50px] relative'>
-              <CloseIcon className='absolute right-2 top-[20px] cursor-pointer' onClick={toggleDrawer}/>
+              <CloseIcon className='absolute right-2 top-[20px] cursor-pointer' onClick={toggleDrawer} />
               <RightSidebar />
             </div>
           </SwipeableDrawer>
