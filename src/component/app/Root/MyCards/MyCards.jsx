@@ -46,7 +46,7 @@ const MyCards = () => {
             {!isLoading && userCard?.length === 0 && showMessage && (
                 <p className='text-2xl font-semibold' style={{ color: '#000000ab' }}>Please Create a Card</p>
             )}
-            <div className='flex flex-wrap '>
+            <div className='flex flex-wrap'>
                 {
                     userCard?.map((items, index) =>
                         <div className=' cursor-pointer w-[300px] ml-4 mb-5  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>

@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { userContext } from "@/src/Storage/ContextApi";
 import { useEffect } from "react";
+import ReviewUrl from "./ReviewUrl";
 
 const Settings = () => {
   const { settings } = useContext(userContext);
@@ -104,6 +105,7 @@ const Settings = () => {
         isEdit={isEdit}
         setEdit={setEdit}
       />
+      <ReviewUrl/>
       <CardStatus />
       <DuplicateCard />
       <DeleteCard />
