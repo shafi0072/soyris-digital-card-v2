@@ -15,7 +15,7 @@ const Design = () => {
     // const [color, setColor] = useState({});
     const [border, setBorder] = useState('clasic');
     const [colorName, setColorname] = useState('')
-    const { profileImage, logoImage, userData, design, primaryColor,
+    const {open, profileImage, logoImage, userData, design, primaryColor,
         primaryAccent,
         secondaryColor,
         secondaryAccent,
@@ -275,7 +275,7 @@ const Design = () => {
                 <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
                 <LogoImage />
             </div>
-            <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[18.7%] 2xl:ps-[15%]  z-20' style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
+            <div className={`${!open? 'ps-[5%]' : 'ps-[15%]'}  fixed bottom-0 bg-[white] right-[400px] h-[70px]  left-[0%]    z-20`} style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
 
                 <button onClick={handleDesignSubmit} className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer hover:bg-[black]'>Save</button>
 

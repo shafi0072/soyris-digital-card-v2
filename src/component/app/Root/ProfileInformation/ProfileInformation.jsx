@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import CircularProgress from '@mui/material/CircularProgress';
 const ProfileInformation = () => {
     const [submitLoading, setSubmitLoading] = useState(false)
-    const { userCardData, userData, infos, setInfo, setIsLoading, loading } = useContext(userContext);
+    const {open,openDrawar, userCardData, userData, infos, setInfo, setIsLoading, loading } = useContext(userContext);
     const handleFieldsOnChange = (e) => {
         const newData = { ...infos }
         newData[e.target.name] = e.target.value
@@ -43,6 +43,7 @@ const ProfileInformation = () => {
                 console.log(err)
             })
     }
+    console.log({open});
     return (
         <div className='h-[100vh]'>
 
@@ -117,7 +118,7 @@ const ProfileInformation = () => {
 
                         <textarea defaultValue={infos?.introduction} onChange={handleFieldsOnChange} id="introduction" rows="5" class="block  w-[636px] p-2.5  text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " name='introduction'></textarea>
                     </div>
-                    <div className='fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[270px] 2xl:ps-[15%]  z-20' style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
+                    <div className={`${!open? 'ps-[5%]' : 'ps-[15%]'}  fixed bottom-0 bg-[white] right-[400px] h-[70px]  left-[0%]    z-20`} style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
 
                         {/* <input type="submit" value="Save" className='px-5 py-1 my-4 border border-[black] bg-[black] font-medium text-lg text-white rounded cursor-pointer ' /> */}
 

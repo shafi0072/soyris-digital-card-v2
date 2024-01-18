@@ -14,7 +14,7 @@ const Content2 = () => {
   const [progress, setProgress] = React.useState(0);
   const [uploadPdf,setUploadPdf]= useState({})
   const [savedisable, setSaveDisable] = useState(false)
-  const { newFeilds, setNewFeilds, userCardData, setIsLoading } =
+  const {open, newFeilds, setNewFeilds, userCardData, setIsLoading } =
     useContext(userContext);
   const onDrop = (dropResult) => {
     if (!dropResult.removedIndex && !dropResult.addedIndex) return;
@@ -206,7 +206,7 @@ const Content2 = () => {
         
       </div>
       <div
-        className="fixed bottom-0 bg-[white] w-full h-[70px] r-[500px] left-[0%] ps-[18.7%] 2xl:ps-[15%]  z-20"
+        className={`${!open? 'ps-[5%]' : 'ps-[15%]'}  fixed bottom-0 bg-[white] right-[400px] h-[70px]  left-[0%]    z-20`}
         style={{ boxShadow: " 0px -4px  10px lightgray" }}
       >
         <input

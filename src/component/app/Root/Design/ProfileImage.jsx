@@ -77,7 +77,11 @@ const ProfileImage = () => {
           <div className="relative w-[60px] ">
             <img
               className="w-[50px] h-[50px] rounded-full object-cover"
-              src={profileImage ? profileImage : ""}
+              src={profileImage && profileImage !== 'https://suva-trip-exist.s3.amazonaws.com/man.png' && profileImage !== 'https://suva-trip-exist.s3.amazonaws.com/lady.png' && profileImage !== 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg'? profileImage :
+              profileImage === 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg' ? '/pro.jpg':
+              profileImage === 'https://suva-trip-exist.s3.amazonaws.com/man.png' ? '/man.jpg':
+              profileImage === 'https://suva-trip-exist.s3.amazonaws.com/lady.png' ? '/lady.png':
+               ""}
               alt=""
             />
             <span

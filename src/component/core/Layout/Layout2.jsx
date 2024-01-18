@@ -33,6 +33,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { SwipeableDrawer } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useContext } from 'react';
+import { userContext } from '@/src/Storage/ContextApi';
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -103,8 +105,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const Layout2 = ({ children }) => {
   const [rightSideOpen, setRightSideOpen] = useState(false)
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const [openDrawar, setOpenDrawar] = useState(false)
+  // const [openDrawar, setOpenDrawar] = useState(false)
+  const {open, setOpen,openDrawar,setOpenDrawar}= useContext(userContext)
   const [expand, setExpand] = React.useState(-1)
   const router = useRouter();
   const styles = {
@@ -157,8 +159,6 @@ const Layout2 = ({ children }) => {
             color="inherit"
             aria-label="open drawer"
             onClick={handleOpenDrwarClick}
-            onMouseEnter={handleOPenDrawar}
-            // onMouseOut={handleCloseDrawar}
             edge="start"
             sx={{
               marginRight: 5,
@@ -173,7 +173,7 @@ const Layout2 = ({ children }) => {
       <Drawer onMouseEnter={handleOPenDrawar} onMouseOut={handleCloseDrawar} variant="permanent" open={open || openDrawar} >
         <DrawerHeader >
           <IconButton  onClick={handleOpenDrwarClick} className=' '>
-          <MenuIcon  sx={{color: 'white'}}/>
+          <ChevronLeftIcon  sx={{color: 'white'}}/>
           </IconButton>
         </DrawerHeader>
         <Divider />

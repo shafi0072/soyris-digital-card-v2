@@ -39,7 +39,7 @@ const MyCards = () => {
         // Clean up the timeout if the component unmounts or if you don't want to show the message anymore for some reason.
         return () => clearTimeout(delay);
     }, []);
-
+console.log({userCard});
     return (
         <div style={{ height: '80vh' }}>
 
@@ -51,7 +51,7 @@ const MyCards = () => {
                     userCard?.map((items, index) =>
                         <div className=' cursor-pointer w-[300px] ml-4 mb-5  rounded-2 p-2' onClick={() => { localStorage.setItem('cardId', items?._id); window.location.assign('/profileInfo') }}>
                             {items?.display?.design === "flat" && <div className=' relative w-full h-[300px] '>
-                                <img src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-full rounded-t-md' alt="" />
+                                <img src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' && items?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/man.png' ? items?.display?.ProfileImage : "/man.jpg"} className='w-full h-full rounded-t-md' alt="" />
                                 <div className='absolute top-[90%] h-10 w-full' style={{ borderBottom: `20px solid ${items?.display?.primaryColor}` }}></div>
                             </div>}
                             {items?.display?.design === 'classic' &&
@@ -108,7 +108,7 @@ const MyCards = () => {
                                         </div>
                                         <img
                                             className="h-[300px] w-full object-cover rounded"
-                                            src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' ? items?.display?.ProfileImage : "/man.jpg"}
+                                            src={items?.display?.ProfileImage && items?.display?.ProfileImage !==  'null' && items?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/lady.png' ? items?.display?.ProfileImage  : "/lady.png"}
                                             alt=""
                                         />
                                     </div>
@@ -117,7 +117,7 @@ const MyCards = () => {
                             {items?.display?.design === 'pro' &&
 
                                 <div>
-                                    <img className="h-[300px] w-full object-cover rounded" src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' ? items?.display?.ProfileImage : "/man.jpg"} alt="" />
+                                    <img className="h-[300px] w-full object-cover rounded" src={items?.display?.ProfileImage && items?.display?.ProfileImage !== 'null' && items?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg' ? items?.display?.ProfileImage : "/pro.jpg"} alt="" />
                                 </div>
                             }
                             <h2 className={` text-center text-2xl py-5 border-b-2 border-dashed`} style={{ borderColor: items?.display?.primaryColor, background: items?.display?.design === 'pro' ? items?.display?.primaryColor : 'transparent', color:items?.display?.design === 'pro' ? 'white' : 'black'  }}>{items?.profileInfo?.first_name}, {items?.profileInfo?.last_name}</h2>

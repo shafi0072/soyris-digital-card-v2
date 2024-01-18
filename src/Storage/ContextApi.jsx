@@ -31,9 +31,16 @@ const ContextApi = ({ children }) => {
     const [qrSize, setQrSize] = useState(160);
     const [logoSize, setLogoSize] = useState(20);
     const [isLoading, setIsLoading] = useState(false)
+    const [openDrawar, setOpenDrawar] = useState(false)
+    const [open, setOpen] = useState(false);
+
 
     const value = {
+        open,
+        setOpen,
+        openDrawar,
         isLoading,
+        setOpenDrawar,
         setIsLoading,
         setSettings,
         logoSize,
