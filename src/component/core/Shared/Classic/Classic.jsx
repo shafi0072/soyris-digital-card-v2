@@ -23,7 +23,7 @@ const Classic = ({ color, profileImage, logoImage }) => {
                             <path id="wave-right" d="M300.742,6.114c-30.018-.329-66.667,9.2-121,41.617C136.118,73.767,99.61,86.065,65.025,86.281H65v1.575H350V14.529C334.376,10.055,318.753,6.312,300.742,6.114Z" transform="translate(-65 -6.106)" fill="white" />
                         </svg>
                     </div>
-                    {<img className='h-[327px] w-[100%] object-cover rounded-2xl' src={profileImage && profileImage !== 'null' ? profileImage : "/profile-image.png"} alt="" />}
+                    {<img className='h-[327px] w-[100%] object-cover rounded-2xl' src={profileImage && profileImage !== 'null' && profileImage !== "https://suva-trip-exist.s3.amazonaws.com/man.png" && profileImage !== "https://suva-trip-exist.s3.amazonaws.com/lady.png" && profileImage !== 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg' ? profileImage :  profileImage === "https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg"? '/pro.jpg': profileImage === "https://suva-trip-exist.s3.amazonaws.com/lady.png"? '/lady.png':  "/man.jpg"} alt="" />}
                     {logoImage !== null && logoImage !== 'null' && logoImage &&  <img className='absolute bottom-0 right-0 z-50 w-[100px] h-[50px]' src={logoImage} alt="" />}
                 </div>
             </div>

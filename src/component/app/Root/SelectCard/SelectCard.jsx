@@ -394,7 +394,7 @@ const SelectCard = () => {
         >
           <div className="w-full h-[240px] rounded-md">
             <img
-              src="https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg"
+              src="/pro.jpg"
               className="w-full h-full rounded-t-lg "
               alt=""
             />
