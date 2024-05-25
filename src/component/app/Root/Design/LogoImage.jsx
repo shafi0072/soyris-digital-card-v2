@@ -3,17 +3,18 @@ import Cropper from "react-cropper";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import { userContext } from "@/src/Storage/ContextApi";
+import "cropperjs/dist/cropper.css"; // Import Cropper.js CSS
+
 const LogoImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
-  const [cropAspectRatio, setCropAspectRatio] = useState(0);
   const { logoImage, setLogoImage } = useContext(userContext);
   const cropperRef2 = useRef(null);
-  // console.log({ logoImage });
+
   const handleFileChange = (e) => {
     setCroppedImage(null);
     setLogoImage(null); 
-    setSelectedImage(null)
+    setSelectedImage(null);
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
   };
@@ -29,8 +30,8 @@ const LogoImage = () => {
     const croppedCanvas = cropperRef2.current.cropper.getCroppedCanvas({
       minWidth: 200,
       minHeight: 200,
-      maxWidth: 400,
-      maxHeight: 200,
+      maxWidth: 1000, // Increase max width for higher resolution
+      maxHeight: 1000, // Increase max height for higher resolution
       fillColor: "#fff",
     });
 
@@ -48,40 +49,38 @@ const LogoImage = () => {
         }
       },
       "image/jpeg", // Use 'image/webp' for WebP format
-      0.8 // Adjust the compression quality as needed
+      0.8 // Highest quality
     );
   };
 
   const cropperOptions = {
-    aspectRatio: cropAspectRatio,
-    // guides: true,
-    // dragMode: "crop",
+    aspectRatio: 1, // Set your desired aspect ratio here
     cropBoxResizable: true,
-    // cropBoxMovable: true,
     cropBoxData: { width: 200, height: 200 }, // Initial crop area size
-    // crop: handleCropBoxDataChange, // To update the aspect ratio when crop area is resized
     zoomOnWheel: false, // Disable zoom on wheel
   };
+
   return (
     <div className="mb-[100px]">
       <div className='mt-8 flex items-center justify-between w-3/4'>
-        {logoImage !== 'null' && logoImage !== null && logoImage && <div className='relative w-[100px] '>
-          <>
-            <img className='w-[100px]  rounded-full   object-cover' src={logoImage && logoImage} alt="" />
-            <span onClick={() => {
-              setCroppedImage(null);
-              setLogoImage(null); setSelectedImage(null)
-            }} className='absolute -right-3 -top-2 w-[20px] h-[20px]  flex  items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
-              <CloseIcon className='text-white text-[12px]' />
-            </span>
-          </>
-        </div>
-        }
-        <div className=" w-[266px]">
-          <label htmlFor='logoImages' className='cursor-pointer flex  bg-gray-200 px-3 py-1 rounded-full' style={{ marginLeft: logoImage !==null && logoImage !== 'null' && logoImage ? '10%' :0 }}>
+        {logoImage && (
+          <div className='relative w-[100px] '>
+            <>
+              <img className='w-[100px] rounded-full object-cover' src={logoImage} alt="" />
+              <span onClick={() => {
+                setCroppedImage(null);
+                setLogoImage(null);
+                setSelectedImage(null);
+              }} className='absolute -right-3 -top-2 w-[20px] h-[20px] flex items-center justify-center bg-[#0F66A0] rounded-full cursor-pointer'>
+                <CloseIcon className='text-white text-[12px]' />
+              </span>
+            </>
+          </div>
+        )}
+        <div className="w-[266px]">
+          <label htmlFor='logoImages' className='cursor-pointer flex bg-gray-200 px-3 py-1 rounded-full' style={{ marginLeft: logoImage ? '10%' : 0 }}>
             <AddIcon sx={{ color: '#0053a2' }} />
-            <p className="text-md"> { logoImage !==null && logoImage !== 'null' && logoImage ? 'Replace Logo' : 'Add Logo'} </p>
-
+            <p className="text-md">{logoImage ? 'Replace Logo' : 'Add Logo'}</p>
           </label>
           <input
             type="file"
@@ -100,7 +99,6 @@ const LogoImage = () => {
             style={{ height: '100%', width: '100%' }}
             {...cropperOptions}
           />
-
           <div className="mt-2">
             <button
               onClick={() => {
@@ -110,7 +108,7 @@ const LogoImage = () => {
               }}
               className="px-4 py-2 bg-gray-400 mr-2 rounded"
             >
-              cancel
+              Cancel
             </button>
             <button
               onClick={handleCrop}
