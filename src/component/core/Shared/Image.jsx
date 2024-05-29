@@ -18,7 +18,7 @@ const Image = ({ item }) => {
         >
           
           <img
-            className="h-[250px] object-cover rounded"
+            className="rounded"
             src={item?.image}
             alt=""
             style={{
