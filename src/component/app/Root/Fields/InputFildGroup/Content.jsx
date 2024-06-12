@@ -45,12 +45,12 @@ const Content = ({ feilds, setFeilds }) => {
 
     setFeilds(newFields);
   };
-  console.log({feilds})
-  const {loading, userData, userCardData, newFeilds, setNewFeilds } =
+  console.log({ feilds })
+  const { loading, userData, userCardData, newFeilds, setNewFeilds } =
     useContext(userContext);
-    if(loading){
-      return 'Loading...';
-    }
+  if (loading) {
+    return 'Loading...';
+  }
   // phone
   const [phoneData, setPhoneData] = useState(
     [...Array(feilds.filter((item) => item === "Phone").length)].map(() => "")
@@ -77,8 +77,8 @@ const Content = ({ feilds, setFeilds }) => {
     [...Array(feilds.filter((item) => item === "image").length)].map(() => null)
   );
   const [align, setAlign] = useState(userCardData?.fields?.image[0]?.alignment || 'center');
-  console.log('align',userCardData?.fields?.image[0]?.alignment);
-  const [imageWidth, setImageWidth] = useState(userCardData?.fields?.image[0]?.width || 50 );
+  console.log('align', userCardData?.fields?.image[0]?.alignment);
+  const [imageWidth, setImageWidth] = useState(userCardData?.fields?.image[0]?.width || 50);
   // gallery ---------
   const [galary, setGalary] = useState(
     [...Array(feilds.filter((item) => item === "galary").length)].map(() => "")
@@ -203,10 +203,10 @@ const Content = ({ feilds, setFeilds }) => {
 
   // phone
   const handlePhoneInputChange = (index, field, value) => {
-    console.log({index});
+    console.log({ index });
     setPhoneData((prevPhoneData) => {
       const newData = [...prevPhoneData];
-     
+
       newData[index] = {
         ...newData[index],
         [field]: value,
@@ -217,7 +217,7 @@ const Content = ({ feilds, setFeilds }) => {
 
   // website
   const handleWebsiteInputChange = (index, field, value) => {
-    console.log('index',index);
+    console.log('index', index);
     setWebsiteData((prevWebsiteData) => {
       const newData = [...prevWebsiteData];
       newData[index] = {
@@ -521,7 +521,7 @@ const Content = ({ feilds, setFeilds }) => {
   const filteredPhoneData = Array.isArray(phoneData)
     ? phoneData.filter((item) => item !== undefined)
     : [];
-    // console.log({filteredPhoneData})
+  // console.log({filteredPhoneData})
 
   const websiteArray = Array.isArray(userCardData?.fields?.website)
     ? userCardData.fields.website

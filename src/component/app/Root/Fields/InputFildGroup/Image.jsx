@@ -98,7 +98,7 @@ const Image = ({ items, from, image, setImage, align, setAlign,imageWidth,setIma
               <>
                 <div>
                   <img
-                    className="w-[144px] h-[55px]  object-cover "
+                    className="w-full h-[55px]  "
                     src={saveImage && saveImage}
                   />
                 </div>
