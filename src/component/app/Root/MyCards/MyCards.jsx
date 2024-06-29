@@ -6,25 +6,25 @@ import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Spinner from '@/src/component/core/Spinner';
-const MyCards = () => {
-    const [userCard, setUserCard] = useState([])
+const MyCards = ({userCard}) => {
+    // const [userCard, setUserCard] = useState([])
 
     const { userData, isLoading, setIsLoading } = useContext(userContext)
     const [showMessage, setShowMessage] = useState(false);
     const router = useRouter()
 
-    useEffect(() => {
-        setIsLoading(true)
-        fetch(`${baseUrl}/cards/cards/${userData?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setUserCard(data);
-                setTimeout(() => {
-                    setIsLoading(false)
-                }, 2000)
-            })
-            .catch(err => { setIsLoading(false) })
-    }, [userData])
+    // useEffect(() => {
+    //     setIsLoading(true)
+    //     fetch(`${baseUrl}/cards/cards/${userData?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setUserCard(data);
+    //             setTimeout(() => {
+    //                 setIsLoading(false)
+    //             }, 2000)
+    //         })
+    //         .catch(err => { setIsLoading(false) })
+    // }, [])
     console.log({ userCard });
     useEffect(() => {
         // After a specified delay (e.g., 2000 milliseconds), show the message

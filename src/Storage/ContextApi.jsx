@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 export const userContext = createContext()
 const ContextApi = ({ children }) => {
     const [loading, setLoading] = useState(true)
-
     const [userData, setUserData] = useState({})
     const [userCardData, setUserCardData] = useState({})
     const [primaryColor, setPrimaryColor] = useState('#0053a2')
@@ -16,6 +15,7 @@ const ContextApi = ({ children }) => {
     const [profileImage, setProfileImage] = useState(null)
     const [design, setDesign] = useState('')
     const [logoImage, setLogoImage] = useState('')
+    const [favicon, setFavicon] = useState('')
     const [settings, setSettings] = useState({})
     const [infos, setInfo] = useState({})
     const [newFeilds, setNewFeilds] = useState([])
@@ -87,7 +87,9 @@ const ContextApi = ({ children }) => {
         setInnerEyeShape,
         setOuterEyeColor,
         setQrSize,
-        setLogoSize
+        setLogoSize,
+        favicon,
+        setFavicon
     }
 
 
@@ -143,6 +145,7 @@ const ContextApi = ({ children }) => {
         if (userCardData?.display?.secondaryColor) setSecondaryColor(userCardData?.display?.secondaryColor)
         if (userCardData?.display?.secondaryAccent) setSecondaryAccent(userCardData?.display?.secondaryAccent)
         if (userCardData?.display?.Logo) setLogoImage(userCardData?.display?.Logo)
+        if (userCardData?.display?.favicon) setFavicon(userCardData?.display?.favicon)
         if (userCardData?.setting) setSettings(userCardData?.setting)
         if (userCardData?.display?.design) setDesign(userCardData?.display?.design)
     }, [userCardData?.QrCode, userCardData?.display?.primaryColor, userCardData?.display?.primaryAccent, userCardData?.display?.secondaryColor, userCardData?.display?.secondaryAccent, userCardData?.display?.Logo, userCardData?.setting, userCardData?.display?.design]);

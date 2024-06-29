@@ -10,6 +10,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { baseUrl } from '@/src/config/Server';
 import { toast } from 'react-toastify';
 import InputColor from 'react-input-color';
+import Favicon from './AddFavicon';
 
 const Design = () => {
     // const [color, setColor] = useState({});
@@ -23,7 +24,7 @@ const Design = () => {
         setPrimaryAccent,
         setSecondaryColor,
         setSecondaryAccent,
-        setDesign, userCardData, setIsLoading } = useContext(userContext)
+        setDesign, userCardData, setIsLoading, favicon } = useContext(userContext)
     const [customColor, setCustomColor] = useState(false)
     console.log({ primaryAccent });
     const colorPicker = useRef()
@@ -50,7 +51,8 @@ const Design = () => {
                     secondaryColor,
                     secondaryAccent,
                     ProfileImage: `${profileImage}`,
-                    Logo: `${logoImage}`
+                    Logo: `${logoImage}`,
+                    favicon: `${favicon}`
                 }
             })
         })
@@ -271,9 +273,13 @@ const Design = () => {
 
                 <ProfileImage />
             </div>
-            <div className='mt-5 '>
+            <div className='mt-5  border-b border-[#CBD5E0]'>
                 <h2 className='text-xl font-bold text-black pb-2 '>Logo</h2>
                 <LogoImage />
+            </div>
+            <div className='mt-5 '>
+                <h2 className='text-xl font-bold text-black pb-2 '>Favicon</h2>
+                <Favicon />
             </div>
             <div className={`${!open? 'ps-[5%]' : 'ps-[15%]'}  fixed bottom-0 bg-[white] right-[400px] h-[70px]  left-[0%]    z-20`} style={{ boxShadow: ' 0px -4px  10px lightgray' }}>
 

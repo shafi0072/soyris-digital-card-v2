@@ -196,13 +196,7 @@ const ProfileInfo = ({ infos, color, userData, userCardData, design, logoImage }
             </div>
           ) : (
             <div>
-              {infos?.prefix || infos?.first_name ||
-               infos?.last_name || infos?.suffix ||
-                infos?.job_title || infos?.department || 
-                infos?.company || infos?.introduction || 
-                infos?.preferred_name || infos?.accreditations || infos?.pronouns
-
-               && <div>
+              {<div>
                   <div
                     className="text-center py-5 text-white w-full"
                     style={{ backgroundColor: color }}
